@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+      <div class="header">
+        <div class="col-md-3">
+            <div class="masthead">
+                <h3 class="text-muted">Взаимодейстие</h3>
+            </div>
+        </div>
+        @Html.Partial("_LoginPartial")
+        </div>
+
+    <div class="content">
+
+        @RenderBody()
+    </div>
+    <div id="footer">
+        <div class="footer-text">
+            <p class="footer-copyright">Copyright 2012 Footer here</p>
+        </div>
+    </div>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    
+
+
+</body>
+</html>

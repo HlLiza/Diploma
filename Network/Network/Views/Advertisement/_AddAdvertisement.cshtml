@@ -1,0 +1,39 @@
+﻿@model Network.DAL.EFModel.Advertisement
+
+
+<div id="addAdvDialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Добавление объявления</h4>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("Add", "Advertisement", FormMethod.Post, null))
+                { 
+                    @Html.HiddenFor(model=>model.SenderId)
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>Введите текст объявления</label>
+                        </div>
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.Information)
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-offset-8 col-md-4 ">
+                                <button class="btn btn-info pull-right" type="submit">OK</button>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+        </div>
+    </div>
+</div>
+

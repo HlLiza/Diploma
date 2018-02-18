@@ -1,0 +1,52 @@
+﻿@model Network.Views.ViewModels.UserListOfGroupViewModel
+
+<div id="listMembersDialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Список участников группы</h4>
+            </div>
+
+            <div class="modal-body">
+                @if (Model.Members.Count != 0)
+                {
+                    foreach (var item in Model.Members)
+                    {
+                        <div class="row">
+                            @if (item.Image.Length != 0)
+                            {
+                                <div class="col-md-8">
+                                    <img class="image" src="data:image/png;base64, @Convert.ToBase64String(item.Image)" />
+                                </div>
+                            }
+                            <div class="col-md-4">
+                                @Html.DisplayFor(modelItem => item.Name)
+
+                                @if (User.IsInRole("team_lead") && Model.Status==true)
+                                {
+                                <H6>
+                                    @Html.ActionLink("Удалить", "RemoveFromGroup", "Group", new { memId = item.Id, groupId = Model.Id}, null)
+                                </H6>
+}
+                            </div>
+                        </div>
+
+                    }
+                }
+                else
+                {
+                    <div class="col-md-12">
+                        <p>На данный момент участников нет.</p>
+                    </div>
+                }
+                </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+

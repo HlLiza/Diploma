@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@if (!User.Identity.IsAuthenticated)
+{
+    <div class="container body-content">
+        <div class="row"> <h2>Здравствуйте! Мы рады приветствовать Вас!</h2> </div>
+        <div class="row"> <h3>Если у Вас нет личного профиля, создайте его нажав на ссылку в правом верхнем углу "Зарегистрироваться". </h3></div>
+        <div class="row"><h3>Если Вы не впервые посещаете наш сайт, то войдите в свой профиль, нажав на "Выполнить вход".</h3></div>
+    </div>
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="container body-content">
+        <div class="row"> <h2>О нас</h2> </div>
+        <div class="row"> <h3>Данное приложение предназначенно, для организации межвузовского взаимодествия.</h3></div>
+    </div>
+}
+

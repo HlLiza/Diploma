@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище NetworkContext" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Researcher">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Id_PersonalData" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Id_Contact" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Id_Education" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Visibility" Type="bit" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="User'sContact">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" />
+    <Property Name="PhoneNumber" Type="nvarchar" MaxLength="250" />
+    <Property Name="Skype" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="User'sPersonalData">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" />
+    <Property Name="BirthDate" Type="date" />
+    <Property Name="ImageID" Type="uniqueidentifier" />
+  </EntityType>
+  <Association Name="FK_Researcher_User'sContact">
+    <End Role="User'sContact" Type="Self.User'sContact" Multiplicity="1" />
+    <End Role="Researcher" Type="Self.Researcher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User'sContact">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Researcher">
+        <PropertyRef Name="Id_Contact" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Researcher_User'sPersonalData">
+    <End Role="User'sPersonalData" Type="Self.User'sPersonalData" Multiplicity="1" />
+    <End Role="Researcher" Type="Self.Researcher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User'sPersonalData">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Researcher">
+        <PropertyRef Name="Id_PersonalData" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище NetworkContextContainer">
+    <EntitySet Name="Researcher" EntityType="Self.Researcher" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User'sContact" EntityType="Self.User'sContact" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User'sPersonalData" EntityType="Self.User'sPersonalData" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Researcher_User'sContact" Association="Self.FK_Researcher_User'sContact">
+      <End Role="User'sContact" EntitySet="User'sContact" />
+      <End Role="Researcher" EntitySet="Researcher" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Researcher_User'sPersonalData" Association="Self.FK_Researcher_User'sPersonalData">
+      <End Role="User'sPersonalData" EntitySet="User'sPersonalData" />
+      <End Role="Researcher" EntitySet="Researcher" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,569 @@
+﻿html, body {
+    height: 100%;
+}
+
+body {
+    background-image: url('/Content/Pictures/bg.jpg');
+}
+
+.header, footer {
+    height: 8%;
+    margin-right: 5%;
+    margin-left: 2%;
+}
+
+.content {
+    margin-left:8%;
+    margin-right:7%;
+    height: 84%;
+
+}
+
+.image {
+    height:200px;
+    width:300px;
+}
+
+.editProf {
+    margin-left:65px;
+    margin-bottom:15px;
+}
+#regContainer {
+    margin-top: 3%;
+}
+
+.panel-login {
+    border-color: #ccc;
+    background-color: #f9f8f8;
+    -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+}
+
+    .panel-login > .panel-heading {
+        text-align: center;
+    }
+
+        .panel-login > .panel-heading a {
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 28px;
+            -webkit-transition: all 0.1s linear;
+            -moz-transition: all 0.1s linear;
+            transition: all 0.1s linear;
+        }
+
+            .panel-login > .panel-heading a.active {
+                font-size: 34px;
+            }
+
+        .panel-login > .panel-heading hr {
+            margin-top: 10px;
+            margin-bottom: 0px;
+            clear: both;
+            border: 0;
+            height: 1px;
+            background-image: -webkit-linear-gradient(left,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.15),rgba(0, 0, 0, 0));
+            background-image: -moz-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+            background-image: -ms-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+            background-image: -o-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+        }
+
+    .panel-login input[type="text"], .panel-login input[type="email"], .panel-login input[type="password"] {
+        height: 45px;
+        border: 1px solid #ddd;
+        font-size: 16px;
+        -webkit-transition: all 0.1s linear;
+        -moz-transition: all 0.1s linear;
+        transition: all 0.1s linear;
+    }
+
+    .panel-login input:hover,
+    .panel-login input:focus {
+        outline: none;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+        border-color: #ccc;
+    }
+
+.btn-login {
+    background-color: #3D9DB3;
+    outline: none;
+    color: #fff;
+    font-size: 14px;
+    height: auto;
+    font-weight: normal;
+    padding: 14px 0;
+    text-transform: uppercase;
+    border-color: #2d92a9;
+}
+
+    .btn-login:hover,
+    .btn-login:focus {
+        color: #fff;
+        background-color: #198da8;
+        border-color: #53A3CD;
+    }
+
+.btn-register {
+    background-color: #17ae47;
+    outline: none;
+    color: #817272;
+    font-size: 14px;
+    height: auto;
+    font-weight: normal;
+    padding: 14px 0;
+    text-transform: uppercase;
+    border-color: #1CB94A;
+}
+
+    .btn-register:hover,
+    .btn-register:focus {
+        color: #fff;
+        background-color: #1CA347;
+        border-color: #1CA347;
+    }
+
+.fullscreen_bg {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-image: url('https://jointgroup.es/wp-content/uploads/2016/11/joint-network-group.jpg');
+    background-repeat: repeat;
+}
+
+.panel-heading a {
+    font-size: 48px;
+    color: rgb(6, 106, 117);
+    padding: 2px 0 10px 0;
+    font-family: 'FranchiseRegular','Arial Narrow',Arial,sans-serif;
+    font-weight: bold;
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+.panel-heading a {
+    background: -webkit-repeating-linear-gradient(-45deg, rgb(18, 83, 93), rgb(18, 83, 93) 20px, rgb(64, 111, 118) 20px, rgb(64, 111, 118) 40px, rgb(18, 83, 93) 40px);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+}
+
+.table {
+    border: #53a3cd 2px;
+    align-content: center;
+    align-items: center;
+}
+
+td {
+    text-align: center;
+}
+
+#user_img {
+    height: 130px;
+    width: 140px;
+    border-radius: 15px;
+    align-content: left;
+}
+
+
+
+
+
+.page {
+    color: #000;
+    font-size: 36px;
+    font-weight: bold;
+}
+.pageText {
+    color: #000;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.menu {
+    color: #53a3cd;
+    font-size: 18px;
+}
+
+.partialChangPhoto {
+    height: 20px;
+    width: 200px;
+    /*overflow-y:auto;*/
+}
+
+a {
+    color: #000;
+}
+
+
+/*.modal-body {
+    height: 200px;
+}*/
+
+.button-del {
+    text-align: center;
+    border: none;
+}
+
+
+.container {
+    text-align: center;
+}
+
+.prgr {
+    height: 30px;
+}
+
+
+
+
+.gallery-img {
+    height: 80px;
+    width: 80px;
+    border: solid;
+    border-width: 1px;
+}
+
+
+td .alb {
+    /*margin: 50px;
+    padding: 30px;*/
+    display: inline-block;
+}
+
+/*#addToGroupDialog > .modal-dialog .modal-content {
+    height: 180px;
+    width: 380px;
+}*/
+
+#addToGroupDialog > .modal-dialog .modal-content {
+    height: 180px;
+    width: 380px;
+}
+
+#delDialog > .modal-dialog .modal-content {
+    height: 180px;
+    width: 380px;
+}
+
+
+.ModalInModal {
+    height: 380px;
+    width: 380px;
+}
+
+
+hr {
+    border-color: black;
+}
+
+.navbar-inverse {
+    background-color: black;
+    border-color: black;
+}
+
+.img-circle {
+    border-radius: 20%;
+    width: 345px;
+    height: 250px;
+    margin: 15px;
+}
+
+.emptyAlb {
+    border-radius: 20%;
+    border-color: black;
+    border-width: 13px;
+    width: 345px;
+    height: 250px;
+    margin: 15px;
+}
+
+
+footer {
+    font-size: 16px;
+}
+
+.container {
+    height: 100%;
+    padding: 25px ;
+}
+
+.scrolAlb {
+    overflow-x: scroll;
+}
+
+.scrolFriends {
+    overflow-y: scroll;
+}
+
+.gallery {
+    display: inline-flex;
+}
+
+
+.img-responsive {
+    height: 200px;
+    width: 300px;
+    display: inline-flex;
+}
+
+.jumbotron .container-fluid {
+    margin-bottom: 0;
+    height: auto;
+}
+
+
+
+.jumbotron {
+    max-height: 75%;
+}
+
+
+/*param form photo in modal*/
+.modal-body img .thumbnail .img-responsive {
+    height: 200px;
+    width: 300px;
+}
+
+.jumbotron {
+    width: 100%;
+}
+
+
+.content-holder {
+    height: auto;
+}
+
+/*for modal "SelectReceiver"*/
+
+.select_friend_img {
+    height: 80px;
+    width: 90px;
+    align-self: right;
+}
+
+.header {
+    color: #9d9d9d;
+    text-align: center;
+}
+
+#selectReceiverDialog .modal-dialog {
+    width: 350px;
+    height: auto;
+}
+
+.row {
+    margin: 15px;
+}
+
+.content_for_friends {
+    height: auto;
+    width: auto;
+    margin: 20px;
+    align-content: center;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.scrolSelRec {
+    overflow-y: scroll;
+}
+
+/*.modal-body {
+      padding: auto;
+  }*/
+
+
+.text {
+    color: black;
+    font-size: 18px;
+    text-align: center
+}
+
+.activeChat {
+    background-color:;
+    /*background-color:#778899;*/
+}
+
+.badge {
+    background-color: buttonface;
+}
+
+
+.nameFirstname {
+    color: #000;
+    font-size: 26px;
+}
+
+
+.dropdown-toggle {
+    background-color: #000;
+    color: #9d9d9d;
+}
+
+.btn {
+    background-color: #000;
+    color: #9d9d9d;
+}
+
+.pageHome {
+    color: #eee;
+    font-size: 36px;
+    font-weight: bold;
+}
+
+
+
+/*for chat*/
+/*.container img {
+    float: left;
+    max-width: 60px;
+    width: 100%;
+    margin-right: 20px;
+    border-radius: 50%;
+}*/
+
+.col-md-3 > .menu {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.bold {
+    font-weight:bold;
+}
+.caret {
+    color:white;
+}
+
+Footer*/ #footer {
+    background-color: #343434;
+    color: #999;
+    height: 390px;
+    margin-top: 321px;
+    padding-top: 55px;
+}
+
+.footer-block {
+    background-color: white;
+    border-top: 2px solid #cfcfcf;
+    border-radius: 2px;
+    height: 47px;
+    margin-bottom: 283px;
+    margin-left: 675px;
+    margin-right: 180px;
+    position: absolute;
+    width: 345px;
+}
+
+.footer-block-email {
+    border: none;
+    height: 47px;
+    outline: none;
+    width: 345px;
+}
+
+    .footer-block-email button {
+        background-color: #f06549;
+        border: 1px solid #e1593b;
+        border-radius: 3px;
+        cursor: pointer;
+        height: 39px;
+        margin-left: 30px;
+        margin-right: 0;
+        margin-top: 3px;
+        padding: 0;
+        text-align: center;
+        width: 44px;
+    }
+
+.footer-block-email-img {
+    background-image: url(../images/letter.png);
+    background-position: 10px;
+    background-repeat: no-repeat;
+    border: 0 solid #dfdfdf;
+    color: #cacaca;
+    float: left;
+    height: 33px;
+    outline: none;
+    margin: 0;
+    padding-left: 40px;
+    padding-right: 0;
+    padding-top: 7px;
+    width: 225px;
+}
+
+    .footer-block-email-img:focus {
+        color: black;
+        padding-left: 40px;
+        padding-right: 0;
+    }
+
+.footer-text {
+    color: #bbb;
+    font-size: 9.5pt;
+    height: 69px;
+    margin-left: 160px;
+    padding-left: 1px;
+    width: 464px;
+}
+
+    .footer-text p {
+        color: #939393;
+        margin-bottom: 30px;
+    }
+
+.footer-social-img {
+    display: inline;
+    margin-right: 14px;
+}
+
+    .footer-social-img a {
+        outline: none;
+        text-decoration: none;
+    }
+
+.footer-copyright {
+    margin-top: 30px;
+}
+
+@media screen and (min-width: 768px) {
+    .jumbotron {
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+}
+
+.jumbotron + .browse_user {
+    height:80%;
+    width:100%
+}
+
+.container-show 
+{
+    overflow-y: scroll;
+}
+
+#DaTe {
+    height:30px;
+    width:200px;
+}
+
+.AVA{
+    margin:25px;
+}
+
+.btn-edit {
+    padding-left:25px;
+    margin-left:110px;
+    width:100px;
+    color:black;
+}
+
+ a:focus {
+    color: #f1eeee;
+}

@@ -1,0 +1,142 @@
+﻿@model IEnumerable<Network.Views.ViewModels.ConferenceViewModel>
+@using Network.Controllers
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="navbar-header">
+<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+    <span class="sr-only">Toggle navigation</span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+</button>
+    </div>
+<nav class="navbar navbar-inverse" role="navigation">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="@Url.Action("Index", "User")"><span style="font-size: 16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-arrow-left"></span></a></li>
+                @if (User.IsInRole("secretary"))
+                {
+                    <li id="addConferModal"><a href="#">Добавить конференцию<span></span></a></li>
+                }
+                @if (!User.IsInRole("secretary"))
+                {
+                    <li><a href="@Url.Action("GetListConferenceForUser", "Conference")">Мои конференции<span style="font-size: 16px;" class="pull-right hidden-xs showopacity glyphicon"></span></a></li>
+                }
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="row page" align="center">
+    Конференции
+    <hr />
+</div>
+
+<div class="jumbotron container-show">
+    
+
+    <div class="row">
+        @foreach (var item in Model)
+            {
+            @Html.HiddenFor(modelItem => item.Id)
+            <div class="row">
+                <div class="col-md-9">
+                    <p>
+                        @Html.DisplayFor(modelItem => item.Date.Day).@Html.DisplayFor(modelItem => item.Date.Month).@Html.DisplayFor(modelItem => item.Date.Year)
+                    по адресу @Html.DisplayFor(modelItem => item.Place)
+                    состоится конференция на тему @Html.DisplayFor(modelItem => item.Thema)
+                </div>
+
+                <div class="col-md-3 btn-group">
+                    <button class="btn dropdown-toggle" data-toggle="dropdown"><span>...</span></button>
+                    <ul class="dropdown-menu">
+                        <li id="listMem" onclick="opendaModal(this)" data-url='@Url.Action("ListMembersOfConference", "Conference",new { id=item.Id})'><a href="#">Участники<span style="font-size: 16px;"></span></a></li>
+                        @if (!User.IsInRole("secretary") && item.MembersStatus!=false)
+                        { 
+                            <li id="joinToConfer" onclick="joinToConf(this)"data-url='@Url.Action("JoinConference", "Conference",new { id=item.Id})' ><a href="#">Принять участие в конференции<span style="font-size: 16px;"></span></a></li>
+                        }
+                    </ul>
+                </div>
+             </div>
+
+
+        <div id="listMemm" class="modal fade">
+            <div id="listContainer">
+            </div>
+        </div>
+
+        <div id="joinMod" class="modal fade" >
+            <div id="joinContainer">
+            </div>
+        </div>
+        <hr />
+           }
+          </div>
+
+    <div id="addConferenceModal" class="modal fade" data-url='@Url.Action("CreateConference", "Conference", null)'>
+        <div id="addConferenceModal">
+        </div>
+    </div>
+    
+</div>
+
+@section Scripts{
+    <script type="text/javascript">
+        document.ready = (function () {
+
+
+            $('#addConferModal').click(function () {
+                var url = $('#addConferenceModal').data('url');
+
+                $.get(url,
+                    function (data) {
+                        $('#addConferenceModal').html(data);
+
+                        $('#addConferenceModal').modal('show');
+                    });
+            });
+        })()
+
+            function joinToConf(element) {
+                var url = $(element).data('url');
+
+                $.get(url,
+                    function (data) {
+                        $('#joinContainer').html(data);
+
+                        $('#joinMod').modal('show');
+                    });
+
+            };
+
+            function opendaModal (element) {
+                var url = $(element).data('url');
+                $.get(url,
+                    function (data) {
+                        $('#listContainer').html(data);
+
+                        $('#listMemm').modal('show');
+                    });
+
+            };
+    </script>
+}
+
+
+

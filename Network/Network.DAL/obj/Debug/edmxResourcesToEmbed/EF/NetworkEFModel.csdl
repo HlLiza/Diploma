@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="NetworkContext" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Researcher">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Id_PersonalData" Type="Guid" Nullable="false" />
+    <Property Name="Id_Contact" Type="Guid" Nullable="false" />
+    <Property Name="Id_Education" Type="Guid" Nullable="false" />
+    <Property Name="Visibility" Type="Boolean" />
+    <NavigationProperty Name="User_sContact" Relationship="Self.FK_Researcher_User_sContact" FromRole="Researcher" ToRole="User_sContact" />
+    <NavigationProperty Name="User_sPersonalData" Relationship="Self.FK_Researcher_User_sPersonalData" FromRole="Researcher" ToRole="User_sPersonalData" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="User_sContact">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Skype" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Researcher" Relationship="Self.FK_Researcher_User_sContact" FromRole="User_sContact" ToRole="Researcher" />
+  </EntityType>
+  <EntityType Name="User_sPersonalData">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="BirthDate" Type="DateTime" Precision="0" />
+    <Property Name="ImageID" Type="Guid" />
+    <NavigationProperty Name="Researcher" Relationship="Self.FK_Researcher_User_sPersonalData" FromRole="User_sPersonalData" ToRole="Researcher" />
+  </EntityType>
+  <Association Name="FK_Researcher_User_sContact">
+    <End Role="User_sContact" Type="Self.User_sContact" Multiplicity="1" />
+    <End Role="Researcher" Type="Self.Researcher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User_sContact">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Researcher">
+        <PropertyRef Name="Id_Contact" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Researcher_User_sPersonalData">
+    <End Role="User_sPersonalData" Type="Self.User_sPersonalData" Multiplicity="1" />
+    <End Role="Researcher" Type="Self.Researcher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User_sPersonalData">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Researcher">
+        <PropertyRef Name="Id_PersonalData" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="InstitutNetworkEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Researcher" EntityType="Self.Researcher" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="User_sContact" EntityType="Self.User_sContact" />
+    <EntitySet Name="User_sPersonalData" EntityType="Self.User_sPersonalData" />
+    <AssociationSet Name="FK_Researcher_User_sContact" Association="Self.FK_Researcher_User_sContact">
+      <End Role="User_sContact" EntitySet="User_sContact" />
+      <End Role="Researcher" EntitySet="Researcher" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Researcher_User_sPersonalData" Association="Self.FK_Researcher_User_sPersonalData">
+      <End Role="User_sPersonalData" EntitySet="User_sPersonalData" />
+      <End Role="Researcher" EntitySet="Researcher" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

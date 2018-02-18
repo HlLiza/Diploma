@@ -1,0 +1,2 @@
+D:\University\Diploma\projects\Network\Network.Tests\obj\Debug\Network.Tests.csproj.CoreCompileInputs.cache
+D:\University\Diploma\projects\Network\Network.Tests\obj\Debug\Network.Tests.csprojResolveAssemblyReference.cache

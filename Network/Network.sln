@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2005
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Network", "Network\Network.csproj", "{91337557-9C03-46F7-963E-61B02561B68A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Network.BL", "Network.BL\Network.BL.csproj", "{6B8B62AC-1DF7-4FE8-8474-8641A83716CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Network.DAL", "Network.DAL\Network.DAL.csproj", "{691302C7-63FE-4199-8AB7-32A0E300A0CF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{91337557-9C03-46F7-963E-61B02561B68A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91337557-9C03-46F7-963E-61B02561B68A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91337557-9C03-46F7-963E-61B02561B68A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91337557-9C03-46F7-963E-61B02561B68A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B8B62AC-1DF7-4FE8-8474-8641A83716CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B8B62AC-1DF7-4FE8-8474-8641A83716CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B8B62AC-1DF7-4FE8-8474-8641A83716CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B8B62AC-1DF7-4FE8-8474-8641A83716CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{691302C7-63FE-4199-8AB7-32A0E300A0CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{691302C7-63FE-4199-8AB7-32A0E300A0CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{691302C7-63FE-4199-8AB7-32A0E300A0CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{691302C7-63FE-4199-8AB7-32A0E300A0CF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2C4FAFF8-C26E-4575-816A-241B4DDB88A1}
+		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.0\lib\NET35
+	EndGlobalSection
+EndGlobal

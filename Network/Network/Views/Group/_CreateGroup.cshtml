@@ -1,0 +1,48 @@
+﻿@model Network.Views.ViewModels.CreateGroup
+
+<div id="createGroupDialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                   
+                    <h4 class="modal-title">Добавление  группы</h4>
+                </div>
+
+            <div class="modal-body">
+                @using (Html.BeginForm("CreateGroup", "Group", FormMethod.Post))
+                {
+                    <div class="form-horizontal">
+                        <div class="container">
+                            <div class="form-group">
+                                <label class="control-label">Введите номер группы</label>
+                                <input name="Number" type="number" required="required" min="1" max="150" class="form-control" placeholder="Номер группы" />
+                          
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label">Введите специализацию</label>
+                                <input name="Specialization" type="text" required="required" class="form-control" placeholder="Специализация" />
+                            </div>
+
+                            <div class="form-group">
+                                @Html.DropDownListFor(model => model.Head.Id, new SelectList(Model.ListLead, "Id", "Name"), "Выбери руководителя")
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-offset-8 col-md-4 ">
+                                    <button class="btn btn-info pull-right" type="submit">OK</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
