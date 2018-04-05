@@ -1,25 +1,121 @@
-﻿html, body {
+﻿/*html, body {
     height: 100%;
-}
+}*/
 
 body {
-    background-image: url('/Content/Pictures/bg.jpg');
+    background-color: #E7FFE0;
 }
 
-.header, footer {
-    height: 8%;
-    margin-right: 5%;
-    margin-left: 2%;
+.footer-main {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    background-color: #D9D6C0;
 }
 
-.content {
-    margin-left:8%;
-    margin-right:7%;
-    height: 84%;
-
+.head-background-col {
+    background-color: #C6FFCC;
 }
 
-.image {
+.registrForm {
+    padding-top: 100px;
+}
+.reg-form {
+    height:150px;
+    width:350px;
+}
+body {
+    background: #eee !important;
+}
+
+.wrapper {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.form-signin {
+    max-width: 380px;
+    padding: 15px 35px 45px;
+    margin: 0 auto;
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+.form-signin-heading, .checkbox{
+    margin-bottom: 30px;
+}
+
+.checkbox {
+    font-weight: normal;
+}
+
+.form-control {
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    /*@include box-sizing(border-box);*/
+}
+    /*&:focus{
+    z-index: 2;}*/
+
+
+
+input[type="text"] {
+    margin-bottom: -1px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+input[type="password"] {
+    margin-bottom: 20px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+.form {
+    padding-top:100px;
+}
+fieldset {
+    background: white;
+    border: 0 none;
+    border-radius: 3px;
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+    padding: 0 30px;
+    box-sizing: border-box;
+    width: 41%;
+    height: 512px;
+    margin: 0 10% 0 25%;
+    position: relative;
+    text-align: center;
+}
+
+.item-radio{
+    margin-left:20px;
+}
+/*.main.background.lazy-loaded {
+    background: #333 url(/sc/h/64xk850n3a8uzse6fi11l3vmz) repeat top center;
+    background-size: cover;
+}*/
+/*.main .reg-form {
+    width: 400px;
+    padding: 0 0 24px;
+    margin: 0 auto;
+    border-radius: 2px;
+    background: #EDF0F3;
+    overflow: hidden;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+    -webkit-box-pack: left;
+    -ms-flex-pack: left;
+    justify-content: left;
+}*/
+/*/*.image {
     height:200px;
     width:300px;
 }
@@ -193,7 +289,7 @@ td {
 .partialChangPhoto {
     height: 20px;
     width: 200px;
-    /*overflow-y:auto;*/
+
 }
 
 a {
@@ -201,19 +297,12 @@ a {
 }
 
 
-/*.modal-body {
-    height: 200px;
-}*/
-
 .button-del {
     text-align: center;
     border: none;
 }
 
 
-.container {
-    text-align: center;
-}
 
 .prgr {
     height: 30px;
@@ -231,15 +320,11 @@ a {
 
 
 td .alb {
-    /*margin: 50px;
-    padding: 30px;*/
+
     display: inline-block;
 }
 
-/*#addToGroupDialog > .modal-dialog .modal-content {
-    height: 180px;
-    width: 380px;
-}*/
+
 
 #addToGroupDialog > .modal-dialog .modal-content {
     height: 180px;
@@ -283,16 +368,6 @@ hr {
     margin: 15px;
 }
 
-
-footer {
-    font-size: 16px;
-}
-
-.container {
-    height: 100%;
-    padding: 25px ;
-}
-
 .scrolAlb {
     overflow-x: scroll;
 }
@@ -324,7 +399,7 @@ footer {
 }
 
 
-/*param form photo in modal*/
+
 .modal-body img .thumbnail .img-responsive {
     height: 200px;
     width: 300px;
@@ -339,7 +414,7 @@ footer {
     height: auto;
 }
 
-/*for modal "SelectReceiver"*/
+
 
 .select_friend_img {
     height: 80px;
@@ -347,19 +422,15 @@ footer {
     align-self: right;
 }
 
-.header {
-    color: #9d9d9d;
-    text-align: center;
-}
+
+
 
 #selectReceiverDialog .modal-dialog {
     width: 350px;
     height: auto;
 }
 
-.row {
-    margin: 15px;
-}
+
 
 .content_for_friends {
     height: auto;
@@ -374,10 +445,6 @@ footer {
     overflow-y: scroll;
 }
 
-/*.modal-body {
-      padding: auto;
-  }*/
-
 
 .text {
     color: black;
@@ -385,10 +452,7 @@ footer {
     text-align: center
 }
 
-.activeChat {
-    background-color:;
-    /*background-color:#778899;*/
-}
+
 
 .badge {
     background-color: buttonface;
@@ -418,16 +482,6 @@ footer {
 }
 
 
-
-/*for chat*/
-/*.container img {
-    float: left;
-    max-width: 60px;
-    width: 100%;
-    margin-right: 20px;
-    border-radius: 50%;
-}*/
-
 .col-md-3 > .menu {
     padding-right: 15px;
     padding-left: 15px;
@@ -440,7 +494,7 @@ footer {
     color:white;
 }
 
-Footer*/ #footer {
+Footer*/ /*#footer {
     background-color: #343434;
     color: #999;
     height: 390px;
@@ -514,7 +568,6 @@ Footer*/ #footer {
 
     .footer-text p {
         color: #939393;
-        margin-bottom: 30px;
     }
 
 .footer-social-img {
@@ -566,4 +619,4 @@ Footer*/ #footer {
 
  a:focus {
     color: #f1eeee;
-}
+}*/

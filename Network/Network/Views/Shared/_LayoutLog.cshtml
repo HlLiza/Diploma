@@ -8,16 +8,25 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="header">
-        @Html.Partial("_LoginPartial")
-    </div>
+    <header>
+        <!-- Fixed navbar -->
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top head-background-col">           
+                <div class="col-3">
+                    <a class="navbar-brand" href="#">Научное сообщество</a>
+                </div>
+                <div class="col-6">
+                    @*@Html.Partial("~/Views/Account/_Login.cshtml")*@
+                </div>
+                <div class="col-3">
+                    <a class="link-forgot-password" tabindex="1" href="@Url.Action("ForgotPassword","Account")">Забыли пароль?</a>
+                </div>
+        </nav>
+    </header>
+    <main role="main" class="container form">
+        @RenderBody()
+    </main>
 
-    <div class="container">
-            @RenderBody()
-     </div>
-
-    <footer>
-        <p>&copy; @DateTime.Now.Year – приложение ASP.NET</p>
+    <footer class="footer footer-main">
     </footer>
 
         @Styles.Render("~/Content/css")
