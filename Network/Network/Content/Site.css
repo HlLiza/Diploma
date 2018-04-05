@@ -73,9 +73,7 @@ input[type="password"] {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
-.form {
-    padding-top:100px;
-}
+
 fieldset {
     background: white;
     border: 0 none;
@@ -92,6 +90,10 @@ fieldset {
 
 .item-radio{
     margin-left:20px;
+}
+
+.padd{
+    padding-top: 10px;
 }
 /*.main.background.lazy-loaded {
     background: #333 url(/sc/h/64xk850n3a8uzse6fi11l3vmz) repeat top center;

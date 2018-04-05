@@ -55,7 +55,7 @@ namespace Network.Controllers
 
         //
         // GET: /Account/Login
-        [AllowAnonymous]
+        //[AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
@@ -90,11 +90,12 @@ namespace Network.Controllers
                 }
 
             }
-         
+
 
             // Сбои при входе не приводят к блокированию учетной записи
             // Чтобы ошибки при вводе пароля инициировали блокирование учетной записи, замените на shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            ApplicationUser signedUser = UserManager.FindByEmail(model.Email);
+            var result = await SignInManager.PasswordSignInAsync(signedUser.Email, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -107,7 +108,7 @@ namespace Network.Controllers
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Неудачная попытка входа.");
-                    return View(model);
+                    return RedirectToAction("Index","Home");
             }
         }
 
@@ -187,56 +188,18 @@ namespace Network.Controllers
                     await UserManager.SendEmailAsync(user.Id, "Подтверждение электронной почты",
                                "Для завершения регистрации перейдите по ссылке:: <a href=\""
                                                                + callbackUrl + "\">завершить регистрацию</a>");
-                   return RedirectToAction("AddUser","User", new  {id= user.Id});
+                    return RedirectToAction("Confirm", "Account", new { Email = user.Email });
                 }
                 AddErrors(result);
             }
             return View(model);
         }
 
-
-        //public ViewResult AddUser()
-        //{
-        //    return View("AddUser");
-        //}
-
-        //[HttpPost]
-        //public ViewResult AddUser(AddUserViewModel model)
-        //{
-        //    if (model != null)
-        //    {
-        //        Image image = new Image()
-        //        {
-        //            Image1 = _userService.СonvertingImg(model.Image)
-        //        };
-
-        //        User_sPersonalData data = new User_sPersonalData()
-        //        {
-        //            Name = model.Name,
-        //        };
-        //        User_sContact contact = new User_sContact()
-        //        {
-        //            Email = User.Identity.Name,
-        //            PhoneNumber = model.PhoneNumber,
-        //            Skype = model.Skype
-        //        };
-
-        //        User user = new User()
-        //        {
-
-        //            Id = Guid.Parse(User.Identity.GetUserId()),
-        //            Visibility = true,
-        //            Type = model.TypeUser
-        //        };
-
-        //        _userService.AddUser(user, contact, data, image);
-
-        //    }
-
-        //    return View("DisplayEmail");
-        //}
-
-
+        [AllowAnonymous]
+        public ActionResult Confirm(string Email)
+        {
+            ViewBag.Email = Email; return View();
+        }
 
         //
         // GET: /Account/ConfirmEmail
