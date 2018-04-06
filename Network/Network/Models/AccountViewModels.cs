@@ -51,12 +51,12 @@ namespace Network.Models
         [Required]
         [Display(Name = "Адрес электронной почты")]
         [EmailAddress]
-        public string Email { get; set; }
+        public string LoginEmail { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Пароль")]
-        public string Password { get; set; }
+        public string LoginPassword { get; set; }
 
         [Display(Name = "Запомнить меня")]
         public bool RememberMe { get; set; }
@@ -80,8 +80,13 @@ namespace Network.Models
         [Compare("Password", ErrorMessage = "Пароль и его подтверждение не совпадают.")]
         public string ConfirmPassword { get; set; }
 
-
+        [Required]
         public string Role { get; set; }
+
+
+        [DataType(DataType.PhoneNumber)]
+        [RegularExpression("^(?!0+$)(\\+\\d{1,3}[- ]?)?(?!0+$)\\d{10,15}$", ErrorMessage = "Введите корректный номер телефона")]
+        public string PhoneNumber { get; set; }
     }
 
     public class ResetPasswordViewModel

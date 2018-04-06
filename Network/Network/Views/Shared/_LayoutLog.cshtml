@@ -15,11 +15,15 @@
                         <div class="col-md-4">
                             <a class="navbar-brand" href="#">Научное сообщество</a>
                         </div>
-                        <div class="col-md-8 padd">
-                    @Html.Partial("~/Views/Account/_Login.cshtml")
-                </div>
+                        <div class="col-md-6 padd">
+                            @Html.Partial("_Login")
+                        </div>
+                        <div class="col-md-2 padd">
+                            <a class="link-forgot-password" tabindex="1" href="@Url.Action("ForgotPassword","Account")">Забыли пароль?</a>
+                        </div>
                     </div>
-                </div>
+                 </div>
+                
 </nav>
       
     </header>
@@ -29,14 +33,10 @@
 
     <footer class="footer footer-main">
     </footer>
-
         @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")
         @Scripts.Render("~/bundles/modernizr")
         @RenderSection("scripts", required: false)
-
-
-
 </body>
 </html>

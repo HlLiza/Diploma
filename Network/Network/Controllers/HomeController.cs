@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using Network.Models;
+using System.Web.Mvc;
 
 namespace Network.Controllers
 {

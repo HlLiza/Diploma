@@ -263,9 +263,9 @@
     <Content Include="Views\Conference\_LeaveConference.cshtml" />
     <Content Include="Views\Group\GroupsForUser.cshtml" />
     <Content Include="Views\Group\_AddMembToGroup.cshtml" />
-    <Content Include="Views\Account\_Login.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Shared\_Login.cshtml" />
     <Content Include="Views\Account\Confirm.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
     <Resource Include="Content\Pictures\no.png" />
     <Content Include="Content\register.css" />
     <Content Include="favicon.ico" />
@@ -334,7 +334,6 @@
     <Content Include="Views\User\DisplayEmail.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutLog.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\User\AddUser.cshtml" />
     <Content Include="Views\User\BrowseUser.cshtml" />
     <Content Include="Views\User\UsersPage.cshtml" />

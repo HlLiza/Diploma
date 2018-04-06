@@ -71,7 +71,7 @@ namespace Network.Controllers
         {
             if (!ModelState.IsValid)
             {
-                var user = await UserManager.FindAsync(model.Email, model.Password);
+                var user = await UserManager.FindAsync(model.LoginEmail, model.LoginPassword);
                 if (user != null)
                 {
                     if (user.EmailConfirmed == true)
@@ -94,8 +94,8 @@ namespace Network.Controllers
 
             // Сбои при входе не приводят к блокированию учетной записи
             // Чтобы ошибки при вводе пароля инициировали блокирование учетной записи, замените на shouldLockout: true
-            ApplicationUser signedUser = UserManager.FindByEmail(model.Email);
-            var result = await SignInManager.PasswordSignInAsync(signedUser.Email, model.Password, model.RememberMe, shouldLockout: false);
+            ApplicationUser signedUser = UserManager.FindByEmail(model.LoginEmail);
+            var result = await SignInManager.PasswordSignInAsync(signedUser.Email, model.LoginPassword, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -172,7 +172,7 @@ namespace Network.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, PhoneNumber=model.PhoneNumber };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 await UserManager.AddToRoleAsync(user.Id, model.Role);
 
@@ -198,7 +198,8 @@ namespace Network.Controllers
         [AllowAnonymous]
         public ActionResult Confirm(string Email)
         {
-            ViewBag.Email = Email; return View();
+            ViewBag.Email = Email;
+            return View();
         }
 
         //

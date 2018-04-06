@@ -47,10 +47,11 @@ D:\University\Diploma\Git\Network\Network.DAL\obj\Debug\Network.DAL.csproj.CoreC
 D:\University\Diploma\Git\Network\Network.DAL\obj\Debug\Network.DAL.dll
 D:\University\Diploma\Git\Network\Network.DAL\obj\Debug\Network.DAL.pdb
 D:\University\Diploma\Git\Network\Network.DAL\obj\Debug\Network.DAL.csprojResolveAssemblyReference.cache
-D:\University\Diploma\bitbucket\Network\Network.DAL\bin\Debug\EntityFramework.dll
+D:\University\Diploma\bitbucket\Network\Network.DAL\bin\Debug\EntityFramework.xml
 D:\University\Diploma\bitbucket\Network\Network.DAL\bin\Debug\Network.DAL.dll.config
 D:\University\Diploma\bitbucket\Network\Network.DAL\bin\Debug\Network.DAL.dll
 D:\University\Diploma\bitbucket\Network\Network.DAL\bin\Debug\Network.DAL.pdb
+D:\University\Diploma\bitbucket\Network\Network.DAL\bin\Debug\EntityFramework.dll
 D:\University\Diploma\bitbucket\Network\Network.DAL\bin\Debug\EntityFramework.SqlServer.dll
 D:\University\Diploma\bitbucket\Network\Network.DAL\bin\Debug\Microsoft.IdentityModel.Logging.dll
 D:\University\Diploma\bitbucket\Network\Network.DAL\bin\Debug\Microsoft.IdentityModel.Tokens.dll
@@ -58,7 +59,6 @@ D:\University\Diploma\bitbucket\Network\Network.DAL\bin\Debug\Microsoft.Practice
 D:\University\Diploma\bitbucket\Network\Network.DAL\bin\Debug\Newtonsoft.Json.dll
 D:\University\Diploma\bitbucket\Network\Network.DAL\bin\Debug\System.IdentityModel.Tokens.Jwt.dll
 D:\University\Diploma\bitbucket\Network\Network.DAL\bin\Debug\Twilio.dll
-D:\University\Diploma\bitbucket\Network\Network.DAL\bin\Debug\EntityFramework.xml
 D:\University\Diploma\bitbucket\Network\Network.DAL\bin\Debug\EntityFramework.SqlServer.xml
 D:\University\Diploma\bitbucket\Network\Network.DAL\bin\Debug\Microsoft.IdentityModel.Tokens.xml
 D:\University\Diploma\bitbucket\Network\Network.DAL\bin\Debug\Microsoft.Practices.ServiceLocation.pdb

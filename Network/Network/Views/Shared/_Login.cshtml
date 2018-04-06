@@ -1,0 +1,21 @@
+﻿@model Network.Models.LoginViewModel
+
+    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null))
+    {
+        @Html.AntiForgeryToken()
+
+        <input type="text" name="LoginEmail" class="login-email" autocapitalize="off" tabindex="1" id="username" placeholder="Адрес эл.&nbsp;почты" autofocus="autofocus">
+        <input type="password" name="LoginPassword" class="login-password" id="password" aria-required="true" tabindex="1" placeholder="Пароль">
+
+        <input type="checkbox" value="true" id="remember" name="rememberMe">
+        <label for="remember">Запомнить?</label>
+      
+
+        <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="btn btn-primary" value="Войти">
+
+
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+
+
+    }
+
