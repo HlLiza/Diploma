@@ -19,6 +19,7 @@
                         </div>
                     </div>
 
+                    @Html.ValidationSummary("", new { @class = "text-danger" })
                     <div class="panel-body panel-body-reg style-text">
                         <div class="row">
                             <div class="col-lg-12">
@@ -39,7 +40,7 @@
                                     <a href="@Url.Action("ForgotPassword","Account")" class="to_register"> Забыли пароль?</a>
                                 </div>
 
-                                @Html.ValidationSummary("", new { @class = "text-danger" })
+                              
 
                                 <div class="form-group">
                                     <div class="row">
