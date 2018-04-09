@@ -345,7 +345,6 @@ C:\Users\elisa\Desktop\новый\Network\Network\obj\Debug\Network.g.resources
 C:\Users\elisa\Desktop\новый\Network\Network\obj\Debug\Network.csproj.CoreCompileInputs.cache
 C:\Users\elisa\Desktop\новый\Network\Network\obj\Debug\Network.dll
 C:\Users\elisa\Desktop\новый\Network\Network\obj\Debug\Network.pdb
-D:\University\Diploma\bitbucket\Network\Network\bin\System.Web.Helpers.dll
 D:\University\Diploma\bitbucket\Network\Network\bin\ApplicationInsights.config
 D:\University\Diploma\bitbucket\Network\Network\bin\Content\Pictures\background.png
 D:\University\Diploma\bitbucket\Network\Network\bin\Network.dll.config
@@ -384,6 +383,7 @@ D:\University\Diploma\bitbucket\Network\Network\bin\Newtonsoft.Json.dll
 D:\University\Diploma\bitbucket\Network\Network\bin\Owin.dll
 D:\University\Diploma\bitbucket\Network\Network\bin\System.IdentityModel.Tokens.Jwt.dll
 D:\University\Diploma\bitbucket\Network\Network\bin\System.Net.Http.Formatting.dll
+D:\University\Diploma\bitbucket\Network\Network\bin\System.Web.Helpers.dll
 D:\University\Diploma\bitbucket\Network\Network\bin\System.Web.Http.dll
 D:\University\Diploma\bitbucket\Network\Network\bin\System.Web.Mvc.dll
 D:\University\Diploma\bitbucket\Network\Network\bin\System.Web.Optimization.dll

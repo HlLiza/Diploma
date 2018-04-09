@@ -19,7 +19,31 @@ body {
     background-color: #C6FFCC;
 }
 
-.registrForm {
+.padd {
+    padding-top: 10px;
+}
+.header {
+    margin-bottom:0;
+}
+.panel-heading{
+    text-align: center;
+    height:50px;
+        
+}
+.panel-body-reg {
+    padding-bottom:0;
+}
+.button-registr {
+    background-color: #C6FFCC;
+}
+
+
+.style-text {
+    color: #333333;
+    text-align: center;
+}
+
+/*.registrForm {
     padding-top: 100px;
 }
 .reg-form {
@@ -55,10 +79,9 @@ body {
     font-size: 16px;
     height: auto;
     padding: 10px;
-    /*@include box-sizing(border-box);*/
+    
 }
-    /*&:focus{
-    z-index: 2;}*/
+  
 
 
 
@@ -90,11 +113,9 @@ fieldset {
 
 .item-radio{
     margin-left:20px;
-}
+}*/
 
-.padd{
-    padding-top: 10px;
-}
+
 /*.main.background.lazy-loaded {
     background: #333 url(/sc/h/64xk850n3a8uzse6fi11l3vmz) repeat top center;
     background-size: cover;

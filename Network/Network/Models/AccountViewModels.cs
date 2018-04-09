@@ -66,26 +66,32 @@ namespace Network.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Адрес электронной почты")]
+        //[RegularExpression("[-a-z0-9!#$%&'*+/=?^_`{|}~]+(/.[-a-z0-9!#$%&'*+/=?^_`{|}~]+)*", ErrorMessage = "Некорректное значение")]
+        //[RegularExpression("^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$", ErrorMessage = "Некорректное значение"))]
+        [Display(Name = "адрес электронной почты")]
         public string Email { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "Значение {0} должно содержать не менее {2} символов.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Пароль")]
+        [Display(Name = "пароль")]
         public string Password { get; set; }
 
+        [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Подтверждение пароля")]
+        [Display(Name = "подтверждение пароля")]
         [Compare("Password", ErrorMessage = "Пароль и его подтверждение не совпадают.")]
         public string ConfirmPassword { get; set; }
 
         [Required]
+        [Display(Name = "роль")]
         public string Role { get; set; }
 
 
+        [Required]
+        [Display(Name = "номер телефона")]
         [DataType(DataType.PhoneNumber)]
-        [RegularExpression("^(?!0+$)(\\+\\d{1,3}[- ]?)?(?!0+$)\\d{10,15}$", ErrorMessage = "Введите корректный номер телефона")]
+        //[RegularExpression("^(?!0+$)(\\+\\d{1,3}[- ]?)?(?!0+$)\\d{10,15}$", ErrorMessage = "Введите корректный номер телефона")]
         public string PhoneNumber { get; set; }
     }
 

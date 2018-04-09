@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -55,10 +56,10 @@ namespace Network.Controllers
 
         //
         // GET: /Account/Login
-        //[AllowAnonymous]
-        public ActionResult Login(string returnUrl)
+        [AllowAnonymous]
+        public ActionResult Login()//string returnUrl)
         {
-            ViewBag.ReturnUrl = returnUrl;
+            //ViewBag.ReturnUrl = returnUrl;
             return View();
         }
 
@@ -99,8 +100,7 @@ namespace Network.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                            return RedirectToAction("Index", "User");
-                //return RedirectToLocal(returnUrl);
+                    return RedirectToAction("Index", "User");
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -108,11 +108,10 @@ namespace Network.Controllers
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Неудачная попытка входа.");
-                    return RedirectToAction("Index","Home");
+                    return RedirectToAction("Login", "Account",model);
             }
         }
 
-        //
         // GET: /Account/VerifyCode
         [AllowAnonymous]
         public async Task<ActionResult> VerifyCode(string provider, string returnUrl, bool rememberMe)
