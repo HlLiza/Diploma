@@ -14,16 +14,7 @@ namespace Network.DAL.EFModel
     
     public partial class Image
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Image()
-        {
-            this.User_sPersonalData = new HashSet<User_sPersonalData>();
-        }
-    
         public System.Guid Id { get; set; }
         public byte[] Image1 { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User_sPersonalData> User_sPersonalData { get; set; }
     }
 }

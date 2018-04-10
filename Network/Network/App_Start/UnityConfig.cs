@@ -1,4 +1,5 @@
 using Network.BL.WebServices;
+using Network.BL.Interfaces;
 using Network.Controllers;
 using Network.DAL.Interfaces;
 using Network.DAL.Repositories;
@@ -46,19 +47,21 @@ namespace Network
             // container.LoadConfiguration();
 
             // TODO: Register your type's mappings here.
-             container.RegisterType<IUser, UserRepository>();
-            container.RegisterType<IAducation, AducationRepository>();
-            container.RegisterType<IAdvertisement, AdvertisementRepository>();
-            container.RegisterType<IGroup, GroupRepository>();
-            container.RegisterType<IImage, ImageRepository>();
-            container.RegisterType<IUser_sContact, User_sContactRepository>();
-            container.RegisterType<IUser_sPersonalData, User_sPersonalDataRepository>();
+            container.RegisterType<IUser, UserRepository>();
+            //container.RegisterType<IAducation, AducationRepository>();
+            //container.RegisterType<IUser, UserRepository>();
 
-            container.RegisterType<GroupService>();
-            container.RegisterType<UserService>();
+            //container.RegisterType<IAdvertisement, AdvertisementRepository>();
+            //container.RegisterType<IGroup, GroupRepository>();
+            //container.RegisterType<IImage, ImageRepository>();
+            // container.RegisterType<IUser_sContact, User_sContactRepository>();
+            // container.RegisterType<IUser_sPersonalData, User_sPersonalDataRepository>();
+
+            //container.RegisterType<GroupService>();
+            container.RegisterType<IUserService,UserService>();
 
             container.RegisterType<AccountController>(new InjectionConstructor());
-            //container.RegisterType<UserController>(new InjectionConstructor());
+            container.RegisterType<UserController>(new InjectionConstructor());
             //container.RegisterType<GroupController>(new InjectionConstructor());
 
         }

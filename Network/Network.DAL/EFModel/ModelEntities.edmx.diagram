@@ -4,39 +4,33 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="7d6f7b6160754ff3959f8f4be973c6dc" Name="Diagram1" ZoomLevel="89">
+      <Diagram DiagramId="7d6f7b6160754ff3959f8f4be973c6dc" Name="Diagram1" ZoomLevel="65">
         <EntityTypeShape EntityType="NetworkContext.sysdiagrams" Width="1.5" PointX="11.75" PointY="16.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="NetworkContext.User_sContact" Width="1.5" PointX="0.5" PointY="2.75" IsExpanded="true" />
         <EntityTypeShape EntityType="NetworkContext.C__MigrationHistory" Width="1.5" PointX="14.25" PointY="16.25" />
-        <EntityTypeShape EntityType="NetworkContext.AspNetUserClaims" Width="1.5" PointX="12.75" PointY="5.25" />
-        <EntityTypeShape EntityType="NetworkContext.AspNetUserLogins" Width="1.5" PointX="10.375" PointY="5.375" />
-        <EntityTypeShape EntityType="NetworkContext.AspNetUsers" Width="1.5" PointX="8.125" PointY="4.125" />
+        <EntityTypeShape EntityType="NetworkContext.AspNetUserClaims" Width="1.5" PointX="13.25" PointY="4" />
+        <EntityTypeShape EntityType="NetworkContext.AspNetUserLogins" Width="1.5" PointX="7.875" PointY="7.25" />
+        <EntityTypeShape EntityType="NetworkContext.AspNetUsers" Width="1.5" PointX="7.875" PointY="2.375" />
         <EntityTypeShape EntityType="NetworkContext.Image" Width="1.5" PointX="5.625" PointY="1.875" />
-        <EntityTypeShape EntityType="NetworkContext.User_sPersonalData" Width="1.75" PointX="7.625" PointY="0.5" />
         <AssociationConnector Association="NetworkContext.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="NetworkContext.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
-        <AssociationConnector Association="NetworkContext.FK_User_sPersonalData_Image" />
         <EntityTypeShape EntityType="NetworkContext.Group" Width="1.5" PointX="3.875" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="NetworkContext.MembersOfGroup" Width="1.625" PointX="0.625" PointY="0.5" />
         <AssociationConnector Association="NetworkContext.FK_MembersOfGroup_Group" />
-        <EntityTypeShape EntityType="NetworkContext.MembersOfConference" Width="1.875" PointX="0.5" PointY="5.375" />
-        <EntityTypeShape EntityType="NetworkContext.User" Width="1.5" PointX="2.5" PointY="3" />
-        <AssociationConnector Association="NetworkContext.FK_User_AspNetUsers" />
-        <AssociationConnector Association="NetworkContext.FK_MembersOfConference_User" />
-        <AssociationConnector Association="NetworkContext.FK_User_User_sContact" />
-        <AssociationConnector Association="NetworkContext.FK_User_User_sPersonalData" />
-        <EntityTypeShape EntityType="NetworkContext.AspNetRoles" Width="1.5" PointX="12.875" PointY="3.125" />
-        <EntityTypeShape EntityType="NetworkContext.AspNetUserRoles" Width="1.5" PointX="10.375" PointY="3.125" />
+        <EntityTypeShape EntityType="NetworkContext.MembersOfConference" Width="1.875" PointX="4.125" PointY="7.625" />
+        <EntityTypeShape EntityType="NetworkContext.AspNetRoles" Width="1.5" PointX="13" PointY="0.5" />
+        <EntityTypeShape EntityType="NetworkContext.AspNetUserRoles" Width="1.5" PointX="10.375" PointY="0.5" />
         <AssociationConnector Association="NetworkContext.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" />
         <AssociationConnector Association="NetworkContext.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" />
-        <AssociationConnector Association="NetworkContext.FK_Group_User1" />
         <EntityTypeShape EntityType="NetworkContext.Advertisement" Width="1.5" PointX="6.25" PointY="4.75" />
         <AssociationConnector Association="NetworkContext.FK_Advertisement_AspNetUsers" />
         <EntityTypeShape EntityType="NetworkContext.Conference" Width="1.5" PointX="4.375" PointY="5.125" />
         <AssociationConnector Association="NetworkContext.FK_MembersOfConference_Conference" />
-        <EntityTypeShape EntityType="NetworkContext.Aducation" Width="1.5" PointX="10.25" PointY="0.5" IsExpanded="true" />
-        <AssociationConnector Association="NetworkContext.FK_User_sPersonalData_Aducation" />
+        <EntityTypeShape EntityType="NetworkContext.User" Width="1.5" PointX="10.125" PointY="4" />
+        <AssociationConnector Association="NetworkContext.FK_User_AspNetUsers" />
+        <AssociationConnector Association="NetworkContext.FK_MembersOfConference_User" />
         <AssociationConnector Association="NetworkContext.FK_MembersOfGroup_User1" />
+        <EntityTypeShape EntityType="NetworkContext.Aducation" Width="1.5" PointX="12.375" PointY="7.625" />
+        <AssociationConnector Association="NetworkContext.FK_Aducation_User" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

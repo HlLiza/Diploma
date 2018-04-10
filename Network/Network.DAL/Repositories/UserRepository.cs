@@ -15,22 +15,6 @@ namespace Network.DAL.Repositories
             base.Save();
         }
 
-        public User Find(Guid id)
-        {
-            return _context.User.Find(id);
-        }
-
-        public User_sPersonalData FindData(Guid id)
-        {
-            return _context.User_sPersonalData.Find(id);
-        }
-
-        public IQueryable<string> GetListOfIds()
-        {
-            _context.User.ToArray();
-            return _context.User.Where(w=>w.Visibility==true).Select(w => w.AspUserId);
-        }
-
         public void Update(User item)
         {
             var reserch = _context.User.Find(item.Id);
@@ -38,32 +22,34 @@ namespace Network.DAL.Repositories
             base.Save();
         }
 
+        public User Find(Guid id)
+        {
+            return _context.User.Find(id);
+        }
+
         public User GetUserByAspUserId(string id)
         {
-            var user = _context.User.First(s => s.AspUserId == id);
-            return user;
+            return _context.User.First(s => s.AspUserId == id);
         }
+
+
 
         public IQueryable<string> GetAllLeadId()
         {
-            var aspNetUserId = _context.AspNetUserRoles.Where(x => x.RoleId == "1").Select(x=>x.UserId);
-            //var listUser = _context.User.Select(x=>x.Id);
-            return aspNetUserId;
+            return _context.AspNetUserRoles.Where(x => x.RoleId == "1").Select(x => x.UserId);
         }
 
         public IQueryable<string> GetAllMemberId()
         {
-            var aspNetUserId = _context.AspNetUserRoles.Where(x => x.RoleId == "2").Select(x => x.UserId);
-            //var listUser = _context.User.Select(x => x.Id);
-            return aspNetUserId;
+            return _context.AspNetUserRoles.Where(x => x.RoleId == "2").Select(x => x.UserId);
         }
 
-      
-        public string GetRoleId(string userId)
+        public IQueryable<string> GetListOfIds()
         {
-            var roleId = _context.AspNetUserRoles.FirstOrDefault(x => x.UserId == userId).ToString();
-            return roleId;
+            return _context.User.Where(w => w.Visibility == true).Select(w => w.AspUserId);
         }
+
+
 
         public string GetRole(string id)
         {
@@ -71,10 +57,10 @@ namespace Network.DAL.Repositories
             return role.Name;
         }
 
-        public User GetByPersDataId(Guid id)
+        public string GetRoleId(string userId)
         {
-            var user = _context.User.FirstOrDefault(x => x.PersonalDataId == id);
-            return user;
+            return _context.AspNetUserRoles.FirstOrDefault(x => x.UserId == userId).ToString();
         }
+
     }
 }

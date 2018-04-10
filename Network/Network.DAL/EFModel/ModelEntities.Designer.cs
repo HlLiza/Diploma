@@ -1,4 +1,4 @@
-﻿// Создание кода T4 для модели "D:\University\Diploma\Git\Network\Network.DAL\EFModel\ModelEntities.edmx" включено. 
+﻿// Создание кода T4 для модели "D:\University\Diploma\bitbucket\Network\Network.DAL\EFModel\ModelEntities.edmx" включено. 
 // Чтобы включить формирование кода прежних версий, измените значение свойства "Стратегия создания кода" конструктора
 // на "Legacy ObjectContext". Это свойство доступно в окне "Свойства", если модель
 // открыта в конструкторе.

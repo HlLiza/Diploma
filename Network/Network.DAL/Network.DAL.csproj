@@ -131,31 +131,11 @@
     <Compile Include="EFModel\User.cs">
       <DependentUpon>ModelEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="EFModel\User_sContact.cs">
-      <DependentUpon>ModelEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EFModel\User_sPersonalData.cs">
-      <DependentUpon>ModelEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Interfaces\IAducation.cs" />
-    <Compile Include="Interfaces\IAdvertisement.cs" />
-    <Compile Include="Interfaces\IConference.cs" />
-    <Compile Include="Interfaces\IGroup.cs" />
-    <Compile Include="Interfaces\IImage.cs" />
     <Compile Include="Interfaces\IUser.cs" />
-    <Compile Include="Interfaces\IUser%27sContact.cs" />
-    <Compile Include="Interfaces\IUser%27sPersonalData.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\AdvertisementRepository.cs" />
-    <Compile Include="Repositories\AducationRepository.cs" />
-    <Compile Include="Repositories\ConferenceRepository.cs" />
-    <Compile Include="Repositories\GroupRepository.cs" />
-    <Compile Include="Repositories\ImageRepository.cs" />
     <Compile Include="Repositories\RepositoryBase.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
-    <Compile Include="Repositories\User%27sContactRepository.cs" />
-    <Compile Include="Repositories\User_sPersonalDataRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config">

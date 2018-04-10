@@ -12,15 +12,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="User_sContact">
-      <EntityTypeMapping TypeName="NetworkContext.User_sContact">
-        <MappingFragment StoreEntitySet="User'sContact">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-          <ScalarProperty Name="Skype" ColumnName="Skype" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="C__MigrationHistory">
       <EntityTypeMapping TypeName="NetworkContext.C__MigrationHistory">
         <MappingFragment StoreEntitySet="__MigrationHistory">
@@ -53,6 +44,7 @@
     <EntitySetMapping Name="AspNetUsers">
       <EntityTypeMapping TypeName="NetworkContext.AspNetUsers">
         <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="IsNewUser" ColumnName="IsNewUser" />
           <ScalarProperty Name="UserName" ColumnName="UserName" />
           <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
           <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
@@ -72,16 +64,6 @@
       <EntityTypeMapping TypeName="NetworkContext.Image">
         <MappingFragment StoreEntitySet="Image">
           <ScalarProperty Name="Image1" ColumnName="Image" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="User_sPersonalData">
-      <EntityTypeMapping TypeName="NetworkContext.User_sPersonalData">
-        <MappingFragment StoreEntitySet="User'sPersonalData">
-          <ScalarProperty Name="AducationId" ColumnName="AducationId" />
-          <ScalarProperty Name="ImageId" ColumnName="ImageId" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -110,17 +92,6 @@
         <MappingFragment StoreEntitySet="MembersOfConference">
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="ConferenceId" ColumnName="ConferenceId" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="User">
-      <EntityTypeMapping TypeName="NetworkContext.User">
-        <MappingFragment StoreEntitySet="User">
-          <ScalarProperty Name="AspUserId" ColumnName="AspUserId" />
-          <ScalarProperty Name="Visibility" ColumnName="Visibility" />
-          <ScalarProperty Name="ContactId" ColumnName="ContactId" />
-          <ScalarProperty Name="PersonalDataId" ColumnName="PersonalDataId" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -162,14 +133,27 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="NetworkContext.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="AducationId" ColumnName="AducationId" />
+          <ScalarProperty Name="Direction" ColumnName="Direction" />
+          <ScalarProperty Name="Skype" ColumnName="Skype" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="AspUserId" ColumnName="AspUserId" />
+          <ScalarProperty Name="Visibility" ColumnName="Visibility" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Aducation">
       <EntityTypeMapping TypeName="NetworkContext.Aducation">
         <MappingFragment StoreEntitySet="Aducation">
           <ScalarProperty Name="GradYear" ColumnName="GradYear" />
           <ScalarProperty Name="StartYear" ColumnName="StartYear" />
-          <ScalarProperty Name="Specialization" ColumnName="Specialization" />
-          <ScalarProperty Name="Institution" ColumnName="Institution" />
-          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="University" ColumnName="University" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

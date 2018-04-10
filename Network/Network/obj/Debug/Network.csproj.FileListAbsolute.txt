@@ -345,6 +345,8 @@ C:\Users\elisa\Desktop\новый\Network\Network\obj\Debug\Network.g.resources
 C:\Users\elisa\Desktop\новый\Network\Network\obj\Debug\Network.csproj.CoreCompileInputs.cache
 C:\Users\elisa\Desktop\новый\Network\Network\obj\Debug\Network.dll
 C:\Users\elisa\Desktop\новый\Network\Network\obj\Debug\Network.pdb
+D:\University\Diploma\bitbucket\Network\Network\obj\Debug\Network.g.resources
+D:\University\Diploma\bitbucket\Network\Network\obj\Debug\Network.csproj.CoreCompileInputs.cache
 D:\University\Diploma\bitbucket\Network\Network\bin\ApplicationInsights.config
 D:\University\Diploma\bitbucket\Network\Network\bin\Content\Pictures\background.png
 D:\University\Diploma\bitbucket\Network\Network\bin\Network.dll.config
@@ -397,13 +399,13 @@ D:\University\Diploma\bitbucket\Network\Network\bin\Unity.Container.dll
 D:\University\Diploma\bitbucket\Network\Network\bin\Unity.Mvc.dll
 D:\University\Diploma\bitbucket\Network\Network\bin\WebActivatorEx.dll
 D:\University\Diploma\bitbucket\Network\Network\bin\WebGrease.dll
-D:\University\Diploma\bitbucket\Network\Network\bin\Network.BL.pdb
-D:\University\Diploma\bitbucket\Network\Network\bin\Network.DAL.pdb
-D:\University\Diploma\bitbucket\Network\Network\bin\Network.DAL.dll.config
 D:\University\Diploma\bitbucket\Network\Network\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 D:\University\Diploma\bitbucket\Network\Network\bin\Microsoft.IdentityModel.Tokens.xml
 D:\University\Diploma\bitbucket\Network\Network\bin\Microsoft.Practices.ServiceLocation.pdb
 D:\University\Diploma\bitbucket\Network\Network\bin\Microsoft.Practices.ServiceLocation.xml
+D:\University\Diploma\bitbucket\Network\Network\bin\Network.BL.pdb
+D:\University\Diploma\bitbucket\Network\Network\bin\Network.DAL.pdb
+D:\University\Diploma\bitbucket\Network\Network\bin\Network.DAL.dll.config
 D:\University\Diploma\bitbucket\Network\Network\bin\Newtonsoft.Json.xml
 D:\University\Diploma\bitbucket\Network\Network\bin\System.IdentityModel.Tokens.Jwt.xml
 D:\University\Diploma\bitbucket\Network\Network\bin\System.Net.Http.Formatting.xml
@@ -457,7 +459,5 @@ D:\University\Diploma\bitbucket\Network\Network\bin\ru\Microsoft.Owin.Security.G
 D:\University\Diploma\bitbucket\Network\Network\bin\ru\Microsoft.Owin.Security.Twitter.resources.dll
 D:\University\Diploma\bitbucket\Network\Network\bin\ru\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
 D:\University\Diploma\bitbucket\Network\Network\obj\Debug\Network.csprojResolveAssemblyReference.cache
-D:\University\Diploma\bitbucket\Network\Network\obj\Debug\Network.g.resources
-D:\University\Diploma\bitbucket\Network\Network\obj\Debug\Network.csproj.CoreCompileInputs.cache
 D:\University\Diploma\bitbucket\Network\Network\obj\Debug\Network.dll
 D:\University\Diploma\bitbucket\Network\Network\obj\Debug\Network.pdb

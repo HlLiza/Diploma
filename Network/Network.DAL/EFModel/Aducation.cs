@@ -14,20 +14,12 @@ namespace Network.DAL.EFModel
     
     public partial class Aducation
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Aducation()
-        {
-            this.User_sPersonalData = new HashSet<User_sPersonalData>();
-        }
-    
         public System.Guid Id { get; set; }
-        public string Type { get; set; }
-        public string Institution { get; set; }
-        public string Specialization { get; set; }
-        public Nullable<System.DateTime> StartYear { get; set; }
-        public Nullable<System.DateTime> GradYear { get; set; }
+        public System.Guid UserId { get; set; }
+        public string University { get; set; }
+        public Nullable<int> StartYear { get; set; }
+        public Nullable<int> GradYear { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User_sPersonalData> User_sPersonalData { get; set; }
+        public virtual User User { get; set; }
     }
 }

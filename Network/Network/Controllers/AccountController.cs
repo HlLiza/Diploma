@@ -100,7 +100,19 @@ namespace Network.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToAction("Index", "User");
+                    {
+                        if (signedUser.IsNewUser)
+                        {
+                            signedUser.IsNewUser = false;
+                            UserManager.Update(signedUser);
+                            return RedirectToAction("AddUser", "User", new { id = signedUser.Id });
+                        }
+                        else
+                        {
+                            return RedirectToAction("Index", "User");
+                        }
+                    }
+
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -171,7 +183,7 @@ namespace Network.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, PhoneNumber=model.PhoneNumber };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, PhoneNumber=model.PhoneNumber, IsNewUser=true};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 await UserManager.AddToRoleAsync(user.Id, model.Role);
 

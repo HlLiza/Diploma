@@ -18,9 +18,12 @@ namespace Network.Views.ViewModels
         public Roles TypeUser { get; set; }
 
         public string Name { get; set; }
-        public HttpPostedFileBase Image { get; set; }
-        public string PhoneNumber { get; set; }
+        public string Surname { get; set; }
         public string Skype { get; set; }
+        public string Direction { get; set; }
+        public string Univerity { get; set; }
+        public int StartYear { get; set; }
+        public int GradYear { get; set; }
     }
 
     public class UserListViewModel

@@ -41,7 +41,7 @@ namespace Network.Views.ViewModels
 
     public class AddtoGroup
     {
-        public List<Group> groupList { get; set; }
+       // public List<Group> groupList { get; set; }
         public Guid selectedGroupId { get; set; }
         public string selectedSpec { get; set; }
         public Guid userId { get; set; }
