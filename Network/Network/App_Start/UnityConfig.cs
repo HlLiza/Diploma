@@ -48,7 +48,7 @@ namespace Network
 
             // TODO: Register your type's mappings here.
             container.RegisterType<IUser, UserRepository>();
-            //container.RegisterType<IAducation, AducationRepository>();
+            container.RegisterType<IAducation, AducationRepository>();
             //container.RegisterType<IUser, UserRepository>();
 
             //container.RegisterType<IAdvertisement, AdvertisementRepository>();

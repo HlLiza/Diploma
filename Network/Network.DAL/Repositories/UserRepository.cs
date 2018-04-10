@@ -12,14 +12,14 @@ namespace Network.DAL.Repositories
         public void AddUser(User item)
         {
             _context.User.Add(item);
-            base.Save();
+            Save();
         }
 
         public void Update(User item)
         {
             var reserch = _context.User.Find(item.Id);
             _context.Entry(reserch).CurrentValues.SetValues(item);
-            base.Save();
+            Save();
         }
 
         public User Find(Guid id)

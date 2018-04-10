@@ -87,15 +87,29 @@ namespace Network.Controllers
         {
             if (model != null)
             {
+                if (model.Univerity != null)
+                {
+                    Aducation adc = new Aducation()
+                    {
+                        University=model.Univerity,
+                        StartYear=model.StartYear,
+                        GradYear=model.GradYear
+                    };
+                    
+                }
                 User user = new User()
                 {
-                    
+                    Skype = model.Skype,
+                    Name=model.Name,
+                    Surname=model.Surname,
+                    Direction=model.Direction,                    
                     Visibility = true,
-                    AspUserId = model.AspUserId
+                    AspUserId = model.AspUserId,
+                    
                 };
                 _userService.AddUser(user);
             }
-            return View("DisplayEmail");
+            return RedirectToAction("Index","User");
         }
 
 
