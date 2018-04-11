@@ -11,7 +11,7 @@ namespace Network.BL.Interfaces
         void AddUser(User user);
 
         byte[] СonvertingImg(HttpPostedFileBase img);
-        IQueryable<string> GetAllUsersId();
+        //IQueryable<string> GetAllId();
         IQueryable<string> GetAllLeadListId();
         IQueryable<string> GetAllMemberListId();
         User GetUserById(Guid id);

@@ -2,7 +2,6 @@
 using Network.BL.WebServices;
 using Network.DAL.EFModel;
 using Network.Views.ViewModels;
-using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
@@ -122,118 +121,133 @@ namespace Network.Controllers
         public ActionResult GetAllUsers()
         {
             List<UserListViewModel> model = new List<UserListViewModel>();
-            //var listIdsUsers = _userService.GetAllUsersId();
+            var list = _userService.GetAllUser();
 
-            //var data = _userService.GetDataForListOfUserByAspId(listIdsUsers);
+            if (list!=null)
+            {
+                foreach (var item in list)
+                {
+                    UserListViewModel user = new UserListViewModel();
+                    user.Id = item.Id;
+                    user.Name = item.Name;
+                    user.Surname = item.Surname;
+                    user.Direction = item.Direction;
+                    user.Image = item.Image;
+                    model.Add(user);
+                }
 
-            //foreach (var item in data)
-            //{
-            //    UserListViewModel user = new UserListViewModel();
-            //    user.Id = item.Id;
-            //    user.Name = item.Name;
-            //    user.Image = _userService.GetImageByDataId(item.Id);
-
-            //    model.Add(user);
-            //}
-            return PartialView("_GetAllUsers",model);
+                return PartialView("_GetAllUsers",model);
+            }
+            else {
+                ViewBag.Text = "Список пользователей пуст";
+                return PartialView("_GetAllUsers",ViewBag);
+            }
         }
 
         public ActionResult GetLead()
         {
             List<UserListViewModel> model = new List<UserListViewModel>();
-            //var listIdsUsers = _userService.GetAllLeadListId();
-
-            //var data = _userService.GetDataForListOfUserByAspId(listIdsUsers);
-            //foreach (var item in data)
-            //{
-            //    UserListViewModel user = new UserListViewModel();
-            //    user.Id = item.Id;
-            //    user.Name = item.Name;
-            //    user.Image = _userService.GetImageByDataId(item.Id);
-
-            //    model.Add(user);
-            //}
-            return PartialView("_GetLead",model);
+            var listId = _userService.GetAllLeadListId();
+            var data = _userService.GetUsersByListId(listId);
+            if (listId != null && data != null)
+            {
+                foreach (var item in data)
+                {
+                    UserListViewModel user = new UserListViewModel();
+                    user.Id = item.Id;
+                    user.Name = item.Name;
+                    user.Surname = item.Surname;
+                    user.Direction = item.Direction;
+                    user.Image = item.Image;
+                    model.Add(user);
+                }
+                return PartialView("_GetLead", model);
+            }
+            else {
+                ViewBag.Text = "Список руководителей групп пуст";
+                return PartialView("_GetLead",ViewBag);
+            }
+           
         }
 
         public ActionResult GetMemberGroup()
         {
             List<UserListViewModel> model = new List<UserListViewModel>();
-            //var listIdsUsers = _userService.GetAllMemberListId();
-            //var data = _userService.GetDataForListOfUserByAspId(listIdsUsers);
-            //foreach (var item in data)
-            //{
-            //    UserListViewModel user = new UserListViewModel();
-            //    user.Id = item.Id;
-            //    user.Name = item.Name;
-            //    user.Image = _userService.GetImageByDataId(item.Id);
-
-            //    model.Add(user);
-            //}
-
-            return PartialView("_GetMemberGroup", model);
+            var listId = _userService.GetAllMemberListId();
+            var data = _userService.GetUsersByListId(listId);
+            if (listId != null && data != null)
+            {
+                foreach (var item in data)
+                {
+                    UserListViewModel user = new UserListViewModel();
+                    user.Id = item.Id;
+                    user.Name = item.Name;
+                    user.Surname = item.Surname;
+                    user.Direction = item.Direction;
+                    user.Image = item.Image;
+                    model.Add(user);
+                }
+                return PartialView("_GetMemberGroup", model);
+            }
+            else {
+                ViewBag.Text = "Список участников групп пуст";
+                return PartialView("_GetMemberGroup", ViewBag);
+            }
         }
 
-        //public ActionResult GetContact(Guid idUser)
-        //{
-        //    var user = _userService.GetUserById(idUser);
-        //    var contact = _userService.GetContactById(user.ContactId);
-        //    return PartialView("_ShowContact",contact);
-        //}
+
 
         [HttpGet]
         public ActionResult EditUser()
         {
-            
             var model = GetProfileFromPage();
-
             return View("EditUser",model);
         }
 
-        [HttpPost]
-        public ActionResult EditUser(UserIndexViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
+        //[HttpPost]
+        //public ActionResult EditUser(UserIndexViewModel model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
 
-                //Aducation aducation = new Aducation()
-                //{
-                //    Type = model.Type,
-                //    Institution = model.Specialization,
-                //    StartYear = model.StartYear,
-                //    GradYear = model.GradYear,
-                //    Specialization = model.Specialization
-                //};
-                //User_sContact contact = new User_sContact()
-                //{
-                //    PhoneNumber = model.PhoneNumber,
-                //    Skype = model.Skype
-                //};
-                //User_sPersonalData data = new User_sPersonalData()
-                //{
-                //    Name = model.Name
-                //};
-                User user = new User()
-                {
-                    AspUserId = model.AspUserId,
-                    Id = model.Id
-                };
+        //        //Aducation aducation = new Aducation()
+        //        //{
+        //        //    Type = model.Type,
+        //        //    Institution = model.Specialization,
+        //        //    StartYear = model.StartYear,
+        //        //    GradYear = model.GradYear,
+        //        //    Specialization = model.Specialization
+        //        //};
+        //        //User_sContact contact = new User_sContact()
+        //        //{
+        //        //    PhoneNumber = model.PhoneNumber,
+        //        //    Skype = model.Skype
+        //        //};
+        //        //User_sPersonalData data = new User_sPersonalData()
+        //        //{
+        //        //    Name = model.Name
+        //        //};
+        //        User user = new User()
+        //        {
+        //            AspUserId = model.AspUserId,
+        //            Id = model.Id
+        //        };
 
-              //  _userService.EditProfile(aducation, contact, data, user);
-                return RedirectToAction("Index", "User");
-            }
-            else
-            {
-               // var model = GetProfileFromPage();
+        //      //  _userService.EditProfile(aducation, contact, data, user);
+        //        return RedirectToAction("Index", "User");
+        //    }
+        //    else
+        //    {
+        //       // var model = GetProfileFromPage();
 
-                return View("EditUser", model);
-            }
+        //        return View("EditUser", model);
+        //    }
 
            
             
 
-            //return RedirectToAction("Index", "User");
-        }
+        //    //return RedirectToAction("Index", "User");
+        //}
 
 
 

@@ -32,6 +32,12 @@ namespace Network.DAL.Repositories
             return _context.User.First(s => s.AspUserId == id);
         }
 
+        public IQueryable<User> GetAll()
+        {
+            return _context.User;
+        }
+
+
 
 
         public IQueryable<string> GetAllLeadId()
@@ -44,10 +50,10 @@ namespace Network.DAL.Repositories
             return _context.AspNetUserRoles.Where(x => x.RoleId == "2").Select(x => x.UserId);
         }
 
-        public IQueryable<string> GetListOfIds()
-        {
-            return _context.User.Where(w => w.Visibility == true).Select(w => w.AspUserId);
-        }
+        //public IQueryable<Guid> GetListOfIds()
+        //{
+        //    return _context.User.Where(w => w.Visibility == true).Select(x => x.Id);
+        //}
 
 
 
@@ -62,5 +68,7 @@ namespace Network.DAL.Repositories
             return _context.AspNetUserRoles.FirstOrDefault(x => x.UserId == userId).ToString();
         }
 
+       
+       
     }
 }

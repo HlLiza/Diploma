@@ -30,7 +30,9 @@ namespace Network.Views.ViewModels
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
+        public string Surname { get; set; }
         public byte[] Image { get; set; }
+        public string Direction { get; set; }
     }
 
     public class UserListOfGroupViewModel

@@ -68,6 +68,7 @@ D:\University\Diploma\bitbucket\Network\Network.DAL\bin\Debug\System.IdentityMod
 D:\University\Diploma\bitbucket\Network\Network.DAL\bin\Debug\Twilio.xml
 D:\University\Diploma\bitbucket\Network\Network.DAL\bin\Debug\ru\EntityFramework.resources.dll
 D:\University\Diploma\bitbucket\Network\Network.DAL\bin\Debug\ru\EntityFramework.SqlServer.resources.dll
+D:\University\Diploma\bitbucket\Network\Network.DAL\obj\Debug\Network.DAL.csprojResolveAssemblyReference.cache
 D:\University\Diploma\bitbucket\Network\Network.DAL\obj\Debug\Network.DAL.csproj.CoreCompileInputs.cache
 D:\University\Diploma\bitbucket\Network\Network.DAL\obj\Debug\Network.DAL.dll
 D:\University\Diploma\bitbucket\Network\Network.DAL\obj\Debug\Network.DAL.pdb

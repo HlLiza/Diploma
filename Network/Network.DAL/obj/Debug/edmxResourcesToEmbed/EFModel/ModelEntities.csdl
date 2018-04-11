@@ -16,7 +16,6 @@
     <EntitySet Name="AspNetUserClaims" EntityType="NetworkContext.AspNetUserClaims" />
     <EntitySet Name="AspNetUserLogins" EntityType="NetworkContext.AspNetUserLogins" />
     <EntitySet Name="AspNetUsers" EntityType="NetworkContext.AspNetUsers" />
-    <EntitySet Name="Image" EntityType="NetworkContext.Image" />
     <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="NetworkContext.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -52,7 +51,13 @@
       <End Role="Conference" EntitySet="Conference" />
       <End Role="MembersOfConference" EntitySet="MembersOfConference" />
     </AssociationSet>
+    <EntitySet Name="Aducation" EntityType="NetworkContext.Aducation" />
+    <EntitySet Name="Image" EntityType="NetworkContext.Image" />
     <EntitySet Name="User" EntityType="NetworkContext.User" />
+    <AssociationSet Name="FK_Aducation_User" Association="NetworkContext.FK_Aducation_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Aducation" EntitySet="Aducation" />
+    </AssociationSet>
     <AssociationSet Name="FK_User_AspNetUsers" Association="NetworkContext.FK_User_AspNetUsers">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="User" EntitySet="User" />
@@ -64,11 +69,6 @@
     <AssociationSet Name="FK_MembersOfGroup_User1" Association="NetworkContext.FK_MembersOfGroup_User1">
       <End Role="User" EntitySet="User" />
       <End Role="MembersOfGroup" EntitySet="MembersOfGroup" />
-    </AssociationSet>
-    <EntitySet Name="Aducation" EntityType="NetworkContext.Aducation" />
-    <AssociationSet Name="FK_Aducation_User" Association="NetworkContext.FK_Aducation_User">
-      <End Role="User" EntitySet="User" />
-      <End Role="Aducation" EntitySet="Aducation" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="C__MigrationHistory">
@@ -122,15 +122,8 @@
     <NavigationProperty Name="AspNetUserLogins" Relationship="NetworkContext.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
     <NavigationProperty Name="AspNetUserRoles" Relationship="NetworkContext.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserRoles" />
     <NavigationProperty Name="Advertisement" Relationship="NetworkContext.FK_Advertisement_AspNetUsers" FromRole="AspNetUsers" ToRole="Advertisement" />
-    <NavigationProperty Name="User" Relationship="NetworkContext.FK_User_AspNetUsers" FromRole="AspNetUsers" ToRole="User" />
     <Property Name="IsNewUser" Type="Boolean" />
-  </EntityType>
-  <EntityType Name="Image">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Guid" Nullable="false" />
-    <Property Name="Image1" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="User" Relationship="NetworkContext.FK_User_AspNetUsers" FromRole="AspNetUsers" ToRole="User" />
   </EntityType>
   <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
     <End Type="NetworkContext.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
@@ -292,6 +285,24 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="Aducation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="University" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="StartYear" Type="Int32" />
+    <Property Name="GradYear" Type="Int32" />
+    <Property Name="UserId" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="NetworkContext.FK_Aducation_User" FromRole="Aducation" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Image">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Image1" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
   <EntityType Name="User">
     <Key>
       <PropertyRef Name="Id" />
@@ -303,12 +314,24 @@
     <Property Name="Surname" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
     <Property Name="Skype" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
     <Property Name="Direction" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="AducationId" Type="Guid" />
+    <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="Aducation" Relationship="NetworkContext.FK_Aducation_User" FromRole="User" ToRole="Aducation" />
     <NavigationProperty Name="AspNetUsers" Relationship="NetworkContext.FK_User_AspNetUsers" FromRole="User" ToRole="AspNetUsers" />
     <NavigationProperty Name="MembersOfConference" Relationship="NetworkContext.FK_MembersOfConference_User" FromRole="User" ToRole="MembersOfConference" />
     <NavigationProperty Name="MembersOfGroup" Relationship="NetworkContext.FK_MembersOfGroup_User1" FromRole="User" ToRole="MembersOfGroup" />
-    <NavigationProperty Name="Aducation" Relationship="NetworkContext.FK_Aducation_User" FromRole="User" ToRole="Aducation" />
   </EntityType>
+  <Association Name="FK_Aducation_User">
+    <End Type="NetworkContext.User" Role="User" Multiplicity="1" />
+    <End Type="NetworkContext.Aducation" Role="Aducation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Aducation">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_User_AspNetUsers">
     <End Type="NetworkContext.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
     <End Type="NetworkContext.User" Role="User" Multiplicity="*" />
@@ -342,29 +365,6 @@
       </Principal>
       <Dependent Role="MembersOfGroup">
         <PropertyRef Name="MembersId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <EntityType Name="Aducation">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Guid" Nullable="false" />
-    <Property Name="UserId" Type="Guid" Nullable="false" />
-    <Property Name="University" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="StartYear" Type="Int32" />
-    <Property Name="GradYear" Type="Int32" />
-    <NavigationProperty Name="User" Relationship="NetworkContext.FK_Aducation_User" FromRole="Aducation" ToRole="User" />
-  </EntityType>
-  <Association Name="FK_Aducation_User">
-    <End Type="NetworkContext.User" Role="User" Multiplicity="1" />
-    <End Type="NetworkContext.Aducation" Role="Aducation" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Aducation">
-        <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

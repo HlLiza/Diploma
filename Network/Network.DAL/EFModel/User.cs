@@ -17,9 +17,9 @@ namespace Network.DAL.EFModel
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
+            this.Aducation = new HashSet<Aducation>();
             this.MembersOfConference = new HashSet<MembersOfConference>();
             this.MembersOfGroup = new HashSet<MembersOfGroup>();
-            this.Aducation = new HashSet<Aducation>();
         }
     
         public System.Guid Id { get; set; }
@@ -29,14 +29,14 @@ namespace Network.DAL.EFModel
         public string Surname { get; set; }
         public string Skype { get; set; }
         public string Direction { get; set; }
-        public Nullable<System.Guid> AducationId { get; set; }
+        public byte[] Image { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Aducation> Aducation { get; set; }
         public virtual AspNetUsers AspNetUsers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MembersOfConference> MembersOfConference { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MembersOfGroup> MembersOfGroup { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Aducation> Aducation { get; set; }
     }
 }

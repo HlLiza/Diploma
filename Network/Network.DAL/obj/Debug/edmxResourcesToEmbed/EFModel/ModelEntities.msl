@@ -60,14 +60,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Image">
-      <EntityTypeMapping TypeName="NetworkContext.Image">
-        <MappingFragment StoreEntitySet="Image">
-          <ScalarProperty Name="Image1" ColumnName="Image" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Group">
       <EntityTypeMapping TypeName="NetworkContext.Group">
         <MappingFragment StoreEntitySet="Group">
@@ -133,27 +125,35 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Aducation">
+      <EntityTypeMapping TypeName="NetworkContext.Aducation">
+        <MappingFragment StoreEntitySet="Aducation">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="GradYear" ColumnName="GradYear" />
+          <ScalarProperty Name="StartYear" ColumnName="StartYear" />
+          <ScalarProperty Name="University" ColumnName="University" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Image">
+      <EntityTypeMapping TypeName="NetworkContext.Image">
+        <MappingFragment StoreEntitySet="Image">
+          <ScalarProperty Name="Image1" ColumnName="Image" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="User">
       <EntityTypeMapping TypeName="NetworkContext.User">
         <MappingFragment StoreEntitySet="User">
-          <ScalarProperty Name="AducationId" ColumnName="AducationId" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
           <ScalarProperty Name="Direction" ColumnName="Direction" />
           <ScalarProperty Name="Skype" ColumnName="Skype" />
           <ScalarProperty Name="Surname" ColumnName="Surname" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="AspUserId" ColumnName="AspUserId" />
           <ScalarProperty Name="Visibility" ColumnName="Visibility" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Aducation">
-      <EntityTypeMapping TypeName="NetworkContext.Aducation">
-        <MappingFragment StoreEntitySet="Aducation">
-          <ScalarProperty Name="GradYear" ColumnName="GradYear" />
-          <ScalarProperty Name="StartYear" ColumnName="StartYear" />
-          <ScalarProperty Name="University" ColumnName="University" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

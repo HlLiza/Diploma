@@ -62,10 +62,10 @@ namespace Network.BL.WebServices
 
 
 
-        public IQueryable<string> GetAllUsersId()
-        {
-            return _userRepository.GetListOfIds();
-        }
+        //public IQueryable<string> GetAllId()
+        //{
+        //    return _userRepository.GetListOfIds();
+        //}
 
         public IQueryable<string> GetAllLeadListId()
         {
@@ -74,6 +74,8 @@ namespace Network.BL.WebServices
                 return list;
             else return null;
         }
+
+
 
         public IQueryable<string> GetAllMemberListId()
         {
@@ -160,6 +162,29 @@ namespace Network.BL.WebServices
                 }
             }
             return list;
+        }
+
+
+        public IQueryable<User> GetAllUser()
+        {
+            return _userRepository.GetAll();           
+        }
+
+        public List<User> GetUsersByListId(IQueryable<string> listId)
+        {
+            //listId is id of AspNetUsers
+
+            List<User> result = new List<User>();
+
+            if (listId != null)
+            {
+                foreach (var id in listId)
+                {
+                    var user = _userRepository.GetUserByAspUserId(id);
+                    result.Add(user);
+                }
+            }
+            return result;
         }
 
 
@@ -312,21 +337,7 @@ namespace Network.BL.WebServices
         //    return result;
         //}
 
-        //    public List<User_sPersonalData> GetDataForListOfUserByAspId(IQueryable<string> list)
-        //{
-        //    List<User_sPersonalData> result = new List<User_sPersonalData>();
 
-        //    if (list != null)
-        //    {
-        //        foreach (var id in list)
-        //        {
-        //            var itemUser = _userRepository.GetUserByAspUserId(id);
-        //            var itemPersonalData = _persDataRepository.Find(itemUser.PersonalDataId);
-        //            result.Add(itemPersonalData);
-        //        }
-        //    }
-        //    return result;
-        //}
 
 
 

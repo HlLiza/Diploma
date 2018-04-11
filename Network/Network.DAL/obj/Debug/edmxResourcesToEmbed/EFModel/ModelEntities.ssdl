@@ -15,10 +15,10 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
     <Property Name="University" Type="nvarchar" MaxLength="500" />
     <Property Name="StartYear" Type="int" />
     <Property Name="GradYear" Type="int" />
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
   </EntityType>
   <EntityType Name="Advertisement">
     <Key>
@@ -143,7 +143,7 @@
     <Property Name="Surname" Type="nvarchar" MaxLength="150" />
     <Property Name="Skype" Type="nvarchar" MaxLength="150" />
     <Property Name="Direction" Type="nvarchar" MaxLength="500" />
-    <Property Name="AducationId" Type="uniqueidentifier" />
+    <Property Name="Image" Type="varbinary(max)" />
   </EntityType>
   <Association Name="FK_Aducation_User">
     <End Role="User" Type="Self.User" Multiplicity="1" />

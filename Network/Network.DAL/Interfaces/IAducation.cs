@@ -9,6 +9,6 @@ namespace Network.DAL.Interfaces
         void Add(Aducation aducation);
         void Update(Aducation aducation);
         Aducation Find(Guid id);
-        IQueryable<Guid?> GetListOfId(Guid userId);
+        IQueryable<Guid> GetListOfId(Guid userId);
     }
 }

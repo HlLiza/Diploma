@@ -1,75 +1,92 @@
 ﻿@model Network.Views.ViewModels.AddUserViewModel
+
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "AddUser";
+    Layout = "~/Views/Shared/_LayoutLog.cshtml";
 }
 
-@using (Html.BeginForm("AddUser", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+<h2>AddUser</h2>
+
+@using (Html.BeginForm()) 
 {
-    @Html.HiddenFor(m=>m.AspUserId)
-
+    @Html.AntiForgeryToken()
+    
     <div class="form-horizontal">
-        @*<div class="container">*@
-
-            <div class="stepwizard col-md-offset-3">
-               <div class="stepwizard-row setup-panel">
-                    <div class="stepwizard-step">
-                        <a href="#step-1" type="button" class="btn btn-primary btn-circle">1</a>
-                        <p>Шаг 1</p>
-                    </div>
-                    <div class="stepwizard-step">
-                        <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
-                        <p>Шаг 2</p>
-                    </div>
-                </div>
-            </div>
-        @*</div>*@ 
-
-
-
-        <div class="jumbotron">
-        <div class="row setup-content" id="step-1">
-            <div class="col-xs-6 col-md-offset-3">
-                <div class="col-md-12">
-                    <h3> Персональные данные</h3>
-                    <div class="form-group">
-                        <label class="control-label">Имя и фамилия</label>
-                        <input maxlength="100" name="Name" type="text" required="required" class="form-control" placeholder="Введите имя  и фамилию" />
-                    </div>
-
-                    <div class="form-group">
-                        <label class="control-label">Фото</label>
-                        <label class="btn btn-file">
-                            Выберите изображение <input type="file" name="Image" />
-                        </label>
-                    </div>
-
-                    <button class="btn nextBtn  btn-lg pull-right" type="button">Далее</button>
-
-                </div>
+        <h4>AddUserViewModel</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.AspUserId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.AspUserId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.AspUserId, "", new { @class = "text-danger" })
             </div>
         </div>
-            </div>
 
-
-        <div class="jumbotron">
-            <div class="row setup-content" id="step-2">
-                <div class="col-xs-6 col-md-offset-3">
-                    <div class="col-md-12">
-                        <h3> Контактная информация</h3>
-                        <div class="form-group">
-                            <label class="control-label">Skype</label>
-                            <input maxlength="200" name="Skype" type="text" required="required" class="form-control" placeholder="Введите skype" />
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Контактный номер телефона</label>
-                            <input maxlength="200" name="PhoneNumber" type="text" required="required" class="form-control" placeholder="Введите номер телефона" />
-                        </div>
-
-                        <button class="btn btn-success btn-lg pull-right" id="add" type="submit">Save</button>
-
-                    </div>
-                </div>
-            </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
             </div>
         </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Surname, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Skype, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Skype, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Skype, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Direction, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Direction, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Direction, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Univerity, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Univerity, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Univerity, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StartYear, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.StartYear, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.StartYear, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.GradYear, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.GradYear, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.GradYear, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
 }
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

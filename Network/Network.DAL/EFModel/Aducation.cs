@@ -15,10 +15,10 @@ namespace Network.DAL.EFModel
     public partial class Aducation
     {
         public System.Guid Id { get; set; }
-        public System.Guid UserId { get; set; }
         public string University { get; set; }
         public Nullable<int> StartYear { get; set; }
         public Nullable<int> GradYear { get; set; }
+        public System.Guid UserId { get; set; }
     
         public virtual User User { get; set; }
     }

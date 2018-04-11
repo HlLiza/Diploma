@@ -27,9 +27,9 @@ namespace Network.DAL.Repositories
             Save();
         }
 
-        public IQueryable<Guid?> GetListOfId(Guid userId)
+        public IQueryable<Guid> GetListOfId(Guid userId)
         {
-            return _context.User.Where(s => s.Id == userId).Select(x => x.AducationId);
+            return _context.Aducation.Where(s => s.UserId == userId).Select(x => x.Id);
         }
    
     }
