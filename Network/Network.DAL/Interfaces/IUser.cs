@@ -18,6 +18,8 @@ namespace Network.DAL.Interfaces
 
         IQueryable<string> GetAllLeadId();
         IQueryable<string> GetAllMemberId();
+
+        AspNetUsers GetAspUser(string id);
       
     }
 }

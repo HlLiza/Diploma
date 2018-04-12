@@ -27,10 +27,10 @@ namespace Network
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Scripts/Image.css",
-                      "~/Scripts/AddUser.css",
+                      "~/Content/Image.css",
+                      "~/Content/AddUser.css",
                       "~/Content/register.css",
-                        "~/Content/Modal.css",
+                      "~/Content/Modal.css",
                       "~/Content/site.css"));
         }
     }

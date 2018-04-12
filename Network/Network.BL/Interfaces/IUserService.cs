@@ -22,6 +22,10 @@ namespace Network.BL.Interfaces
         string GetRoleNameForUser(string id);
         List<Guid> ExcludeListIdInLIs(List<Guid> listIdsUsers, List<Guid> listIdGroupMem);
         List<Guid> GetUserIdForListAspId(IQueryable<string> stringId);
+        IQueryable<User> GetAllUser();
+        List<User> GetUsersByListId(IQueryable<string> listId);
+        AspNetUsers GetAspUser(string id);
+        Guid GetIdByAspId(string id);
 
 
 

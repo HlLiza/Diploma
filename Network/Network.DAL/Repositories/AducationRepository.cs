@@ -20,6 +20,11 @@ namespace Network.DAL.Repositories
             return _context.Aducation.Find(id);
         }
 
+        public IQueryable<Aducation> GetAdByUserId(Guid userId)
+        {
+            return _context.Aducation.Where(x => x.UserId == userId);
+        }
+
         public void Update(Aducation aducation)
         {
             var item = _context.Aducation.Find(aducation.Id);
@@ -27,10 +32,12 @@ namespace Network.DAL.Repositories
             Save();
         }
 
-        public IQueryable<Guid> GetListOfId(Guid userId)
-        {
-            return _context.Aducation.Where(s => s.UserId == userId).Select(x => x.Id);
-        }
+        
+
+        //public IQueryable<Guid> GetListOfId(Guid userId)
+        //{
+        //    return _context.Aducation.Where(s => s.UserId == userId).Select(x => x.Id);
+        //}
    
     }
 }

@@ -255,9 +255,9 @@
     <Content Include="Content\AddUser.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <EmbeddedResource Include="Content\Pictures\bg.jpg" />
     <Content Include="Content\Image.css" />
     <Content Include="Content\Modal.css" />
+    <EmbeddedResource Include="Content\Pictures\default.jpeg" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Views\User\_ShowContact.cshtml" />
@@ -274,7 +274,6 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\User\AddUser.cshtml" />
-    <Resource Include="Content\Pictures\no.png" />
     <Content Include="Content\register.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -299,10 +298,6 @@
     <Content Include="Scripts\registr.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <EmbeddedResource Include="Content\Pictures\background.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <BrowseToURL>~</BrowseToURL>
-    </EmbeddedResource>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

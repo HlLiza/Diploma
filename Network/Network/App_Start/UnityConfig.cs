@@ -49,19 +49,17 @@ namespace Network
             // TODO: Register your type's mappings here.
             container.RegisterType<IUser, UserRepository>();
             container.RegisterType<IAducation, AducationRepository>();
-            //container.RegisterType<IUser, UserRepository>();
 
             //container.RegisterType<IAdvertisement, AdvertisementRepository>();
             //container.RegisterType<IGroup, GroupRepository>();
-            //container.RegisterType<IImage, ImageRepository>();
-            // container.RegisterType<IUser_sContact, User_sContactRepository>();
-            // container.RegisterType<IUser_sPersonalData, User_sPersonalDataRepository>();
 
             //container.RegisterType<GroupService>();
             container.RegisterType<IUserService,UserService>();
+            container.RegisterType<IAducationService, AducationService>();
+
 
             container.RegisterType<AccountController>(new InjectionConstructor());
-            container.RegisterType<UserController>(new InjectionConstructor());
+            container.RegisterType<UserController>();
             //container.RegisterType<GroupController>(new InjectionConstructor());
 
         }

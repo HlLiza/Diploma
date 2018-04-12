@@ -346,7 +346,6 @@ C:\Users\elisa\Desktop\новый\Network\Network\obj\Debug\Network.csproj.CoreC
 C:\Users\elisa\Desktop\новый\Network\Network\obj\Debug\Network.dll
 C:\Users\elisa\Desktop\новый\Network\Network\obj\Debug\Network.pdb
 D:\University\Diploma\bitbucket\Network\Network\bin\ApplicationInsights.config
-D:\University\Diploma\bitbucket\Network\Network\bin\Content\Pictures\background.png
 D:\University\Diploma\bitbucket\Network\Network\bin\Network.dll.config
 D:\University\Diploma\bitbucket\Network\Network\bin\Network.dll
 D:\University\Diploma\bitbucket\Network\Network\bin\Network.pdb
@@ -457,7 +456,6 @@ D:\University\Diploma\bitbucket\Network\Network\bin\ru\Microsoft.Owin.Security.G
 D:\University\Diploma\bitbucket\Network\Network\bin\ru\Microsoft.Owin.Security.Twitter.resources.dll
 D:\University\Diploma\bitbucket\Network\Network\bin\ru\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
 D:\University\Diploma\bitbucket\Network\Network\obj\Debug\Network.csprojResolveAssemblyReference.cache
-D:\University\Diploma\bitbucket\Network\Network\obj\Debug\Network.g.resources
 D:\University\Diploma\bitbucket\Network\Network\obj\Debug\Network.csproj.CoreCompileInputs.cache
 D:\University\Diploma\bitbucket\Network\Network\obj\Debug\Network.dll
 D:\University\Diploma\bitbucket\Network\Network\obj\Debug\Network.pdb

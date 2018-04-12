@@ -59,7 +59,8 @@ namespace Network.DAL.Repositories
 
         public string GetRole(string id)
         {
-            var role = _context.AspNetRoles.Find(id);
+            var item = _context.AspNetUserRoles.First(x=>x.UserId == id);
+            var role = _context.AspNetRoles.FirstOrDefault(x => x.Id == item.RoleId);
             return role.Name;
         }
 
@@ -68,7 +69,9 @@ namespace Network.DAL.Repositories
             return _context.AspNetUserRoles.FirstOrDefault(x => x.UserId == userId).ToString();
         }
 
-       
-       
+        public AspNetUsers GetAspUser(string id)
+        {
+            return _context.AspNetUsers.Find(id);
+        }
     }
 }

@@ -13,16 +13,32 @@ namespace Network.Views.ViewModels
 
     public class AddUserViewModel
     {
-        public Guid Id { get; set; }
+        //public Guid Id { get; set; }
         public string AspUserId { get; set; }
-        public Roles TypeUser { get; set; }
+        //public Roles TypeUser { get; set; }
 
+        [DisplayName("Имя")]
+        [Required(ErrorMessage = "Введите свое имя")]
         public string Name { get; set; }
+
+        [DisplayName("Фамилия")]
+        [Required(ErrorMessage = "Введите свою фамилию")]
         public string Surname { get; set; }
+
+        [DisplayName("Skype")]
         public string Skype { get; set; }
+
+        [DisplayName("Направление")]
+        [Required(ErrorMessage = "Введите свое направление")]
         public string Direction { get; set; }
-        public string Univerity { get; set; }
+
+        [DisplayName("Университет")]
+        public string University { get; set; }
+
+        [DisplayName("Год начала обучения")]
         public int StartYear { get; set; }
+
+        [DisplayName("Год окончания обучения (или предполагаемый)")]
         public int GradYear { get; set; }
     }
 
@@ -47,34 +63,48 @@ namespace Network.Views.ViewModels
     {
         public Guid Id { get; set; }
         public string AspUserId { get; set; }
+        public string Role { get; set; }
 
-        [DisplayName("Имя и фамилия")]
-        [Required(ErrorMessage = "Введите свое имя")]
+
+        [DisplayName("Имя")]
         public string Name { get; set; }
+
+        [DisplayName("Фамилия")]
+        public string Surname { get; set; }
+
+        [DisplayName("Направление")]
+        public string Direction { get; set; }
+
         public byte[] Image { get; set; }
 
         [DisplayName("Номер телефона")]
         public string PhoneNumber { get; set; }
+
+        [DisplayName("Номер телефона")]
         public string Skype { get; set; }
 
+        [DisplayName("Email")]
+        public string Email { get; set; }
+
+        public List<AducationInfo> Aducation { get; set; }
+
+       
+
+    }
+
+    public class AducationInfo
+    {
         [DisplayName("Образование")]
         [RegularExpression(@"[a-zA-Zа-яёА-ЯЁ\s\-]+$", ErrorMessage = "Некорректные данные")]
-        public string Type { get; set; }
+        public string University { get; set; }
 
-        [DisplayName("Учреждение")]
-        [RegularExpression(@"[a-zA-Zа-яёА-ЯЁ\s\-]+$", ErrorMessage = "Некорректные данные")]
-        public string Institution { get; set; }
+        [DisplayName("Дата начала обучения")]
+        [Range(1700, 2018, ErrorMessage = "Недопустимый год")]
+        public int? StartYear { get; set; }
 
-        [DisplayName("Специальность")]
-        [RegularExpression(@"[a-zA-Zа-яёА-ЯЁ\s\-]+$", ErrorMessage = "Некорректные данные")]
-        public string Specialization { get; set; }
-
-        [DisplayName("Дата начала")]
-        //[Range(1700, 2018, ErrorMessage = "Недопустимый год")]
-        public Nullable<System.DateTime> StartYear { get; set; }
-        [DisplayName("Дата окончания")]
-        //[Range(1700, 2018, ErrorMessage = "Недопустимый год")]
-        public Nullable<System.DateTime> GradYear { get; set; }
+        [DisplayName("Дата окончания обучения")]
+        [Range(1700, 2018, ErrorMessage = "Недопустимый год")]
+        public int? GradYear { get; set; }
 
     }
 }

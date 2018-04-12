@@ -1,72 +1,81 @@
 ﻿using Microsoft.AspNet.Identity;
+using Network.BL.Interfaces;
 using Network.BL.WebServices;
 using Network.DAL.EFModel;
 using Network.Views.ViewModels;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace Network.Controllers
 {
     public class UserController : Controller
     {
-        private readonly UserService _userService;
-        public UserController() { }
+        private readonly IUserService _userService;
+        private readonly IAducationService _aducationService;
 
-        public UserController(UserService userService)
+        public UserController(UserService userService, AducationService aducationService) : base()
         {
             _userService = userService;
+            _aducationService = aducationService;
         }
 
         // GET: User
         [Authorize]        
         public ActionResult Index()
         {
-            var model = GetProfileFromPage();
+            var model = GetProfile();
             return View(model);
         }
 
-        protected UserIndexViewModel GetProfileFromPage()
+        protected UserIndexViewModel GetProfile()
         {
-            var id = User.Identity.GetUserId();
+            var aspId = User.Identity.GetUserId();
+            var aspUser = _userService.GetAspUser(aspId);
             UserIndexViewModel model = new UserIndexViewModel();
-            model.AspUserId = id;
+            model.AspUserId = aspId;
+            model.Role = _userService.GetRoleNameByAspId(aspId);
+            model.Id = _userService.GetIdByAspId(aspId);
 
             if (!User.IsInRole("secretary"))
             {
-                var user = _userService.GetUserByAspNetId(id);
-                model.Id = user.Id;
+                if (model.Id != null)
+                {
+                    var data = _userService.GetUserById(model.Id);
+                    model.Id = data.Id;
+                    model.Name = data.Name;
+                    model.Surname = data.Surname;
+                    model.Direction = data.Direction;
+                    model.Image = data.Image;
+                }
 
-                //var data = _userService.GetDataByAspUserId(id);
-                //if (data != null)
-                //{
-                //    model.Name = data.Name;
-                //    model.Image = _userService.GetImageByDataId(data.Id);
+                model.PhoneNumber = aspUser.PhoneNumber;
+                model.Email = aspUser.Email;
 
-                //}
+                var aducation = _aducationService.GetAducation(model.Id);
+                model.Aducation = GetAducInfo(aducation);
 
-                //var contact = _userService.GetContactById(user.ContactId);
-                //if (contact != null)
-                //{
-                //    model.Skype = contact.Skype;
-                //    model.PhoneNumber = contact.PhoneNumber;
-                //}
-
-
-                //var aducation = _userService.GetAducationInf(model.Id);
-                //if (aducation != null)
-                //{
-                //    model.Type = aducation.Type;
-                //    model.Institution = aducation.Institution;
-                //    model.Specialization = aducation.Specialization;
-                //    model.StartYear = aducation.StartYear;
-                //    model.GradYear = aducation.GradYear;
-                //}
                 return model;
-
             }
             return null;
         }
 
+        List<AducationInfo> GetAducInfo(IQueryable<Aducation> data)
+        {
+            List<AducationInfo> result = new List<AducationInfo>();
+            foreach (var item in data)
+            {
+                AducationInfo inf = new AducationInfo()
+                {
+                    University = item.University,
+                    StartYear = item.StartYear,
+                    GradYear = item.GradYear
+                };
+                result.Add(inf);
+            }
+            return result;
+
+        }
 
 
 
@@ -86,16 +95,7 @@ namespace Network.Controllers
         {
             if (model != null)
             {
-                if (model.Univerity != null)
-                {
-                    Aducation adc = new Aducation()
-                    {
-                        University=model.Univerity,
-                        StartYear=model.StartYear,
-                        GradYear=model.GradYear
-                    };
-                    
-                }
+
                 User user = new User()
                 {
                     Skype = model.Skype,
@@ -107,6 +107,19 @@ namespace Network.Controllers
                     
                 };
                 _userService.AddUser(user);
+
+                if (model.University != null)
+                {
+                    Aducation adc = new Aducation()
+                    {
+                        University = model.University,
+                        StartYear = model.StartYear,
+                        GradYear = model.GradYear,
+                        UserId=user.Id
+                    };
+                    _aducationService.AddAducation(adc);
+
+                }
             }
             return RedirectToAction("Index","User");
         }
@@ -197,12 +210,15 @@ namespace Network.Controllers
 
 
 
-        [HttpGet]
-        public ActionResult EditUser()
-        {
-            var model = GetProfileFromPage();
-            return View("EditUser",model);
-        }
+
+
+
+        //[HttpGet]
+        //public ActionResult EditUser()
+        //{
+        //    var model = GetProfileFromPage();
+        //    return View("EditUser",model);
+        //}
 
         //[HttpPost]
         //public ActionResult EditUser(UserIndexViewModel model)

@@ -46,6 +46,14 @@ namespace Network.BL.WebServices
 
         }
 
+        public Guid GetIdByAspId(string id)
+        {
+            var user = _userRepository.GetUserByAspUserId(id);
+            return user.Id;
+                        
+        }
+
+
         public byte[] СonvertingImg(HttpPostedFileBase img)
         {
             byte[] imageData = null;
@@ -62,10 +70,7 @@ namespace Network.BL.WebServices
 
 
 
-        //public IQueryable<string> GetAllId()
-        //{
-        //    return _userRepository.GetListOfIds();
-        //}
+        
 
         public IQueryable<string> GetAllLeadListId()
         {
@@ -92,6 +97,11 @@ namespace Network.BL.WebServices
                 return _userRepository.Find(id);
             }
             else return null;
+        }
+
+        public AspNetUsers GetAspUser(string id)
+        {
+            return _userRepository.GetAspUser(id);
         }
 
         public User GetUserByAspNetId(string id)
@@ -362,6 +372,11 @@ namespace Network.BL.WebServices
         //        aducation.Id = Guid.NewGuid();
         //        _aducationRepository.AddAducation(aducation);
         //    }
+        //}
+
+        //public IQueryable<string> GetAllId()
+        //{
+        //    return _userRepository.GetListOfIds();
         //}
 
 
