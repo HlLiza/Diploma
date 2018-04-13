@@ -4,6 +4,7 @@
 
 body {
     background-color: #E7FFE0;
+    /*font-family: Raleway;*/
 }
 
 .footer-main {
@@ -28,10 +29,12 @@ body {
 .panel-heading{
     text-align: center;
     height:50px;
+    padding-top:0;  
         
 }
 .panel-body-reg {
     padding-bottom:0;
+    padding-top:40px;
 }
 .button-registr {
     background-color: #C6FFCC;
@@ -41,6 +44,10 @@ body {
 .style-text {
     color: #333333;
     text-align: center;
+}
+
+.mainLoginInput::-moz-placeholder {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 /*.registrForm {

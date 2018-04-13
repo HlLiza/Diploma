@@ -58,3 +58,105 @@ function validateForm() {
 
     return valid; // return the valid status
 }
+
+$(document).ready(function () {
+    $(function () {
+
+        $("#datepicker1").datepicker({
+            format: " yyyy", // Notice the Extra space at the beginning
+            viewMode: "years",
+            minViewMode: "years"
+        });
+
+        $("#datepicker2").datepicker({
+            format: " yyyy", // Notice the Extra space at the beginning
+            viewMode: "years",
+            minViewMode: "years"
+        });
+    });
+});
+
+$(document).ready(function () {
+
+    $(function () {
+        $('#datetimepicker1').datetimepicker({
+            viewMode: 'years',
+            format: 'YYYY'
+        });
+    });
+});
+
+
+//$(document).ready(function () {
+
+//    $("#datepicker1").datepicker({
+//        format: " yy", // Notice the Extra space at the beginning
+//        viewMode: "years"
+//        //minViewMode: "years"
+//    });
+
+    //$("#datepicker1").datepicker({
+    //    changeMonth: false,
+    //    changeYear: true,
+    //    yearRange: "1950:2018",
+    //    onClose: function (dateText, inst) {
+    //        var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+    //        $(this).datepicker('setDate', new Date(year));
+    //    }
+    //});
+
+
+    //$("#datepicker2").datepicker({
+    //    changeMonth: false,
+    //    changeYear: true,
+    //    yearRange: "1960:2030",
+    //    onClose: function (dataText, inst) {
+    //        var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+    //        $(this).datepicker('setDate', new Date(year));
+    //    }
+    //});
+    //$("#datepicker2").datepicker('setDate', new Number(year));
+
+
+
+
+    //$(function () {
+    //    $('.datepicker1').datepicker({
+    //        changeYear: true,
+    //        showButtonPanel: true,
+    //        dateFormat: 'yy',
+    //        onClose: function (dateText, inst) {
+    //            var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+    //            $(this).datepicker('setDate', new Date(year, 1));
+    //        }
+    //    });
+    //    //$(".datepicker1").focus(function () {
+    //    //    $(".ui-datepicker-month").hide();
+    //    //});
+    //});
+
+    //$(".datepicker1").datepicker({
+    //    dateFormat: 'yy',
+    //    changeMonth: false,
+    //    changeYear: true,
+    //    showButtonPanel: true,
+
+    //    onClose: function (dateText, inst) {
+    //       // var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+    //        var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+    //        $(this).val($.datepicker.formatDate('yy', new Date(inst.selectedYear, 1)));
+    //        //$(this).val($.datepicker.formatDate('yy', new Date(year, 1)));
+    //    }
+    //});
+
+    //$(".datepicker1").focus(function () {
+    //    $(".ui-datepicker-calendar").hide();
+    //    $("#ui-datepicker-div").position({
+    //        my: "center top",
+    //        at: "center bottom",
+    //        of: $(this)
+    //    });
+    //});
+
+//});
+    
