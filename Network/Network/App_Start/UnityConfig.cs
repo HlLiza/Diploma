@@ -7,6 +7,7 @@ using System;
 
 using Unity;
 using Unity.Injection;
+using Network.DAL.EFModel;
 
 namespace Network
 {
@@ -49,6 +50,10 @@ namespace Network
             // TODO: Register your type's mappings here.
             container.RegisterType<IUser, UserRepository>();
             container.RegisterType<IAducation, AducationRepository>();
+            container.RegisterType<IConference, ConferenceRepository>();
+            container.RegisterType<IListenerConference, ListenerConfRepository>();
+
+
 
             //container.RegisterType<IAdvertisement, AdvertisementRepository>();
             //container.RegisterType<IGroup, GroupRepository>();

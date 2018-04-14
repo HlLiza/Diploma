@@ -29,7 +29,7 @@ namespace Network.DAL.Repositories
 
         public User GetUserByAspUserId(string id)
         {
-            return _context.User.First(s => s.AspUserId == id);
+            return _context.User.FirstOrDefault(s => s.AspUserId == id);
         }
 
         public IQueryable<User> GetAll()

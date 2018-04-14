@@ -88,7 +88,9 @@
     <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
     <Property Name="Thema" Type="nvarchar" MaxLength="500" />
     <Property Name="Date" Type="datetime" />
-    <Property Name="Place" Type="nvarchar" MaxLength="200" />
+    <Property Name="Direction" Type="nvarchar" MaxLength="500" />
+    <Property Name="Details" Type="nvarchar(max)" />
+    <Property Name="Visibility" Type="bit" />
   </EntityType>
   <EntityType Name="Group">
     <Key>
@@ -105,6 +107,14 @@
     </Key>
     <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
     <Property Name="Image" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="ListenerConfer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ConferenceId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
   </EntityType>
   <EntityType Name="MembersOfConference">
     <Key>
@@ -225,6 +235,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_ListenerConfer_Conference">
+    <End Role="Conference" Type="Self.Conference" Multiplicity="1" />
+    <End Role="ListenerConfer" Type="Self.ListenerConfer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Conference">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ListenerConfer">
+        <PropertyRef Name="ConferenceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ListenerConfer_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="ListenerConfer" Type="Self.ListenerConfer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ListenerConfer">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_MembersOfConference_Conference">
     <End Role="Conference" Type="Self.Conference" Multiplicity="1" />
     <End Role="MembersOfConference" Type="Self.MembersOfConference" Multiplicity="*" />
@@ -297,6 +331,7 @@
     <EntitySet Name="Conference" EntityType="Self.Conference" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Image" EntityType="Self.Image" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ListenerConfer" EntityType="Self.ListenerConfer" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MembersOfConference" EntityType="Self.MembersOfConference" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MembersOfGroup" EntityType="Self.MembersOfGroup" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
@@ -324,6 +359,14 @@
     <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ListenerConfer_Conference" Association="Self.FK_ListenerConfer_Conference">
+      <End Role="Conference" EntitySet="Conference" />
+      <End Role="ListenerConfer" EntitySet="ListenerConfer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ListenerConfer_User" Association="Self.FK_ListenerConfer_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="ListenerConfer" EntitySet="ListenerConfer" />
     </AssociationSet>
     <AssociationSet Name="FK_MembersOfConference_Conference" Association="Self.FK_MembersOfConference_Conference">
       <End Role="Conference" EntitySet="Conference" />

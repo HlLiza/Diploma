@@ -47,14 +47,7 @@ namespace Network.Views.ViewModels
         public Guid userId { get; set; }
     }
 
-    public class ConferenceViewModel
-    {
-        public Guid Id { get; set; }
-        public string Thema { get; set; }
-        public DateTime Date { get; set; }
-        public string Place { get; set; }
-        public bool MembersStatus { get; set; }
-    }
+   
 
     public class AddToGroupMember
     {

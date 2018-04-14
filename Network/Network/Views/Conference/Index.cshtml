@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Network.Views.ViewModels.ConferenceViewModel>
+﻿@model IEnumerable<Network.Views.ViewModels.ConferenceIndexViewModel>
 @using Network.Controllers
 
 @{
@@ -34,72 +34,78 @@
                 {
                     <li id="addConferModal"><a href="#">Добавить конференцию<span></span></a></li>
                 }
-                @if (!User.IsInRole("secretary"))
+                @*@if (!User.IsInRole("secretary"))
                 {
                     <li><a href="@Url.Action("GetListConferenceForUser", "Conference")">Мои конференции<span style="font-size: 16px;" class="pull-right hidden-xs showopacity glyphicon"></span></a></li>
-                }
+                }*@
             </ul>
         </div>
     </div>
 </nav>
 
-<div class="row page" align="center">
+<div align="center">
     Конференции
-    <hr />
 </div>
 
-<div class="jumbotron container-show">
-    
+<div class="panel container-show">
+    @foreach (var item in Model)
+    {
 
-    <div class="row">
-        @foreach (var item in Model)
-            {
-            @Html.HiddenFor(modelItem => item.Id)
-            <div class="row">
-                <div class="col-md-9">
-                    <p>
-                        @Html.DisplayFor(modelItem => item.Date.Day).@Html.DisplayFor(modelItem => item.Date.Month).@Html.DisplayFor(modelItem => item.Date.Year)
-                    по адресу @Html.DisplayFor(modelItem => item.Place)
-                    состоится конференция на тему @Html.DisplayFor(modelItem => item.Thema)
+            <div class="row data-index-list-events item">
+                <div class="col-md-1">
+                    @if (item.MemberConferenceStatus)
+                    {
+                        <img class="icon" src="@Url.Content("~/Content/Pictures/checkYesConf.png")" />
+                    }
+                    else
+                    {
+                        <img class="icon" src="@Url.Content("~/Content/Pictures/noConf.png")" />
+
+                    }
                 </div>
 
-                <div class="col-md-3 btn-group">
-                    <button class="btn dropdown-toggle" data-toggle="dropdown"><span>...</span></button>
-                    <ul class="dropdown-menu">
-                        <li id="listMem" onclick="opendaModal(this)" data-url='@Url.Action("ListMembersOfConference", "Conference",new { id=item.Id})'><a href="#">Участники<span style="font-size: 16px;"></span></a></li>
-                        @if (!User.IsInRole("secretary") && item.MembersStatus!=false)
-                        { 
-                            <li id="joinToConfer" onclick="joinToConf(this)"data-url='@Url.Action("JoinConference", "Conference",new { id=item.Id})' ><a href="#">Принять участие в конференции<span style="font-size: 16px;"></span></a></li>
+                <div class="col-md-1">
+                    <div class="item-date left">
+                        <h4>@item.Date.Day</h4>
+                        <strong>
+                            <time>@item.Date.ToString("MMMM").ToUpper()</time>
+                        </strong>
+                        <span>
+                            <time>@item.Date.ToString("dddd", new System.Globalization.CultureInfo("ru-RU"))</time>
+                        </span>
+
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <div class="item-body left">
+                        <div class="title">
+                            @item.Thema
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="btn-group butt-decid" role="group" aria-label="Basic example">
+                        @{
+                            string temp1 = "";
+                            string temp2 = "";
+                            if (item.ListenerConferenceStatus) { temp1 = "disabled"; }
+                            else { temp2 = "disabled"; }
+
+                            <button id="yes" type="button" class="btn btn-secondary" @temp1>Иду</button>
+                            <button id="no" type="button" class="btn btn-secondary" @temp2>Не иду</button>
                         }
-                    </ul>
+                    </div>
                 </div>
-             </div>
-
-
-        <div id="listMemm" class="modal fade">
-            <div id="listContainer">
             </div>
-        </div>
-
-        <div id="joinMod" class="modal fade" >
-            <div id="joinContainer">
-            </div>
-        </div>
-        <hr />
-           }
-          </div>
-
-    <div id="addConferenceModal" class="modal fade" data-url='@Url.Action("CreateConference", "Conference", null)'>
-        <div id="addConferenceModal">
-        </div>
-    </div>
+            <hr />
+        }
     
 </div>
+
 
 @section Scripts{
     <script type="text/javascript">
         document.ready = (function () {
-
 
             $('#addConferModal').click(function () {
                 var url = $('#addConferenceModal').data('url');
@@ -111,7 +117,6 @@
                         $('#addConferenceModal').modal('show');
                     });
             });
-        })()
 
             function joinToConf(element) {
                 var url = $(element).data('url');
@@ -125,7 +130,7 @@
 
             };
 
-            function opendaModal (element) {
+            function opendaModal(element) {
                 var url = $(element).data('url');
                 $.get(url,
                     function (data) {
@@ -135,8 +140,46 @@
                     });
 
             };
+        });
     </script>
 }
 
 
 
+
+@*@Html.HiddenFor(modelItem => item.Id)
+    <div class="row">
+    <div class=".data-index-list-events item">
+        <div class="item-date left">
+            <h4>@item.Date.Day</h4>
+            <strong>
+                <time>@item.Date.ToString("MMMM").ToUpper()</time>
+            </strong>
+            <span>
+                <time>@item.Date.ToString("dddd", new System.Globalization.CultureInfo("ru-RU"))</time>
+            </span>
+
+        </div>
+        <div class="item-body left">
+            <div class="title">
+                @item.Thema
+            </div>
+        </div>
+
+
+        <div id="listMemm" class="modal fade">
+            <div id="listContainer">
+            </div>
+        </div>
+
+        <div id="joinMod" class="modal fade">
+            <div id="joinContainer">
+            </div>
+        </div>
+        <hr />
+        <div id="addConferenceModal" class="modal fade" data-url='@Url.Action("CreateConference", "Conference", null)'>
+            <div id="addConferenceModal">
+            </div>
+        </div>
+    </div>
+        </div>*@

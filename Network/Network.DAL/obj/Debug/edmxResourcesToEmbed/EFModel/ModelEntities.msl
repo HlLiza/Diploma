@@ -115,16 +115,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Conference">
-      <EntityTypeMapping TypeName="NetworkContext.Conference">
-        <MappingFragment StoreEntitySet="Conference">
-          <ScalarProperty Name="Place" ColumnName="Place" />
-          <ScalarProperty Name="Date" ColumnName="Date" />
-          <ScalarProperty Name="Thema" ColumnName="Thema" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Aducation">
       <EntityTypeMapping TypeName="NetworkContext.Aducation">
         <MappingFragment StoreEntitySet="Aducation">
@@ -154,6 +144,27 @@
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="AspUserId" ColumnName="AspUserId" />
           <ScalarProperty Name="Visibility" ColumnName="Visibility" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Conference">
+      <EntityTypeMapping TypeName="NetworkContext.Conference">
+        <MappingFragment StoreEntitySet="Conference">
+          <ScalarProperty Name="Visibility" ColumnName="Visibility" />
+          <ScalarProperty Name="Details" ColumnName="Details" />
+          <ScalarProperty Name="Direction" ColumnName="Direction" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Thema" ColumnName="Thema" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ListenerConfer">
+      <EntityTypeMapping TypeName="NetworkContext.ListenerConfer">
+        <MappingFragment StoreEntitySet="ListenerConfer">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ConferenceId" ColumnName="ConferenceId" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

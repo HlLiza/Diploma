@@ -103,6 +103,9 @@
     <Compile Include="EFModel\Image.cs">
       <DependentUpon>ModelEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="EFModel\ListenerConfer.cs">
+      <DependentUpon>ModelEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="EFModel\MembersOfConference.cs">
       <DependentUpon>ModelEntities.tt</DependentUpon>
     </Compile>
@@ -131,12 +134,16 @@
       <DependentUpon>ModelEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\IAducation.cs" />
+    <Compile Include="Interfaces\IConference.cs" />
     <Compile Include="Interfaces\IImage.cs" />
+    <Compile Include="Interfaces\IListenerConference.cs" />
     <Compile Include="Interfaces\IUser.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AducationRepository.cs" />
+    <Compile Include="Repositories\ConferenceRepository.cs" />
     <Compile Include="Repositories\ImageRepository.cs" />
+    <Compile Include="Repositories\ListenerConfRepository.cs" />
     <Compile Include="Repositories\RepositoryBase.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
@@ -175,6 +182,9 @@
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <Content Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

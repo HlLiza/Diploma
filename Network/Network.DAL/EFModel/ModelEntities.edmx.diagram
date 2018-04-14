@@ -22,8 +22,6 @@
         <AssociationConnector Association="NetworkContext.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" />
         <EntityTypeShape EntityType="NetworkContext.Advertisement" Width="1.5" PointX="6.25" PointY="4.75" />
         <AssociationConnector Association="NetworkContext.FK_Advertisement_AspNetUsers" />
-        <EntityTypeShape EntityType="NetworkContext.Conference" Width="1.5" PointX="4.375" PointY="5.125" />
-        <AssociationConnector Association="NetworkContext.FK_MembersOfConference_Conference" />
         <EntityTypeShape EntityType="NetworkContext.Aducation" Width="1.5" PointX="12.75" PointY="7.625" />
         <EntityTypeShape EntityType="NetworkContext.Image" Width="1.5" PointX="0.75" PointY="3.75" />
         <EntityTypeShape EntityType="NetworkContext.User" Width="1.5" PointX="10.375" PointY="3.625" />
@@ -31,6 +29,11 @@
         <AssociationConnector Association="NetworkContext.FK_User_AspNetUsers" />
         <AssociationConnector Association="NetworkContext.FK_MembersOfConference_User" />
         <AssociationConnector Association="NetworkContext.FK_MembersOfGroup_User1" />
+        <EntityTypeShape EntityType="NetworkContext.Conference" Width="1.5" PointX="9.875" PointY="9" />
+        <AssociationConnector Association="NetworkContext.FK_MembersOfConference_Conference" />
+        <EntityTypeShape EntityType="NetworkContext.ListenerConfer" Width="1.5" PointX="15.625" PointY="6.625" />
+        <AssociationConnector Association="NetworkContext.FK_ListenerConfer_Conference" />
+        <AssociationConnector Association="NetworkContext.FK_ListenerConfer_User" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

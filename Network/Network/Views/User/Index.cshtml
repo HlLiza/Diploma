@@ -32,12 +32,12 @@
 
             @if (!User.IsInRole("secretary"))
             {
-                <li><a href="@Url.Action("Index","User")">Мои данные<span style="font-size: 16px;" class="pull-right hidden-xs showopacity glyphicon"></span></a></li>
+                <li><a href="@Url.Action("Index","User")">Мой профиль<span style="font-size: 16px;" class="pull-right hidden-xs showopacity glyphicon"></span></a></li>
             }
 
                 <li><a href="@Url.Action("Index","Group")">Группы<span style="font-size: 16px;" class="pull-right hidden-xs showopacity glyphicon"></span></a></li>
 
-                <li><a href="@Url.Action("Index","Advertisement")">Объявления<span style="font-size: 16px;" class="pull-right hidden-xs showopacity glyphicon"></span></a></li>
+                @*<li><a href="@Url.Action("Index","Advertisement")">Объявления<span style="font-size: 16px;" class="pull-right hidden-xs showopacity glyphicon"></span></a></li>*@
                 <li><a href="@Url.Action("Index","Conference")">Конференции<span style="font-size: 16px;" class="pull-right hidden-xs showopacity glyphicon"></span></a></li>
 
                 <li><a href="@Url.Action("BrowseUser","User")">Пользователи<span style="font-size: 16px;" class="pull-right hidden-xs showopacity glyphicon"></span></a></li>

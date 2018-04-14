@@ -12,11 +12,11 @@
 }
 
 .input-add-info {
-    height:40px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    height: 40px;
     padding: 10px;
     width: 100%;
     font-size: 17px;
-    /*font-family: Raleway;*/
     border: 1px solid #aaaaaa;
 }
 
@@ -39,20 +39,3 @@ input.invalid {
 .marg {
     margin-left:15px;
 }
-
-.ui-datepicker-calendar {
-    display: none;
-}
-
-.ui-datepicker-month {
-    display: none;
-}
-
-.ui-datepicker-prev {
-    display: none;
-}
-
-.ui-datepicker-next {
-    display: none;
-}
-

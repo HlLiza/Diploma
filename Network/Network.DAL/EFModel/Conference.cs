@@ -18,14 +18,19 @@ namespace Network.DAL.EFModel
         public Conference()
         {
             this.MembersOfConference = new HashSet<MembersOfConference>();
+            this.ListenerConfer = new HashSet<ListenerConfer>();
         }
     
         public System.Guid Id { get; set; }
         public string Thema { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
-        public string Place { get; set; }
+        public string Direction { get; set; }
+        public string Details { get; set; }
+        public Nullable<bool> Visibility { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MembersOfConference> MembersOfConference { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ListenerConfer> ListenerConfer { get; set; }
     }
 }
