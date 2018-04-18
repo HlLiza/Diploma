@@ -1,12 +1,43 @@
-﻿body {
-    margin: 0;
+﻿.panel-form {
+    background-color: #59a7b5;
+    margin: 0 350px 0 350px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Параметры тени */
 }
 
-#regContainer {
-    margin-top: 3%;
+.panel-heading {
+    text-align: center;
+    height: 50px;
+    padding-top: 0;
 }
 
-.btn-login:hover,
+.panel-body-reg {
+    padding-bottom: 0;
+}
+
+.button-form {
+    background-color: #A3CCEA;
+}
+
+
+.form-group a,
+.change_link  a,
+.links {    
+    font-size: 48px;
+    color: white;
+    padding: 2px 0 10px 0;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    padding-bottom: 30px;
+}
+/*.btn-finish {
+    border: 1px solid #2CBADE;
+}*/
+
+
+
+
+/*.btn-login:hover,
 .btn-login:focus {
     color: #fff;
     background-color: #198da8;
@@ -14,18 +45,10 @@
 }
 
 
-.panel-heading a {
-    font-size: 48px;
-    color: rgb(6, 106, 117);
-    padding: 2px 0 10px 0;
-    font-family: 'FranchiseRegular','Arial Narrow',Arial,sans-serif;
-    font-weight: bold;
-    text-align: center;
-    padding-bottom: 30px;
-}
+
 
 .panel-heading a {
     background: -webkit-repeating-linear-gradient(-45deg, rgb(18, 83, 93), rgb(18, 83, 93) 20px, rgb(64, 111, 118) 20px, rgb(64, 111, 118) 40px, rgb(18, 83, 93) 40px);
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
-}
+}*/

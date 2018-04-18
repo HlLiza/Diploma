@@ -1,10 +1,11 @@
-﻿/*body {
-    color: #333;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
-}*/
+﻿.logo-header {
+    height: 80px;
+    width:200px;
+}
 
-h1,
+
+
+/*h1,
 h1 + p {
     margin: 30px 15px 0 font-weight: 300;
 }
@@ -18,7 +19,6 @@ h1 + p {
         }
 
 h2 {
-    /*margin: 60px 15px 0;*/
     padding: 0;
     font-weight: 300;
 }
@@ -91,15 +91,15 @@ figure {
     figure:hover + span {
         bottom: -36px;
         opacity: 1;
-    }
+    }*/
 
 
-img {
+/*img {
     width: 300px;
     height: 200px;
-}
+}*/
 
-.hover01 figure img {
+/*.hover01 figure img {
     -webkit-transform: scale(1);
     transform: scale(1);
     -webkit-transition: .3s ease-in-out;
@@ -127,4 +127,4 @@ img > .thumbnail > .img-responsive {
 .gallery a {
     height: 200px;
     width: 300px;
-}
+}*/

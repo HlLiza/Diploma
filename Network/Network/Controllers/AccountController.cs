@@ -13,45 +13,44 @@ namespace Network.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        private ApplicationSignInManager _signInManager;
-        private ApplicationUserManager _userManager;
+        //private ApplicationSignInManager _signInManager;
+        //private ApplicationUserManager _userManager;
 
 
+        //public AccountController()
+        //{
+        //}
 
-        public AccountController()
+        public AccountController()//ApplicationUserManager userManager, ApplicationSignInManager signInManager):base()
         {
-          
-        }
-
-
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
-        {
-            UserManager = userManager;
-            SignInManager = signInManager;
+            //UserManager = userManager;
+            //SignInManager = signInManager;
         }
 
         public ApplicationSignInManager SignInManager
         {
             get
             {
-                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
+                //return _signInManager ?? 
+                    return HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set
-            {
-                _signInManager = value;
-            }
+            //private set
+            //{
+            //    _signInManager = value;
+            //}
         }
 
         public ApplicationUserManager UserManager
         {
             get
             {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                //return _userManager ?? 
+                return HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
             }
-            private set
-            {
-                _userManager = value;
-            }
+            //private set
+            //{
+            //    _userManager = value;
+            //}
         }
 
         //
@@ -59,7 +58,6 @@ namespace Network.Controllers
         [AllowAnonymous]
         public ActionResult Login()//string returnUrl)
         {
-            //ViewBag.ReturnUrl = returnUrl;
             return View();
         }
 
@@ -96,12 +94,17 @@ namespace Network.Controllers
             // Сбои при входе не приводят к блокированию учетной записи
             // Чтобы ошибки при вводе пароля инициировали блокирование учетной записи, замените на shouldLockout: true
             ApplicationUser signedUser = UserManager.FindByEmail(model.LoginEmail);
+            var roles = UserManager.GetRoles(signedUser.Id);
             var result = await SignInManager.PasswordSignInAsync(signedUser.Email, model.LoginPassword, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
                     {
-                        if (signedUser.IsNewUser)
+                        if (roles.First() != "secretary")
+                        {
+                            return RedirectToAction("Index","Conference");
+                        }
+                        if (signedUser.IsNewUser && roles.First()!="secretary")
                         {
                             signedUser.IsNewUser = false;
                             UserManager.Update(signedUser);
@@ -450,16 +453,16 @@ namespace Network.Controllers
         {
             if (disposing)
             {
-                if (_userManager != null)
+                if (UserManager != null)
                 {
-                    _userManager.Dispose();
-                    _userManager = null;
+                    UserManager.Dispose();
+                    //UserManager = null;
                 }
 
-                if (_signInManager != null)
+                if (SignInManager != null)
                 {
-                    _signInManager.Dispose();
-                    _signInManager = null;
+                    SignInManager.Dispose();
+                    //_signInManager = null;
                 }
             }
 

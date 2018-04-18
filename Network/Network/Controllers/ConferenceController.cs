@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
 using Network.BL.WebServices;
-using Network.DAL.EFModel;
 using Network.Views.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -11,7 +10,7 @@ namespace Network.Controllers
     public class ConferenceController : Controller
     {
         private ConferenceService _conferencService;
-        private UserService _userService;
+        private UserService _userService; 
 
         public ConferenceController(ConferenceService conferencService, UserService userService)
         {
@@ -64,52 +63,7 @@ namespace Network.Controllers
 
             return View(model);
         }
-
-        //var conferListId = _conferencService.GetConferenceList();
-        //var listConference = _conferencService.GetConferList(conferListId);
-        //if (!User.IsInRole("secretary"))
-        //{
-        //    var idString = User.Identity.GetUserId();
-        //    var id = _userService.GetUserIdByAspId(idString);
-
-        //    if (conferListId != null)
-        //    {
-
-        //        foreach (var item in listConference)
-        //        {
-        //            ConferenceViewModel confer = new ConferenceViewModel();
-        //            confer.Id = item.Id;
-        //            confer.Thema = item.Thema;
-        //            confer.Date = Convert.ToDateTime(item.Date);
-        //           // confer.Place = item.Place;
-        //            confer.MembersStatus = _conferencService.CheckMemberInConference(id, item.Id);
-        //            model.Add(confer);
-        //        }
-        //    }
-        //    return View(model);
-        //}
-
-        //else
-        //{
-        //    if (conferListId != null)
-        //    {
-
-        //        foreach (var item in listConference)
-        //        {
-        //            ConferenceViewModel confer = new ConferenceViewModel();
-        //            confer.Id = item.Id;
-        //            confer.Thema = item.Thema;
-        //            confer.Date = Convert.ToDateTime(item.Date);
-        //           // confer.Place = item.Place;
-        //            confer.MembersStatus = true;
-        //            model.Add(confer);
-        //        }
-        //    }
-        //    return View(model);
-
-        //}
-
-
+        
 
         [Authorize(Roles = "group_member")]
         public bool IsMemberConference(Guid confId)
@@ -117,6 +71,113 @@ namespace Network.Controllers
             var userId = _userService.GetIdByAspId(User.Identity.GetUserId());
             return _conferencService.UserIsMember(confId, userId); ;
         }
+
+        [Authorize(Roles = "group_member")]
+        public ActionResult AddListener(Guid confId)
+        {
+            var userId = _userService.GetIdByAspId(User.Identity.GetUserId());
+            if (confId != Guid.Empty && userId != Guid.Empty)
+            {
+                _conferencService.AddListener(userId,confId);
+            }
+            return RedirectToAction("Index");
+        }
+
+        [Authorize(Roles = "group_member")]
+        public ActionResult DeleteListener(Guid confId)
+        {
+            var userId = _userService.GetIdByAspId(User.Identity.GetUserId());
+            if (confId != Guid.Empty && userId != Guid.Empty)
+            {
+                _conferencService.DeleteListener(userId, confId);
+            }
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult OpenConference(Guid confId)
+        {
+            var conference = _conferencService.GetConferenceById(confId);
+            return View(conference);
+        }
+
+        [System.Web.Mvc.Authorize(Roles = "group_member")]
+        [HttpGet]
+        public ActionResult JoinToConference(Guid confId)
+        {
+            var userId = _userService.GetIdByAspId(User.Identity.GetUserId());
+            RegistrToConfer model = new RegistrToConfer()
+            {
+                ConfId = confId,
+                UserId = userId
+            };
+
+            return View("_JoinToConference",model);
+        }
+
+        [HttpPost]
+        public ActionResult JoinToConference(RegistrToConfer model)
+        {
+
+            return RedirectToAction("Index","Conference");
+        }
+
+
+        //[Authorize(Roles = "secretary")]
+        public ActionResult GetListOfListener(Guid confId)
+        {
+            List<UserAtConference> result = new List<UserAtConference>();
+
+            var listenerIds = _conferencService.GetListIdListeners(confId);
+            var lesteners = _userService.GetUsersByListId(listenerIds);
+            if (lesteners.Count != 0)
+            {
+                foreach (var lst in lesteners)
+                {
+                    UserAtConference user = new UserAtConference
+                    {
+                        Id=lst.Id,
+                        Name=lst.Name,
+                        Surname=lst.Surname,
+                        Direction=lst.Direction
+                    };
+                    if (lst.Image.Length != 0)
+                        user.Image = lst.Image;
+                    result.Add(user);
+                }
+            }
+
+            return PartialView("_GetListOfListener", result);
+        }
+
+        [Authorize(Roles = "secretary")]
+        public ActionResult GetListOfMembers(Guid confId)
+        {
+            List<UserAtConference> list = new List<UserAtConference>();
+
+            return PartialView();
+        }
+
+
+        ////public ActionResult ListMembersOfConference(Guid id)
+        ////{
+        ////    List<UserListViewModel> model = new List<UserListViewModel>();
+        ////    var listMembersId = _conService.GetMembersListByConferenceId(id);
+        ////    var data = _userService.GetDataForListOfUser(listMembersId);
+
+        ////    foreach (var item in data)
+        ////    {
+        ////        UserListViewModel user = new UserListViewModel();
+        ////        user.Id = item.Id;
+        ////        user.Name = item.Name;
+        ////        user.Image = _userService.GetImageByDataId(item.Id);
+
+        ////        model.Add(user);
+        ////    }
+
+        ////    return PartialView("_ListMembersOfConference", model);
+        ////}
+
+
 
         //[Authorize(Roles = "secretary")]
         //public ActionResult CreateConference()

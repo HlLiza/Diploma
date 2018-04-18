@@ -1,10 +1,47 @@
-﻿/*html, body {
-    height: 100%;
-}*/
+﻿/*!!!!!!!!!!!!*/
+.form-group placeholder {
+    color: white;
+}
+/**/
+
+
+
+/*for buttons*/
+.log-reg {
+    margin-top: 25px;
+    color: white;
+}
+
+.button-large {
+    background-color: #A3CCEA;
+    width: 140px;
+    height: 40px;
+    color: white;
+    text-align: center;
+}
+
+.disp-twice-but {
+    display: inherit;
+}
+/**/
+
+
+header {
+    background-color: white;
+    font-family: Helvetica;
+    color: #ffffff;
+}
+.head-background-col {
+    background-color: white;
+}
+.cont-form {
+    margin-top:150px;
+}
+
 
 body {
-    background-color: #E7FFE0;
-    /*font-family: Raleway;*/
+    font-family: 'Helvetica';
+    background-image: url('./Pictures/323.jpeg');
 }
 
 .footer-main {
@@ -15,34 +52,27 @@ body {
     line-height: 60px;
     background-color: #D9D6C0;
 }
-
-.head-background-col {
-    background-color: #C6FFCC;
+@font-face {
+    font-family: 'Helvetica';
+    src: url('./Helvetica-Neue-Cyr/HelveticaNeueCyr-Light.otf');
 }
 
-.padd {
+.title-head {
+    font-size: 32px;
+    font-family: Helvetica;
+    color: #ffffff;
+}
+
+.text-item {
+    color:white;
+}
+/*.padd {
     padding-top: 10px;
 }
 .header {
     margin-bottom:0;
-}
-.panel-heading{
-    text-align: center;
-    height:50px;
-    padding-top:0;  
-        
-}
-.panel-body-reg {
-    padding-bottom:0;
-    padding-top:40px;
-}
-.button-registr {
-    background-color: #C6FFCC;
-}
-
-
+}*/
 .style-text {
-    color: #333333;
     text-align: center;
 }
 
@@ -112,7 +142,33 @@ body {
     margin-top: 30px;
 }
 
+.butt-modal {
+    padding-left: 445px;
+}
 
+
+/*for input file*/
+/*#customFile .custom-file-control:lang(ru)::after {
+    content: "Select file...";
+}
+
+#customFile .custom-file-control:lang(ru)::before {
+    content: "Click me";
+}*/
+
+/*when a value is selected, this class removes the content */
+/*.custom-file-control.selected:lang(ru)::after {
+    content: "" !important;
+}
+
+.custom-file {
+    overflow: hidden;
+}
+
+.custom-file-control {
+    white-space: nowrap;
+}*/
+/*for input file*/
 
 
 

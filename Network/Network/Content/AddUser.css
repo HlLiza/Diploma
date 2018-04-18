@@ -1,7 +1,7 @@
 ﻿#regForm {
     background-color: #ffffff;
     margin: 3% auto;
-    font-family: Raleway;
+    /*font-family: Raleway;*/
     padding: 40px;
     width: 100%;
     min-width: 300px;
@@ -12,12 +12,13 @@
 }
 
 .input-add-info {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: Helvetica;
     height: 40px;
     padding: 10px;
-    width: 100%;
+    width: 90%;
     font-size: 17px;
-    border: 1px solid #aaaaaa;
+    border: 1px solid #2CBADE;
+    background-color: #A3CCEA;
 }
 
 input.invalid {

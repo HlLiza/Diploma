@@ -8,6 +8,10 @@ using System;
 using Unity;
 using Unity.Injection;
 using Network.DAL.EFModel;
+using Network.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Unity.Lifetime;
 
 namespace Network
 {
@@ -47,11 +51,16 @@ namespace Network
             // Make sure to add a Unity.Configuration to the using statements.
             // container.LoadConfiguration();
 
+            container.RegisterType<IUserStore<ApplicationUser>, UserStore<ApplicationUser>>();
+
             // TODO: Register your type's mappings here.
-            container.RegisterType<IUser, UserRepository>();
+            container.RegisterType<DAL.Interfaces.IUser, UserRepository>();
             container.RegisterType<IAducation, AducationRepository>();
             container.RegisterType<IConference, ConferenceRepository>();
             container.RegisterType<IListenerConference, ListenerConfRepository>();
+
+            container.RegisterType<ApplicationUserManager>();
+            container.RegisterType<ApplicationSignInManager>();
 
 
 
@@ -63,7 +72,7 @@ namespace Network
             container.RegisterType<IAducationService, AducationService>();
 
 
-            container.RegisterType<AccountController>(new InjectionConstructor());
+            container.RegisterType<AccountController>();
             container.RegisterType<UserController>();
             //container.RegisterType<GroupController>(new InjectionConstructor());
 

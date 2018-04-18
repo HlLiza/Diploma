@@ -60,34 +60,37 @@ namespace Network.BL.WebServices
         //listener
         public void AddListener(Guid listenerId, Guid confId)
         {
-            if (listenerId != null && confId != null)
+            ListenerConfer listener = new ListenerConfer()
             {
-                ListenerConfer listener = new ListenerConfer()
-                {
-                    Id = new Guid(),
-                    UserId = listenerId,
-                    ConferenceId = confId
-                };
-                _listenerRepository.Add(listener);
-            }
+                Id = Guid.NewGuid(),
+                UserId = listenerId,
+                ConferenceId = confId
+            };
+            _listenerRepository.Add(listener);
         }
 
         public void DeleteListener(Guid listenerId, Guid confId)
         {
-            if (listenerId != Guid.Empty && confId != Guid.Empty)
-            {
-                var item = _listenerRepository.GetItem(confId, listenerId);
-                if (item != null)
-                    _listenerRepository.Delete(item);
-            }
-
+            var item = _listenerRepository.GetItem(confId, listenerId);
+            if (item != null)
+            _listenerRepository.Delete(item);
         }
+
         public bool UserIsListener(Guid confId, Guid listId)
         {
             var item = _listenerRepository.GetItem(confId, listId);
             if (item != null && item.UserId == listId)
                 return true;
             else return false;
+        }
+
+        public IQueryable<Guid> GetListIdListeners(Guid confId)
+        {
+            if (confId != Guid.Empty)
+            {
+                return _listenerRepository.GetListener(confId);
+            }
+            return null;
         }
 
 

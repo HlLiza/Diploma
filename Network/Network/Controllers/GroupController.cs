@@ -123,39 +123,39 @@
 //            else return RedirectToAction("Index", "Group");
 //        }
 
-//        [System.Web.Http.Authorize(Roles = "team_lead")]
-//        public ActionResult RemoveFromGroup(Guid memId, Guid groupId)
-//        {
-//            var user = _userService.GetUserByUserPersDataId(memId);
-//            _groupService.DeleteMemberInGroup(groupId, user.Id);
-//            return RedirectToAction("GroupsForUser", "Group");
-//        }
+//        //[System.Web.Http.Authorize(Roles = "team_lead")]
+//        //public ActionResult RemoveFromGroup(Guid memId, Guid groupId)
+//        //{
+//        //    var user = _userService.GetUserByUserPersDataId(memId);
+//        //    _groupService.DeleteMemberInGroup(groupId, user.Id);
+//        //    return RedirectToAction("GroupsForUser", "Group");
+//        //}
 
 
 
-//        public ActionResult ListMembersOfGroup(Guid id)
-//        {
-//            List<UserListViewModel> members = new List<UserListViewModel>();
-//            var listMembersId = _groupService.GetmembersListByGroupId(id);
-//            var data = _userService.GetDataForListOfUser(listMembersId);
+//        //public ActionResult ListMembersOfGroup(Guid id)
+//        //{
+//        //    List<UserListViewModel> members = new List<UserListViewModel>();
+//        //    var listMembersId = _groupService.GetmembersListByGroupId(id);
+//        //    var data = _userService.GetDataForListOfUser(listMembersId);
 
-//            foreach (var item in data)
-//            {
-//                UserListViewModel user = new UserListViewModel();
-//                user.Id = item.Id;
-//                user.Name = item.Name;
-//                user.Image = _userService.GetImageByDataId(item.Id);
+//        //    foreach (var item in data)
+//        //    {
+//        //        UserListViewModel user = new UserListViewModel();
+//        //        user.Id = item.Id;
+//        //        user.Name = item.Name;
+//        //        user.Image = _userService.GetImageByDataId(item.Id);
 
-//                members.Add(user);
-//            }
+//        //        members.Add(user);
+//        //    }
 
-//            UserListOfGroupViewModel model = new UserListOfGroupViewModel();
-//            model.Members = members;
-//            model.Id = id;
-//            model.Status = _groupService.CheckHeadGroup(User.Identity.GetUserId(), id);
+//        //    UserListOfGroupViewModel model = new UserListOfGroupViewModel();
+//        //    model.Members = members;
+//        //    model.Id = id;
+//        //    model.Status = _groupService.CheckHeadGroup(User.Identity.GetUserId(), id);
 
-//            return PartialView("_ListMembersOfGroup", model);
-//        }
+//        //    return PartialView("_ListMembersOfGroup", model);
+//        //}
 
 //        [System.Web.Mvc.Authorize(Roles = "secretary")]
 //        public ActionResult DeleteGroup(Guid id)
@@ -174,42 +174,42 @@
 
 
 
-//        public ActionResult GroupsForUser()
-//        {
-//            var idString = User.Identity.GetUserId();
-//            var id = _userService.GetUserIdByAspId(idString);
-//            var user = _userService.GetUserById(id);
+//        //public ActionResult GroupsForUser()
+//        //{
+//        //    var idString = User.Identity.GetUserId();
+//        //    var id = _userService.GetUserIdByAspId(idString);
+//        //    var user = _userService.GetUserById(id);
 
-//            List<Group> list = new List<Group>();
+//        //    List<Group> list = new List<Group>();
 
-//            if (User.IsInRole("team_lead"))
-//            {
-//                list = _groupService.GetGroupsForHead(user.PersonalDataId);
-//            }
-//            if (User.IsInRole("group_member"))
-//            {
-//                list = _groupService.GetGroupsForUser(user.Id);
-//            }
-
-
-//            List<GroupViewModel> model = new List<GroupViewModel>();
-//            foreach (var item in list)
-//            {
-//                GroupViewModel gr = new GroupViewModel();
-//                gr.Id = item.Id;
-
-//                var userHead = _userService.GetUserPersData(item.HeadId);
-//                gr.NameHead = userHead.Name;
-
-//                gr.Number = Convert.ToInt32(item.Number);
-//                gr.Specialization = item.Specialization;
-
-//                model.Add(gr);
-//            }
+//        //    if (User.IsInRole("team_lead"))
+//        //    {
+//        //        list = _groupService.GetGroupsForHead(user.PersonalDataId);
+//        //    }
+//        //    if (User.IsInRole("group_member"))
+//        //    {
+//        //        list = _groupService.GetGroupsForUser(user.Id);
+//        //    }
 
 
-//            return View(model);
-//        }
+//        //    List<GroupViewModel> model = new List<GroupViewModel>();
+//        //    foreach (var item in list)
+//        //    {
+//        //        GroupViewModel gr = new GroupViewModel();
+//        //        gr.Id = item.Id;
+
+//        //        var userHead = _userService.GetUserPersData(item.HeadId);
+//        //        gr.NameHead = userHead.Name;
+
+//        //        gr.Number = Convert.ToInt32(item.Number);
+//        //        gr.Specialization = item.Specialization;
+
+//        //        model.Add(gr);
+//        //    }
+
+
+//        //    return View(model);
+//        //}
 
 
 
@@ -217,22 +217,22 @@
 //        /// ////
 //        /// </summary>
 //        /// <returns></returns>
-//        public List<SelectLeadViewModel> GetLead()
-//        {
-//            var leadList = _userService.GetLeadAll();
-//            if (leadList != null)
-//            {
-//                List<SelectLeadViewModel> list = new List<SelectLeadViewModel>();
-//                foreach (var lead in leadList)
-//                {
-//                    SelectLeadViewModel item = new SelectLeadViewModel();
-//                    item.Id = lead.Id;
-//                    item.Name = lead.Name;
-//                    list.Add(item);
-//                }
-//                return list;
-//            }
-//            else return null;
-//        }
+//        //public List<SelectLeadViewModel> GetLead()
+//        //{
+//        //    var leadList = _userService.GetLeadAll();
+//        //    if (leadList != null)
+//        //    {
+//        //        List<SelectLeadViewModel> list = new List<SelectLeadViewModel>();
+//        //        foreach (var lead in leadList)
+//        //        {
+//        //            SelectLeadViewModel item = new SelectLeadViewModel();
+//        //            item.Id = lead.Id;
+//        //            item.Name = lead.Name;
+//        //            list.Add(item);
+//        //        }
+//        //        return list;
+//        //    }
+//        //    else return null;
+//        //}
 //    }
 //}

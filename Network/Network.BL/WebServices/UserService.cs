@@ -68,9 +68,42 @@ namespace Network.BL.WebServices
             return imageData;
         }
 
+        public List<User> GetUsersByListId(IQueryable<Guid> listId)
+        {
+            List<User> result = new List<User>();
+
+            if (listId != null)
+            {
+                foreach (var id in listId)
+                {
+                    var user = _userRepository.Find(id);
+                    result.Add(user);
+                }
+            }
+            return result;
+        }
 
 
-        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         public IQueryable<string> GetAllLeadListId()
         {

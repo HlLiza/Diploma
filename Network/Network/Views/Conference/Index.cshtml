@@ -44,7 +44,7 @@
 </nav>
 
 <div align="center">
-    Конференции
+    Конференции     
 </div>
 
 <div class="panel container-show">
@@ -79,31 +79,70 @@
                 <div class="col-md-7">
                     <div class="item-body left">
                         <div class="title">
-                            @item.Thema
+                            <a href="@Url.Action("OpenConference", "Conference", new { confId=item.Id })">@item.Thema</a>
+                         
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="btn-group butt-decid" role="group" aria-label="Basic example">
-                        @{
-                            string temp1 = "";
-                            string temp2 = "";
-                            if (item.ListenerConferenceStatus) { temp1 = "disabled"; }
-                            else { temp2 = "disabled"; }
+                     @if (!User.IsInRole("secretary"))
+                     {
+                        @*<div class="btn-group butt-decid" role="group" aria-label="Basic example">
+                            <button id="listenerId" onclick="openModalL()" data-url='@Url.Action("GetListOfListener", "Conference",new { confId=item.Id})' type="button" class="btn btn-secondary">Слушатели</button>
+                            <button id="memberId" onclick="openModalM(this)" data-url='@Url.Action("GetListOfMembers", "Conference",new { confId=item.Id})' type="button" class="btn btn-secondary">Участники</button>
+                        </div>*@
 
-                            <button id="yes" type="button" class="btn btn-secondary" @temp1>Иду</button>
-                            <button id="no" type="button" class="btn btn-secondary" @temp2>Не иду</button>
-                        }
-                    </div>
-                </div>
+                        <div class="btn-group butt-decid" role="group" aria-label="Basic example">
+                            @{
+                                string temp1 = "";
+                                string temp2 = "";
+                                if (item.ListenerConferenceStatus) { temp1 = "disabled"; }
+                                else { temp2 = "disabled"; }
+                                <button id="yes" type="button"  onclick="location.href='@Url.Action("AddListener", "Conference",new { confId =item.Id})'" class="btn btn-secondary" @temp1>Иду</button>
+                                <button id="no" type="button"  onclick="location.href='@Url.Action("DeleteListener", "Conference",new { confId =item.Id})'" class="btn btn-secondary" @temp2>Не иду</button>
+                            }
+                        </div>
+                     }
+                  
+
+                        </div>
             </div>
             <hr />
-        }
+
+            <div id="listL" class="modal fade">
+                <div id="listContainer">
+                </div>
+            </div>
+
+            <div id="listM" class="modal fade">
+                <div id="listContainer">
+                </div>
+            </div>
+    }
     
 </div>
 
 
-@section Scripts{
+@section Scripts
+{
+    <script type="text/javascript">
+
+        //$('.custom-file-input').on('change', function () {
+        //    debugger
+        //$(this).next('.form-control-file').addClass("selected").html($(this).val());})
+    </script>
+}
+
+
+
+
+
+
+
+
+
+
+@*@section Scripts{
     <script type="text/javascript">
         document.ready = (function () {
 
@@ -118,31 +157,12 @@
                     });
             });
 
-            function joinToConf(element) {
-                var url = $(element).data('url');
 
-                $.get(url,
-                    function (data) {
-                        $('#joinContainer').html(data);
 
-                        $('#joinMod').modal('show');
-                    });
 
-            };
-
-            function opendaModal(element) {
-                var url = $(element).data('url');
-                $.get(url,
-                    function (data) {
-                        $('#listContainer').html(data);
-
-                        $('#listMemm').modal('show');
-                    });
-
-            };
         });
     </script>
-}
+}*@
 
 
 

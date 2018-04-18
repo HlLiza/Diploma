@@ -28,6 +28,7 @@ namespace Network.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "group_member")]
         protected UserIndexViewModel GetProfile()
         {
             var aspId = User.Identity.GetUserId();
@@ -78,8 +79,8 @@ namespace Network.Controllers
         }
 
 
-
-       public ActionResult AddUser(string id)
+        [Authorize(Roles = "group_member")]
+        public ActionResult AddUser(string id)
         {
 
             AddUserViewModel model = new AddUserViewModel()
@@ -95,7 +96,6 @@ namespace Network.Controllers
         {
             if (model != null)
             {
-
                 User user = new User()
                 {
                     Skype = model.Skype,

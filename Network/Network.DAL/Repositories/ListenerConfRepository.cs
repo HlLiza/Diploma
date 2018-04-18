@@ -33,6 +33,7 @@ namespace Network.DAL.Repositories
             return _context.ListenerConfer.FirstOrDefault(x=>x.ConferenceId==confId && x.UserId==listenerId);
         }
 
+         
 
     }
 }
