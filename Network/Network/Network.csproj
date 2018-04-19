@@ -265,6 +265,7 @@
     <EmbeddedResource Include="Content\Helvetica-Neue-Cyr\Внимание!.txt" />
     <EmbeddedResource Include="Content\Helvetica-Neue-Cyr\Шрифт Helvetica Neue Cyr.jpg" />
     <Content Include="Content\Image.css" />
+    <Content Include="Content\Menu.css" />
     <Content Include="Content\Modal.css" />
     <EmbeddedResource Include="Content\Pictures\default.jpeg" />
     <EmbeddedResource Include="Content\Pictures\323.jpeg" />
@@ -464,6 +465,7 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Shared\_Menu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

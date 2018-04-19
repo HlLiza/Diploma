@@ -34,6 +34,7 @@ namespace Network
                       "~/Content/AddUser.css",
                       "~/Content/register.css",
                       "~/Content/Modal.css",
+                      "~/Content/Menu.css",
                       "~/Content/site.css"));
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
