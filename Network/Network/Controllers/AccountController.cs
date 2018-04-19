@@ -100,7 +100,7 @@ namespace Network.Controllers
             {
                 case SignInStatus.Success:
                     {
-                        if (roles.First() != "secretary")
+                        if (roles.First() == "secretary")
                         {
                             return RedirectToAction("Index","Conference");
                         }

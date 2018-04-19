@@ -1,9 +1,9 @@
 ﻿#regForm {
-    background-color: #ffffff;
+    /*background-color: #ffffff;
     margin: 3% auto;
     padding: 40px;
     width: 100%;
-    min-width: 300px;
+    min-width: 300px;*/
 }
 
 .tab {
@@ -29,17 +29,13 @@ input.invalid {
 }
 
 #prevBtn {
-    background-color: #bbbbbb;
+    background-color: #A3CCEA;
 }
 
 .step.active {
     opacity: 1;
 }
-.btn-add-info {
-    width: 20%;
-    float: right;
-    background-color: #E7FFE0;
-}
+
 .marg {
     margin-left:15px;
 }

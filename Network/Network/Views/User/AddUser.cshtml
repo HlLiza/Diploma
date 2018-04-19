@@ -1,64 +1,191 @@
 ﻿@model Network.Views.ViewModels.AddUserViewModel
 
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutLog.cshtml";
 }
 
 
-    <div class="col-md-6 col-md-offset-3">
-        @using (Html.BeginForm("AddUser", "User", FormMethod.Post, null))
-        {
-            @Html.HiddenFor(x => x.AspUserId)
-            @Html.AntiForgeryToken()
-            <div id="regForm">
-                <fieldset class="tab">
-                    <h2 class="style-text">Общая информация</h2>
-                    <h3 class="style-text">Введите информацию о себе</h3>
+@using (Html.BeginForm("AddUser", "User", FormMethod.Post, null))
+{
+    @Html.HiddenFor(x => x.AspUserId)
+    @Html.AntiForgeryToken()
 
-                    <div class="form-group ">
-                        <input type="text" class="input-add-info" name="Name" placeholder="Имя" />
-                    </div>
+    <div class="panel-form">
+        <div class="panel-heading">
+            <div class="title-head">ДОБАВЬТЕ ИНФОРМАЦИЮ</div>
+        </div>
+        
 
-                    <div class="form-group">
-                        <input type="text" class="input-add-info" name="Surname" placeholder="Фамилия" />
-                    </div>
 
-                    <div class="form-group">
-                        <input type="text" class="input-add-info" name="Skype" placeholder="Skype" />
-                    </div>
+        <div id="regForm">
+            <fieldset class="tab">
+                <h4 class="style-text">ОБЩАЯ ИНФОРМАЦИЯ</h4>
+                <div class="panel-body panel-body-reg style-text">
+                    <div class="row">
+                        <div class="col-lg-12">
 
-                    <div class="form-group">
-                        <input type="text" class="input-add-info" name="Direction"  placeholder="Направление" />
-                    </div>
-
-                    <input type="button" name="next" id="nextBtn" class="next action-button form-control btn-add-info" value="Далее" onclick="nextPrev(1)" />
-                </fieldset>
-                <fieldset class="tab">
-                    <h2 class="style-text">Образование</h2>
-                    <h3 class="style-text">Добавьте информацию о своем образовании</h3>
-
-                    <div class="form-group">
-                        <input type="text" class="input-add-info" name="University" placeholder="Учреждение" />
-                    </div>
-
-                    <div class="form-group container">
-                        <div class="row">
-                            <div class="col-md-6 col-lg-6 col-xs-6 col-sm-6 col-6 ">
-                                @Html.DropDownListFor(model => model.StartYear, Enumerable.Range(1950, DateTime.Now.Year - 1950 + 1).Select(x => new SelectListItem() { Value = x.ToString(), Text = x.ToString() }), "Год начала", new { @class = "input-add-info year" })
+                            <div class="form-group ">
+                                <input type="text" class="input-add-info" name="Name" placeholder="Имя" />
                             </div>
-                            <div class="col-md-6 col-lg-6 col-xs-6 col-sm-6 col-6">
-                                @Html.DropDownListFor(model => model.GradYear, Enumerable.Range(DateTime.Now.Year, DateTime.Now.Year - 2006 + 1).Select(x => new SelectListItem() { Value = x.ToString(), Text = x.ToString() }), "Год завершения", new { @class = "input-add-info year" })
+
+                            <div class="form-group">
+                                <input type="text" class="input-add-info" name="Surname" placeholder="Фамилия" />
+                            </div>
+
+                            <div class="form-group">
+                                <input type="text" class="input-add-info" name="Skype" placeholder="Skype" />
+                            </div>
+
+                            <div class="form-group">
+                                <input type="text" class="input-add-info" name="Direction" placeholder="Направление" />
+                            </div>
+
+                            <input type="button" name="next" id="nextBtn" class="next button-large btn-finish" style="margin-bottom:5px;" value="Далее" onclick="nextPrev(1)" />
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset class="tab">
+                <h2 class="style-text">ОБРАЗОВАНИЕ</h2>
+                <div class="panel-body panel-body-reg style-text">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <input type="text" class="input-add-info" name="University" placeholder="Учреждение" />
+                            </div>
+
+                            <div class="form-group container">
+                                <div class="row">
+                                    <div class="col-md-6 col-lg-6 col-xs-6 col-sm-6 col-6 ">
+                                        @Html.DropDownListFor(model => model.StartYear, Enumerable.Range(1950, DateTime.Now.Year - 1950 + 1).Select(x => new SelectListItem() { Value = x.ToString(), Text = x.ToString() }), "Год начала", new { @class = "input-add-info year" })
+                                    </div>
+                                    <div class="col-md-6 col-lg-6 col-xs-6 col-sm-6 col-6">
+                                        @Html.DropDownListFor(model => model.GradYear, Enumerable.Range(DateTime.Now.Year, DateTime.Now.Year - 2006 + 1).Select(x => new SelectListItem() { Value = x.ToString(), Text = x.ToString() }), "Год завершения", new { @class = "input-add-info year" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="button" name="previous" id="prevBtn" class="previous next button-large btn-finish" value="Назад" onclick="nextPrev(-1)" />
+
+                                <input type="submit" name="next" class="next button-large btn-finish" value="ОК" />
+
                             </div>
                         </div>
                     </div>
+                </div>
+            </fieldset>
+          </div>
+    </div>
 
-                    <div class="form-group">
-                        <input type="submit" name="next" class="next action-button form-control btn-add-info marg" value="ОК" />
 
-                        <input type="button" name="previous" id="prevBtn" class="previous action-button-previous form-control btn-add-info" value="Назад" onclick="nextPrev(-1)" />
+
+
+
+
+
+
+
+
+
+
+
+
+        @*<div id="regForm">
+            <fieldset class="tab">
+                <h2 class="style-text">Общая информация</h2>
+                <h3 class="style-text">Введите информацию о себе</h3>
+
+                <div class="form-group ">
+                    <input type="text" class="input-add-info" name="Name" placeholder="Имя" />
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="input-add-info" name="Surname" placeholder="Фамилия" />
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="input-add-info" name="Skype" placeholder="Skype" />
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="input-add-info" name="Direction" placeholder="Направление" />
+                </div>
+
+                <input type="button" name="next" id="nextBtn" class="next action-button form-control btn-add-info" value="Далее" onclick="nextPrev(1)" />
+            </fieldset>
+            <fieldset class="tab">
+                <h2 class="style-text">Образование</h2>
+                <h3 class="style-text">Добавьте информацию о своем образовании</h3>
+
+                <div class="form-group">
+                    <input type="text" class="input-add-info" name="University" placeholder="Учреждение" />
+                </div>
+
+                <div class="form-group container">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-6 col-xs-6 col-sm-6 col-6 ">
+                            @Html.DropDownListFor(model => model.StartYear, Enumerable.Range(1950, DateTime.Now.Year - 1950 + 1).Select(x => new SelectListItem() { Value = x.ToString(), Text = x.ToString() }), "Год начала", new { @class = "input-add-info year" })
+                        </div>
+                        <div class="col-md-6 col-lg-6 col-xs-6 col-sm-6 col-6">
+                            @Html.DropDownListFor(model => model.GradYear, Enumerable.Range(DateTime.Now.Year, DateTime.Now.Year - 2006 + 1).Select(x => new SelectListItem() { Value = x.ToString(), Text = x.ToString() }), "Год завершения", new { @class = "input-add-info year" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" name="next" class="next action-button form-control btn-add-info marg" value="ОК" />
+
+                    <input type="button" name="previous" id="prevBtn" class="previous action-button-previous form-control btn-add-info" value="Назад" onclick="nextPrev(-1)" />
+                </div>
+
+            </fieldset>
+        </div>*@
+        }
+
+
+        @*@using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="panel-form">
+                    <div class="panel-heading">
+                        <div class="title-head">ВХОД</div>
                     </div>
 
-                </fieldset>
-            </div>
-        }
-    </div>
+                    @Html.ValidationSummary("", new { @class = "text-danger" })
+                    <div class="panel-body panel-body-reg style-text">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <input type="text" name="LoginEmail" id="username" required="required" tabindex="1" class="input-add-info" placeholder="Email" value="">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" name="LoginPassword" id="password" required="required" tabindex="2" class="input-add-info" placeholder="Пароль">
+                                </div>
+                                <div class="form-group text-center">
+                                    <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
+                                    <label class="text-item" for="remember"> Запомнить меня?</label>
+                                </div>
+
+                                <div class="form-group text-center">
+                                    <a href="@Url.Action("ForgotPassword","Account")" class="text-item"> Забыли пароль?</a>
+                                </div>
+
+
+
+                                <div class="form-group">
+                                    <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="button-large btn-finish" value="Войти">
+                                </div>
+
+                                <p class="form-group text-item">
+                                    Еще не с нами?
+                                    <a href="@Url.Action("Register","Account")">Присоединятесь!</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }*@
+
