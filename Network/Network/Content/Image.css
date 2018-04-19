@@ -3,6 +3,13 @@
     width:200px;
 }
 
+.main-image {
+    height: 280px;
+    width: 242px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5); /* Параметры тени */
+    border-radius: 6px;
+}
+
 
 
 /*h1,

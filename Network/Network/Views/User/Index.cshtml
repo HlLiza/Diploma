@@ -1,188 +1,157 @@
 ﻿@model Network.Views.ViewModels.UserIndexViewModel
-    
+
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-    </div>
-    <nav class="navbar navbar-inverse" role="navigation">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-
-      
-
-            @if (!User.IsInRole("secretary"))
-            {
-                <li><a href="@Url.Action("Index","User")">Мой профиль<span style="font-size: 16px;" class="pull-right hidden-xs showopacity glyphicon"></span></a></li>
-            }
-
-                <li><a href="@Url.Action("Index","Group")">Группы<span style="font-size: 16px;" class="pull-right hidden-xs showopacity glyphicon"></span></a></li>
-
-                @*<li><a href="@Url.Action("Index","Advertisement")">Объявления<span style="font-size: 16px;" class="pull-right hidden-xs showopacity glyphicon"></span></a></li>*@
-                <li><a href="@Url.Action("Index","Conference")">Конференции<span style="font-size: 16px;" class="pull-right hidden-xs showopacity glyphicon"></span></a></li>
-
-                <li><a href="@Url.Action("BrowseUser","User")">Пользователи<span style="font-size: 16px;" class="pull-right hidden-xs showopacity glyphicon"></span></a></li>
-         
-                </ul>
-            </div>
-        </div>
-    </nav>
 
 @if (Model != null)
 {
     if (!User.IsInRole("secretary"))
     {
-        <div class="jumbotron container-show">
-            <div class="col-lg-4">
+        <div class="row">
+
+            <div class="col-lg-6">
                 @if (Model.Image != null)
                 {
-                    <img class="image AVA" src="data:image/png;base64, @Convert.ToBase64String(Model.Image)" />
+                    <img class="main-image" src="data:image/png;base64, @Convert.ToBase64String(Model.Image)" />
                 }
                 else
                 {
-                    <img class="image AVA" style="border:solid;" src="@Url.Content("~/Content/Pictures/no.jpg")" />
+                    <img class="main-image" src="@Url.Content("~/Content/Pictures/default.jpeg")" />
                 }
-               
-                @*<button  class="btn" id="editProf" type="submit">Редактировать профиль</button>*@
-                <div class="btn btn-edit" >
-                    @Html.ActionLink("Edit","EditUser","User")
-                    </div>
-             
-
             </div>
-
-            <div class="col-lg-8">
-                <div class="row ">
-
-                    <div class="page">
-                        <div id="userId">@Html.HiddenFor(item => Model.Id)</div>
-                        @Html.DisplayFor(model => model.Name)
-                    </div>
-                   
-
-                    <hr />
-
-                    <div class="row">
-                        <div class="col-lg-4"></div>
-
-                        <div class="pageText">
-                            Контакты
-                        </div>
-
-            @if (Model.Skype != null)
-            { 
-                <div class="row">
-                    @Html.DisplayNameFor(model => model.Skype)
-                    @Html.DisplayFor(model => model.Skype)
-                </div>
-            }
+            <div class="col-lg-6">
+                <div class="row title-head">
+                    @Html.DisplayFor(model => model.Name)
+                    @Html.DisplayFor(model => model.Surname)
 
 
-            @if (Model.PhoneNumber != null)
-            {
-                <div class="row">
-                    @Html.DisplayNameFor(model => model.PhoneNumber)
-                    @Html.DisplayFor(model => model.PhoneNumber)
-                </div>
-            }     
-                        
-
-   
-                <div class="pageText">
-                    <div class="col-lg-4"></div>
-
-                    Образование
-                </div>
-
-                        @*@if (Model.Aducation != null)
-                        {
-                            <div class="row">
-                                @Html.DisplayNameFor(model => model.)
-                                @Html.DisplayFor(model => model.Institution)
-                            </div>
-                        } 
-
-                        @if (Model.Specialization != null)
-                        {
-                            <div class="row">
-                                @Html.DisplayNameFor(model => model.Specialization)
-                                @Html.DisplayFor(model => model.Specialization)
-                            </div>
-                        } 
-
-                        @if (Model.StartYear != null)
-                        {
-
-                            <div class="row">
-                                @Html.DisplayNameFor(model => model.StartYear)
-                                @Html.DisplayFor(model => model.StartYear.Value.Day).@Html.DisplayFor(model => model.StartYear.Value.Month).@Html.DisplayFor(model => model.StartYear.Value.Year)
-                               
-                            </div>
-                        } 
-
-                        @if (Model.GradYear != null)
-                        {
-                            <div class="row">
-                                @Html.DisplayNameFor(model => model.GradYear)
-                               @Html.DisplayFor(model => model.GradYear.Value.Day).@Html.DisplayFor(model => model.GradYear.Value.Month).@Html.DisplayFor(model => model.GradYear.Value.Year)
-
-
-                            </div>
-                        } 
-
-                        @if (Model.Type != null)
-                        {
-
-                            <div class="row">
-                                @Html.DisplayNameFor(model => model.Type)
-                                @Html.DisplayFor(model => model.Type)
-                            </div>
-                        }*@       
-                       
-                    </div>
                 </div>
             </div>
         </div>
+
     }
     else
     {
-        <div>
-            Вы вошли как секретарь!
-            </div>    
-    }
-}
+            <div>
+                Вы вошли как секретарь!
+            </div>
+            }
+            }
 
-@section Scripts{
-    <script type="text/javascript">
-        $(function () {
-            $('#editProf').click(function () {
-                //debugger;
-                $.ajax({
-                    url: '@Url.Action("EditUser", "User")',
-                    type: 'GET',
-                });
+            @section Scripts{
+                <script type="text/javascript">
+    $(function () {
+        $('#editProf').click(function () {
+            $.ajax({
+                url: '@Url.Action("EditUser", "User")',
+                type: 'GET',
             });
         });
-        </script>
-    }
+    });
+                </script>
+            }
 
+
+            @*<button class="btn" id="editProf" type="submit">Редактировать профиль</button>
+                    <div class="btn btn-edit">
+                        @Html.ActionLink("Edit", "EditUser", "User")
+                    </div>
+
+
+                </div>
+
+                <div class="col-lg-8">
+                    <div class="row ">
+
+                        <div class="page">
+                            <div id="userId">@Html.HiddenFor(item => Model.Id)</div>
+                            @Html.DisplayFor(model => model.Name)
+                        </div>
+
+
+                        <hr />
+
+                        <div class="row">
+                            <div class="col-lg-4"></div>
+
+                            <div class="pageText">
+                                Контакты
+                            </div>
+
+                            @if (Model.Skype != null)
+                            {
+                                <div class="row">
+                                    @Html.DisplayNameFor(model => model.Skype)
+                                    @Html.DisplayFor(model => model.Skype)
+                                </div>
+                            }
+
+
+                            @if (Model.PhoneNumber != null)
+                            {
+                                <div class="row">
+                                    @Html.DisplayNameFor(model => model.PhoneNumber)
+                                    @Html.DisplayFor(model => model.PhoneNumber)
+                                </div>
+                            }
+
+
+
+                            <div class="pageText">
+                                <div class="col-lg-4"></div>
+
+                                Образование
+                            </div>*@
+
+            @*@if (Model.Aducation != null)
+                                    {
+                                        <div class="row">
+                                            @Html.DisplayNameFor(model => model.)
+                                            @Html.DisplayFor(model => model.Institution)
+                                        </div>
+                                    }
+
+                                    @if (Model.Specialization != null)
+                                    {
+                                        <div class="row">
+                                            @Html.DisplayNameFor(model => model.Specialization)
+                                            @Html.DisplayFor(model => model.Specialization)
+                                        </div>
+                                    }
+
+                                    @if (Model.StartYear != null)
+                                    {
+
+                                        <div class="row">
+                                            @Html.DisplayNameFor(model => model.StartYear)
+                                            @Html.DisplayFor(model => model.StartYear.Value.Day).@Html.DisplayFor(model => model.StartYear.Value.Month).@Html.DisplayFor(model => model.StartYear.Value.Year)
+
+                                        </div>
+                                    }
+
+                                    @if (Model.GradYear != null)
+                                    {
+                                        <div class="row">
+                                            @Html.DisplayNameFor(model => model.GradYear)
+                                           @Html.DisplayFor(model => model.GradYear.Value.Day).@Html.DisplayFor(model => model.GradYear.Value.Month).@Html.DisplayFor(model => model.GradYear.Value.Year)
+
+
+                                        </div>
+                                    }
+
+                                    @if (Model.Type != null)
+                                    {
+
+                                        <div class="row">
+                                            @Html.DisplayNameFor(model => model.Type)
+                                            @Html.DisplayFor(model => model.Type)
+                                        </div>
+                                    }
+
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
 

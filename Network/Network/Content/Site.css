@@ -55,6 +55,11 @@ body {
     font-family: 'Helvetica';
     background-image: url('./Pictures/323.jpeg');
 }
+.body-background {
+    width: 100% !important;
+    height: 15% !important;
+    background-image: url('./Pictures/dnk.jpeg');
+}
 
 .footer-main {
     position: fixed;
