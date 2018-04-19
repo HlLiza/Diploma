@@ -14,7 +14,7 @@
                 <div class="col-3">
                     <img class="logo-header" src="~/Content/Pictures/log.jpg" alt="">
                 </div>
-                <div class="col-5">
+                <div class="col-5 null-padd">
                     @Html.Partial("_Menu")
                 </div>
                 <div class="col-4 log-reg">
@@ -33,6 +33,7 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/font-awesome")
     @RenderSection("scripts", required: false)
 </body>
 </html>

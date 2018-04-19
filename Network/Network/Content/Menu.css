@@ -1,7 +1,15 @@
 ﻿.menu-row {
-    padding-top: 10px;
+    padding-top: 20px;
     color: #007bff;
     font-size: 15px;
+}
+.item-menu {
+    float: left;
+    line-height: 1;
+    font-size: 14px;
+    /*width: 64px;*/
+    text-align: center;
+    padding:0 5px 0 5px;
 }
 
 .bg {

@@ -264,12 +264,15 @@
     <Content Include="Content\bootstrap.min.css" />
     <EmbeddedResource Include="Content\Helvetica-Neue-Cyr\Внимание!.txt" />
     <EmbeddedResource Include="Content\Helvetica-Neue-Cyr\Шрифт Helvetica Neue Cyr.jpg" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\Image.css" />
     <Content Include="Content\Menu.css" />
     <Content Include="Content\Modal.css" />
     <EmbeddedResource Include="Content\Pictures\default.jpeg" />
     <EmbeddedResource Include="Content\Pictures\323.jpeg" />
     <EmbeddedResource Include="Content\Pictures\log.jpg" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -305,6 +308,11 @@
     <EmbeddedResource Include="Content\Helvetica-Neue-Cyr\HelveticaNeueCyr-ThinItalic.otf" />
     <EmbeddedResource Include="Content\Helvetica-Neue-Cyr\HelveticaNeueCyr-UltraLightItalic.otf" />
     <EmbeddedResource Include="Content\Helvetica-Neue-Cyr\HelveticaNeueCyr-UltraLight_0.otf" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <EmbeddedResource Include="Content\Pictures\checkYesConf.png" />
     <EmbeddedResource Include="Content\Pictures\noConf.png" />

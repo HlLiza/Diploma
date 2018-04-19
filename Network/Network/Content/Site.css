@@ -75,6 +75,10 @@ body {
     color: #ffffff;
 }
 
+.null-padd {
+    padding:0;
+}
+
 .text-item {
     color:white;
 }
