@@ -1,36 +1,45 @@
 ﻿<div class="menu-row ">
 
-    <div class="сol-md-3 item-menu">
-        <i class="fa fa-user-circle" aria-hidden="true"></i>
-        <br />
-        <div class="d-inline-block bg">
-            МОЙ ПРОФИЛЬ
+    <a href="@Url.Action("Index", "User")">
+        <div class="сol-md-3 item-menu">
+            <i class="fa fa-user-circle" aria-hidden="true"></i>
+            <br />
+            <div class="d-inline-block bg">
+                МОЙ ПРОФИЛЬ
+            </div>
         </div>
-    </div>
+    </a>
 
-    <div class="сol-md-3 item-menu">
-        <i class="fa fa-sitemap" aria-hidden="true"></i>
-        <br />
-        <div class="d-inline-block bg ">
-            ГРУППЫ
+    <a href="@Url.Action("Index", "Group")">
+        <div class="сol-md-3 item-menu">
+            <i class="fa fa-group" aria-hidden="true"></i>
+            <br />
+            <div class="d-inline-block bg ">
+                ГРУППЫ
+            </div>
         </div>
-    </div>
+    </a>
 
-    <div class="сol-md-3 item-menu">
-        <i class="fa fa-group" aria-hidden="true"></i>
-        <br />
-        <div class="d-inline-block bg ">
-            ПОЛЬЗОВАТЕЛИ
+    <a href="@Url.Action("BrowseUser", "User")">
+        <div class="сol-md-3 item-menu">
+            <i class="fa fa-group" aria-hidden="true"></i>
+            <br />
+            <div class="d-in    line-block bg ">
+                ПОЛЬЗОВАТЕЛИ
+            </div>
         </div>
-    </div>
+    </a>
 
-    <div class="сol-md-3 item-menu">
+    <a href="@Url.Action("Index", "Conference")">
+        <div class="сol-md-3 item-menu">
 
-        <i class="fa fa-mortar-board" aria-hidden="true"></i>
-        <br />
-        <div class="d-inline-block bg ">
-            КОНФЕРЕНЦИИ
+            <i class="fa fa-mortar-board" aria-hidden="true"></i>
+            <br />
+            <div class="d-inline-block bg ">
+                КОНФЕРЕНЦИИ
+            </div>
         </div>
-    </div>
+    </a>
+
 </div>
 
