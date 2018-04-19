@@ -1,7 +1,6 @@
 ﻿#regForm {
     background-color: #ffffff;
     margin: 3% auto;
-    /*font-family: Raleway;*/
     padding: 40px;
     width: 100%;
     min-width: 300px;
@@ -19,6 +18,10 @@
     font-size: 17px;
     border: 1px solid #2CBADE;
     background-color: #A3CCEA;
+}
+
+.input-add-info :: placeholder {
+    color:white;
 }
 
 input.invalid {

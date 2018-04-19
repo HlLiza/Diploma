@@ -30,25 +30,6 @@
     text-align: center;
     padding-bottom: 30px;
 }
-/*.btn-finish {
+.btn-finish {
     border: 1px solid #2CBADE;
-}*/
-
-
-
-
-/*.btn-login:hover,
-.btn-login:focus {
-    color: #fff;
-    background-color: #198da8;
-    border-color: #53A3CD;
 }
-
-
-
-
-.panel-heading a {
-    background: -webkit-repeating-linear-gradient(-45deg, rgb(18, 83, 93), rgb(18, 83, 93) 20px, rgb(64, 111, 118) 20px, rgb(64, 111, 118) 40px, rgb(18, 83, 93) 40px);
-    -webkit-text-fill-color: transparent;
-    -webkit-background-clip: text;
-}*/
