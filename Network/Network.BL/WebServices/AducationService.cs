@@ -18,6 +18,7 @@ namespace Network.BL.WebServices
 
         public void AddAducation(Aducation adc)
         {
+            adc.Id = Guid.NewGuid();
             _aducRepository.Add(adc);
         }
 

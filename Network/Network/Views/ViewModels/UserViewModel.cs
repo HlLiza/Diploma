@@ -80,7 +80,7 @@ namespace Network.Views.ViewModels
         [DisplayName("Номер телефона")]
         public string PhoneNumber { get; set; }
 
-        [DisplayName("Номер телефона")]
+        [DisplayName("Skype")]
         public string Skype { get; set; }
 
         [DisplayName("Email")]

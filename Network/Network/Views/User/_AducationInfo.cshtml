@@ -1,0 +1,39 @@
+﻿@model List<Network.Views.ViewModels.AducationInfo>
+
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {
+        <div class="text-style-info" style="padding-left:80px;">
+            ОБРАЗОВАНИЕ
+        </div>
+
+        <div class="row">
+            <div class="col-4 null-left-pad text-style-info">
+                @Html.DisplayNameFor(a => item.University)
+            </div>
+            <div class="col-8 null-left-pad text-style-info">
+                @Html.DisplayFor(a =>item.University )
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4 null-left-pad text-style-info">
+                @Html.DisplayNameFor(a => item.StartYear)
+            </div>
+            <div class="col-8 null-left-pad text-style-info">
+                @Html.DisplayFor(a => item.StartYear)
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4 null-left-pad text-style-info">
+                @Html.DisplayNameFor(a => item.GradYear)
+            </div>
+            <div class="col-8 null-left-pad text-style-info">
+                @Html.DisplayFor(a => item.GradYear)
+            </div>
+        </div>
+
+    }
+}

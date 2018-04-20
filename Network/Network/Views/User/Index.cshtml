@@ -11,7 +11,7 @@
     {
         <div class="row">
 
-            <div class="col-lg-6">
+            <div class="col-md-5">
                 @if (Model.Image != null)
                 {
                     <img class="main-image" src="data:image/png;base64, @Convert.ToBase64String(Model.Image)" />
@@ -21,137 +21,93 @@
                     <img class="main-image" src="@Url.Content("~/Content/Pictures/default.jpeg")" />
                 }
             </div>
-            <div class="col-lg-6">
-                <div class="row title-head">
-                    @Html.DisplayFor(model => model.Name)
-                    @Html.DisplayFor(model => model.Surname)
+            <div class="col-md-7">
+                <div class="row menu-page">
+                    <div id="persInfo" class="item-menu text-menu-page hover">МОЙ ПРОФИЛЬ</div>
+                    <a href=""><div class="item-menu item-icon fa fa-cog hover"></div></a>
+                    <div id="aducId" class="item-menu text-menu-page hover">ОБРАЗОВАНИЕ</div>
+
+                </div>
+
+                <div class=" null-left-pad">
+                    <div class="row title-head">
+                        @Html.DisplayFor(model => model.Name)
+                        @Html.DisplayFor(model => model.Surname)
+                    </div>
+
+                    <div id="persInfo">
+                        <div class="text-style-info" style="padding-left:80px;">
+                            ЛИЧНЫЕ ДАННЫЕ
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4 null-left-pad text-style-info">
+                                @Html.DisplayNameFor(model => model.Skype)
+                            </div>
+                            <div class="col-8 null-left-pad text-style-info">
+                                @Html.DisplayFor(model => model.Skype)
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4 null-left-pad text-style-info">
+                                @Html.DisplayNameFor(model => model.Direction)
+                            </div>
+                            <div class="col-8 null-left-pad text-style-info">
+                                @Html.DisplayFor(model => model.Direction)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="aducInfo" class="hid">
+                        @Html.Partial("_AducationInfo", Model.Aducation)
+                    </div>
 
 
                 </div>
+
+
             </div>
+
+
+
         </div>
 
     }
     else
     {
-            <div>
-                Вы вошли как секретарь!
-            </div>
-            }
-            }
+        <div>
+            Вы вошли как секретарь!
+        </div>
+    }
+}
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#aducId").click(function () {
+                $("#aducInfo").removeClass("hid");
+            });
 
-            @section Scripts{
-                <script type="text/javascript">
+            $("#persInfo").click(function () {
+                $("#aducInfo").addClass("hid");
+            });            
+        });
+
+    </script>
+}
+
+        @*$(function () {
+            $('#aducId').click(function () {
+                debugger
+                $("#aducInfo").toggle();;
+            })
+        })
+
     $(function () {
         $('#editProf').click(function () {
             $.ajax({
                 url: '@Url.Action("EditUser", "User")',
                 type: 'GET',
-            });
-        });
-    });
-                </script>
-            }
-
-
-            @*<button class="btn" id="editProf" type="submit">Редактировать профиль</button>
-                    <div class="btn btn-edit">
-                        @Html.ActionLink("Edit", "EditUser", "User")
-                    </div>
-
-
-                </div>
-
-                <div class="col-lg-8">
-                    <div class="row ">
-
-                        <div class="page">
-                            <div id="userId">@Html.HiddenFor(item => Model.Id)</div>
-                            @Html.DisplayFor(model => model.Name)
-                        </div>
-
-
-                        <hr />
-
-                        <div class="row">
-                            <div class="col-lg-4"></div>
-
-                            <div class="pageText">
-                                Контакты
-                            </div>
-
-                            @if (Model.Skype != null)
-                            {
-                                <div class="row">
-                                    @Html.DisplayNameFor(model => model.Skype)
-                                    @Html.DisplayFor(model => model.Skype)
-                                </div>
-                            }
-
-
-                            @if (Model.PhoneNumber != null)
-                            {
-                                <div class="row">
-                                    @Html.DisplayNameFor(model => model.PhoneNumber)
-                                    @Html.DisplayFor(model => model.PhoneNumber)
-                                </div>
-                            }
-
-
-
-                            <div class="pageText">
-                                <div class="col-lg-4"></div>
-
-                                Образование
-                            </div>*@
-
-            @*@if (Model.Aducation != null)
-                                    {
-                                        <div class="row">
-                                            @Html.DisplayNameFor(model => model.)
-                                            @Html.DisplayFor(model => model.Institution)
-                                        </div>
-                                    }
-
-                                    @if (Model.Specialization != null)
-                                    {
-                                        <div class="row">
-                                            @Html.DisplayNameFor(model => model.Specialization)
-                                            @Html.DisplayFor(model => model.Specialization)
-                                        </div>
-                                    }
-
-                                    @if (Model.StartYear != null)
-                                    {
-
-                                        <div class="row">
-                                            @Html.DisplayNameFor(model => model.StartYear)
-                                            @Html.DisplayFor(model => model.StartYear.Value.Day).@Html.DisplayFor(model => model.StartYear.Value.Month).@Html.DisplayFor(model => model.StartYear.Value.Year)
-
-                                        </div>
-                                    }
-
-                                    @if (Model.GradYear != null)
-                                    {
-                                        <div class="row">
-                                            @Html.DisplayNameFor(model => model.GradYear)
-                                           @Html.DisplayFor(model => model.GradYear.Value.Day).@Html.DisplayFor(model => model.GradYear.Value.Month).@Html.DisplayFor(model => model.GradYear.Value.Year)
-
-
-                                        </div>
-                                    }
-
-                                    @if (Model.Type != null)
-                                    {
-
-                                        <div class="row">
-                                            @Html.DisplayNameFor(model => model.Type)
-                                            @Html.DisplayFor(model => model.Type)
-                                        </div>
-                                    }
-
-                            </div>
-                        </div>
-                    </div>
-                </div>*@
-
+                });
+                });
+                });*@

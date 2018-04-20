@@ -47,6 +47,7 @@ namespace Network.Controllers
                     model.Name = data.Name;
                     model.Surname = data.Surname;
                     model.Direction = data.Direction;
+                    model.Skype = data.Skype;
                     model.Image = data.Image;
                 }
 

@@ -7,10 +7,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using Network.Models;
-using Twilio;
 using System.Net.Mail;
-using Twilio.Rest.Api.V2010.Account;
-using Twilio.Types;
 
 namespace Network
 {
@@ -43,23 +40,23 @@ namespace Network
         }
     }
 
-    public class SmsService : IIdentityMessageService
-    {
-        public Task SendAsync(IdentityMessage message)
-        {
-            string accountSid = "AC76de038fd40a7c3c3f3c7b7ea39679b2";
-            string accountToken = "d3c22feca96b94e5eb3b08dd263f1e8c";
+    //public class SmsService : IIdentityMessageService
+    //{
+    //    public Task SendAsync(IdentityMessage message)
+    //    {
+    //        string accountSid = "AC76de038fd40a7c3c3f3c7b7ea39679b2";
+    //        string accountToken = "d3c22feca96b94e5eb3b08dd263f1e8c";
 
-            TwilioClient.Init(accountSid, accountToken);
+    //        TwilioClient.Init(accountSid, accountToken);
 
-            var messageToSend = MessageResource.Create(
-                from: new PhoneNumber("+16308120897"),
-                to: new PhoneNumber(message.Destination),
-                body: message.Body);
+    //        var messageToSend = MessageResource.Create(
+    //            from: new PhoneNumber("+16308120897"),
+    //            to: new PhoneNumber(message.Destination),
+    //            body: message.Body);
 
-            return Task.FromResult(0);
-        }
-    }
+    //        return Task.FromResult(0);
+    //    }
+    //}
 
     // Настройка диспетчера пользователей приложения. UserManager определяется в ASP.NET Identity и используется приложением.
     public class ApplicationUserManager : UserManager<ApplicationUser>
@@ -105,14 +102,14 @@ namespace Network
                 Subject = "Код безопасности",
                 BodyFormat = "Ваш код безопасности: {0}"
             });
-            manager.EmailService = new EmailService();
-            manager.SmsService = new SmsService();
-            var dataProtectionProvider = options.DataProtectionProvider;
-            if (dataProtectionProvider != null)
-            {
-                manager.UserTokenProvider = 
-                    new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
-            }
+            //manager.EmailService = new EmailService();
+            //manager.SmsService = new SmsService();
+            //var dataProtectionProvider = options.DataProtectionProvider;
+            //if (dataProtectionProvider != null)
+            //{
+            //    manager.UserTokenProvider = 
+            //        new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
+            //}
             return manager;
         }
     }
