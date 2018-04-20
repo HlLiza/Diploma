@@ -1,6 +1,6 @@
 ﻿.logo-header {
     height: 80px;
-    width:200px;
+    width: 200px;
 }
 
 .main-image {
@@ -10,131 +10,103 @@
     border-radius: 6px;
     position: absolute;
     margin-left: 180px;
-    margin-top: -4%;
+    margin-top: -2%;
+}
+
+.no-img {
+    background-color: white;
 }
 
 
 
-/*h1,
-h1 + p {
-    margin: 30px 15px 0 font-weight: 300;
-}
-
-    h1 + p a {
-        color: #333;
-    }
-
-        h1 + p a:hover {
-            text-decoration: none;
-        }
-
-h2 {
-    padding: 0;
-    font-weight: 300;
-}
-
-    h2 span {
-        margin-left: 1em;
-        color: #aaa;
-        font-size: 85%;
-        height: 300px;
-        width: 100px;
-        width: 19px;
-    }
-
-.column {
-    margin: 15px 15px 0;
-    padding: 0;
-}
-
-    .column:last-child {
-        padding-bottom: 60px;
-    }
-
-    .column::after {
-        content: '';
-        clear: both;
-        display: block;
-    }
-
-    .column div {
-        position: relative;
-        float: left;
-        width: 300px;
-        height: 220px;
-        margin: 0 0 0 25px;
-        padding: 0;
-    }
-
-        .column div:first-child {
-            margin-left: 0;
-        }
-
-        .column div a span {
-            position: absolute;
-            bottom: -20px;
-            left: 0;
-            z-index: -1;
-            display: block;
-            width: 300px;
-            height: 35px;
-            margin: 0;
-            padding: 0;
-            color: #444;
-            font-size: 18px;
-            text-decoration: none;
-            text-align: center;
-            -webkit-transition: .3s ease-in-out;
-            transition: .3s ease-in-out;
-            opacity: 0;
-        }
-
-figure {
-    width: 300px;
-    height: 200px;
-    margin: 0;
-    padding: 0;
-    background: #fff;
+.hovereffect {
+    height: 100%;
+    width: 100%;
+    float: left;
     overflow: hidden;
+    position: fixed;
+    margin-top: -2%;
+    text-align: center;
+    cursor: default;
 }
 
-    figure:hover + span {
-        bottom: -36px;
-        opacity: 1;
-    }*/
+    .hovereffect .overlay {
+            
+        height: 310px;
+        width: 292px;
+        position: absolute;
+        overflow: hidden;
+        margin-left: 155px;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        filter: alpha(opacity=0);
+        background-color: rgba(0,0,0,0.5);
+        -webkit-transition: all 0.4s cubic-bezier(0.88,-0.99, 0, 1.81);
+        transition: all 0.4s cubic-bezier(0.88,-0.99, 0, 1.81);
+    }
 
+    .hovereffect img {
+        display: block;
+        position: fixed;
+        -webkit-transition: all 0.4s cubic-bezier(0.88,-0.99, 0, 1.81);
+        transition: all 0.4s cubic-bezier(0.88,-0.99, 0, 1.81);
+    }
 
-/*img {
-    width: 300px;
-    height: 200px;
-}*/
+    .hovereffect h2 {
+        text-transform: uppercase;
+        color: #fff;
+        text-align: center;
+        position: relative;
+        font-size: 17px;
+        background: rgba(0,0,0,0.6);
+        -webkit-transform: translatey(-100px);
+        -ms-transform: translatey(-100px);
+        transform: translatey(-100px);
+        -webkit-transition: all 0.4s cubic-bezier(0.88,-0.99, 0, 1.81);
+        transition: all 0.4s cubic-bezier(0.88,-0.99, 0, 1.81);
+        padding: 10px;
+    }
 
-/*.hover01 figure img {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-    -webkit-transition: .3s ease-in-out;
-    transition: .3s ease-in-out;
+.hovereffect a.info {
+    text-decoration: none;
+    display: inline-block;
+    text-transform: uppercase;
+    color: #fff;
+    border: 1px solid #fff;
+    background-color: transparent;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    -webkit-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+    margin: 0 0 0;
+    padding: 7px 14px;
 }
 
-.hover01 figure:hover img {
-    -webkit-transform: scale(1.3);
-    transform: scale(1.3);
+.hovereffect a.info:hover {
+    box-shadow: 0 0 5px #fff;
 }
 
-h2 span {
-    margin-left: 1em;
-    color: #aaa;
-    font-size: 85%;
+.hovereffect:hover img {
+    -ms-transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
 }
 
-
-
-img > .thumbnail > .img-responsive {
-    height: 200px;
-    width: 300px;
+.hovereffect:hover .overlay {
+    opacity: 2;
+    filter: alpha(opacity=100);
 }
 
-.gallery a {
-    height: 200px;
-    width: 300px;
-}*/
+.hovereffect:hover h2, .hovereffect:hover a.info {
+    opacity: 1;
+    filter: alpha(opacity=100);
+    -ms-transform: translatey(0);
+    -webkit-transform: translatey(0);
+    transform: translatey(0);
+}
+
+.hovereffect:hover a.info {
+    -webkit-transition-delay: .2s;
+    transition-delay: .2s;
+}
