@@ -26,9 +26,9 @@
                 {
                     <div class="main-image">
                         <div class="hovereffect">
-                            <img class="size"  src="@Url.Content("~/Content/Pictures/default.jpeg")" alt="">
+                            <img class="size" src="@Url.Content("~/Content/Pictures/default.jpeg")" alt="">
                             <div class="overlay">
-                                <a class="info link-inf" href="#" id="changeId"  style="padding-top:120px;">ИЗМЕНИТЬ ФОТО</a>
+                                <a class="info link-inf" href="#" id="changeId" style="padding-top:120px;">ИЗМЕНИТЬ ФОТО</a>
                             </div>
                         </div>
 
@@ -40,8 +40,9 @@
             <div class="col-md-7">
                 <div class="row menu-page">
                     <div id="persInfo" class="item-menu text-menu-page hover">МОЙ ПРОФИЛЬ</div>
-                    <a href=""><div class="item-menu item-icon fa fa-cog hover"></div></a>
+                    <div id="editPer" class="item-menu item-icon fa fa-cog hover"></div>
                     <div id="aducId" class="item-menu text-menu-page hover">ОБРАЗОВАНИЕ</div>
+                    <div id="editAd" class="item-menu item-icon fa fa-cog hover"></div>
 
                 </div>
 
@@ -64,6 +65,14 @@
                                 @Html.DisplayFor(model => model.Skype)
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-4 null-left-pad text-style-info">
+                                @Html.DisplayNameFor(model => model.Email)
+                            </div>
+                            <div class="col-8 null-left-pad text-style-info">
+                                @Html.DisplayFor(model => model.Email)
+                            </div>
+                        </div>
 
                         <div class="row">
                             <div class="col-4 null-left-pad text-style-info">
@@ -78,17 +87,9 @@
                     <div id="aducInfo" class="hid">
                         @Html.Partial("_AducationInfo", Model.Aducation)
                     </div>
-
-
                 </div>
-
-
             </div>
-
-
-
         </div>
-
     }
     else
     {
@@ -103,6 +104,15 @@
     </div>
 </div>
 
+<div id="openModalEditPersInfo" class="modal fade" data-url='@Url.Action("EditPersInfo","User",null)'>
+    <div id="editPersContainer">
+    </div>
+</div>
+
+<div id="openModalEditAducation" class="modal fade" data-url='@Url.Action("EditAducation","User",null)'>
+    <div id="editAducContainer">
+    </div>
+</div>
 
 
 
@@ -116,12 +126,9 @@
             $("#persInfo").click(function () {
                 $("#aducInfo").addClass("hid");
             });
-       
-        //$(function () {
-            $('#changeId').click(function () {
-                debugger
-                var url = $('#openModalChangePhoto').data('url');
 
+            $('#changeId').click(function () {
+                var url = $('#openModalChangePhoto').data('url');
                 $.get(url,
                     function (data) {
                         $('#changeContainer').html(data);
@@ -130,25 +137,30 @@
                     });
             });
 
-            //});
+
+            
+            $('#editPer').click(function () {
+                var url = $('#openModalEditPersInfo').data('url');
+                $.get(url,
+                    function (data) {
+                        $('#editPersContainer').html(data);
+
+                        $('#openModalEditPersInfo').modal('show');
+                    });
+            });
+
+
+            $('#editAd').click(function () {
+                var url = $('#openModalEditAducation').data('url');
+                $.get(url,
+                    function (data) {
+                        $('#editAducContainer').html(data);
+
+                        $('#openModalEditAducation').modal('show');
+                    });
+            });
 
         });
 
     </script>
 }
-
-@*$(function () {
-            $('#aducId').click(function () {
-                debugger
-                $("#aducInfo").toggle();;
-            })
-        })
-
-    $(function () {
-        $('#editProf').click(function () {
-            $.ajax({
-                url: '@Url.Action("EditUser", "User")',
-                type: 'GET',
-                });
-                });
-                });*@

@@ -23,19 +23,6 @@ namespace Network.BL.WebServices
             //_aducationRepository = aducationRepository;
         }
 
-        //public void AddImage(Image img)
-        //{
-        //    if (img!=null)
-        //    {
-        //        img.Id = Guid.NewGuid();
-        //        _imgRepository.AddImage(img);
-        //    }
-            
-        //}
-
-
-       
-
         public void AddUser(User user)
         {
             if (user != null)
@@ -67,6 +54,17 @@ namespace Network.BL.WebServices
             }
             return imageData;
         }
+
+
+        public void UpdateUser(User user)
+        {
+            if (user != null)
+            {
+                _userRepository.Update(user);
+            }
+        }
+
+
 
         public List<User> GetUsersByListId(IQueryable<Guid> listId)
         {

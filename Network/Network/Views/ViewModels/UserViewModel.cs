@@ -111,4 +111,24 @@ namespace Network.Views.ViewModels
         public Guid UserId { get; set; }
         public HttpPostedFileBase Image { get; set; }
     }
+
+    public class EditPersInfViewModel
+    {
+        //public byte[] Image { get; set; }
+
+        [DisplayName("Имя")]
+        [Required(ErrorMessage = "Введите свое имя")]
+        public string Name { get; set; }
+
+        [DisplayName("Фамилия")]
+        [Required(ErrorMessage = "Введите свою фамилию")]
+        public string Surname { get; set; }
+
+        [DisplayName("Skype")]
+        public string Skype { get; set; }
+
+        [DisplayName("Направление")]
+        [Required(ErrorMessage = "Введите свое направление")]
+        public string Direction { get; set; }
+    }
 }

@@ -9,9 +9,8 @@ namespace Network.BL.Interfaces
     public interface IUserService
     {
         void AddUser(User user);
-
         byte[] СonvertingImg(HttpPostedFileBase img);
-        //IQueryable<string> GetAllId();
+        void UpdateUser(User user);
         IQueryable<string> GetAllLeadListId();
         IQueryable<string> GetAllMemberListId();
         User GetUserById(Guid id);

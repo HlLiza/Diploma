@@ -74,20 +74,64 @@ namespace Network.Controllers
         [HttpPost]
         public ActionResult ChangePhoto(ChangePhotoViewModel viewModel)
         {
-        //    var imageFile = viewModel.Image;
-        //    if (imageFile != null)
-        //    {
-        //        var img = _imgService.ConvertImage(imageFile);
-
-        //        _imgService.InsertImage(img);
-        //        var user = _userService.SearchUser(GetId());
-        //        user.ImagesId = img.Id;
-        //        _userService.EditUser(user);
-
+            if (viewModel.Image != null)
+            {
+                var user = _userService.GetUserById(viewModel.UserId);
+                var img = _userService.СonvertingImg(viewModel.Image);
+                user.Image = img;
+                _userService.UpdateUser(user);
                 return RedirectToAction("Index", "User");
             }
 
-           
+             return RedirectToAction("Index", "User");
+        }
+
+        [HttpGet]
+        public ActionResult EditPersInfo()
+        {
+            var user = _userService.GetUserByAspNetId(User.Identity.GetUserId());
+            EditPersInfViewModel model = new EditPersInfViewModel()
+            {
+                Name = user.Name,
+                Surname=user.Surname,
+                Skype=user.Skype,
+                Direction=user.Direction,
+                //Image=user.Image
+            };
+
+            return PartialView("_EditPersInfo", model);
+        }
+
+        [HttpPost]
+        public ActionResult EditPersInfo(EditPersInfViewModel model)
+        {
+            if (model != null)
+            {
+                var user = _userService.GetUserByAspNetId(User.Identity.GetUserId());
+                user.Name = model.Name;
+                user.Surname = model.Surname;
+                user.Skype = model.Skype;
+                user.Direction = model.Direction;
+                _userService.UpdateUser(user);
+            }
+            return RedirectToAction("Index");
+        }
+
+
+        [HttpGet]
+        public ActionResult EditAducation()
+        {
+            return PartialView("_AducationInfo");
+        }
+
+        [HttpPost]
+        public ActionResult EditAducation(Conference mod)
+        {
+            return RedirectToAction("Index");
+        }
+
+
+
 
 
 
