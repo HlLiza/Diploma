@@ -13,9 +13,7 @@ namespace Network.Views.ViewModels
 
     public class AddUserViewModel
     {
-        //public Guid Id { get; set; }
         public string AspUserId { get; set; }
-        //public Roles TypeUser { get; set; }
 
         [DisplayName("Имя")]
         [Required(ErrorMessage = "Введите свое имя")]
@@ -106,5 +104,11 @@ namespace Network.Views.ViewModels
         [Range(1700, 2018, ErrorMessage = "Недопустимый год")]
         public int? GradYear { get; set; }
 
+    }
+
+    public class ChangePhotoViewModel
+    {
+        public Guid UserId { get; set; }
+        public HttpPostedFileBase Image { get; set; }
     }
 }

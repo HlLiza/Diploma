@@ -18,7 +18,7 @@
 
                         <img src="data:image/png;base64, @Convert.ToBase64String(Model.Image)" />
                         <div class="overlay">
-                            <a class="info" href="#"style="padding-top:120px;">ИЗМЕНИТЬ ФОТО</a>
+                            <a class="info" href="#" id="changeId" style="padding-top:120px;">ИЗМЕНИТЬ ФОТО</a>
                         </div>
                     </div>
                 }
@@ -28,11 +28,13 @@
                         <div class="hovereffect">
                             <img class="size"  src="@Url.Content("~/Content/Pictures/default.jpeg")" alt="">
                             <div class="overlay">
-                                <a class="info link-inf" href="#" style="padding-top:120px;">ИЗМЕНИТЬ ФОТО</a>
+                                <a class="info link-inf" href="#" id="changeId"  style="padding-top:120px;">ИЗМЕНИТЬ ФОТО</a>
                             </div>
                         </div>
 
                     </div>
+
+
                 }
             </div>
             <div class="col-md-7">
@@ -95,6 +97,15 @@
         </div>
     }
 }
+
+<div id="openModalChangePhoto" class="modal fade" data-url='@Url.Action("ChangePhoto","User",null)'>
+    <div id="changeContainer">
+    </div>
+</div>
+
+
+
+
 @section Scripts{
     <script type="text/javascript">
         $(document).ready(function () {
@@ -105,6 +116,22 @@
             $("#persInfo").click(function () {
                 $("#aducInfo").addClass("hid");
             });
+       
+        //$(function () {
+            $('#changeId').click(function () {
+                debugger
+                var url = $('#openModalChangePhoto').data('url');
+
+                $.get(url,
+                    function (data) {
+                        $('#changeContainer').html(data);
+
+                        $('#openModalChangePhoto').modal('show');
+                    });
+            });
+
+            //});
+
         });
 
     </script>

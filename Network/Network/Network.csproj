@@ -473,6 +473,7 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Shared\_Menu.cshtml" />
     <Content Include="Views\User\_AducationInfo.cshtml" />
+    <Content Include="Views\User\_ChangePhoto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

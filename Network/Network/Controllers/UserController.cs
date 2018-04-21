@@ -62,6 +62,35 @@ namespace Network.Controllers
             return null;
         }
 
+
+        [HttpGet]
+        public ActionResult ChangePhoto()
+        {
+            ChangePhotoViewModel model = new ChangePhotoViewModel();
+            model.UserId = _userService.GetIdByAspId(User.Identity.GetUserId());
+            return PartialView("_ChangePhoto",model);
+        }
+
+        [HttpPost]
+        public ActionResult ChangePhoto(ChangePhotoViewModel viewModel)
+        {
+        //    var imageFile = viewModel.Image;
+        //    if (imageFile != null)
+        //    {
+        //        var img = _imgService.ConvertImage(imageFile);
+
+        //        _imgService.InsertImage(img);
+        //        var user = _userService.SearchUser(GetId());
+        //        user.ImagesId = img.Id;
+        //        _userService.EditUser(user);
+
+                return RedirectToAction("Index", "User");
+            }
+
+           
+
+
+
         List<AducationInfo> GetAducInfo(IQueryable<Aducation> data)
         {
             List<AducationInfo> result = new List<AducationInfo>();

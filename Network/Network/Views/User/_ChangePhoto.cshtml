@@ -1,0 +1,25 @@
+﻿@model Network.Views.ViewModels.ChangePhotoViewModel
+
+<div id="changePhotoDialog">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Change profile photo</h4>
+            </div>
+
+            <div class="modal-body">
+                @using (Html.BeginForm("ChangePhoto", "Users", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.HiddenFor(m => m.UserId)
+                    <label class="btn btn-file">
+                        <input type="file" name="Image" id="imageFile" />
+                    </label>
+
+                    <button class="btn pull-right" type="submit" id="changePhoto">OK</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
