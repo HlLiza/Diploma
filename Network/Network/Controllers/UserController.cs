@@ -24,8 +24,24 @@ namespace Network.Controllers
         [Authorize]        
         public ActionResult Index()
         {
-            var model = GetProfile();
+            UserIndexViewModel model = new UserIndexViewModel();
+            if (User.IsInRole("secretary"))
+            {
+                 model = GetProfileSecretary();
+            }
+            if (User.IsInRole("group_member"))
+            {
+               model = GetProfile();
+            }
+
             return View(model);
+        }
+
+        [Authorize(Roles = "secretary")]
+        protected UserIndexViewModel GetProfileSecretary()
+        {
+            UserIndexViewModel model = new UserIndexViewModel();
+            return model;
         }
 
         [Authorize(Roles = "group_member")]
@@ -121,7 +137,23 @@ namespace Network.Controllers
         [HttpGet]
         public ActionResult EditAducation()
         {
-            return PartialView("_AducationInfo");
+            List<EditAducViewModel> model = new List<EditAducViewModel>();
+            var userId = _userService.GetIdByAspId(User.Identity.GetUserId());
+            var list = _aducationService.GetAducation(userId).ToList();
+            if (list.Count!=0)
+            {
+                foreach (var item in list)
+                {
+                    EditAducViewModel adc = new EditAducViewModel
+                    {
+                        University = item.University,
+                        GradYear = item.GradYear,
+                        StartYear = item.StartYear
+                    };
+                }
+
+            }
+            return PartialView("_EditAducation.cshtml", model);
         }
 
         [HttpPost]

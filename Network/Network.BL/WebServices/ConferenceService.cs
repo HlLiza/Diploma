@@ -110,6 +110,7 @@ namespace Network.BL.WebServices
             if (conf != null)
             {
                 conf.Id = Guid.NewGuid();
+                conf.Visibility = true;
                 _conferRepository.Add(conf);
             }
         }

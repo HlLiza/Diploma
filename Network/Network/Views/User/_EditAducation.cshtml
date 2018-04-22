@@ -1,1 +1,40 @@
-﻿
+﻿@model List<Network.Views.ViewModels.EditAducViewModel>
+
+
+<div id="changePhotoDialog">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+
+            <div class="modal-header header-modal-st">
+                <h4 class="modal-title">ИЗМЕНИТЬ ИНФОРМАЦИЮ ОБ ОБРАЗОВАНИИ</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body" style="margin:15px 10px 10px 10px;">
+                @using (Html.BeginForm("EditPersInfo", "User", FormMethod.Post))
+                {
+                    <div class="form-group ">
+                        <input type="text" typeof="text" class="input-add-info" required value=@Model.Name name="Name" placeholder="Имя" />
+                    </div>
+
+                        <div class="form-group">
+                            <input type="text" typeof="text" class="input-add-info" required value=@Model.Surname name="Surname" placeholder="Фамилия" />
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" typeof="text" class="input-add-info" value=@Model.Skype name="Skype" placeholder="Skype" />
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" typeof="text" class="input-add-info" value=@Model.Direction name="Direction" placeholder="Направление" />
+                        </div>
+
+                        <input style="margin-left:160px;" type="submit" name="save" class="next button-large btn-finish" value="СОХРАНИТЬ" />
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

@@ -114,8 +114,6 @@ namespace Network.Views.ViewModels
 
     public class EditPersInfViewModel
     {
-        //public byte[] Image { get; set; }
-
         [DisplayName("Имя")]
         [Required(ErrorMessage = "Введите свое имя")]
         public string Name { get; set; }
@@ -130,5 +128,19 @@ namespace Network.Views.ViewModels
         [DisplayName("Направление")]
         [Required(ErrorMessage = "Введите свое направление")]
         public string Direction { get; set; }
+    }
+
+    public class EditAducViewModel
+    {
+        public Guid AducationId {get;set;}
+
+        [DisplayName("Университет")]
+        public string University { get; set; }
+
+        [DisplayName("Год начала обучения")]
+        public int? StartYear { get; set; }
+    
+        [DisplayName("Год окончания обучения (или предполагаемый)")]
+        public int? GradYear { get; set; }
     }
 }

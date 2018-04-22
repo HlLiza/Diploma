@@ -6,63 +6,44 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="navbar-header">
-<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-    <span class="sr-only">Toggle navigation</span>
-    <span class="icon-bar"></span>
-    <span class="icon-bar"></span>
-    <span class="icon-bar"></span>
-</button>
-    </div>
-<nav class="navbar navbar-inverse" role="navigation">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
+<div class="body-background">
+
+    <div class="row menu-page ">
+        <div class="align-item-menu">
+            <div id="persInfo" class="item-menu text-menu-page">КОНФЕРЕНЦИИ</div>
+            @if (User.IsInRole("secretary"))
+            {
+                <div id="addConfId" class="item-menu text-menu-page hover">ДОБАВИТЬ КОНФЕРЕНЦИЮ</div>
+            }
+
+
+            <div id="editAd" class="item-menu item-icon fa fa-cog hover"></div>
         </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li><a href="@Url.Action("Index", "User")"><span style="font-size: 16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-arrow-left"></span></a></li>
-                @if (User.IsInRole("secretary"))
-                {
-                    <li id="addConferModal"><a href="#">Добавить конференцию<span></span></a></li>
-                }
-                @*@if (!User.IsInRole("secretary"))
-                {
-                    <li><a href="@Url.Action("GetListConferenceForUser", "Conference")">Мои конференции<span style="font-size: 16px;" class="pull-right hidden-xs showopacity glyphicon"></span></a></li>
-                }*@
-            </ul>
-        </div>
     </div>
-</nav>
-
-<div align="center">
-    Конференции     
 </div>
 
-<div class="panel container-show">
-    @foreach (var item in Model)
-    {
+
+    <div class="panel container-show">
+        @foreach (var item in Model)
+        {
 
             <div class="row data-index-list-events item">
-                <div class="col-md-1">
-                    @if (item.MemberConferenceStatus)
-                    {
-                        <img class="icon" src="@Url.Content("~/Content/Pictures/checkYesConf.png")" />
-                    }
-                    else
-                    {
-                        <img class="icon" src="@Url.Content("~/Content/Pictures/noConf.png")" />
+                @if (User.IsInRole("group_member"))
+                {
+                    <div class="col-md-1">
+                        @if (item.MemberConferenceStatus)
+                        {
+                            <img class="icon" src="@Url.Content("~/Content/Pictures/checkYesConf.png")" />
+                        }
+                        else
+                        {
+                            <img class="icon" src="@Url.Content("~/Content/Pictures/noConf.png")" />
 
-                    }
-                </div>
+                        }
+                    </div>
+                }
+               
 
                 <div class="col-md-1">
                     <div class="item-date left">
@@ -80,17 +61,13 @@
                     <div class="item-body left">
                         <div class="title">
                             <a href="@Url.Action("OpenConference", "Conference", new { confId=item.Id })">@item.Thema</a>
-                         
+
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3">
-                     @if (!User.IsInRole("secretary"))
-                     {
-                        @*<div class="btn-group butt-decid" role="group" aria-label="Basic example">
-                            <button id="listenerId" onclick="openModalL()" data-url='@Url.Action("GetListOfListener", "Conference",new { confId=item.Id})' type="button" class="btn btn-secondary">Слушатели</button>
-                            <button id="memberId" onclick="openModalM(this)" data-url='@Url.Action("GetListOfMembers", "Conference",new { confId=item.Id})' type="button" class="btn btn-secondary">Участники</button>
-                        </div>*@
+                    @if (!User.IsInRole("secretary"))
+                {
 
                         <div class="btn-group butt-decid" role="group" aria-label="Basic example">
                             @{
@@ -98,14 +75,25 @@
                                 string temp2 = "";
                                 if (item.ListenerConferenceStatus) { temp1 = "disabled"; }
                                 else { temp2 = "disabled"; }
-                                <button id="yes" type="button"  onclick="location.href='@Url.Action("AddListener", "Conference",new { confId =item.Id})'" class="btn btn-secondary" @temp1>Иду</button>
-                                <button id="no" type="button"  onclick="location.href='@Url.Action("DeleteListener", "Conference",new { confId =item.Id})'" class="btn btn-secondary" @temp2>Не иду</button>
+                                <button id="yes" type="button" onclick="location.href='@Url.Action("AddListener", "Conference",new { confId =item.Id})'" class="btn btn-secondary" @temp1>Иду</button>
+                                <button id="no" type="button" onclick="location.href='@Url.Action("DeleteListener", "Conference",new { confId =item.Id})'" class="btn btn-secondary" @temp2>Не иду</button>
                             }
                         </div>
-                     }
-                  
-
+                                }
+                    @if (User.IsInRole("secretary"))
+                {
+                        <div class="btn-group butt-decid" role="group" aria-label="Basic example">
+                            <button id="listenerId" type="button" class="btn btn-secondary">Слушатели</button>
+                            <button id="memberId" onclick="openModalM(this)" data-url='@Url.Action("GetListOfMembers", "Conference", new { confId = item.Id })' type="button" class="btn btn-secondary">Участники</button>
                         </div>
+                    }
+
+
+
+
+
+
+                </div>
             </div>
             <hr />
 
@@ -118,88 +106,94 @@
                 <div id="listContainer">
                 </div>
             </div>
-    }
-    
+                                }
+
+    </div>
+
+<div id="openModalAddConf" class="modal fade" data-url='@Url.Action("AddConference","Conference",null)'>
+    <div id="addContainer">
+    </div>
 </div>
 
 
-@section Scripts
+    @section Scripts
 {
-    <script type="text/javascript">
+        <script type="text/javascript">
 
-        //$('.custom-file-input').on('change', function () {
-        //    debugger
-        //$(this).next('.form-control-file').addClass("selected").html($(this).val());})
-    </script>
-}
-
-
-
-
-
-
-
-
-
-
-@*@section Scripts{
-    <script type="text/javascript">
-        document.ready = (function () {
-
-            $('#addConferModal').click(function () {
-                var url = $('#addConferenceModal').data('url');
-
+            $('#addConfId').click(function () {
+                var url = $('#openModalAddConf').data('url');
                 $.get(url,
                     function (data) {
-                        $('#addConferenceModal').html(data);
+                        $('#addContainer').html(data);
 
-                        $('#addConferenceModal').modal('show');
+                        $('#openModalAddConf').modal('show');
                     });
             });
+        </script>
+    }
 
 
 
 
-        });
-    </script>
-}*@
+
+    @*@section Scripts{
+            <script type="text/javascript">
+                document.ready = (function () {
+
+                    $('#addConferModal').click(function () {
+                        var url = $('#addConferenceModal').data('url');
+
+                        $.get(url,
+                            function (data) {
+                                $('#addConferenceModal').html(data);
+
+                                $('#addConferenceModal').modal('show');
+                            });
+                    });
 
 
 
 
-@*@Html.HiddenFor(modelItem => item.Id)
-    <div class="row">
-    <div class=".data-index-list-events item">
-        <div class="item-date left">
-            <h4>@item.Date.Day</h4>
-            <strong>
-                <time>@item.Date.ToString("MMMM").ToUpper()</time>
-            </strong>
-            <span>
-                <time>@item.Date.ToString("dddd", new System.Globalization.CultureInfo("ru-RU"))</time>
-            </span>
+                });
+            </script>
+        }*@
 
-        </div>
-        <div class="item-body left">
-            <div class="title">
-                @item.Thema
+
+
+
+    @*@Html.HiddenFor(modelItem => item.Id)
+        <div class="row">
+        <div class=".data-index-list-events item">
+            <div class="item-date left">
+                <h4>@item.Date.Day</h4>
+                <strong>
+                    <time>@item.Date.ToString("MMMM").ToUpper()</time>
+                </strong>
+                <span>
+                    <time>@item.Date.ToString("dddd", new System.Globalization.CultureInfo("ru-RU"))</time>
+                </span>
+
+            </div>
+            <div class="item-body left">
+                <div class="title">
+                    @item.Thema
+                </div>
+            </div>
+
+
+            <div id="listMemm" class="modal fade">
+                <div id="listContainer">
+                </div>
+            </div>
+
+            <div id="joinMod" class="modal fade">
+                <div id="joinContainer">
+                </div>
+            </div>
+            <hr />
+            <div id="addConferenceModal" class="modal fade" data-url='@Url.Action("CreateConference", "Conference", null)'>
+                <div id="addConferenceModal">
+                </div>
             </div>
         </div>
-
-
-        <div id="listMemm" class="modal fade">
-            <div id="listContainer">
-            </div>
-        </div>
-
-        <div id="joinMod" class="modal fade">
-            <div id="joinContainer">
-            </div>
-        </div>
-        <hr />
-        <div id="addConferenceModal" class="modal fade" data-url='@Url.Action("CreateConference", "Conference", null)'>
-            <div id="addConferenceModal">
-            </div>
-        </div>
-    </div>
-        </div>*@
+            </div>*@

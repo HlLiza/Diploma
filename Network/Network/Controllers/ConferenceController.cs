@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using Network.BL.WebServices;
+using Network.DAL.EFModel;
 using Network.Views.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -24,10 +25,11 @@ namespace Network.Controllers
         {
             List<ConferenceIndexViewModel> model = new List<ConferenceIndexViewModel>();
             var list = _conferencService.GetConfIndex();
-            var userId = _userService.GetIdByAspId(User.Identity.GetUserId());
 
             if (!User.IsInRole("secretary"))
             {
+                var userId = _userService.GetIdByAspId(User.Identity.GetUserId());
+
                 if (list != null)
                 {
                     foreach (var item in list)
@@ -158,6 +160,25 @@ namespace Network.Controllers
         }
 
 
+        [Authorize(Roles = "secretary")]
+        public ActionResult AddConference()
+        {
+            var model = new Conference();
+            return View("_CreateConference", model);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "secretary")]
+        public ActionResult AddConference(Conference model)
+        {
+            if (model != null)
+            {
+                _conferencService.AddCovference(model);
+            }
+            return RedirectToAction("Index");
+        }
+
+
         ////public ActionResult ListMembersOfConference(Guid id)
         ////{
         ////    List<UserListViewModel> model = new List<UserListViewModel>();
@@ -179,23 +200,7 @@ namespace Network.Controllers
 
 
 
-        //[Authorize(Roles = "secretary")]
-        //public ActionResult CreateConference()
-        //{
-        //    var model = new Conference();
-        //    return View("_CreateConference", model);
-        //}
 
-        //[HttpPost]
-        //[Authorize(Roles = "secretary")]
-        //public ActionResult CreateConference(Conference model)
-        //{
-        //    if (model != null)
-        //    {
-        //        _conService.AddCovference(model);
-        //    }
-        //    return RedirectToAction("Index", "Conference");
-        //}
 
 
         //public ActionResult JoinConference(Guid id)

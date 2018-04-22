@@ -1,45 +1,41 @@
 ﻿@model Network.DAL.EFModel.Conference
 
-<div id="createConferDialog">
-    <div class="modal-dialog">
+<div id="addConfDialog">
+    <div class="modal-dialog" style="margin-top:-7%;">
         <div class="modal-content">
 
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <div class="modal-header header-modal-st">
                 <h4 class="modal-title">Добавление  конференции</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-
-            <div class="modal-body">
-                @using (Html.BeginForm("CreateConference", "Conference", FormMethod.Post))
+            <div class="modal-body" style="margin:15px 0 10px 20px;">
+                @using (Html.BeginForm("AddConference", "Conference", FormMethod.Post))
                 {
-                    <div class="form-horizontal">
-                        <div class="container">
-                            <div class="form-group">
-                                <label class="control-label">Выберите дату</label>
-                                <input id="DaTe" required="required" name="Date" type="date" />
-                            </div>
-
-                            <div class="form-group">
-                                <label class="control-label">Введите тему</label>
-                                <input name="Thema" type="text" required="required" class="form-control" placeholder="Тема" />
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">Введите адрес </label>
-                                <input name="Place" type="text" required="required" class="form-control" placeholder="Адрес" />
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group">
-                                <div class="col-md-offset-8 col-md-4 ">
-                                    <button class="btn btn-info pull-right" type="submit">OK</button>
-                                </div>
-                            </div>
-                        </div>
-
+                    <div class="form-group ">
+                        <input type="text" typeof="text" class="input-add-info" required name="Thema" placeholder="ТЕМА" />
                     </div>
+
+
+                    <div class="form-group">
+                        <input type="text" typeof="text" class="input-add-info" required name="Direction" placeholder="НАПРАВЛЕНИЕ" />
+                    </div>
+
+                    <div class="form-group">
+                        <input id="DaTe" class="input-add-info" required="required" name="Date" type="date" />
+                    </div>
+
+                    <div class="form-group">
+                        <textarea type="text" typeof="text" class="input-add-info input-details" required name="Details" placeholder="ДЕТАЛИ" />
+                    </div>
+
+                    <input style="margin-left:160px;" type="submit" name="save" class="next button-large btn-finish" value="СОХРАНИТЬ" />
                 }
             </div>
+
+            
         </div>
     </div>
 </div>
+
+
 

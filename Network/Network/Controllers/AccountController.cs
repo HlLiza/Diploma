@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Network.Models;
+using Microsoft.Owin.Security.DataProtection;
 
 namespace Network.Controllers
 {
@@ -83,7 +84,7 @@ namespace Network.Controllers
                     {
                         if (roles.First() == "secretary")
                         {
-                            return RedirectToAction("Index","Conference");
+                            return RedirectToAction("Index","User");
                         }
                         if (signedUser.IsNewUser && roles.First()!="secretary")
                         {
@@ -167,8 +168,10 @@ namespace Network.Controllers
         {
             if (ModelState.IsValid)
             {
+                //var provider = new DpapiDataProtectionProvider("Sample");
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, PhoneNumber=model.PhoneNumber, IsNewUser=true};
                 var result = await UserManager.CreateAsync(user, model.Password);
+                //UserManager.UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser>(provider.Create("EmailConfirmation"));
                 await UserManager.AddToRoleAsync(user.Id, model.Role);
 
                 if (result.Succeeded)

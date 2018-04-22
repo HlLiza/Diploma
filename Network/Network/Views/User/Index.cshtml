@@ -38,12 +38,15 @@
                 }
             </div>
             <div class="col-md-7">
-                <div class="row menu-page">
-                    <div id="persInfo" class="item-menu text-menu-page hover">МОЙ ПРОФИЛЬ</div>
-                    <div id="editPer" class="item-menu item-icon fa fa-cog hover"></div>
-                    <div id="aducId" class="item-menu text-menu-page hover">ОБРАЗОВАНИЕ</div>
-                    <div id="editAd" class="item-menu item-icon fa fa-cog hover"></div>
+                <div class="body-background">
 
+                    <div class="row menu-page">
+                        <div id="editPer" class="item-menu item-icon fa fa-cog hover"></div>
+                        <div id="persInfo" class="item-menu text-menu-page hover">МОЙ ПРОФИЛЬ</div>
+                        <div id="aducId" class="item-menu text-menu-page hover">ОБРАЗОВАНИЕ</div>
+                        <div id="editAd" class="item-menu item-icon fa fa-cog hover"></div>
+
+                    </div>
                 </div>
 
                 <div class=" null-left-pad">
@@ -93,8 +96,12 @@
     }
     else
     {
-        <div>
-            Вы вошли как секретарь!
+        <div class="body-background">
+
+            <div class="secretary">
+                Вы вошли как секретарь!
+            </div>
+
         </div>
     }
 }
@@ -119,6 +126,7 @@
 @section Scripts{
     <script type="text/javascript">
         $(document).ready(function () {
+
             $("#aducId").click(function () {
                 $("#aducInfo").removeClass("hid");
             });
@@ -138,7 +146,7 @@
             });
 
 
-            
+
             $('#editPer').click(function () {
                 var url = $('#openModalEditPersInfo').data('url');
                 $.get(url,
