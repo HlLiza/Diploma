@@ -34,6 +34,8 @@
         <EntityTypeShape EntityType="NetworkContext.ListenerConfer" Width="1.5" PointX="15.625" PointY="6.625" />
         <AssociationConnector Association="NetworkContext.FK_ListenerConfer_Conference" />
         <AssociationConnector Association="NetworkContext.FK_ListenerConfer_User" />
+        <EntityTypeShape EntityType="NetworkContext.ReportConference" Width="1.5" PointX="9.875" PointY="12.5" />
+        <AssociationConnector Association="NetworkContext.FK_ReportConference_Conference" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

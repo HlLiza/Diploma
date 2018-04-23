@@ -20,7 +20,7 @@
                             @Html.DropDownListFor(model => model.StartYear, Enumerable.Range(1950, DateTime.Now.Year - 1950 + 1).Select(x => new SelectListItem() { Value = x.ToString(), Text = x.ToString() }), "Год начала", new { @class = "input-add-info year" })
                         </div>
                         <div class="col-md-6 col-lg-6 col-xs-6 col-sm-6 col-6">
-                            @Html.DropDownListFor(model => model.GradYear, Enumerable.Range(DateTime.Now.Year, DateTime.Now.Year - 2006 + 1).Select(x => new SelectListItem() { Value = x.ToString(), Text = x.ToString() }), "Год завершения", new { @class = "input-add-info year" })
+                            @Html.DropDownListFor(model => model.GradYear, Enumerable.Range(1955, DateTime.Now.Year - 1950 + 1).Select(x => new SelectListItem() { Value = x.ToString(), Text = x.ToString() }), "Год завершения", new { @class = "input-add-info year" })
                         </div>
                     </div>
 

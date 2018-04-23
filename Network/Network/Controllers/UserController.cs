@@ -164,17 +164,15 @@ namespace Network.Controllers
         [HttpGet]
         public ActionResult AddAducation()
         {
-            var model = new Aducation()
-            {
-                UserId = _userService.GetIdByAspId(User.Identity.GetUserId())
-            };
-            return PartialView("_AddAducation", model);
+            return PartialView("_AddAducation");
         }
 
         [HttpPost]
-        public ActionResult AddAducation(Aducation mod)
+        public ActionResult AddAducation(Aducation model)
         {
-            return RedirectToAction("Index");
+            model.UserId = _userService.GetIdByAspId(User.Identity.GetUserId());
+            _aducationService.AddAducation(model);
+            return RedirectToAction("Index","User");
         }
 
 

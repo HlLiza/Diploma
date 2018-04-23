@@ -119,6 +119,15 @@ namespace Network.Controllers
         [HttpPost]
         public ActionResult JoinToConference(RegistrToConfer model)
         {
+            if (model != null)
+            {
+                MembersOfConference member = new MembersOfConference
+                {
+                    ConferenceId=model.ConfId,
+                    UserId=_userService.GetIdByAspId(User.Identity.GetUserId())
+                };
+                _conferencService.AddMembersToConference(member);
+            }
 
             return RedirectToAction("Index","Conference");
         }

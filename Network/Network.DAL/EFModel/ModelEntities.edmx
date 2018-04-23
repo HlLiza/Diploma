@@ -137,6 +137,16 @@
           <Property Name="GroupId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="MembersId" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
+        <EntityType Name="ReportConference">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ConferenceId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Content" Type="varbinary(max)" />
+          <Property Name="Title" Type="nvarchar" MaxLength="255" />
+          <Property Name="Extension" Type="varchar" MaxLength="5" />
+        </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -312,6 +322,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ReportConference_Conference">
+          <End Role="Conference" Type="Self.Conference" Multiplicity="1" />
+          <End Role="ReportConference" Type="Self.ReportConference" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Conference">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReportConference">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_User_AspNetUsers">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -339,6 +361,7 @@
           <EntitySet Name="ListenerConfer" EntityType="Self.ListenerConfer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MembersOfConference" EntityType="Self.MembersOfConference" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MembersOfGroup" EntityType="Self.MembersOfGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReportConference" EntityType="Self.ReportConference" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Aducation_User" Association="Self.FK_Aducation_User">
@@ -388,6 +411,10 @@
           <AssociationSet Name="FK_MembersOfGroup_User1" Association="Self.FK_MembersOfGroup_User1">
             <End Role="User" EntitySet="User" />
             <End Role="MembersOfGroup" EntitySet="MembersOfGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReportConference_Conference" Association="Self.FK_ReportConference_Conference">
+            <End Role="Conference" EntitySet="Conference" />
+            <End Role="ReportConference" EntitySet="ReportConference" />
           </AssociationSet>
           <AssociationSet Name="FK_User_AspNetUsers" Association="Self.FK_User_AspNetUsers">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -476,6 +503,11 @@
           <AssociationSet Name="FK_ListenerConfer_User" Association="NetworkContext.FK_ListenerConfer_User">
             <End Role="User" EntitySet="User" />
             <End Role="ListenerConfer" EntitySet="ListenerConfer" />
+          </AssociationSet>
+          <EntitySet Name="ReportConference" EntityType="NetworkContext.ReportConference" />
+          <AssociationSet Name="FK_ReportConference_Conference" Association="NetworkContext.FK_ReportConference_Conference">
+            <End Role="Conference" EntitySet="Conference" />
+            <End Role="ReportConference" EntitySet="ReportConference" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="C__MigrationHistory">
@@ -766,6 +798,7 @@
           <Property Name="Visibility" Type="Boolean" />
           <NavigationProperty Name="MembersOfConference" Relationship="NetworkContext.FK_MembersOfConference_Conference" FromRole="Conference" ToRole="MembersOfConference" />
           <NavigationProperty Name="ListenerConfer" Relationship="NetworkContext.FK_ListenerConfer_Conference" FromRole="Conference" ToRole="ListenerConfer" />
+          <NavigationProperty Name="ReportConference" Relationship="NetworkContext.FK_ReportConference_Conference" FromRole="Conference" ToRole="ReportConference" />
         </EntityType>
         <Association Name="FK_MembersOfConference_Conference">
           <End Type="NetworkContext.Conference" Role="Conference" Multiplicity="1" />
@@ -810,6 +843,29 @@
             </Principal>
             <Dependent Role="ListenerConfer">
               <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ReportConference">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="ConferenceId" Type="Guid" Nullable="false" />
+          <Property Name="Content" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Extension" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Conference" Relationship="NetworkContext.FK_ReportConference_Conference" FromRole="ReportConference" ToRole="Conference" />
+        </EntityType>
+        <Association Name="FK_ReportConference_Conference">
+          <End Type="NetworkContext.Conference" Role="Conference" Multiplicity="1" />
+          <End Type="NetworkContext.ReportConference" Role="ReportConference" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Conference">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReportConference">
+              <PropertyRef Name="Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -982,6 +1038,17 @@
             <EntityTypeMapping TypeName="NetworkContext.ListenerConfer">
               <MappingFragment StoreEntitySet="ListenerConfer">
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ConferenceId" ColumnName="ConferenceId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReportConference">
+            <EntityTypeMapping TypeName="NetworkContext.ReportConference">
+              <MappingFragment StoreEntitySet="ReportConference">
+                <ScalarProperty Name="Extension" ColumnName="Extension" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
                 <ScalarProperty Name="ConferenceId" ColumnName="ConferenceId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

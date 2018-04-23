@@ -18,8 +18,12 @@ namespace Network.BL.WebServices
 
         public void AddAducation(Aducation adc)
         {
-            adc.Id = Guid.NewGuid();
-            _aducRepository.Add(adc);
+            if (adc != null && adc.University != null)
+            {
+                adc.Id = Guid.NewGuid();
+                _aducRepository.Add(adc);
+            }
+            
         }
 
         public IQueryable<Aducation> GetAducation(Guid userId)

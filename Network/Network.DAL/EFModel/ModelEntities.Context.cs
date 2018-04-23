@@ -41,5 +41,6 @@ namespace Network.DAL.EFModel
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<Conference> Conference { get; set; }
         public virtual DbSet<ListenerConfer> ListenerConfer { get; set; }
+        public virtual DbSet<ReportConference> ReportConference { get; set; }
     }
 }
