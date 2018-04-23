@@ -44,7 +44,7 @@
                         <div id="editPer" class="item-menu item-icon fa fa-cog hover"></div>
                         <div id="persInfo" class="item-menu text-menu-page hover">МОЙ ПРОФИЛЬ</div>
                         <div id="aducId" class="item-menu text-menu-page hover">ОБРАЗОВАНИЕ</div>
-                        <div id="editAd" class="item-menu item-icon fa fa-cog hover"></div>
+                        <div id="addAduc" class="item-menu item-icon fa fa-cog hover"></div>
 
                     </div>
                 </div>
@@ -116,8 +116,8 @@
     </div>
 </div>
 
-<div id="openModalEditAducation" class="modal fade" data-url='@Url.Action("EditAducation","User",null)'>
-    <div id="editAducContainer">
+<div id="openModalAddAducation" class="modal fade" data-url='@Url.Action("AddAducation","User",null)'>
+    <div id="addAducContainer">
     </div>
 </div>
 
@@ -165,6 +165,16 @@
                         $('#editAducContainer').html(data);
 
                         $('#openModalEditAducation').modal('show');
+                    });
+            });
+
+            $('#addAduc').click(function () {
+                var url = $('#openModalAddAducation').data('url');
+                $.get(url,
+                    function (data) {
+                        $('#addAducContainer').html(data);
+
+                        $('#openModalAddAducation').modal('show');
                     });
             });
 

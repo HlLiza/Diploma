@@ -142,7 +142,7 @@ namespace Network.Controllers
                         Surname=lst.Surname,
                         Direction=lst.Direction
                     };
-                    if (lst.Image.Length != 0)
+                    if (lst.Image!= null)
                         user.Image = lst.Image;
                     result.Add(user);
                 }
@@ -156,7 +156,7 @@ namespace Network.Controllers
         {
             List<UserAtConference> list = new List<UserAtConference>();
 
-            return PartialView();
+            return PartialView("_GetListOfListener", list);
         }
 
 

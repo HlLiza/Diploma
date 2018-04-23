@@ -1,62 +1,79 @@
 ﻿@model Network.DAL.EFModel.Conference
 @{
-    ViewBag.Title = "OpenConference";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<nav class="navbar navbar-inverse" role="navigation">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
-            <div class="row">
-                <div class="col-md-3">
-                    <ul class="nav navbar-nav">
-                        <li><a href="@Url.Action("Index", "Conference")"><span style="font-size: 16px; margin-top:5px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-arrow-left"></span></a></li>
-                    </ul>
-                </div>
-                <div class="col-md-6">
-                    <ul class="nav navbar-nav">
-                        <h3 style="color:white; text-align:center;">
-                            @Html.DisplayFor(model => model.Thema)
-                        </h3>
-                    </ul>
-                </div>
-                <div class="col-md-3">
 
-                    <ul class="nav navbar-nav">
-                        <a href="@Url.Action("JoinToConference", "Conference", new { confId=Model.Id })">
-                            <span class="glyphicon glyphicon-plus" style="margin-top:20px;color:white;"></span>
-                        </a>
-                    </ul>
-                </div>
+<div class="body-background">
+
+    <div class="row menu-page ">
+        <div class="align-item-menu">
+            <div class="item-menu text-menu-page" style="padding-right: 30px;">@Html.DisplayFor(model => model.Thema)</div>
+            <div class="item-menu text-menu-page" style="padding-right: 30px;">
+                @Html.DisplayFor(m => m.Date, "{0:MM/dd/yy}")
             </div>
-        </div>
-    </div>
-</nav>
+            <div id="takeId" style="color:white;" class="item-menu item-icon fa fa-plus hover "><span class="text-menu-page">регистрация</span></div>
 
-<div class="time">
-    <time>@Model.Date.ToString()</time>
+
+            <div class="item-menu text-menu-page" style="margin-left: 650px;">@Html.DisplayFor(model => model.Direction)</div>
+                
+            </div>
+
+    </div>
+</div>
+
+<div class="container container-show">
+    @Html.DisplayFor(model => model.Details)
+</div>
+
+<div id="openModalJoinToConf" class="modal fade" data-url='@Url.Action("JoinToConference","Conference",new { confId = Model.Id})'>
+    <div id="joinContainer">
+    </div>
 </div>
 
 
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('#takeId').click(function () {
+                var url = $('#openModalJoinToConf').data('url');
+                $.get(url,
+                    function (data) {
+                        $('#joinContainer').html(data);
+
+                        $('#openModalJoinToConf').modal('show');
+                    });
+            });
 
 
-<br/>
-@Html.DisplayFor(model => model.Direction)
-<br />
+            $('#editAd').click(function () {
+                var url = $('#openModalEditAducation').data('url');
+                $.get(url,
+                    function (data) {
+                        $('#editAducContainer').html(data);
 
-@Html.DisplayFor(model => model.Details)
-<br />
+                        $('#openModalEditAducation').modal('show');
+                    });
+            });
+
+        });
+
+    </script>
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

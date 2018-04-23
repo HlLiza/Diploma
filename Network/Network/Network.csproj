@@ -314,8 +314,6 @@
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
-    <EmbeddedResource Include="Content\Pictures\checkYesConf.png" />
-    <EmbeddedResource Include="Content\Pictures\noConf.png" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -478,6 +476,7 @@
     <Content Include="Views\User\_ChangePhoto.cshtml" />
     <Content Include="Views\User\_EditAducation.cshtml" />
     <Content Include="Views\User\_EditPersInfo.cshtml" />
+    <Content Include="Views\User\_AddAducation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

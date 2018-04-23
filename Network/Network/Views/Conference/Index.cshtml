@@ -10,49 +10,46 @@
 
     <div class="row menu-page ">
         <div class="align-item-menu">
-            <div id="persInfo" class="item-menu text-menu-page">КОНФЕРЕНЦИИ</div>
+            <div id="persInfo" class="item-menu text-menu-page" style="padding-right: 30px;">КОНФЕРЕНЦИИ</div>
             @if (User.IsInRole("secretary"))
             {
                 <div id="addConfId" class="item-menu text-menu-page hover">ДОБАВИТЬ КОНФЕРЕНЦИЮ</div>
             }
-
-
-            <div id="editAd" class="item-menu item-icon fa fa-cog hover"></div>
         </div>
 
     </div>
 </div>
 
 
-    <div class="panel container-show">
+    <div class="panel container-show container">
         @foreach (var item in Model)
         {
 
             <div class="row data-index-list-events item">
                 @if (User.IsInRole("group_member"))
                 {
-                    <div class="col-md-1">
+                    <div class="col-md-1 icon">
                         @if (item.MemberConferenceStatus)
                         {
-                            <img class="icon" src="@Url.Content("~/Content/Pictures/checkYesConf.png")" />
+                            <span class=" ion-clipboard"></span>
                         }
-                        else
+                        @*else
                         {
                             <img class="icon" src="@Url.Content("~/Content/Pictures/noConf.png")" />
 
-                        }
+                        }*@
                     </div>
                 }
                
 
                 <div class="col-md-1">
-                    <div class="item-date left">
+                    <div class="item-date left date-show">
                         <h4>@item.Date.Day</h4>
                         <strong>
-                            <time>@item.Date.ToString("MMMM").ToUpper()</time>
+                            <time class="date-show">@item.Date.ToString("MMMM").ToUpper()</time>
                         </strong>
                         <span>
-                            <time>@item.Date.ToString("dddd", new System.Globalization.CultureInfo("ru-RU"))</time>
+                            <time  class="date-show">@item.Date.ToString("dddd", new System.Globalization.CultureInfo("ru-RU"))</time>
                         </span>
 
                     </div>
@@ -67,8 +64,7 @@
                 </div>
                 <div class="col-md-3">
                     @if (!User.IsInRole("secretary"))
-                {
-
+                    {
                         <div class="btn-group butt-decid" role="group" aria-label="Basic example">
                             @{
                                 string temp1 = "";
@@ -79,12 +75,13 @@
                                 <button id="no" type="button" onclick="location.href='@Url.Action("DeleteListener", "Conference",new { confId =item.Id})'" class="btn btn-secondary" @temp2>Не иду</button>
                             }
                         </div>
-                                }
+                     }
                     @if (User.IsInRole("secretary"))
-                {
+                    {
                         <div class="btn-group butt-decid" role="group" aria-label="Basic example">
-                            <button id="listenerId" type="button" class="btn btn-secondary">Слушатели</button>
-                            <button id="memberId" onclick="openModalM(this)" data-url='@Url.Action("GetListOfMembers", "Conference", new { confId = item.Id })' type="button" class="btn btn-secondary">Участники</button>
+                            <button id="listenerId" onclick="openModal(this)" data-url='@Url.Action("GetListOfListener", "Conference", new { confId = item.Id })'  type="button" class="btn btn-secondary">Слушатели</button>
+
+                            <button id="memberId" onclick="openModal(this)" data-url='@Url.Action("GetListOfMembers", "Conference", new { confId = item.Id })' type="button" class="btn btn-secondary">Участники</button>
                         </div>
                     }
 
@@ -94,18 +91,26 @@
 
 
                 </div>
+
+                @if (User.IsInRole("secretary"))
+                {
+                    <div class="col-md-1" style="margin-top: 25px;">
+                        <div id="editAd" class="item-menu item-icon fa fa-cog hover"></div>
+                    </div>
+                }
+
             </div>
             <hr />
 
-            <div id="listL" class="modal fade">
+            <div id="openModalGetList" class="modal fade">
                 <div id="listContainer">
                 </div>
             </div>
 
-            <div id="listM" class="modal fade">
+            @*<div id="openModalGetList" class="modal fade">
                 <div id="listContainer">
                 </div>
-            </div>
+            </div>*@
                                 }
 
     </div>
@@ -116,21 +121,35 @@
 </div>
 
 
-    @section Scripts
+
+
+@section Scripts
 {
-        <script type="text/javascript">
+    <script type="text/javascript">
 
-            $('#addConfId').click(function () {
-                var url = $('#openModalAddConf').data('url');
-                $.get(url,
-                    function (data) {
-                        $('#addContainer').html(data);
+        $('#addConfId').click(function () {
+                            var url = $('#openModalAddConf').data('url');
+            $.get(url,
+                function (data) {
+                    $('#addContainer').html(data);
 
-                        $('#openModalAddConf').modal('show');
-                    });
-            });
-        </script>
-    }
+                    $('#openModalAddConf').modal('show');
+                            });
+        });
+
+        function openModal(element) {
+            var url = $(element).data('url');
+            $.get(url,
+                function (data) {
+                    $('#listContainer').html(data);
+
+                    $('#openModalGetList').modal('show');
+                });
+
+        };
+
+    </script>
+}
 
 
 
@@ -159,41 +178,3 @@
         }*@
 
 
-
-
-    @*@Html.HiddenFor(modelItem => item.Id)
-        <div class="row">
-        <div class=".data-index-list-events item">
-            <div class="item-date left">
-                <h4>@item.Date.Day</h4>
-                <strong>
-                    <time>@item.Date.ToString("MMMM").ToUpper()</time>
-                </strong>
-                <span>
-                    <time>@item.Date.ToString("dddd", new System.Globalization.CultureInfo("ru-RU"))</time>
-                </span>
-
-            </div>
-            <div class="item-body left">
-                <div class="title">
-                    @item.Thema
-                </div>
-            </div>
-
-
-            <div id="listMemm" class="modal fade">
-                <div id="listContainer">
-                </div>
-            </div>
-
-            <div id="joinMod" class="modal fade">
-                <div id="joinContainer">
-                </div>
-            </div>
-            <hr />
-            <div id="addConferenceModal" class="modal fade" data-url='@Url.Action("CreateConference", "Conference", null)'>
-                <div id="addConferenceModal">
-                </div>
-            </div>
-        </div>
-            </div>*@

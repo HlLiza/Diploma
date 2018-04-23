@@ -112,7 +112,6 @@ namespace Network.Controllers
                 Surname=user.Surname,
                 Skype=user.Skype,
                 Direction=user.Direction,
-                //Image=user.Image
             };
 
             return PartialView("_EditPersInfo", model);
@@ -162,6 +161,21 @@ namespace Network.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
+        public ActionResult AddAducation()
+        {
+            var model = new Aducation()
+            {
+                UserId = _userService.GetIdByAspId(User.Identity.GetUserId())
+            };
+            return PartialView("_AddAducation", model);
+        }
+
+        [HttpPost]
+        public ActionResult AddAducation(Aducation mod)
+        {
+            return RedirectToAction("Index");
+        }
 
 
 

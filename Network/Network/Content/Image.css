@@ -12,6 +12,14 @@
     margin-left: 180px;
     margin-top: -2%;
 }
+
+.item-image {
+    height: 138px;
+    width: 143px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5); /* Параметры тени */
+    border-radius: 6px;
+  
+}
 .size {
     height: 280px;
     width: 242px;
@@ -112,5 +120,3 @@
         transform: scale(1);
         background-color: rgba(0,0,0,0.4);
     }
-
-
