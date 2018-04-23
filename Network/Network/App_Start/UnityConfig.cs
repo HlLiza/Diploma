@@ -58,6 +58,8 @@ namespace Network
             container.RegisterType<IAducation, AducationRepository>();
             container.RegisterType<IConference, ConferenceRepository>();
             container.RegisterType<IListenerConference, ListenerConfRepository>();
+            container.RegisterType<IReportConference, ReportConferenceRepository>();
+
 
             container.RegisterType<ApplicationUserManager>();
             container.RegisterType<ApplicationSignInManager>();

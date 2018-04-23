@@ -4,6 +4,7 @@ using Network.DAL.EFModel;
 using Network.Views.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Web.Mvc;
 
 namespace Network.Controllers
@@ -126,7 +127,17 @@ namespace Network.Controllers
                     ConferenceId=model.ConfId,
                     UserId=_userService.GetIdByAspId(User.Identity.GetUserId())
                 };
-                _conferencService.AddMembersToConference(member);
+
+                ReportConference report = new ReportConference
+                {
+                    Title=model.Topic,
+                    Extension= ".pdf",
+                    Content =_conferencService.ConvertFile(model.ReportText),
+                    ConferenceId=model.ConfId
+                };
+
+
+                _conferencService.AddMembersToConference(member, report);
             }
 
             return RedirectToAction("Index","Conference");

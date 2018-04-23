@@ -5,6 +5,7 @@ using Network.DAL.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 
 namespace Network.BL.WebServices
 {
@@ -12,14 +13,17 @@ namespace Network.BL.WebServices
     {
         private readonly IConference _conferRepository;
         private readonly IListenerConference _listenerRepository;
+        private readonly IReportConference _reportRepository;
 
 
         public ConferenceService() { }
 
-        public ConferenceService(ConferenceRepository conferRepository, ListenerConfRepository listenerRepository)
+        public ConferenceService(ConferenceRepository conferRepository, ListenerConfRepository listenerRepository,
+            ReportConferenceRepository reportRepository)
         {
             _conferRepository = conferRepository;
             _listenerRepository = listenerRepository;
+            _reportRepository = reportRepository;
         }
 
 
@@ -145,22 +149,36 @@ namespace Network.BL.WebServices
             return list;
         }
 
-        public void AddMembersToConference(MembersOfConference member)
+        public void AddMembersToConference(MembersOfConference member,ReportConference text)
         {
-            if (member != null)
+            if (member != null && text!=null)
             {
                 member.Id = Guid.NewGuid();
                 _conferRepository.JoinToConference(member);
+                text.Id = Guid.NewGuid();
+                _reportRepository.Add(text);
+                
             }
         }
 
-        public void RemoveMembers(MembersOfConference member)
+        //public void RemoveMembers(MembersOfConference member)
+        //{
+        //    if (member != null)
+        //    {
+        //        _conferRepository.GoOut(member.Id);
+        //    }
+        //}
+
+
+        public byte[] ConvertFile(HttpPostedFileBase file)
         {
-            if (member != null)
-            {
-                _conferRepository.GoOut(member.Id);
-            }
+            byte[] result = new byte[file.ContentLength];
+            file.InputStream.Read(result, 0, result.Length);
+            return result;
         }
+
+    
+
 
         //public IQueryable<Guid> GetMembersListByConferenceId(Guid id)
         //{

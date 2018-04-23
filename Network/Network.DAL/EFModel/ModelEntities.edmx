@@ -324,13 +324,13 @@
         </Association>
         <Association Name="FK_ReportConference_Conference">
           <End Role="Conference" Type="Self.Conference" Multiplicity="1" />
-          <End Role="ReportConference" Type="Self.ReportConference" Multiplicity="0..1" />
+          <End Role="ReportConference" Type="Self.ReportConference" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Conference">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="ReportConference">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ConferenceId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -859,13 +859,13 @@
         </EntityType>
         <Association Name="FK_ReportConference_Conference">
           <End Type="NetworkContext.Conference" Role="Conference" Multiplicity="1" />
-          <End Type="NetworkContext.ReportConference" Role="ReportConference" Multiplicity="0..1" />
+          <End Type="NetworkContext.ReportConference" Role="ReportConference" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Conference">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="ReportConference">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ConferenceId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>

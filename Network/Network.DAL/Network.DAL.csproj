@@ -124,6 +124,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelEntities.edmx</DependentUpon>
     </Compile>
+    <Compile Include="EFModel\ReportConference.cs">
+      <DependentUpon>ModelEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="EFModel\sysdiagrams.cs">
       <DependentUpon>ModelEntities.tt</DependentUpon>
     </Compile>
@@ -134,6 +137,7 @@
     <Compile Include="Interfaces\IConference.cs" />
     <Compile Include="Interfaces\IImage.cs" />
     <Compile Include="Interfaces\IListenerConference.cs" />
+    <Compile Include="Interfaces\IReportConference.cs" />
     <Compile Include="Interfaces\IUser.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -141,6 +145,7 @@
     <Compile Include="Repositories\ConferenceRepository.cs" />
     <Compile Include="Repositories\ImageRepository.cs" />
     <Compile Include="Repositories\ListenerConfRepository.cs" />
+    <Compile Include="Repositories\ReportConferenceRepository.cs" />
     <Compile Include="Repositories\RepositoryBase.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>

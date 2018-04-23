@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Network.DAL.EFModel;
+using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Network.DAL.Interfaces
 {
-    interface IReportConference
+    public interface IReportConference
     {
+        void Add(ReportConference report);
+        ReportConference Find(Guid id);
+
+        IQueryable<ReportConference> GetReportForConference(Guid confId);
     }
 }

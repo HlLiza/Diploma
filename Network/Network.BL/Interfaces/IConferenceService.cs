@@ -1,6 +1,7 @@
 ﻿using Network.DAL.EFModel;
 using System;
 using System.Linq;
+using System.Web;
 
 namespace Network.BL.Interfaces
 {
@@ -9,6 +10,7 @@ namespace Network.BL.Interfaces
         bool UserIsMember(Guid confId, Guid userId);
         IQueryable<Conference> GetConfIndex();
         IQueryable<Conference> CheckVisibleConf(IQueryable<Conference> list);
+        byte[] ConvertFile(HttpPostedFileBase file);
         //void AddCovference(Conference conf);
         //Conference GetConferenceById(Guid id);
         //IQueryable<Guid> GetConferenceList();
