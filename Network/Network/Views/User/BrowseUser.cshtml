@@ -5,28 +5,78 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<div class="row menu-page ">
+    <div class="align-item-menu">
+        <div id="allId" onclick="brows('@Url.Action("GetAllUsers", "User")')" class="item-menu text-menu-page hover" style="padding-right: 30px;">ВСЕ ПОЛЬЗОВАТЕЛИ</div>
+        <div id="leadId" onclick="brows('@Url.Action("GetLead", "User")')" class="item-menu text-menu-page hover" style="padding-right: 30px;">РУКОВОДИТЕЛИ ГРУПП</div>
+        <div id="memberId" onclick="brows('@Url.Action("GetMemberGroup", "User")')" class="item-menu text-menu-page hover" style="padding-right: 30px;">УЧАСТНИКИ ГРУПП</div>
+    </div>
+</div>
 
 
 <div class="container">
-    <ul class="nav navbar-nav">
-        <li onclick="brows('@Url.Action("GetAllUsers", "User")')"><a href="#">Все пользователи<span style="font-size: 16px;" class="pull-right hidden-xs showopacity glyphicon"></span></a></li>
-        <li onclick="brows('@Url.Action("GetLead", "User")')"><a href="#">Руководители групп<span style="font-size: 16px;" class="pull-right hidden-xs showopacity glyphicon"></span></a></li>
-        <li onclick="brows('@Url.Action("GetMemberGroup", "User")')"><a href="#">Участники групп<span style="font-size: 16px;" class="pull-right hidden-xs showopacity glyphicon"></span></a></li>
-
-    </ul>
+    <div id="result">
+    </div>
 </div>
 
-        <div class="jumbotron  container-show">
-            <div id="result">
-            </div>
-        </div>
 
 
-        <script>
-            function brows(url) {
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#allId').click();
+
+
+            $('#addConfId').click(function () {
+                var url = $('#openModalAddConf').data('url');
                 $.get(url,
                     function (data) {
-                        $('#result').html(data);
+                        $('#addContainer').html(data);
+
+                        $('#openModalAddConf').modal('show');
                     });
-            }
-        </script>
+            });
+
+            function openModal(element) {
+                var url = $(element).data('url');
+                $.get(url,
+                    function (data) {
+                        $('#listContainer').html(data);
+
+                        $('#openModalGetList').modal('show');
+                    });
+
+            };
+
+        });
+        function brows(url) {
+            $.get(url,
+                function (data) {
+                    $('#result').html(data);
+                });
+        }
+
+         //$("#leadId").click(function () {
+            //    $("#allId").removeClass("hover");
+            //    $("#memberId").removeClass("hover");
+
+            //});
+
+            //$("#memberId").click(function () {
+            //    $("#allId").removeClass("hover");
+            //    $("#leadId").removeClass("hover");
+
+            //});
+
+            //$("#allId").click(function () {
+            //    $("#allId").addClass("hover");
+            //});
+
+
+    </script>
+}
+
+
+
