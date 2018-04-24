@@ -11,7 +11,8 @@ namespace Network.DAL.EFModel
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Conference
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -24,6 +25,8 @@ namespace Network.DAL.EFModel
     
         public System.Guid Id { get; set; }
         public string Thema { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> Date { get; set; }
         public string Direction { get; set; }
         public string Details { get; set; }

@@ -128,7 +128,7 @@
     <script type="text/javascript">
 
         $('#addConfId').click(function () {
-                            var url = $('#openModalAddConf').data('url');
+            var url = $('#openModalAddConf').data('url');
             $.get(url,
                 function (data) {
                     $('#addContainer').html(data);
@@ -152,29 +152,5 @@
 }
 
 
-
-
-
-    @*@section Scripts{
-            <script type="text/javascript">
-                document.ready = (function () {
-
-                    $('#addConferModal').click(function () {
-                        var url = $('#addConferenceModal').data('url');
-
-                        $.get(url,
-                            function (data) {
-                                $('#addConferenceModal').html(data);
-
-                                $('#addConferenceModal').modal('show');
-                            });
-                    });
-
-
-
-
-                });
-            </script>
-        }*@
 
 

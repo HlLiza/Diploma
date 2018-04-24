@@ -4,7 +4,6 @@ using Network.DAL.EFModel;
 using Network.Views.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Web.Mvc;
 
 namespace Network.Controllers
@@ -174,9 +173,23 @@ namespace Network.Controllers
         [Authorize(Roles = "secretary")]
         public ActionResult GetListOfMembers(Guid confId)
         {
-            List<UserAtConference> list = new List<UserAtConference>();
-
-            return PartialView("_GetListOfListener", list);
+            List<UserAtConference> result = new List<UserAtConference>();
+            var membersId = _conferencService.GetMembersList(confId);
+            var data = _userService.GetUsersByListId(membersId);
+            foreach (var item in data)
+            {
+                UserAtConference user = new UserAtConference
+                {
+                    Id = item.Id,
+                    Name = item.Name,
+                    Surname = item.Surname,
+                    Direction = item.Direction
+                };
+                if (item.Image != null)
+                    user.Image = item.Image;
+                result.Add(user);
+            }
+            return PartialView("_GetListOfMember", result);
         }
 
 

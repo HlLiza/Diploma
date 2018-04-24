@@ -14,7 +14,8 @@ namespace Network.DAL.Interfaces
 
         void JoinToConference(MembersOfConference member);
         void GoOut(Guid id);
-
+        IQueryable<Guid> GetListMembersId(Guid confId);
+        MembersOfConference GetMembership(Guid confId);
         //IQueryable<MembersOfConference> CheckMember(Guid userId, Guid conferenceId);
 
         //IQueryable<Guid> GetMembersIdByConferenceId(Guid id);
@@ -23,7 +24,7 @@ namespace Network.DAL.Interfaces
 
         //IQueryable<Guid> GetConferIdList(Guid memberId);
 
-        MembersOfConference GetMembership(Guid confId);
+
 
 
     }

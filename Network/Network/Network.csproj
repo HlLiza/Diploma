@@ -477,6 +477,7 @@
     <Content Include="Views\User\_EditAducation.cshtml" />
     <Content Include="Views\User\_EditPersInfo.cshtml" />
     <Content Include="Views\User\_AddAducation.cshtml" />
+    <Content Include="Views\Conference\_GetListOfMember.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

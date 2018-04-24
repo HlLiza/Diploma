@@ -26,16 +26,9 @@ namespace Network.BL.WebServices
             _reportRepository = reportRepository;
         }
 
-
-
-        public bool UserIsMember(Guid confId, Guid userId)
-        {
-            var membership = _conferRepository.GetMembership(confId);
-            if (membership!=null && membership.UserId == userId)
-                return true;
-            else return false;
-        }
-
+        
+        //conference
+       
         public IQueryable<Conference> GetConfIndex()
         {
             var list = _conferRepository.GetAll();
@@ -60,8 +53,29 @@ namespace Network.BL.WebServices
             return null;          
         }
 
+        public void AddCovference(Conference conf)
+        {
+            if (conf != null)
+            {
+                conf.Id = Guid.NewGuid();
+                conf.Visibility = true;
+                _conferRepository.Add(conf);
+            }
+        }
 
+        //public Conference GetConferenceById(Guid id)
+        //{
+        //    if (id != null)
+        //    {
+        //        var conf = _conferRepository.Find(id);
+        //        return conf;
+        //    }
+        //    else return null;
+
+        //}
         //listener
+
+
         public void AddListener(Guid listenerId, Guid confId)
         {
             ListenerConfer listener = new ListenerConfer()
@@ -97,27 +111,65 @@ namespace Network.BL.WebServices
             return null;
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-        public void AddCovference(Conference conf)
+        //member
+        public void AddMembersToConference(MembersOfConference member, ReportConference text)
         {
-            if (conf != null)
+            if (member != null && text != null)
             {
-                conf.Id = Guid.NewGuid();
-                conf.Visibility = true;
-                _conferRepository.Add(conf);
+                member.Id = Guid.NewGuid();
+                _conferRepository.JoinToConference(member);
+                text.Id = Guid.NewGuid();
+                _reportRepository.Add(text);
+
             }
         }
+
+        public byte[] ConvertFile(HttpPostedFileBase file)
+        {
+            if (file != null)
+            {
+                byte[] result = new byte[file.ContentLength];
+                file.InputStream.Read(result, 0, result.Length);
+                return result;
+            }
+            return null;           
+        }
+        
+        public bool UserIsMember(Guid confId, Guid userId)
+        {
+            var membership = _conferRepository.GetMembership(confId);
+            if (membership != null && membership.UserId == userId)
+                return true;
+            else return false;
+        }
+
+        public IQueryable<Guid> GetMembersList(Guid confId)
+        {
+            if (confId != null)
+            {
+                var conf = _conferRepository.Find(confId);
+                if (conf != null)
+                {
+                    var listId = _conferRepository.GetListMembersId(conf.Id);
+                    return listId;
+                }
+            }
+            return null;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         public Conference GetConferenceById(Guid id)
         {
@@ -149,18 +201,7 @@ namespace Network.BL.WebServices
             return list;
         }
 
-        public void AddMembersToConference(MembersOfConference member,ReportConference text)
-        {
-            if (member != null && text!=null)
-            {
-                member.Id = Guid.NewGuid();
-                _conferRepository.JoinToConference(member);
-                text.Id = Guid.NewGuid();
-                _reportRepository.Add(text);
-                
-            }
-        }
-
+        
         //public void RemoveMembers(MembersOfConference member)
         //{
         //    if (member != null)
@@ -170,13 +211,7 @@ namespace Network.BL.WebServices
         //}
 
 
-        public byte[] ConvertFile(HttpPostedFileBase file)
-        {
-            byte[] result = new byte[file.ContentLength];
-            file.InputStream.Read(result, 0, result.Length);
-            return result;
-        }
-
+        
     
 
 

@@ -57,7 +57,11 @@ namespace Network.DAL.Repositories
             Save();
         }
 
-        
+        public IQueryable<Guid> GetListMembersId(Guid confId)
+        {
+            var list = _context.MembersOfConference.Where(s => s.ConferenceId == confId).Select(s => s.UserId);
+            return list;
+        }
     }
 }
 
@@ -85,11 +89,7 @@ namespace Network.DAL.Repositories
 
 
 
-//public IQueryable<Guid> GetMembersIdByConferenceId(Guid id)
-//{
-//    var list = _context.MembersOfConference.Where(s => s.ConferenceId == id).Select(s => s.UserId);
-//    return list; 
-//}
+
 
 
 
