@@ -56,12 +56,13 @@ namespace Network.Controllers
                         confer.Id = item.Id;
                         confer.Thema = item.Thema;
                         confer.Date = Convert.ToDateTime(item.Date);
-                        confer.MemberConferenceStatus =true;
+                        confer.MemberConferenceStatus = true;
                         model.Add(confer);
 
                     }
                 }
             }
+            
 
             return View(model);
         }
@@ -98,8 +99,24 @@ namespace Network.Controllers
 
         public ActionResult OpenConference(Guid confId)
         {
+            var userId = _userService.GetIdByAspId(User.Identity.GetUserId());
             var conference = _conferencService.GetConferenceById(confId);
-            return View(conference);
+            OpenConferenceViewModel model = new OpenConferenceViewModel()
+            {
+                Id = conference.Id,
+                Thema = conference.Thema,
+                Date = Convert.ToDateTime(conference.Date),
+                Details = conference.Details,
+                Direction=conference.Direction,
+             };
+            model.MemberConferenceStatus = false;
+            if (!User.IsInRole("secretary"))
+            {
+                model.MemberConferenceStatus = _conferencService.UserIsMember(model.Id, userId);
+            }
+
+           
+            return View(model);
         }
 
         [System.Web.Mvc.Authorize(Roles = "group_member")]
@@ -143,7 +160,7 @@ namespace Network.Controllers
         }
 
 
-        //[Authorize(Roles = "secretary")]
+        [Authorize(Roles = "secretary")]
         public ActionResult GetListOfListener(Guid confId)
         {
             List<UserAtConference> result = new List<UserAtConference>();

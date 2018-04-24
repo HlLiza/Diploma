@@ -29,5 +29,16 @@ namespace Network.Views.ViewModels
         public string Author { get; set; }
         public HttpPostedFileBase ReportText { get; set; }
     }
+
+    public class OpenConferenceViewModel
+    {
+        public Guid Id { get; set; }
+        public string Thema { get; set; }
+        public string Direction { get; set; }
+        public DateTime Date { get; set; }
+        public bool MemberConferenceStatus { get; set; }
+        public string Details { get; set; }
+       
+    }
     
 }

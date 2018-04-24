@@ -1,9 +1,7 @@
-﻿@model Network.DAL.EFModel.Conference
+﻿@model Network.Views.ViewModels.OpenConferenceViewModel
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-
 
 <div class="body-background">
 
@@ -13,10 +11,12 @@
             <div class="item-menu text-menu-page" style="padding-right: 30px;">
                 @Html.DisplayFor(m => m.Date, "{0:MM/dd/yy}")
             </div>
-            <div id="takeId" style="color:white;" class="item-menu item-icon fa fa-plus hover "><span class="text-menu-page">регистрация</span></div>
+            @if (!User.IsInRole("secretary") && !Model.MemberConferenceStatus)
+            {
+                <div id="takeId" style="color:white;" class="item-menu item-icon fa fa-plus hover "><span class="text-menu-page">регистрация</span></div>
+            }
 
-
-            <div class="item-menu text-menu-page" style="margin-left: 650px;">@Html.DisplayFor(model => model.Direction)</div>
+            <div class="item-menu text-menu-page" style="margin-left: 400px;">@Html.DisplayFor(model => model.Direction)</div>
                 
             </div>
 
