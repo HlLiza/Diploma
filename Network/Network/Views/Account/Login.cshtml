@@ -3,14 +3,20 @@
 <h2>@ViewBag.Title</h2>
 
 
-@using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null))
-{
-    @Html.AntiForgeryToken()
 
     <div class="panel-form">
         <div class="panel-heading">
             <div class="title-head">ВХОД</div>
         </div>
+
+        <button class="buttonGoogle GoogleConnectButton active">Войти через Google</button>
+
+
+
+@using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null))
+{
+    @Html.AntiForgeryToken()
+
 
             @Html.ValidationSummary("", new { @class = "text-danger" })
             <div class="panel-body panel-body-reg style-text">
@@ -44,6 +50,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-}
+    }
+</div>
 

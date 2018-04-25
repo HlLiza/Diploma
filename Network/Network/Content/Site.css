@@ -300,6 +300,11 @@ img {
     object-fit: cover;
 }
 
+.buttonGoogle {
+    margin-left: 130px;
+    margin-top: 20px;
+}
+
 
 /*for input file*/
 /*#customFile .custom-file-control:lang(ru)::after {
