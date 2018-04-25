@@ -275,10 +275,29 @@ img {
 
 /*for browse user*/
 .box-user {
-
     overflow-y: auto;
-    /*overflow-x:hidden;*/
     height: 100%;
+}
+
+.active-item-menu {
+    background-color: #808080;
+    height: inherit;
+    height: 50px;
+    cursor: pointer;
+}
+
+#result {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: calc(100vh - 270px);
+}
+.item-user {
+    height:250px;
+}
+.user-img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
 }
 
 

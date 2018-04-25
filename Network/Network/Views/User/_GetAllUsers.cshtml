@@ -3,57 +3,40 @@
 
 @if (Model != null)
 {
-    @*<div class="box-user">*@
-    //foreach (var item in Model)
-    //{
-        <div class="row">
-            <div class="col-4">
-                @if (Model.First().Image != null)
+    foreach (var item in Model)
+    {
+        <div class="row item-user">
+            <div class="col-md-3">
+                @if (item.Image != null)
                 {
-                    <div class="sml-image">
-                        <img src="data:image/png;base64, @Convert.ToBase64String(Model.First().Image)" />
+                    <div>
+                        <img class="user-img" src="data:image/png;base64, @Convert.ToBase64String(item.Image)" />
                     </div>
                 }
                 else
                 {
-                    <div class="sml-image">
-                        <img class="size" src="@Url.Content("~/Content/Pictures/default.jpeg")" alt="">
+                    <div >
+                        <img class="user-img" src="@Url.Content("~/Content/Pictures/default.jpeg")" alt="">
                     </div>
                 }
             </div>
             <div class="col-md-4">
-                @Html.DisplayFor(modelItem => Model.First().Name)
-                @Html.DisplayFor(modelItem => Model.First().Surname)
+                @Html.DisplayFor(modelItem => item.Name)
+                @Html.DisplayFor(modelItem => item.Surname)
             </div>
             <div class="col-md-4">
-                @Html.DisplayFor(modelItem => Model.First().Direction)
+                @Html.DisplayFor(modelItem => item.Direction)
             </div>
         </div>
         <br />
-    //}
-        @*</div>*@
+    }
+}
+else
+{
+<div class="body-background">
+    <div class="secretary">
+        CПИСОК ПОЛЬЗОВАТЕЛЕЙ ПУСТ!
+    </div>
+</div>
+}
 
-        }
-        else
-        {
-        <div class="body-background">
-            <div class="secretary">
-                CПИСОК ПОЛЬЗОВАТЕЛЕЙ ПУСТ!
-            </div>
-        </div>
-        }
-
-
-        @*<div class="row">
-                @if (item.Image != null)
-                {
-                    <div class="col-lg-6">
-                        <img class="image" src="data:image/png;base64, @Convert.ToBase64String(item.Image)" />
-                    </div>
-                }
-                <div class="col-md-5">
-                    @Html.DisplayFor(modelItem => item.Name)
-                </div>
-            </div>
-                <hr />*@
-        @*  }*@

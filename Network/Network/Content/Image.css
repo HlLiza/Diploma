@@ -13,15 +13,6 @@
     margin-top: -2%;
 }
 
-.sml-image {
-    height: 200px;
-    width: 190px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.5); /* Параметры тени */
-    border-radius: 6px;
-    position: absolute;
-    margin-left: 180px;
-    margin-top: -2%;
-}
 
 .item-image {
     height: 138px;
@@ -53,16 +44,16 @@
     cursor: default;
 }
 
-    .hovereffect .overlay {
-        height: 280px;
-        width: 242px;
-        position: absolute;
-        overflow: hidden;
-        top: 0;
-        left: 0;
-        -webkit-transition: all 0.4s ease-in-out;
-        transition: all 0.4s ease-in-out;
-    }
+.hovereffect .overlay {
+    height: 280px;
+    width: 242px;
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    -webkit-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+}
 
     .hovereffect:hover .overlay {
         background-color: rgba(170,170,170,0.4);
