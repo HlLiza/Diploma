@@ -87,10 +87,13 @@
                             </div>
                         </div>
                     </div>
-
-                    @*<div id="aducInfo" class="hid">
-                        @Html.Partial("_AducationInfo", Model.Aducation)
-                    </div>*@
+                    @if (Model.Aducation.Count()>0)
+                    {
+                        <div id="aducInfo" class="hid">
+                            @Html.Partial("_AducationInfo", Model.Aducation)
+                        </div>
+                    }
+                    
                 </div>
             </div>
         </div>

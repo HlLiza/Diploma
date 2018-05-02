@@ -12,7 +12,7 @@
 
     <div class="panel-form">
         <div class="panel-heading">
-            <div class="title-head">ДОБАВЬТЕ ИНФОРМАЦИЮ</div>
+            <div class="title-head">ДОБАВЬТЕ</div>
         </div>
         
 
@@ -40,7 +40,7 @@
                                 <input type="text" class="input-add-info" name="Direction" placeholder="Направление" />
                             </div>
 
-                            <input type="button" name="next" id="nextBtn" class="next button-large btn-finish" style="margin-bottom:5px;" value="Далее" onclick="nextPrev(1)" />
+                            <input type="button" name="next" id="nextBtn" class="next btn button-large btn-default" style="margin-bottom:5px;" value="Далее" onclick="nextPrev(1)" />
                         </div>
                     </div>
                 </div>
@@ -57,19 +57,19 @@
 
                             <div class="form-group container">
                                 <div class="row">
-                                    <div class="col-md-6 col-lg-6 col-xs-6 col-sm-6 col-6 ">
+                                    <div class="col-md-5 col-lg-5 col-xs-5 col-sm-5 col-5">
                                         @Html.DropDownListFor(model => model.StartYear, Enumerable.Range(1950, DateTime.Now.Year - 1950 + 1).Select(x => new SelectListItem() { Value = x.ToString(), Text = x.ToString() }), "Год начала", new { @class = "input-add-info year" })
                                     </div>
-                                    <div class="col-md-6 col-lg-6 col-xs-6 col-sm-6 col-6">
-                                        @Html.DropDownListFor(model => model.GradYear, Enumerable.Range(DateTime.Now.Year, DateTime.Now.Year - 2006 + 1).Select(x => new SelectListItem() { Value = x.ToString(), Text = x.ToString() }), "Год завершения", new { @class = "input-add-info year" })
+                                    <div class="col-md-7 col-lg-7 col-xs-7 col-sm-7 col-7">
+                                        @Html.DropDownListFor(model => model.GradYear, Enumerable.Range(1950, DateTime.Now.Year - 1950 + 1).Select(x => new SelectListItem() { Value = x.ToString(), Text = x.ToString() }), "Год завершения", new { @class = "input-add-info year" })
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <input type="button" name="previous" id="prevBtn" class="previous next button-large btn-finish" value="Назад" onclick="nextPrev(-1)" />
+                                <input type="button" name="previous" id="prevBtn" class="previous next button-large btn-default btn" value="Назад" onclick="nextPrev(-1)" />
 
-                                <input type="submit" name="next" class="next button-large btn-finish" value="ОК" />
+                                <input type="submit" name="next" class="next button-large btn-default btn" value="ОК" />
 
                             </div>
                         </div>

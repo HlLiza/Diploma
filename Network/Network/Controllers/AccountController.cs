@@ -368,7 +368,6 @@ namespace Network.Controllers
             {
                 case SignInStatus.Success:
                     return RedirectToAction("Index", "User");
-                //return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -427,14 +426,9 @@ namespace Network.Controllers
                             Surname =data[1],
                             Name = data[0]
                         };
-
-
                       
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                         return RedirectToLocal(Url.Action("AddUser", "User", us));
-                            //("AddUser", "User", us);
-                        //return RedirectToAction(Url.Action("AddUser", "User", us));
-                            //("AddUser","User",us);
 
                     }
                 }
