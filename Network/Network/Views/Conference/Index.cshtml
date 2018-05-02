@@ -28,16 +28,16 @@
             <div class="row data-index-list-events item">
                 @if (User.IsInRole("group_member"))
                 {
-                    <div class="col-md-1 icon">
+                    <div class="col-md-1">
                         @if (item.MemberConferenceStatus)
                         {
-                            <span class=" ion-clipboard"></span>
+                            <span class="octicon-checklist"></span>
                         }
-                        @*else
+                        else
                         {
-                            <img class="icon" src="@Url.Content("~/Content/Pictures/noConf.png")" />
+                            <span class="octicon-checklist"></span>
 
-                        }*@
+                        }
                     </div>
                 }
                

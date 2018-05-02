@@ -93,7 +93,7 @@ body {
 
 .text-menu-page {
     color: white;
-    font-size: 20px;
+    font-size: 18px;
     font-family: 'Helvetica';
 }
 .item-menu {
@@ -304,6 +304,26 @@ img {
     margin-left: 130px;
     margin-top: 20px;
 }
+
+.linkForDowload {
+    color: white;
+    font-size: 36px;
+    text-align: center;
+}
+a .linkForDowload {
+    padding-left:35%;
+}
+.form-details {
+    color: white;
+    word-wrap: break-word;
+}
+
+/*.hover-reg-conf:hover {
+    background-color: #808080;
+    height: 40px;
+    cursor: pointer;
+    margin-bottom:22px;
+}*/
 
 
 /*for input file*/
