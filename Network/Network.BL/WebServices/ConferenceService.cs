@@ -63,6 +63,7 @@ namespace Network.BL.WebServices
             }
         }
 
+
         //public Conference GetConferenceById(Guid id)
         //{
         //    if (id != null)

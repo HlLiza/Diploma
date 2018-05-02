@@ -55,6 +55,18 @@ namespace Network.BL.WebServices
             return imageData;
         }
 
+        //public HttpPostedFileBase ConvertInHttpPosted(byte[] file)
+        //{
+        //    HttpPostedFileBase result = null;
+        //    if (file.Count() > 0)
+        //    {
+        //        result = new HttpPostedFileBase(file);
+
+
+        //    }
+
+        //    return result;
+        //}
 
         public void UpdateUser(User user)
         {

@@ -29,12 +29,12 @@
         <AssociationConnector Association="NetworkContext.FK_User_AspNetUsers" />
         <AssociationConnector Association="NetworkContext.FK_MembersOfConference_User" />
         <AssociationConnector Association="NetworkContext.FK_MembersOfGroup_User1" />
-        <EntityTypeShape EntityType="NetworkContext.Conference" Width="1.5" PointX="9.875" PointY="9" />
-        <AssociationConnector Association="NetworkContext.FK_MembersOfConference_Conference" />
         <EntityTypeShape EntityType="NetworkContext.ListenerConfer" Width="1.5" PointX="15.625" PointY="6.625" />
-        <AssociationConnector Association="NetworkContext.FK_ListenerConfer_Conference" />
         <AssociationConnector Association="NetworkContext.FK_ListenerConfer_User" />
         <EntityTypeShape EntityType="NetworkContext.ReportConference" Width="1.5" PointX="9.875" PointY="12.5" />
+        <EntityTypeShape EntityType="NetworkContext.Conference" Width="1.5" PointX="1.875" PointY="9.125" />
+        <AssociationConnector Association="NetworkContext.FK_ListenerConfer_Conference" />
+        <AssociationConnector Association="NetworkContext.FK_MembersOfConference_Conference" />
         <AssociationConnector Association="NetworkContext.FK_ReportConference_Conference" />
         </Diagram>
     </edmx:Diagrams>

@@ -65,21 +65,21 @@
       <End Role="User" EntitySet="User" />
       <End Role="MembersOfGroup" EntitySet="MembersOfGroup" />
     </AssociationSet>
-    <EntitySet Name="Conference" EntityType="NetworkContext.Conference" />
-    <AssociationSet Name="FK_MembersOfConference_Conference" Association="NetworkContext.FK_MembersOfConference_Conference">
-      <End Role="Conference" EntitySet="Conference" />
-      <End Role="MembersOfConference" EntitySet="MembersOfConference" />
-    </AssociationSet>
     <EntitySet Name="ListenerConfer" EntityType="NetworkContext.ListenerConfer" />
-    <AssociationSet Name="FK_ListenerConfer_Conference" Association="NetworkContext.FK_ListenerConfer_Conference">
-      <End Role="Conference" EntitySet="Conference" />
-      <End Role="ListenerConfer" EntitySet="ListenerConfer" />
-    </AssociationSet>
     <AssociationSet Name="FK_ListenerConfer_User" Association="NetworkContext.FK_ListenerConfer_User">
       <End Role="User" EntitySet="User" />
       <End Role="ListenerConfer" EntitySet="ListenerConfer" />
     </AssociationSet>
     <EntitySet Name="ReportConference" EntityType="NetworkContext.ReportConference" />
+    <EntitySet Name="Conference" EntityType="NetworkContext.Conference" />
+    <AssociationSet Name="FK_ListenerConfer_Conference" Association="NetworkContext.FK_ListenerConfer_Conference">
+      <End Role="Conference" EntitySet="Conference" />
+      <End Role="ListenerConfer" EntitySet="ListenerConfer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MembersOfConference_Conference" Association="NetworkContext.FK_MembersOfConference_Conference">
+      <End Role="Conference" EntitySet="Conference" />
+      <End Role="MembersOfConference" EntitySet="MembersOfConference" />
+    </AssociationSet>
     <AssociationSet Name="FK_ReportConference_Conference" Association="NetworkContext.FK_ReportConference_Conference">
       <End Role="Conference" EntitySet="Conference" />
       <End Role="ReportConference" EntitySet="ReportConference" />
@@ -361,32 +361,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityType Name="Conference">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Guid" Nullable="false" />
-    <Property Name="Thema" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="Date" Type="DateTime" Precision="3" />
-    <Property Name="Direction" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Visibility" Type="Boolean" />
-    <NavigationProperty Name="MembersOfConference" Relationship="NetworkContext.FK_MembersOfConference_Conference" FromRole="Conference" ToRole="MembersOfConference" />
-    <NavigationProperty Name="ListenerConfer" Relationship="NetworkContext.FK_ListenerConfer_Conference" FromRole="Conference" ToRole="ListenerConfer" />
-    <NavigationProperty Name="ReportConference" Relationship="NetworkContext.FK_ReportConference_Conference" FromRole="Conference" ToRole="ReportConference" />
-  </EntityType>
-  <Association Name="FK_MembersOfConference_Conference">
-    <End Type="NetworkContext.Conference" Role="Conference" Multiplicity="1" />
-    <End Type="NetworkContext.MembersOfConference" Role="MembersOfConference" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Conference">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="MembersOfConference">
-        <PropertyRef Name="ConferenceId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityType Name="ListenerConfer">
     <Key>
       <PropertyRef Name="Id" />
@@ -394,21 +368,9 @@
     <Property Name="Id" Type="Guid" Nullable="false" />
     <Property Name="ConferenceId" Type="Guid" Nullable="false" />
     <Property Name="UserId" Type="Guid" Nullable="false" />
-    <NavigationProperty Name="Conference" Relationship="NetworkContext.FK_ListenerConfer_Conference" FromRole="ListenerConfer" ToRole="Conference" />
     <NavigationProperty Name="User" Relationship="NetworkContext.FK_ListenerConfer_User" FromRole="ListenerConfer" ToRole="User" />
+    <NavigationProperty Name="Conference" Relationship="NetworkContext.FK_ListenerConfer_Conference" FromRole="ListenerConfer" ToRole="Conference" />
   </EntityType>
-  <Association Name="FK_ListenerConfer_Conference">
-    <End Type="NetworkContext.Conference" Role="Conference" Multiplicity="1" />
-    <End Type="NetworkContext.ListenerConfer" Role="ListenerConfer" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Conference">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ListenerConfer">
-        <PropertyRef Name="ConferenceId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_ListenerConfer_User">
     <End Type="NetworkContext.User" Role="User" Multiplicity="1" />
     <End Type="NetworkContext.ListenerConfer" Role="ListenerConfer" Multiplicity="*" />
@@ -432,6 +394,46 @@
     <Property Name="Extension" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Conference" Relationship="NetworkContext.FK_ReportConference_Conference" FromRole="ReportConference" ToRole="Conference" />
   </EntityType>
+  <EntityType Name="Conference">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Thema" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <Property Name="Direction" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Visibility" Type="Boolean" />
+    <Property Name="Requirements" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="ListenerConfer" Relationship="NetworkContext.FK_ListenerConfer_Conference" FromRole="Conference" ToRole="ListenerConfer" />
+    <NavigationProperty Name="MembersOfConference" Relationship="NetworkContext.FK_MembersOfConference_Conference" FromRole="Conference" ToRole="MembersOfConference" />
+    <NavigationProperty Name="ReportConference" Relationship="NetworkContext.FK_ReportConference_Conference" FromRole="Conference" ToRole="ReportConference" />
+  </EntityType>
+  <Association Name="FK_ListenerConfer_Conference">
+    <End Type="NetworkContext.Conference" Role="Conference" Multiplicity="1" />
+    <End Type="NetworkContext.ListenerConfer" Role="ListenerConfer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Conference">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ListenerConfer">
+        <PropertyRef Name="ConferenceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MembersOfConference_Conference">
+    <End Type="NetworkContext.Conference" Role="Conference" Multiplicity="1" />
+    <End Type="NetworkContext.MembersOfConference" Role="MembersOfConference" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Conference">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MembersOfConference">
+        <PropertyRef Name="ConferenceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_ReportConference_Conference">
     <End Type="NetworkContext.Conference" Role="Conference" Multiplicity="1" />
     <End Type="NetworkContext.ReportConference" Role="ReportConference" Multiplicity="*" />

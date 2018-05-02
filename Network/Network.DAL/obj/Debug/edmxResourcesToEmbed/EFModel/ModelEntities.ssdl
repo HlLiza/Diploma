@@ -91,6 +91,8 @@
     <Property Name="Direction" Type="nvarchar" MaxLength="500" />
     <Property Name="Details" Type="nvarchar(max)" />
     <Property Name="Visibility" Type="bit" />
+    <Property Name="Requirements" Type="varbinary(max)" />
+    <Property Name="Image" Type="varbinary(max)" />
   </EntityType>
   <EntityType Name="Group">
     <Key>

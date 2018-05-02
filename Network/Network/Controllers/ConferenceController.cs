@@ -4,6 +4,7 @@ using Network.DAL.EFModel;
 using Network.Views.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Web;
 using System.Web.Mvc;
 
 namespace Network.Controllers
@@ -99,7 +100,6 @@ namespace Network.Controllers
 
         public ActionResult OpenConference(Guid confId)
         {
-            var userId = _userService.GetIdByAspId(User.Identity.GetUserId());
             var conference = _conferencService.GetConferenceById(confId);
             OpenConferenceViewModel model = new OpenConferenceViewModel()
             {
@@ -108,15 +108,26 @@ namespace Network.Controllers
                 Date = Convert.ToDateTime(conference.Date),
                 Details = conference.Details,
                 Direction=conference.Direction,
-             };
+                Image=conference.Image,
+                Requirements=conference.Requirements
+            };
             model.MemberConferenceStatus = false;
             if (!User.IsInRole("secretary"))
             {
+                var userId = _userService.GetIdByAspId(User.Identity.GetUserId());
                 model.MemberConferenceStatus = _conferencService.UserIsMember(model.Id, userId);
             }
 
            
             return View(model);
+        }
+
+        public FileResult DownloadRequirements(Guid confId)
+        {
+            var conference = _conferencService.GetConferenceById(confId);
+            byte[] requirements = conference.Requirements;
+            string fileName = "Требования "+conference.Thema+".pdf";
+            return File(requirements, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
         }
 
         [System.Web.Mvc.Authorize(Roles = "group_member")]
@@ -213,17 +224,32 @@ namespace Network.Controllers
         [Authorize(Roles = "secretary")]
         public ActionResult AddConference()
         {
-            var model = new Conference();
+            var model = new ConferenceAddViewModel();
             return View("_CreateConference", model);
         }
 
         [HttpPost]
         [Authorize(Roles = "secretary")]
-        public ActionResult AddConference(Conference model)
+        public ActionResult AddConference(ConferenceAddViewModel model)
         {
             if (model != null)
             {
-                _conferencService.AddCovference(model);
+                Conference conf = new Conference
+                {
+                    Thema = model.Thema,
+                    Date = model.Date,
+                    Direction = model.Direction,
+                    Details = model.Details,
+                    Requirements = null,
+                    Image = null                  
+                };
+
+                if (model.Image!=null)
+                    conf.Image = _userService.СonvertingImg(model.Image);
+                if (model.Requirements!=null)
+                    conf.Requirements = _userService.СonvertingImg(model.Requirements);
+
+                _conferencService.AddCovference(conf);
             }
             return RedirectToAction("Index");
         }

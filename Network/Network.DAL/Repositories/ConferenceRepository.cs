@@ -62,6 +62,9 @@ namespace Network.DAL.Repositories
             var list = _context.MembersOfConference.Where(s => s.ConferenceId == confId).Select(s => s.UserId);
             return list;
         }
+
+       
+
     }
 }
 

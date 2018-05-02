@@ -148,18 +148,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Conference">
-      <EntityTypeMapping TypeName="NetworkContext.Conference">
-        <MappingFragment StoreEntitySet="Conference">
-          <ScalarProperty Name="Visibility" ColumnName="Visibility" />
-          <ScalarProperty Name="Details" ColumnName="Details" />
-          <ScalarProperty Name="Direction" ColumnName="Direction" />
-          <ScalarProperty Name="Date" ColumnName="Date" />
-          <ScalarProperty Name="Thema" ColumnName="Thema" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="ListenerConfer">
       <EntityTypeMapping TypeName="NetworkContext.ListenerConfer">
         <MappingFragment StoreEntitySet="ListenerConfer">
@@ -176,6 +164,20 @@
           <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="Content" ColumnName="Content" />
           <ScalarProperty Name="ConferenceId" ColumnName="ConferenceId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Conference">
+      <EntityTypeMapping TypeName="NetworkContext.Conference">
+        <MappingFragment StoreEntitySet="Conference">
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Requirements" ColumnName="Requirements" />
+          <ScalarProperty Name="Visibility" ColumnName="Visibility" />
+          <ScalarProperty Name="Details" ColumnName="Details" />
+          <ScalarProperty Name="Direction" ColumnName="Direction" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Thema" ColumnName="Thema" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

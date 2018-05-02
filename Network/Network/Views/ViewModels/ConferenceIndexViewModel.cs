@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Web;
 
 namespace Network.Views.ViewModels
@@ -10,6 +11,17 @@ namespace Network.Views.ViewModels
         public DateTime Date { get; set; }
         public bool MemberConferenceStatus { get; set; }
         public bool ListenerConferenceStatus { get; set; }
+    }
+
+    public class ConferenceAddViewModel
+    {
+        public string Thema { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
+        public string Direction { get; set; }
+        public string Details { get; set; }
+        public Nullable<bool> Visibility { get; set; }
+        public HttpPostedFileBase Requirements { get; set; }
+        public HttpPostedFileBase Image { get; set; }
     }
 
     public class UserAtConference
@@ -35,10 +47,14 @@ namespace Network.Views.ViewModels
         public Guid Id { get; set; }
         public string Thema { get; set; }
         public string Direction { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
         public bool MemberConferenceStatus { get; set; }
         public string Details { get; set; }
-       
+        public byte[] Image { get; set; }
+        public byte[] Requirements { get; set; }
+
     }
     
 }

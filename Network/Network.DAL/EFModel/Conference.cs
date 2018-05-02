@@ -11,31 +11,30 @@ namespace Network.DAL.EFModel
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Conference
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Conference()
         {
-            this.MembersOfConference = new HashSet<MembersOfConference>();
             this.ListenerConfer = new HashSet<ListenerConfer>();
+            this.MembersOfConference = new HashSet<MembersOfConference>();
             this.ReportConference = new HashSet<ReportConference>();
         }
     
         public System.Guid Id { get; set; }
         public string Thema { get; set; }
-
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> Date { get; set; }
         public string Direction { get; set; }
         public string Details { get; set; }
         public Nullable<bool> Visibility { get; set; }
+        public byte[] Requirements { get; set; }
+        public byte[] Image { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MembersOfConference> MembersOfConference { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ListenerConfer> ListenerConfer { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MembersOfConference> MembersOfConference { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ReportConference> ReportConference { get; set; }
     }

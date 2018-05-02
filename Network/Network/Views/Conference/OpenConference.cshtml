@@ -5,11 +5,12 @@
 
 <div class="body-background">
 
-    <div class="row menu-page ">
+    <div class="row menu-page">
         <div class="align-item-menu">
             <div class="item-menu text-menu-page" style="padding-right: 30px;">@Html.DisplayFor(model => model.Thema)</div>
             <div class="item-menu text-menu-page" style="padding-right: 30px;">
-                @Html.DisplayFor(m => m.Date, "{0:MM/dd/yy}")
+                
+             @Html.DisplayFor(m => m.Date, "{0:MM/dd/yy}")
             </div>
             @if (!User.IsInRole("secretary") && !Model.MemberConferenceStatus)
             {
@@ -18,13 +19,15 @@
 
             <div class="item-menu text-menu-page" style="margin-left: 400px;">@Html.DisplayFor(model => model.Direction)</div>
                 
-            </div>
+        </div>
 
     </div>
 </div>
 
 <div class="container container-show">
     @Html.DisplayFor(model => model.Details)
+    @*<img src="data:image/png;base64, @Convert.ToBase64String(Model.Image)" />*@
+    <a href="@Url.Action("DownloadRequirements", "Conference",new { confId=Model.Id})"><span>ТРЕБОВАНИЯ</span></a>
 </div>
 
 <div id="openModalJoinToConf" class="modal fade" data-url='@Url.Action("JoinToConference","Conference",new { confId = Model.Id})'>

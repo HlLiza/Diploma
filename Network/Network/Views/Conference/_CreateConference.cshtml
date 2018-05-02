@@ -1,4 +1,4 @@
-﻿@model Network.DAL.EFModel.Conference
+﻿@model Network.Views.ViewModels.ConferenceAddViewModel
 
 <div id="addConfDialog">
     <div class="modal-dialog" style="margin-top:-7%;">
@@ -9,9 +9,9 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body" style="margin:15px 0 10px 20px;">
-                @using (Html.BeginForm("AddConference", "Conference", FormMethod.Post))
+                @using (Html.BeginForm("AddConference", "Conference", FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
-                    <div class="form-group ">
+                    <div class="form-group">
                         <input type="text" typeof="text" class="input-add-info" required name="Thema" placeholder="ТЕМА" />
                     </div>
 
@@ -25,10 +25,19 @@
                     </div>
 
                     <div class="form-group">
+                        <input type="file" class="btn-select " name="Image" id="imageFile" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>ТРЕБОВАНИЯ</label>
+                        <input type="file" class="btn-select " name="Requirements" id="requiremFile" />
+                    </div>
+
+                    <div class="form-group">
                         <textarea type="text" typeof="text" class="input-add-info input-details" required name="Details" placeholder="ДЕТАЛИ" />
                     </div>
 
-                    <input style="margin-left:160px;" type="submit" name="save" class="next button-large btn-finish" value="СОХРАНИТЬ" />
+                    <input style="margin-left:160px;" type="submit" name="save" class="next btn button-large btn-finish" value="СОХРАНИТЬ" />
                 }
             </div>
 
