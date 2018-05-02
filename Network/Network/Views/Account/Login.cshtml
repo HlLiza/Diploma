@@ -1,19 +1,20 @@
-﻿
-@model Network.Models.LoginViewModel
+﻿@model Network.Models.LoginViewModel
+
 <h2>@ViewBag.Title</h2>
 
 
 
-    <div class="panel-form">
-        <div class="panel-heading">
-            <div class="title-head">ВХОД</div>
-        </div>
 
-        <button class="buttonGoogle GoogleConnectButton active">Войти через Google</button>
+<div class="panel-form">
+    <div class="panel-heading">
+        <div class="title-head">ВХОД</div>
+    </div>
+       
+    @Html.Partial("_OAuth")
 
 
 
-@using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null))
+@using (Html.BeginForm("Login", "Account", new { ReturnUrl = Request["ReturnUrl"] }, FormMethod.Post, null))
 {
     @Html.AntiForgeryToken()
 

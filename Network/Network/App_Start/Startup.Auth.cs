@@ -27,6 +27,8 @@ namespace Network
             {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
                 LoginPath = new PathString("/Account/Login"),
+                ReturnUrlParameter = "returnTo",
+                //LogoutPath = new PathString("/Account/SignOut"),
                 Provider = new CookieAuthenticationProvider
                 {
                     // Позволяет приложению проверять метку безопасности при входе пользователя.
@@ -59,11 +61,12 @@ namespace Network
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "75660244237-ejr89em604pacv84nnc3g1rd800rgpn5.apps.googleusercontent.com",
+                ClientSecret = "SVZ48LfKFx10pwEd9c_PWHAp",
+                CallbackPath = new PathString("/signin-google")
+            });
         }
     }
 }

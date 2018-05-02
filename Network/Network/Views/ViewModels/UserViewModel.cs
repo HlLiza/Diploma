@@ -40,6 +40,18 @@ namespace Network.Views.ViewModels
         public int GradYear { get; set; }
     }
 
+    public class StartAddUserViewModel
+    {
+        [DisplayName("Имя")]
+        [Required(ErrorMessage = "Введите свое имя")]
+        public string Name { get; set; }
+
+        [DisplayName("Фамилия")]
+        [Required(ErrorMessage = "Введите свою фамилию")]
+        public string Surname { get; set; }
+    }
+
+
     public class UserListViewModel
     {
         public Guid Id { get; set; }

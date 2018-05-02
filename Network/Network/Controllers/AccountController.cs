@@ -8,6 +8,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Network.Models;
 using Microsoft.Owin.Security.DataProtection;
+using Network.Views.ViewModels;
+using System.Collections.Generic;
 
 namespace Network.Controllers
 {
@@ -38,8 +40,9 @@ namespace Network.Controllers
         //
         // GET: /Account/Login
         [AllowAnonymous]
-        public ActionResult Login()
+        public ActionResult Login(string returnUrl)
         {
+            ViewBag.ReturnUrl = returnUrl;
             return View();
         }
 
@@ -309,7 +312,7 @@ namespace Network.Controllers
         public ActionResult ExternalLogin(string provider, string returnUrl)
         {
             // Запрос перенаправления к внешнему поставщику входа
-            return new ChallengeResult(provider, Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl }));
+            return new ChallengeResult(provider, Url.Action("ExternalLoginCallback", "Account"));
         }
 
         //
@@ -359,15 +362,17 @@ namespace Network.Controllers
             }
 
             // Выполнение входа пользователя посредством данного внешнего поставщика входа, если у пользователя уже есть имя входа
+            //ApplicationUser signedUser = UserManager.FindByEmail(loginInfo.Email);
             var result = await SignInManager.ExternalSignInAsync(loginInfo, isPersistent: false);
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    return RedirectToAction("Index", "User");
+                //return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = false });
+                    return RedirectToAction("SendCode", new {ReturnUrl = returnUrl, RememberMe = false });
                 case SignInStatus.Failure:
                 default:
                     // Если у пользователя нет учетной записи, то ему предлагается создать ее
@@ -397,15 +402,40 @@ namespace Network.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email,IsNewUser=true};
+                    
                 var result = await UserManager.CreateAsync(user);
+                await UserManager.AddToRoleAsync(user.Id, "group_member");
+
                 if (result.Succeeded)
                 {
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);
                     if (result.Succeeded)
                     {
+                        List<string>data = new List<string>();
+
+                        foreach (var item in info.ExternalIdentity.Claims)
+                        {
+                            data.Add(item.Value);
+                        };
+                        data.RemoveAt(0);
+                        data.RemoveAt(2);
+
+
+                        StartAddUserViewModel us = new StartAddUserViewModel
+                        {
+                            Surname =data[1],
+                            Name = data[0]
+                        };
+
+
+                      
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                        return RedirectToLocal(returnUrl);
+                        return RedirectToLocal(Url.Action("AddUser", "User", us));
+                            //("AddUser", "User", us);
+                        //return RedirectToAction(Url.Action("AddUser", "User", us));
+                            //("AddUser","User",us);
+
                     }
                 }
                 AddErrors(result);
@@ -419,7 +449,7 @@ namespace Network.Controllers
         // POST: /Account/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult LogOff()
+        public ActionResult LogOff(string returnUrl)
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("Index", "Home");

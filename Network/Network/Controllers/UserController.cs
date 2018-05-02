@@ -198,18 +198,21 @@ namespace Network.Controllers
 
 
         [Authorize(Roles = "group_member")]
-        public ActionResult AddUser(string id)
+        [HttpGet]
+        public ActionResult AddUser(StartAddUserViewModel data)
         {
-
             AddUserViewModel model = new AddUserViewModel()
             {
-                AspUserId = id
-               
+                AspUserId = User.Identity.GetUserId(),
+                Name=data.Name,
+                Surname=data.Surname
             };
+           
             return View("AddUser", model);
         }
 
-        [HttpPost]
+    
+
         public ActionResult AddUser(AddUserViewModel model)
         {
             if (model != null)

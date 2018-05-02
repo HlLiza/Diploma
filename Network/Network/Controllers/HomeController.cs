@@ -3,6 +3,7 @@ using System.Web.Mvc;
 
 namespace Network.Controllers
 {
+    [RequireHttps]
     public class HomeController : Controller
     {
      

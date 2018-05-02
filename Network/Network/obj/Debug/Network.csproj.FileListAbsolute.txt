@@ -345,8 +345,7 @@ C:\Users\elisa\Desktop\новый\Network\Network\obj\Debug\Network.g.resources
 C:\Users\elisa\Desktop\новый\Network\Network\obj\Debug\Network.csproj.CoreCompileInputs.cache
 C:\Users\elisa\Desktop\новый\Network\Network\obj\Debug\Network.dll
 C:\Users\elisa\Desktop\новый\Network\Network\obj\Debug\Network.pdb
-D:\University\Diploma\bitbucket\Network\Network\obj\Debug\Network.csprojResolveAssemblyReference.cache
-D:\University\Diploma\bitbucket\Network\Network\obj\Debug\Network.csproj.CoreCompileInputs.cache
+D:\University\Diploma\bitbucket\Network\Network\bin\Microsoft.AI.Agent.Intercept.dll
 D:\University\Diploma\bitbucket\Network\Network\bin\ApplicationInsights.config
 D:\University\Diploma\bitbucket\Network\Network\bin\Network.dll.config
 D:\University\Diploma\bitbucket\Network\Network\bin\Network.dll
@@ -354,7 +353,6 @@ D:\University\Diploma\bitbucket\Network\Network\bin\Network.pdb
 D:\University\Diploma\bitbucket\Network\Network\bin\Antlr3.Runtime.dll
 D:\University\Diploma\bitbucket\Network\Network\bin\EntityFramework.dll
 D:\University\Diploma\bitbucket\Network\Network\bin\EntityFramework.SqlServer.dll
-D:\University\Diploma\bitbucket\Network\Network\bin\Microsoft.AI.Agent.Intercept.dll
 D:\University\Diploma\bitbucket\Network\Network\bin\Microsoft.AI.DependencyCollector.dll
 D:\University\Diploma\bitbucket\Network\Network\bin\Microsoft.AI.PerfCounterCollector.dll
 D:\University\Diploma\bitbucket\Network\Network\bin\Microsoft.AI.ServerTelemetryChannel.dll
@@ -399,6 +397,7 @@ D:\University\Diploma\bitbucket\Network\Network\bin\WebActivatorEx.dll
 D:\University\Diploma\bitbucket\Network\Network\bin\WebGrease.dll
 D:\University\Diploma\bitbucket\Network\Network\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 D:\University\Diploma\bitbucket\Network\Network\bin\Microsoft.IdentityModel.Tokens.xml
+D:\University\Diploma\bitbucket\Network\Network\bin\Microsoft.Owin.xml
 D:\University\Diploma\bitbucket\Network\Network\bin\Microsoft.Practices.ServiceLocation.pdb
 D:\University\Diploma\bitbucket\Network\Network\bin\Microsoft.Practices.ServiceLocation.xml
 D:\University\Diploma\bitbucket\Network\Network\bin\Network.BL.pdb
@@ -422,7 +421,6 @@ D:\University\Diploma\bitbucket\Network\Network\bin\EntityFramework.SqlServer.xm
 D:\University\Diploma\bitbucket\Network\Network\bin\Microsoft.AspNet.Identity.Core.xml
 D:\University\Diploma\bitbucket\Network\Network\bin\Microsoft.AspNet.Identity.Owin.xml
 D:\University\Diploma\bitbucket\Network\Network\bin\Microsoft.AspNet.Identity.EntityFramework.xml
-D:\University\Diploma\bitbucket\Network\Network\bin\Microsoft.Owin.xml
 D:\University\Diploma\bitbucket\Network\Network\bin\Microsoft.Owin.Host.SystemWeb.xml
 D:\University\Diploma\bitbucket\Network\Network\bin\Microsoft.Owin.Security.xml
 D:\University\Diploma\bitbucket\Network\Network\bin\Microsoft.Owin.Security.Facebook.xml
@@ -448,12 +446,13 @@ D:\University\Diploma\bitbucket\Network\Network\bin\ru\EntityFramework.SqlServer
 D:\University\Diploma\bitbucket\Network\Network\bin\ru\Microsoft.AspNet.Identity.Core.resources.dll
 D:\University\Diploma\bitbucket\Network\Network\bin\ru\Microsoft.AspNet.Identity.Owin.resources.dll
 D:\University\Diploma\bitbucket\Network\Network\bin\ru\Microsoft.AspNet.Identity.EntityFramework.resources.dll
-D:\University\Diploma\bitbucket\Network\Network\bin\ru\Microsoft.Owin.resources.dll
 D:\University\Diploma\bitbucket\Network\Network\bin\ru\Microsoft.Owin.Host.SystemWeb.resources.dll
 D:\University\Diploma\bitbucket\Network\Network\bin\ru\Microsoft.Owin.Security.resources.dll
 D:\University\Diploma\bitbucket\Network\Network\bin\ru\Microsoft.Owin.Security.Facebook.resources.dll
 D:\University\Diploma\bitbucket\Network\Network\bin\ru\Microsoft.Owin.Security.Google.resources.dll
 D:\University\Diploma\bitbucket\Network\Network\bin\ru\Microsoft.Owin.Security.Twitter.resources.dll
 D:\University\Diploma\bitbucket\Network\Network\bin\ru\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
+D:\University\Diploma\bitbucket\Network\Network\obj\Debug\Network.csprojResolveAssemblyReference.cache
+D:\University\Diploma\bitbucket\Network\Network\obj\Debug\Network.csproj.CoreCompileInputs.cache
 D:\University\Diploma\bitbucket\Network\Network\obj\Debug\Network.dll
 D:\University\Diploma\bitbucket\Network\Network\obj\Debug\Network.pdb
