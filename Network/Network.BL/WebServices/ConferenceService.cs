@@ -117,10 +117,12 @@ namespace Network.BL.WebServices
         {
             if (member != null && text != null)
             {
-                member.Id = Guid.NewGuid();
-                _conferRepository.JoinToConference(member);
                 text.Id = Guid.NewGuid();
                 _reportRepository.Add(text);
+                member.Id = Guid.NewGuid();
+                member.ReportId = text.Id;
+                _conferRepository.JoinToConference(member);
+             
 
             }
         }

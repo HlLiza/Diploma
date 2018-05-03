@@ -64,10 +64,12 @@
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
-    <Reference Include="Network.BL">
+    <Reference Include="Network.BL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Network.BL\bin\Debug\Network.BL.dll</HintPath>
     </Reference>
-    <Reference Include="Network.DAL">
+    <Reference Include="Network.DAL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Network.DAL\bin\Debug\Network.DAL.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -270,6 +272,8 @@
     <EmbeddedResource Include="Content\Pictures\323.jpeg" />
     <EmbeddedResource Include="Content\Pictures\log.jpg" />
     <EmbeddedResource Include="Content\Pictures\dnk.jpeg" />
+    <Content Include="css\font-awesome.css" />
+    <Content Include="css\font-awesome.min.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -477,6 +481,7 @@
     <Content Include="Views\User\_AddAducation.cshtml" />
     <Content Include="Views\Conference\_GetListOfMember.cshtml" />
     <Content Include="Views\Account\_OAuth.cshtml" />
+    <Content Include="Views\Conference\_GetMembership.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

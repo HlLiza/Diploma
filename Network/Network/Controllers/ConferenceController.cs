@@ -160,7 +160,7 @@ namespace Network.Controllers
                     Title=model.Topic,
                     Extension= ".pdf",
                     Content =_conferencService.ConvertFile(model.ReportText),
-                    ConferenceId=model.ConfId
+                   
                 };
 
 
@@ -253,6 +253,15 @@ namespace Network.Controllers
             }
             return RedirectToAction("Index");
         }
+
+
+        [Authorize(Roles = "group_member")]
+        public ActionResult GetMembership(Guid confId)
+        {
+
+            return View("_GetMembership");
+        }
+
 
 
         ////public ActionResult ListMembersOfConference(Guid id)

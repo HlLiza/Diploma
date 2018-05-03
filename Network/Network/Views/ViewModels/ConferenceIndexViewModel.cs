@@ -24,6 +24,12 @@ namespace Network.Views.ViewModels
         public HttpPostedFileBase Image { get; set; }
     }
 
+    public class GetMembershipConferenceViewModel
+    {
+        public string Author { get; set; }
+
+    }
+
     public class UserAtConference
     {
         public Guid Id { get; set; }

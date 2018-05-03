@@ -14,12 +14,18 @@ namespace Network.DAL.EFModel
     
     public partial class ReportConference
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ReportConference()
+        {
+            this.MembersOfConference = new HashSet<MembersOfConference>();
+        }
+    
         public System.Guid Id { get; set; }
-        public System.Guid ConferenceId { get; set; }
         public byte[] Content { get; set; }
         public string Title { get; set; }
         public string Extension { get; set; }
     
-        public virtual Conference Conference { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MembersOfConference> MembersOfConference { get; set; }
     }
 }

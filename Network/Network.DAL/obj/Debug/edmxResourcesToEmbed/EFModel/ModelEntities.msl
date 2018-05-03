@@ -79,15 +79,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="MembersOfConference">
-      <EntityTypeMapping TypeName="NetworkContext.MembersOfConference">
-        <MappingFragment StoreEntitySet="MembersOfConference">
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="ConferenceId" ColumnName="ConferenceId" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="AspNetRoles">
       <EntityTypeMapping TypeName="NetworkContext.AspNetRoles">
         <MappingFragment StoreEntitySet="AspNetRoles">
@@ -157,17 +148,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ReportConference">
-      <EntityTypeMapping TypeName="NetworkContext.ReportConference">
-        <MappingFragment StoreEntitySet="ReportConference">
-          <ScalarProperty Name="Extension" ColumnName="Extension" />
-          <ScalarProperty Name="Title" ColumnName="Title" />
-          <ScalarProperty Name="Content" ColumnName="Content" />
-          <ScalarProperty Name="ConferenceId" ColumnName="ConferenceId" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Conference">
       <EntityTypeMapping TypeName="NetworkContext.Conference">
         <MappingFragment StoreEntitySet="Conference">
@@ -178,6 +158,26 @@
           <ScalarProperty Name="Direction" ColumnName="Direction" />
           <ScalarProperty Name="Date" ColumnName="Date" />
           <ScalarProperty Name="Thema" ColumnName="Thema" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MembersOfConference">
+      <EntityTypeMapping TypeName="NetworkContext.MembersOfConference">
+        <MappingFragment StoreEntitySet="MembersOfConference">
+          <ScalarProperty Name="ReportId" ColumnName="ReportId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ConferenceId" ColumnName="ConferenceId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ReportConference">
+      <EntityTypeMapping TypeName="NetworkContext.ReportConference">
+        <MappingFragment StoreEntitySet="ReportConference">
+          <ScalarProperty Name="Extension" ColumnName="Extension" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

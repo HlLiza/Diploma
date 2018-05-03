@@ -125,6 +125,7 @@
     <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
     <Property Name="ConferenceId" Type="uniqueidentifier" Nullable="false" />
     <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ReportId" Type="uniqueidentifier" Nullable="false" />
   </EntityType>
   <EntityType Name="MembersOfGroup">
     <Key>
@@ -139,7 +140,6 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="ConferenceId" Type="uniqueidentifier" Nullable="false" />
     <Property Name="Content" Type="varbinary(max)" />
     <Property Name="Title" Type="nvarchar" MaxLength="255" />
     <Property Name="Extension" Type="varchar" MaxLength="5" />
@@ -283,6 +283,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_MembersOfConference_ReportConference">
+    <End Role="ReportConference" Type="Self.ReportConference" Multiplicity="1" />
+    <End Role="MembersOfConference" Type="Self.MembersOfConference" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ReportConference">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MembersOfConference">
+        <PropertyRef Name="ReportId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_MembersOfConference_User">
     <End Role="User" Type="Self.User" Multiplicity="1" />
     <End Role="MembersOfConference" Type="Self.MembersOfConference" Multiplicity="*" />
@@ -316,18 +328,6 @@
       </Principal>
       <Dependent Role="MembersOfGroup">
         <PropertyRef Name="MembersId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ReportConference_Conference">
-    <End Role="Conference" Type="Self.Conference" Multiplicity="1" />
-    <End Role="ReportConference" Type="Self.ReportConference" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Conference">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ReportConference">
-        <PropertyRef Name="ConferenceId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -397,6 +397,10 @@
       <End Role="Conference" EntitySet="Conference" />
       <End Role="MembersOfConference" EntitySet="MembersOfConference" />
     </AssociationSet>
+    <AssociationSet Name="FK_MembersOfConference_ReportConference" Association="Self.FK_MembersOfConference_ReportConference">
+      <End Role="ReportConference" EntitySet="ReportConference" />
+      <End Role="MembersOfConference" EntitySet="MembersOfConference" />
+    </AssociationSet>
     <AssociationSet Name="FK_MembersOfConference_User" Association="Self.FK_MembersOfConference_User">
       <End Role="User" EntitySet="User" />
       <End Role="MembersOfConference" EntitySet="MembersOfConference" />
@@ -408,10 +412,6 @@
     <AssociationSet Name="FK_MembersOfGroup_User1" Association="Self.FK_MembersOfGroup_User1">
       <End Role="User" EntitySet="User" />
       <End Role="MembersOfGroup" EntitySet="MembersOfGroup" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ReportConference_Conference" Association="Self.FK_ReportConference_Conference">
-      <End Role="Conference" EntitySet="Conference" />
-      <End Role="ReportConference" EntitySet="ReportConference" />
     </AssociationSet>
     <AssociationSet Name="FK_User_AspNetUsers" Association="Self.FK_User_AspNetUsers">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />

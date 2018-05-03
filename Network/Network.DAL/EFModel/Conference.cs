@@ -19,7 +19,6 @@ namespace Network.DAL.EFModel
         {
             this.ListenerConfer = new HashSet<ListenerConfer>();
             this.MembersOfConference = new HashSet<MembersOfConference>();
-            this.ReportConference = new HashSet<ReportConference>();
         }
     
         public System.Guid Id { get; set; }
@@ -35,7 +34,5 @@ namespace Network.DAL.EFModel
         public virtual ICollection<ListenerConfer> ListenerConfer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MembersOfConference> MembersOfConference { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ReportConference> ReportConference { get; set; }
     }
 }

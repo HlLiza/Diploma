@@ -17,8 +17,10 @@ namespace Network.DAL.EFModel
         public System.Guid Id { get; set; }
         public System.Guid ConferenceId { get; set; }
         public System.Guid UserId { get; set; }
+        public System.Guid ReportId { get; set; }
     
-        public virtual User User { get; set; }
         public virtual Conference Conference { get; set; }
+        public virtual ReportConference ReportConference { get; set; }
+        public virtual User User { get; set; }
     }
 }
