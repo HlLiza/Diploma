@@ -67,7 +67,11 @@ namespace Network.DAL.Repositories
             return list;
         }
 
-       
+        public IQueryable<Conference> GetArchiveConference()
+        {
+            return _context.Conference.Where(x => x.Visibility == false);
+        }
+
 
     }
 }

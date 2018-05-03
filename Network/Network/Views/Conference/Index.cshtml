@@ -9,7 +9,7 @@
     <div class="row menu-page">
         <div class="align-item-menu">
             <div id="persInfo" class="item-menu text-menu-page" style="padding-right: 30px;">КОНФЕРЕНЦИИ</div>
-            <div id="persInfo" class="item-menu text-menu-page hover" style="padding-right: 30px;">АРХИВ</div>
+            <div id="persInfo" class="item-menu text-menu-page hover" style="padding-right: 30px;"><a class="menu" href="@Url.Action("OpenArchive","Conference")">АРХИВ</a></div>
             @if (User.IsInRole("secretary"))
             {
                 <div id="addConfId" class="item-menu text-menu-page hover">ДОБАВИТЬ КОНФЕРЕНЦИЮ</div>

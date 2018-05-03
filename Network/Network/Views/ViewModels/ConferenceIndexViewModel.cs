@@ -12,6 +12,15 @@ namespace Network.Views.ViewModels
         public bool MemberConferenceStatus { get; set; }
         public bool ListenerConferenceStatus { get; set; }
     }
+    
+    public class ConferenceArchiveViewModel
+    {
+        public Guid Id { get; set; }
+        public string Thema { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime? Date { get; set; }
+    }
 
     public class ConferenceAddViewModel
     {

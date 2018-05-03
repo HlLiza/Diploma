@@ -108,6 +108,11 @@ namespace Network.BL.WebServices
             else return null;
         }
 
+        public IQueryable<Conference> GetArchiveConferenc()
+        {
+            return _conferRepository.GetArchiveConference();
+        }
+
         //member
         public void AddMembersToConference(MembersOfConference member, ReportConference text)
         {

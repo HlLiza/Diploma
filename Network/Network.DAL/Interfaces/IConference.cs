@@ -19,8 +19,11 @@ namespace Network.DAL.Interfaces
         MembersOfConference GetMembershipByIds(Guid confId, Guid userId);
         IQueryable<Guid> GetListMembersId(Guid confId);
 
+        IQueryable<Conference> GetArchiveConference();
 
-       
+
+
+
 
     }
 }

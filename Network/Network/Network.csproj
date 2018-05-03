@@ -482,6 +482,7 @@
     <Content Include="Views\Conference\_GetListOfMember.cshtml" />
     <Content Include="Views\Account\_OAuth.cshtml" />
     <Content Include="Views\Conference\_GetMembership.cshtml" />
+    <Content Include="Views\Conference\OpenArchive.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

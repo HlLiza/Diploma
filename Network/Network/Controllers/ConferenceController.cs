@@ -138,9 +138,7 @@ namespace Network.Controllers
             return File(data, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
         }
 
-
-
-
+        
         [System.Web.Mvc.Authorize(Roles = "group_member")]
         [HttpGet]
         public ActionResult JoinToConference(Guid confId)
@@ -284,6 +282,24 @@ namespace Network.Controllers
             return PartialView("_GetMembership",model);
         }
 
+
+        public ActionResult OpenArchive()
+        {
+            var listArchive = _conferencService.GetArchiveConferenc();
+            List<ConferenceArchiveViewModel> model = new List<ConferenceArchiveViewModel>();
+            foreach (var item in listArchive)
+            {
+                ConferenceArchiveViewModel conf = new ConferenceArchiveViewModel
+                {
+                    Id=item.Id,
+                    Thema=item.Thema,
+                    Date=item.Date
+                };
+                model.Add(conf);
+            }
+
+            return View(model);
+        }
         
     }
 }

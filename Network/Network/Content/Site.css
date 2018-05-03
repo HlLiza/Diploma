@@ -231,6 +231,9 @@ body {
 .title a {
     color: white;
 }
+.menu, .menu a:hover {
+    color:white;
+}
 
 .icon {
     height: 20px;
@@ -316,6 +319,11 @@ a .linkForDowload {
 .form-details {
     color: white;
     word-wrap: break-word;
+}
+
+a:hover {
+    text-decoration: none;
+    color: unset;
 }
 
 /*.hover-reg-conf:hover {
