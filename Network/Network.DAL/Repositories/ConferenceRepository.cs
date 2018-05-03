@@ -38,11 +38,15 @@ namespace Network.DAL.Repositories
             return _context.Conference.Find(id);
         }
 
-        public MembersOfConference GetMembership(Guid confId)
+        public MembersOfConference GetMemberships(Guid confId)
         {
             return _context.MembersOfConference.FirstOrDefault(x => x.ConferenceId == confId);
         }
 
+        public MembersOfConference GetMembershipByIds(Guid confId, Guid userId)
+        {
+            return _context.MembersOfConference.FirstOrDefault(x => x.ConferenceId == confId && x.UserId == userId);
+        }
 
         public void JoinToConference(MembersOfConference member)
         {
@@ -68,43 +72,3 @@ namespace Network.DAL.Repositories
     }
 }
 
-//public IQueryable<MembersOfConference> CheckMember(Guid userId, Guid conferenceId)
-//{
-//    return _context.MembersOfConference.Where(x => x.ConferenceId == conferenceId && x.UserId == userId);
-//}
-
-
-
-//public MembersOfConference GetUserMemberByIdMember(Guid id)
-//{
-//    var list = _context.MembersOfConference.FirstOrDefault(x => x.Id == id);
-//    return list;
-//}
-
-
-
-
-//public Guid GetConferenceIdByUserId(Guid userId)
-//{
-//    var list = _context.MembersOfConference.FirstOrDefault(s => s.UserId == userId);
-//    return list.ConferenceId;
-//}
-
-
-
-
-
-
-
-
-//public IQueryable<Guid> GetConferIdList(Guid memberId)
-//{
-//    var confIds = _context.MembersOfConference.Where(x => x.UserId == memberId).Select(x => x.ConferenceId);
-//    return confIds;
-//}
-
-//public MembersOfConference GetMembership(Guid confId, Guid membId)
-//{
-//    var item = _context.MembersOfConference.SingleOrDefault(x=>x.UserId==membId && x.ConferenceId==confId);
-//    return item;
-//}

@@ -32,10 +32,10 @@
         <EntityTypeShape EntityType="NetworkContext.Conference" Width="1.5" PointX="1.875" PointY="9.125" />
         <AssociationConnector Association="NetworkContext.FK_ListenerConfer_Conference" />
         <EntityTypeShape EntityType="NetworkContext.MembersOfConference" Width="1.5" PointX="5.875" PointY="10.75" />
-        <EntityTypeShape EntityType="NetworkContext.ReportConference" Width="1.5" PointX="5.875" PointY="13.5" />
         <AssociationConnector Association="NetworkContext.FK_MembersOfConference_Conference" />
-        <AssociationConnector Association="NetworkContext.FK_MembersOfConference_ReportConference" />
         <AssociationConnector Association="NetworkContext.FK_MembersOfConference_User" />
+        <EntityTypeShape EntityType="NetworkContext.ReportConference" Width="1.5" PointX="6" PointY="13.75" />
+        <AssociationConnector Association="NetworkContext.FK_MembersOfConference_ReportConference" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

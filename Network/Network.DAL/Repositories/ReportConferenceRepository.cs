@@ -20,9 +20,6 @@ namespace Network.DAL.Repositories
             return _context.ReportConference.Find(id);
         }
 
-        //public IQueryable<ReportConference> GetReportForConference(Guid confId)
-        //{
-        //    return _context.ReportConference.Where(s => s.ConferenceId == confId);
-        //}
+       
     }
 }

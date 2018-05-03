@@ -29,7 +29,7 @@
                     <div class="col-md-1">
                         @if (item.MemberConferenceStatus)
                         {
-                            <a href="" onclick="openModal(this)" data-url="@Url.Action("GetMembership","Conference",new {confId=item.Id})" style="color:white;"><span class="fa fa-check-square-o" style="padding: 30px;"></span></a>
+                            <a class="btn" onclick="openModal(this)" data-url="@Url.Action("GetMembership","Conference",new {confId=item.Id})" style="color:white;"><span class="fa fa-check-square-o" style="padding: 30px;"></span></a>
                         }
                        
                     </div>

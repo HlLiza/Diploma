@@ -148,6 +148,7 @@
           <Property Name="Content" Type="varbinary(max)" />
           <Property Name="Title" Type="nvarchar" MaxLength="255" />
           <Property Name="Extension" Type="varchar" MaxLength="5" />
+          <Property Name="Author" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -498,17 +499,17 @@
             <End Role="ListenerConfer" EntitySet="ListenerConfer" />
           </AssociationSet>
           <EntitySet Name="MembersOfConference" EntityType="NetworkContext.MembersOfConference" />
-          <EntitySet Name="ReportConference" EntityType="NetworkContext.ReportConference" />
           <AssociationSet Name="FK_MembersOfConference_Conference" Association="NetworkContext.FK_MembersOfConference_Conference">
             <End Role="Conference" EntitySet="Conference" />
             <End Role="MembersOfConference" EntitySet="MembersOfConference" />
           </AssociationSet>
-          <AssociationSet Name="FK_MembersOfConference_ReportConference" Association="NetworkContext.FK_MembersOfConference_ReportConference">
-            <End Role="ReportConference" EntitySet="ReportConference" />
-            <End Role="MembersOfConference" EntitySet="MembersOfConference" />
-          </AssociationSet>
           <AssociationSet Name="FK_MembersOfConference_User" Association="NetworkContext.FK_MembersOfConference_User">
             <End Role="User" EntitySet="User" />
+            <End Role="MembersOfConference" EntitySet="MembersOfConference" />
+          </AssociationSet>
+          <EntitySet Name="ReportConference" EntityType="NetworkContext.ReportConference" />
+          <AssociationSet Name="FK_MembersOfConference_ReportConference" Association="NetworkContext.FK_MembersOfConference_ReportConference">
+            <End Role="ReportConference" EntitySet="ReportConference" />
             <End Role="MembersOfConference" EntitySet="MembersOfConference" />
           </AssociationSet>
           </EntityContainer>
@@ -824,18 +825,8 @@
           <Property Name="UserId" Type="Guid" Nullable="false" />
           <Property Name="ReportId" Type="Guid" Nullable="false" />
           <NavigationProperty Name="Conference" Relationship="NetworkContext.FK_MembersOfConference_Conference" FromRole="MembersOfConference" ToRole="Conference" />
-          <NavigationProperty Name="ReportConference" Relationship="NetworkContext.FK_MembersOfConference_ReportConference" FromRole="MembersOfConference" ToRole="ReportConference" />
           <NavigationProperty Name="User" Relationship="NetworkContext.FK_MembersOfConference_User" FromRole="MembersOfConference" ToRole="User" />
-        </EntityType>
-        <EntityType Name="ReportConference">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="Content" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Extension" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="MembersOfConference" Relationship="NetworkContext.FK_MembersOfConference_ReportConference" FromRole="ReportConference" ToRole="MembersOfConference" />
+          <NavigationProperty Name="ReportConference" Relationship="NetworkContext.FK_MembersOfConference_ReportConference" FromRole="MembersOfConference" ToRole="ReportConference" />
         </EntityType>
         <Association Name="FK_MembersOfConference_Conference">
           <End Type="NetworkContext.Conference" Role="Conference" Multiplicity="1" />
@@ -849,18 +840,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_MembersOfConference_ReportConference">
-          <End Type="NetworkContext.ReportConference" Role="ReportConference" Multiplicity="1" />
-          <End Type="NetworkContext.MembersOfConference" Role="MembersOfConference" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ReportConference">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="MembersOfConference">
-              <PropertyRef Name="ReportId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_MembersOfConference_User">
           <End Type="NetworkContext.User" Role="User" Multiplicity="1" />
           <End Type="NetworkContext.MembersOfConference" Role="MembersOfConference" Multiplicity="*" />
@@ -870,6 +849,29 @@
             </Principal>
             <Dependent Role="MembersOfConference">
               <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ReportConference">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Content" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Extension" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Author" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MembersOfConference" Relationship="NetworkContext.FK_MembersOfConference_ReportConference" FromRole="ReportConference" ToRole="MembersOfConference" />
+        </EntityType>
+        <Association Name="FK_MembersOfConference_ReportConference">
+          <End Type="NetworkContext.ReportConference" Role="ReportConference" Multiplicity="1" />
+          <End Type="NetworkContext.MembersOfConference" Role="MembersOfConference" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReportConference">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MembersOfConference">
+              <PropertyRef Name="ReportId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1053,6 +1055,7 @@
           <EntitySetMapping Name="ReportConference">
             <EntityTypeMapping TypeName="NetworkContext.ReportConference">
               <MappingFragment StoreEntitySet="ReportConference">
+                <ScalarProperty Name="Author" ColumnName="Author" />
                 <ScalarProperty Name="Extension" ColumnName="Extension" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Content" ColumnName="Content" />

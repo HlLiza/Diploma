@@ -24,6 +24,7 @@ namespace Network.DAL.EFModel
         public byte[] Content { get; set; }
         public string Title { get; set; }
         public string Extension { get; set; }
+        public string Author { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MembersOfConference> MembersOfConference { get; set; }

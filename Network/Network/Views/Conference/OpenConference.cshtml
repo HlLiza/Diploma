@@ -33,7 +33,7 @@
             <img src="data:image/png;base64, @Convert.ToBase64String(Model.Image)" />
         </div>
         <div class="col-6">
-            <a href="@Url.Action("DownloadRequirements", "Conference",new { confId=Model.Id})"><span class="linkForDowload">ТРЕБОВАНИЯ</span></a>
+            <a href="@Url.Action("DownloadReport", "Conference",new {confId=Model.Id})"><span class="linkForDowload">ТРЕБОВАНИЯ</span></a>
             <div class="form-details">@Model.Details</div>
         
         </div>

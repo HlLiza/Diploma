@@ -1,1 +1,38 @@
-﻿
+﻿@model Network.Views.ViewModels.GetMyReportViewModel
+
+<div id="reportMembersDialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header header-modal-st">
+                <h4 class="modal-title">МОЙ ДОКЛАД</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body" style="text-align:center;">
+                <div class="row">
+                    <div class="col-6">
+                        <label>ТЕМА</label>
+                    </div>
+                    <div class="col-6">
+                        @Html.DisplayFor(modelItem => Model.Title)
+                    </div>
+                </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <label>АВТОР</label>
+                        </div>
+                        <div class="col-6">
+                            @Html.DisplayFor(modelItem => Model.Author)
+                        </div>
+                    </div>
+
+                
+                <a href="@Url.Action("DownloadReport", "Conference",new { reportId=Model.ReportId})"><span>ДОКЛАД</span></a>
+
+            </div>
+
+        </div>
+    </div>
+</div>

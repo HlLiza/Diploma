@@ -130,6 +130,17 @@ namespace Network.Controllers
             return File(requirements, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
         }
 
+        public FileResult DownloadReport(Guid reportId)
+        {
+            var report = _conferencService.GetReport(reportId);
+            byte[] data = report.Content;
+            string fileName = report.Title + ".pdf";
+            return File(data, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
+        }
+
+
+
+
         [System.Web.Mvc.Authorize(Roles = "group_member")]
         [HttpGet]
         public ActionResult JoinToConference(Guid confId)
@@ -160,7 +171,7 @@ namespace Network.Controllers
                     Title=model.Topic,
                     Extension= ".pdf",
                     Content =_conferencService.ConvertFile(model.ReportText),
-                   
+                   Author=model.Author
                 };
 
 
@@ -258,123 +269,21 @@ namespace Network.Controllers
         [Authorize(Roles = "group_member")]
         public ActionResult GetMembership(Guid confId)
         {
+            var userId = _userService.GetIdByAspId(User.Identity.GetUserId());
+            var membership = _conferencService.GetMembership(confId, userId);
+            var report = _conferencService.GetReport(membership.ReportId);
 
-            return View("_GetMembership");
+
+            GetMyReportViewModel model = new GetMyReportViewModel
+            {
+                Title= report.Title,
+                Author=report.Author,
+                ReportId=report.Id
+            };
+       
+            return PartialView("_GetMembership",model);
         }
 
-
-
-        ////public ActionResult ListMembersOfConference(Guid id)
-        ////{
-        ////    List<UserListViewModel> model = new List<UserListViewModel>();
-        ////    var listMembersId = _conService.GetMembersListByConferenceId(id);
-        ////    var data = _userService.GetDataForListOfUser(listMembersId);
-
-        ////    foreach (var item in data)
-        ////    {
-        ////        UserListViewModel user = new UserListViewModel();
-        ////        user.Id = item.Id;
-        ////        user.Name = item.Name;
-        ////        user.Image = _userService.GetImageByDataId(item.Id);
-
-        ////        model.Add(user);
-        ////    }
-
-        ////    return PartialView("_ListMembersOfConference", model);
-        ////}
-
-
-
-
-
-
-        //public ActionResult JoinConference(Guid id)
-        //{
-        //    MembersOfConference mem = new MembersOfConference()
-        //    {
-        //        ConferenceId = id
-        //    };
-        //    return View("_JoinConference", mem);
-        //}
-
-        //[HttpPost]
-        //public ActionResult JoinConference(MembersOfConference mem)
-        //{
-        //    var curUser = User.Identity.GetUserId();
-        //    var user = _userService.GetUserByAspNetId(curUser);
-        //    mem.UserId = user.Id;
-        //    var check = _conferencService.CheckMemberInConference(user.Id, mem.ConferenceId);
-
-        //    if (check)
-        //    {
-
-        //        _conferencService.AddMembersToConference(mem);
-        //    }
-
-        //    return RedirectToAction("Index", "Conference");
-        //}
-
-        ////public ActionResult ListMembersOfConference(Guid id)
-        ////{
-        ////    List<UserListViewModel> model = new List<UserListViewModel>();
-        ////    var listMembersId = _conService.GetMembersListByConferenceId(id);
-        ////    var data = _userService.GetDataForListOfUser(listMembersId);
-
-        ////    foreach (var item in data)
-        ////    {
-        ////        UserListViewModel user = new UserListViewModel();
-        ////        user.Id = item.Id;
-        ////        user.Name = item.Name;
-        ////        user.Image = _userService.GetImageByDataId(item.Id);
-
-        ////        model.Add(user);
-        ////    }
-
-        ////    return PartialView("_ListMembersOfConference", model);
-        ////}
-
-        //[HttpGet]
-        //public ActionResult GetListConferenceForUser()
-        //{
-        //    var idString = User.Identity.GetUserId();
-        //    var id = _userService.GetUserIdByAspId(idString);
-        //    var listIdOfConfer = _conferencService.ListConferIdsByMemberId(id);
-        //    var conference = _conferencService.GetConferList(listIdOfConfer);
-
-        //    List<ConferenceViewModel> model = new List<ConferenceViewModel>();
-
-        //    foreach (var item in conference)
-        //    {
-        //        ConferenceViewModel confer = new ConferenceViewModel();
-        //        confer.Id = item.Id;
-        //        confer.Thema = item.Thema;
-        //        confer.Date = Convert.ToDateTime(item.Date);
-        //        //confer.Place = item.Place;
-        //        model.Add(confer);
-        //    }
-
-
-        //    return View(model);
-        //}
-
-        //public ActionResult LeaveConference(Guid ConferenceId)
-        //{
-        //    var idString = User.Identity.GetUserId();
-        //    var idMem = _userService.GetUserIdByAspId(idString);
-
-        //    var membership = _conferencService.GetMembership(ConferenceId, idMem);
-
-        //    return View("_LeaveConference", membership);
-        //}
-
-        //[HttpPost]
-        //public ActionResult LeaveConference(MembersOfConference mem)
-        //{
-        //    _conferencService.RemoveMembers(mem);
-
-        //    return RedirectToAction("GetListConferenceForUser", "Conference");
-        //}
-
-
+        
     }
 }

@@ -20,7 +20,7 @@ namespace Network.DAL.EFModel
         public System.Guid ReportId { get; set; }
     
         public virtual Conference Conference { get; set; }
-        public virtual ReportConference ReportConference { get; set; }
         public virtual User User { get; set; }
+        public virtual ReportConference ReportConference { get; set; }
     }
 }

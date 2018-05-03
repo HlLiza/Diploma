@@ -175,6 +175,7 @@
     <EntitySetMapping Name="ReportConference">
       <EntityTypeMapping TypeName="NetworkContext.ReportConference">
         <MappingFragment StoreEntitySet="ReportConference">
+          <ScalarProperty Name="Author" ColumnName="Author" />
           <ScalarProperty Name="Extension" ColumnName="Extension" />
           <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="Content" ColumnName="Content" />

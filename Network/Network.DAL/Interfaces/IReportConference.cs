@@ -10,6 +10,6 @@ namespace Network.DAL.Interfaces
         void Add(ReportConference report);
         ReportConference Find(Guid id);
 
-        //IQueryable<ReportConference> GetReportForConference(Guid confId);
+        
     }
 }

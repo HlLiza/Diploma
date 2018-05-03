@@ -143,6 +143,7 @@
     <Property Name="Content" Type="varbinary(max)" />
     <Property Name="Title" Type="nvarchar" MaxLength="255" />
     <Property Name="Extension" Type="varchar" MaxLength="5" />
+    <Property Name="Author" Type="nvarchar" MaxLength="500" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
