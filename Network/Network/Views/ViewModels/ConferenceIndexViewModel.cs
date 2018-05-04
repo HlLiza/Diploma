@@ -19,7 +19,9 @@ namespace Network.Views.ViewModels
         public string Thema { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime? Date { get; set; }
+        public DateTime Date { get; set; }
+        public string Direction { get; set; }
+        public byte[] Image { get; set; }
     }
 
     public class ConferenceAddViewModel

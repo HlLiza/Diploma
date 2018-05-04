@@ -72,3 +72,4 @@ D:\University\Diploma\bitbucket\Network\Network.DAL\bin\Debug\ru\EntityFramework
 D:\University\Diploma\bitbucket\Network\Network.DAL\bin\Debug\ru\EntityFramework.SqlServer.resources.dll
 D:\University\Diploma\bitbucket\Network\Network.DAL\obj\Debug\Network.DAL.dll
 D:\University\Diploma\bitbucket\Network\Network.DAL\obj\Debug\Network.DAL.pdb
+D:\University\Diploma\bitbucket\Network\Network.DAL\obj\Debug\Network.DAL.csprojResolveAssemblyReference.cache

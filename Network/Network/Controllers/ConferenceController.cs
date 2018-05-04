@@ -292,7 +292,9 @@ namespace Network.Controllers
                 {
                     Id=item.Id,
                     Thema=item.Thema,
-                    Date=item.Date
+                    Date= Convert.ToDateTime(item.Date),
+                    Direction=item.Direction,
+                    Image=item.Image
                 };
                 model.Add(conf);
             }
