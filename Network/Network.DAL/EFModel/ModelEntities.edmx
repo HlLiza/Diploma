@@ -99,21 +99,22 @@
           <Property Name="Requirements" Type="varbinary(max)" />
           <Property Name="Image" Type="varbinary(max)" />
         </EntityType>
+        <EntityType Name="DataGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="GroupId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Resource" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="Group">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Number" Type="int" />
+          <Property Name="NameProject" Type="nvarchar(max)" />
+          <Property Name="Direction" Type="nvarchar" MaxLength="500" />
           <Property Name="HeadId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Specialization" Type="nvarchar" MaxLength="500" />
-        </EntityType>
-        <EntityType Name="Image">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Image" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="ListenerConfer">
           <Key>
@@ -121,6 +122,14 @@
           </Key>
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="ConferenceId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MemberOfGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="GroupId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <EntityType Name="MembersOfConference">
@@ -131,14 +140,6 @@
           <Property Name="ConferenceId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="ReportId" Type="uniqueidentifier" Nullable="false" />
-        </EntityType>
-        <EntityType Name="MembersOfGroup">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="GroupId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="MembersId" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <EntityType Name="ReportConference">
           <Key>
@@ -194,6 +195,18 @@
             </Principal>
             <Dependent Role="Advertisement">
               <PropertyRef Name="SenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DataGroup_Group">
+          <End Role="Group" Type="Self.Group" Multiplicity="1" />
+          <End Role="DataGroup" Type="Self.DataGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DataGroup">
+              <PropertyRef Name="GroupId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -253,6 +266,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Group_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Group" Type="Self.Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Group">
+              <PropertyRef Name="HeadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ListenerConfer_Conference">
           <End Role="Conference" Type="Self.Conference" Multiplicity="1" />
           <End Role="ListenerConfer" Type="Self.ListenerConfer" Multiplicity="*" />
@@ -273,6 +298,30 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="ListenerConfer">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MemberOfGroup_Group">
+          <End Role="Group" Type="Self.Group" Multiplicity="1" />
+          <End Role="MemberOfGroup" Type="Self.MemberOfGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MemberOfGroup">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MemberOfGroup_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="MemberOfGroup" Type="Self.MemberOfGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MemberOfGroup">
               <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
@@ -313,30 +362,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_MembersOfGroup_Group">
-          <End Role="Group" Type="Self.Group" Multiplicity="1" />
-          <End Role="MembersOfGroup" Type="Self.MembersOfGroup" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Group">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="MembersOfGroup">
-              <PropertyRef Name="GroupId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_MembersOfGroup_User1">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="MembersOfGroup" Type="Self.MembersOfGroup" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="MembersOfGroup">
-              <PropertyRef Name="MembersId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_User_AspNetUsers">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -359,11 +384,11 @@
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Conference" EntityType="Self.Conference" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DataGroup" EntityType="Self.DataGroup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Image" EntityType="Self.Image" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ListenerConfer" EntityType="Self.ListenerConfer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MemberOfGroup" EntityType="Self.MemberOfGroup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MembersOfConference" EntityType="Self.MembersOfConference" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="MembersOfGroup" EntityType="Self.MembersOfGroup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ReportConference" EntityType="Self.ReportConference" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
@@ -374,6 +399,10 @@
           <AssociationSet Name="FK_Advertisement_AspNetUsers" Association="Self.FK_Advertisement_AspNetUsers">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Advertisement" EntitySet="Advertisement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataGroup_Group" Association="Self.FK_DataGroup_Group">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="DataGroup" EntitySet="DataGroup" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -391,6 +420,10 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
           </AssociationSet>
+          <AssociationSet Name="FK_Group_User" Association="Self.FK_Group_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Group" EntitySet="Group" />
+          </AssociationSet>
           <AssociationSet Name="FK_ListenerConfer_Conference" Association="Self.FK_ListenerConfer_Conference">
             <End Role="Conference" EntitySet="Conference" />
             <End Role="ListenerConfer" EntitySet="ListenerConfer" />
@@ -398,6 +431,14 @@
           <AssociationSet Name="FK_ListenerConfer_User" Association="Self.FK_ListenerConfer_User">
             <End Role="User" EntitySet="User" />
             <End Role="ListenerConfer" EntitySet="ListenerConfer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MemberOfGroup_Group" Association="Self.FK_MemberOfGroup_Group">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="MemberOfGroup" EntitySet="MemberOfGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MemberOfGroup_User" Association="Self.FK_MemberOfGroup_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="MemberOfGroup" EntitySet="MemberOfGroup" />
           </AssociationSet>
           <AssociationSet Name="FK_MembersOfConference_Conference" Association="Self.FK_MembersOfConference_Conference">
             <End Role="Conference" EntitySet="Conference" />
@@ -410,14 +451,6 @@
           <AssociationSet Name="FK_MembersOfConference_User" Association="Self.FK_MembersOfConference_User">
             <End Role="User" EntitySet="User" />
             <End Role="MembersOfConference" EntitySet="MembersOfConference" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MembersOfGroup_Group" Association="Self.FK_MembersOfGroup_Group">
-            <End Role="Group" EntitySet="Group" />
-            <End Role="MembersOfGroup" EntitySet="MembersOfGroup" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MembersOfGroup_User1" Association="Self.FK_MembersOfGroup_User1">
-            <End Role="User" EntitySet="User" />
-            <End Role="MembersOfGroup" EntitySet="MembersOfGroup" />
           </AssociationSet>
           <AssociationSet Name="FK_User_AspNetUsers" Association="Self.FK_User_AspNetUsers">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -452,12 +485,6 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
           </AssociationSet>
-          <EntitySet Name="Group" EntityType="NetworkContext.Group" />
-          <EntitySet Name="MembersOfGroup" EntityType="NetworkContext.MembersOfGroup" />
-          <AssociationSet Name="FK_MembersOfGroup_Group" Association="NetworkContext.FK_MembersOfGroup_Group">
-            <End Role="Group" EntitySet="Group" />
-            <End Role="MembersOfGroup" EntitySet="MembersOfGroup" />
-          </AssociationSet>
           <EntitySet Name="AspNetRoles" EntityType="NetworkContext.AspNetRoles" />
           <EntitySet Name="AspNetUserRoles" EntityType="NetworkContext.AspNetUserRoles" />
           <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="NetworkContext.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
@@ -474,7 +501,6 @@
             <End Role="Advertisement" EntitySet="Advertisement" />
           </AssociationSet>
           <EntitySet Name="Aducation" EntityType="NetworkContext.Aducation" />
-          <EntitySet Name="Image" EntityType="NetworkContext.Image" />
           <EntitySet Name="User" EntityType="NetworkContext.User" />
           <AssociationSet Name="FK_Aducation_User" Association="NetworkContext.FK_Aducation_User">
             <End Role="User" EntitySet="User" />
@@ -483,10 +509,6 @@
           <AssociationSet Name="FK_User_AspNetUsers" Association="NetworkContext.FK_User_AspNetUsers">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="User" EntitySet="User" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MembersOfGroup_User1" Association="NetworkContext.FK_MembersOfGroup_User1">
-            <End Role="User" EntitySet="User" />
-            <End Role="MembersOfGroup" EntitySet="MembersOfGroup" />
           </AssociationSet>
           <EntitySet Name="ListenerConfer" EntityType="NetworkContext.ListenerConfer" />
           <AssociationSet Name="FK_ListenerConfer_User" Association="NetworkContext.FK_ListenerConfer_User">
@@ -511,6 +533,25 @@
           <AssociationSet Name="FK_MembersOfConference_ReportConference" Association="NetworkContext.FK_MembersOfConference_ReportConference">
             <End Role="ReportConference" EntitySet="ReportConference" />
             <End Role="MembersOfConference" EntitySet="MembersOfConference" />
+          </AssociationSet>
+          <EntitySet Name="DataGroup" EntityType="NetworkContext.DataGroup" />
+          <EntitySet Name="Group" EntityType="NetworkContext.Group" />
+          <AssociationSet Name="FK_DataGroup_Group" Association="NetworkContext.FK_DataGroup_Group">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="DataGroup" EntitySet="DataGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Group_User" Association="NetworkContext.FK_Group_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Group" EntitySet="Group" />
+          </AssociationSet>
+          <EntitySet Name="MemberOfGroup" EntityType="NetworkContext.MemberOfGroup" />
+          <AssociationSet Name="FK_MemberOfGroup_Group" Association="NetworkContext.FK_MemberOfGroup_Group">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="MemberOfGroup" EntitySet="MemberOfGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MemberOfGroup_User" Association="NetworkContext.FK_MemberOfGroup_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="MemberOfGroup" EntitySet="MemberOfGroup" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="C__MigrationHistory">
@@ -595,38 +636,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Group">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="Number" Type="Int32" />
-          <Property Name="HeadId" Type="Guid" Nullable="false" />
-          <Property Name="Specialization" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="MembersOfGroup" Relationship="NetworkContext.FK_MembersOfGroup_Group" FromRole="Group" ToRole="MembersOfGroup" />
-        </EntityType>
-        <EntityType Name="MembersOfGroup">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="GroupId" Type="Guid" Nullable="false" />
-          <Property Name="MembersId" Type="Guid" Nullable="false" />
-          <NavigationProperty Name="Group" Relationship="NetworkContext.FK_MembersOfGroup_Group" FromRole="MembersOfGroup" ToRole="Group" />
-          <NavigationProperty Name="User" Relationship="NetworkContext.FK_MembersOfGroup_User1" FromRole="MembersOfGroup" ToRole="User" />
-        </EntityType>
-        <Association Name="FK_MembersOfGroup_Group">
-          <End Type="NetworkContext.Group" Role="Group" Multiplicity="1" />
-          <End Type="NetworkContext.MembersOfGroup" Role="MembersOfGroup" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Group">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="MembersOfGroup">
-              <PropertyRef Name="GroupId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="AspNetRoles">
           <Key>
             <PropertyRef Name="Id" />
@@ -706,13 +715,6 @@
           <Property Name="UserId" Type="Guid" Nullable="false" />
           <NavigationProperty Name="User" Relationship="NetworkContext.FK_Aducation_User" FromRole="Aducation" ToRole="User" />
         </EntityType>
-        <EntityType Name="Image">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="Image1" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="Id" />
@@ -727,9 +729,10 @@
           <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Aducation" Relationship="NetworkContext.FK_Aducation_User" FromRole="User" ToRole="Aducation" />
           <NavigationProperty Name="AspNetUsers" Relationship="NetworkContext.FK_User_AspNetUsers" FromRole="User" ToRole="AspNetUsers" />
-          <NavigationProperty Name="MembersOfGroup" Relationship="NetworkContext.FK_MembersOfGroup_User1" FromRole="User" ToRole="MembersOfGroup" />
           <NavigationProperty Name="ListenerConfer" Relationship="NetworkContext.FK_ListenerConfer_User" FromRole="User" ToRole="ListenerConfer" />
           <NavigationProperty Name="MembersOfConference" Relationship="NetworkContext.FK_MembersOfConference_User" FromRole="User" ToRole="MembersOfConference" />
+          <NavigationProperty Name="Group" Relationship="NetworkContext.FK_Group_User" FromRole="User" ToRole="Group" />
+          <NavigationProperty Name="MemberOfGroup" Relationship="NetworkContext.FK_MemberOfGroup_User" FromRole="User" ToRole="MemberOfGroup" />
         </EntityType>
         <Association Name="FK_Aducation_User">
           <End Type="NetworkContext.User" Role="User" Multiplicity="1" />
@@ -752,18 +755,6 @@
             </Principal>
             <Dependent Role="User">
               <PropertyRef Name="AspUserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_MembersOfGroup_User1">
-          <End Type="NetworkContext.User" Role="User" Multiplicity="1" />
-          <End Type="NetworkContext.MembersOfGroup" Role="MembersOfGroup" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="MembersOfGroup">
-              <PropertyRef Name="MembersId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -875,6 +866,85 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="DataGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="GroupId" Type="Guid" Nullable="false" />
+          <Property Name="Resource" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Group" Relationship="NetworkContext.FK_DataGroup_Group" FromRole="DataGroup" ToRole="Group" />
+        </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="NameProject" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Direction" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="HeadId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="DataGroup" Relationship="NetworkContext.FK_DataGroup_Group" FromRole="Group" ToRole="DataGroup" />
+          <NavigationProperty Name="User" Relationship="NetworkContext.FK_Group_User" FromRole="Group" ToRole="User" />
+          <NavigationProperty Name="MemberOfGroup" Relationship="NetworkContext.FK_MemberOfGroup_Group" FromRole="Group" ToRole="MemberOfGroup" />
+        </EntityType>
+        <Association Name="FK_DataGroup_Group">
+          <End Type="NetworkContext.Group" Role="Group" Multiplicity="1" />
+          <End Type="NetworkContext.DataGroup" Role="DataGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DataGroup">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Group_User">
+          <End Type="NetworkContext.User" Role="User" Multiplicity="1" />
+          <End Type="NetworkContext.Group" Role="Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Group">
+              <PropertyRef Name="HeadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="MemberOfGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="GroupId" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Group" Relationship="NetworkContext.FK_MemberOfGroup_Group" FromRole="MemberOfGroup" ToRole="Group" />
+          <NavigationProperty Name="User" Relationship="NetworkContext.FK_MemberOfGroup_User" FromRole="MemberOfGroup" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_MemberOfGroup_Group">
+          <End Type="NetworkContext.Group" Role="Group" Multiplicity="1" />
+          <End Type="NetworkContext.MemberOfGroup" Role="MemberOfGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MemberOfGroup">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MemberOfGroup_User">
+          <End Type="NetworkContext.User" Role="User" Multiplicity="1" />
+          <End Type="NetworkContext.MemberOfGroup" Role="MemberOfGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MemberOfGroup">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -940,25 +1010,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Group">
-            <EntityTypeMapping TypeName="NetworkContext.Group">
-              <MappingFragment StoreEntitySet="Group">
-                <ScalarProperty Name="Specialization" ColumnName="Specialization" />
-                <ScalarProperty Name="HeadId" ColumnName="HeadId" />
-                <ScalarProperty Name="Number" ColumnName="Number" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="MembersOfGroup">
-            <EntityTypeMapping TypeName="NetworkContext.MembersOfGroup">
-              <MappingFragment StoreEntitySet="MembersOfGroup">
-                <ScalarProperty Name="MembersId" ColumnName="MembersId" />
-                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="AspNetRoles">
             <EntityTypeMapping TypeName="NetworkContext.AspNetRoles">
               <MappingFragment StoreEntitySet="AspNetRoles">
@@ -993,14 +1044,6 @@
                 <ScalarProperty Name="GradYear" ColumnName="GradYear" />
                 <ScalarProperty Name="StartYear" ColumnName="StartYear" />
                 <ScalarProperty Name="University" ColumnName="University" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Image">
-            <EntityTypeMapping TypeName="NetworkContext.Image">
-              <MappingFragment StoreEntitySet="Image">
-                <ScalarProperty Name="Image1" ColumnName="Image" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1059,6 +1102,34 @@
                 <ScalarProperty Name="Extension" ColumnName="Extension" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DataGroup">
+            <EntityTypeMapping TypeName="NetworkContext.DataGroup">
+              <MappingFragment StoreEntitySet="DataGroup">
+                <ScalarProperty Name="Resource" ColumnName="Resource" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Group">
+            <EntityTypeMapping TypeName="NetworkContext.Group">
+              <MappingFragment StoreEntitySet="Group">
+                <ScalarProperty Name="HeadId" ColumnName="HeadId" />
+                <ScalarProperty Name="Direction" ColumnName="Direction" />
+                <ScalarProperty Name="NameProject" ColumnName="NameProject" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MemberOfGroup">
+            <EntityTypeMapping TypeName="NetworkContext.MemberOfGroup">
+              <MappingFragment StoreEntitySet="MemberOfGroup">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

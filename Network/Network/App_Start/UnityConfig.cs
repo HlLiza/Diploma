@@ -59,6 +59,9 @@ namespace Network
             container.RegisterType<IConference, ConferenceRepository>();
             container.RegisterType<IListenerConference, ListenerConfRepository>();
             container.RegisterType<IReportConference, ReportConferenceRepository>();
+            //container.RegisterType<IGroup, GroupRepository>();
+            //container.RegisterType<IMemberGroup, MemberGroupRepository>();
+            //container.RegisterType<IDataGroup, DataGroupRepository>();
 
 
             container.RegisterType<ApplicationUserManager>();

@@ -17,15 +17,19 @@ namespace Network.DAL.EFModel
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Group()
         {
-            this.MembersOfGroup = new HashSet<MembersOfGroup>();
+            this.DataGroup = new HashSet<DataGroup>();
+            this.MemberOfGroup = new HashSet<MemberOfGroup>();
         }
     
         public System.Guid Id { get; set; }
-        public Nullable<int> Number { get; set; }
+        public string NameProject { get; set; }
+        public string Direction { get; set; }
         public System.Guid HeadId { get; set; }
-        public string Specialization { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MembersOfGroup> MembersOfGroup { get; set; }
+        public virtual ICollection<DataGroup> DataGroup { get; set; }
+        public virtual User User { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MemberOfGroup> MemberOfGroup { get; set; }
     }
 }

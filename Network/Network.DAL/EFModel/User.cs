@@ -18,9 +18,10 @@ namespace Network.DAL.EFModel
         public User()
         {
             this.Aducation = new HashSet<Aducation>();
-            this.MembersOfGroup = new HashSet<MembersOfGroup>();
             this.ListenerConfer = new HashSet<ListenerConfer>();
             this.MembersOfConference = new HashSet<MembersOfConference>();
+            this.Group = new HashSet<Group>();
+            this.MemberOfGroup = new HashSet<MemberOfGroup>();
         }
     
         public System.Guid Id { get; set; }
@@ -36,10 +37,12 @@ namespace Network.DAL.EFModel
         public virtual ICollection<Aducation> Aducation { get; set; }
         public virtual AspNetUsers AspNetUsers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MembersOfGroup> MembersOfGroup { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ListenerConfer> ListenerConfer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MembersOfConference> MembersOfConference { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Group> Group { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MemberOfGroup> MemberOfGroup { get; set; }
     }
 }

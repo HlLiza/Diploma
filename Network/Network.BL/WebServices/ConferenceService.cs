@@ -42,7 +42,7 @@ namespace Network.BL.WebServices
             if (list != null)
             {
                 foreach (var item in list)
-                    if (item.Date < DateTime.Now)
+                    if (item.Date < DateTime.Now && item.Visibility==true)
                     {
                         item.Visibility = false;
                         _conferRepository.Update(item);

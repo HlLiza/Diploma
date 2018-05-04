@@ -100,19 +100,19 @@
     <Compile Include="EFModel\C__MigrationHistory.cs">
       <DependentUpon>ModelEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="EFModel\Group.cs">
+    <Compile Include="EFModel\DataGroup.cs">
       <DependentUpon>ModelEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="EFModel\Image.cs">
+    <Compile Include="EFModel\Group.cs">
       <DependentUpon>ModelEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="EFModel\ListenerConfer.cs">
       <DependentUpon>ModelEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="EFModel\MembersOfConference.cs">
+    <Compile Include="EFModel\MemberOfGroup.cs">
       <DependentUpon>ModelEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="EFModel\MembersOfGroup.cs">
+    <Compile Include="EFModel\MembersOfConference.cs">
       <DependentUpon>ModelEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="EFModel\ModelEntities.Context.cs">
@@ -141,16 +141,20 @@
     </Compile>
     <Compile Include="Interfaces\IAducation.cs" />
     <Compile Include="Interfaces\IConference.cs" />
-    <Compile Include="Interfaces\IImage.cs" />
+    <Compile Include="Interfaces\IDataGroup.cs" />
+    <Compile Include="Interfaces\IGroup.cs" />
     <Compile Include="Interfaces\IListenerConference.cs" />
+    <Compile Include="Interfaces\IMemberGroup.cs" />
     <Compile Include="Interfaces\IReportConference.cs" />
     <Compile Include="Interfaces\IUser.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AducationRepository.cs" />
     <Compile Include="Repositories\ConferenceRepository.cs" />
-    <Compile Include="Repositories\ImageRepository.cs" />
+    <Compile Include="Repositories\DataGroupRepository.cs" />
+    <Compile Include="Repositories\GroupRepository.cs" />
     <Compile Include="Repositories\ListenerConfRepository.cs" />
+    <Compile Include="Repositories\MemberGroupRepository.cs" />
     <Compile Include="Repositories\ReportConferenceRepository.cs" />
     <Compile Include="Repositories\RepositoryBase.cs" />
     <Compile Include="Repositories\UserRepository.cs" />

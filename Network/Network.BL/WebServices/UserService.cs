@@ -18,9 +18,6 @@ namespace Network.BL.WebServices
         public UserService(UserRepository userRepository)
         {
             _userRepository = userRepository;
-           // _persDataRepository = persDataRepository;
-            //_imgRepository = imgRepository;
-            //_aducationRepository = aducationRepository;
         }
 
         public void AddUser(User user)

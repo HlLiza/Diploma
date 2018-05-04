@@ -60,25 +60,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Group">
-      <EntityTypeMapping TypeName="NetworkContext.Group">
-        <MappingFragment StoreEntitySet="Group">
-          <ScalarProperty Name="Specialization" ColumnName="Specialization" />
-          <ScalarProperty Name="HeadId" ColumnName="HeadId" />
-          <ScalarProperty Name="Number" ColumnName="Number" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="MembersOfGroup">
-      <EntityTypeMapping TypeName="NetworkContext.MembersOfGroup">
-        <MappingFragment StoreEntitySet="MembersOfGroup">
-          <ScalarProperty Name="MembersId" ColumnName="MembersId" />
-          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="AspNetRoles">
       <EntityTypeMapping TypeName="NetworkContext.AspNetRoles">
         <MappingFragment StoreEntitySet="AspNetRoles">
@@ -113,14 +94,6 @@
           <ScalarProperty Name="GradYear" ColumnName="GradYear" />
           <ScalarProperty Name="StartYear" ColumnName="StartYear" />
           <ScalarProperty Name="University" ColumnName="University" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Image">
-      <EntityTypeMapping TypeName="NetworkContext.Image">
-        <MappingFragment StoreEntitySet="Image">
-          <ScalarProperty Name="Image1" ColumnName="Image" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -179,6 +152,34 @@
           <ScalarProperty Name="Extension" ColumnName="Extension" />
           <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DataGroup">
+      <EntityTypeMapping TypeName="NetworkContext.DataGroup">
+        <MappingFragment StoreEntitySet="DataGroup">
+          <ScalarProperty Name="Resource" ColumnName="Resource" />
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Group">
+      <EntityTypeMapping TypeName="NetworkContext.Group">
+        <MappingFragment StoreEntitySet="Group">
+          <ScalarProperty Name="HeadId" ColumnName="HeadId" />
+          <ScalarProperty Name="Direction" ColumnName="Direction" />
+          <ScalarProperty Name="NameProject" ColumnName="NameProject" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MemberOfGroup">
+      <EntityTypeMapping TypeName="NetworkContext.MemberOfGroup">
+        <MappingFragment StoreEntitySet="MemberOfGroup">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
