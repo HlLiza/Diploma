@@ -8,8 +8,8 @@
 
     <div class="row menu-page">
         <div class="align-item-menu">
-            <div id="persInfo" class="item-menu text-menu-page" style="padding-right: 30px;">КОНФЕРЕНЦИИ</div>
-            <div id="persInfo" class="item-menu text-menu-page hover" style="padding-right: 30px;"><a class="menu" href="@Url.Action("OpenArchive","Conference")">АРХИВ</a></div>
+            <div class="item-menu text-menu-page" style="padding-right: 30px;">КОНФЕРЕНЦИИ</div>
+            <div class="item-menu text-menu-page hover" style="padding-right: 30px;"><a class="menu" href="@Url.Action("OpenArchive","Conference")">АРХИВ</a></div>
             @if (User.IsInRole("secretary"))
             {
                 <div id="addConfId" class="item-menu text-menu-page hover">ДОБАВИТЬ КОНФЕРЕНЦИЮ</div>
@@ -63,7 +63,7 @@
                             @{
                                 string temp1 = "";
                                 string temp2 = "";
-                                if (item.ListenerConferenceStatus) { temp1 = "disabled"; }
+                                if (item.ListenerConferenceStatus || item.MemberConferenceStatus) { temp1 = "disabled"; }
                                 else { temp2 = "disabled"; }
                                 <button id="yes" type="button" onclick="location.href='@Url.Action("AddListener", "Conference",new { confId =item.Id})'" class="btn btn-secondary" @temp1>Иду</button>
                                 <button id="no" type="button" onclick="location.href='@Url.Action("DeleteListener", "Conference",new { confId =item.Id})'" class="btn btn-secondary" @temp2>Не иду</button>

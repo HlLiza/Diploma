@@ -4,6 +4,7 @@ using Network.DAL.EFModel;
 using Network.Views.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace Network.Controllers
@@ -116,8 +117,7 @@ namespace Network.Controllers
                 var userId = _userService.GetIdByAspId(User.Identity.GetUserId());
                 model.MemberConferenceStatus = _conferencService.UserIsMember(model.Id, userId);
             }
-
-           
+                       
             return View(model);
         }
 
@@ -301,6 +301,40 @@ namespace Network.Controllers
 
             return View(model);
         }
-        
+
+        public ActionResult Reports(Guid confId)
+        {  
+
+            return View();
+        }
+
+        public ActionResult GetAllReport(Guid confId)
+        {
+            List<Guid> listId = new List<Guid>();
+            List<ReportsViewModel> model = new List<ReportsViewModel>();
+            if (confId != null)
+            {
+                listId = _conferencService.GetListReports(confId).ToList();
+            }
+            foreach (var id in listId)
+            {
+                var report = _conferencService.GetReport(id);
+                ReportsViewModel item = new ReportsViewModel
+                {
+                    Id = report.Id,
+                    Title = report.Title,
+                    Author = report.Author
+                };
+
+                model.Add(item);
+            }
+            return PartialView("_GetAllReport",model);
+
+        }
+
+        public void Search(string str)
+        {
+
+        }
     }
 }

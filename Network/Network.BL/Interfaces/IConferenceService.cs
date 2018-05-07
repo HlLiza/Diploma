@@ -12,5 +12,6 @@ namespace Network.BL.Interfaces
         IQueryable<Conference> CheckVisibleConf(IQueryable<Conference> list);
         byte[] ConvertFile(HttpPostedFileBase file);
         MembersOfConference GetMembership(Guid confId, Guid userId);
+        IQueryable<Guid> GetListReports(Guid confId);
     }
 }

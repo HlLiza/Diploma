@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Network.Views.ViewModels.ReportsViewModel>
+@{
+    ViewBag.Title = "Reports";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row menu-page">
+    <div class="align-item-menu">
+        <div id="allReports" onclick="brows('@Url.Action("GetAllReport", "Conference")')" class="item-menu text-menu-page hover" style="padding-right: 30px;">ВСЕ ДОКЛАДЫ</div>
+    </div>
+</div>
+<div class="row">
+    <div class="menu-cont">
+        @Html.Partial("_FullTextSearch")
+    </div>
+
+    <div class="container text-style-info">
+        <div id="result" style="margin-top: 50px;">
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //$('#allReports').click();
+        });
+
+        $("#allReports").click(function () {
+            $("#allReports").addClass("active-item-menu");
+        });
+        $("#selectReport").click(function () {
+            $("#allReports").removeClass("active-item-menu");
+        });
+
+        
+
+        function brows(url) {
+            $.get(url,
+                function (data) {
+                    $('#result').html(data);
+                });
+        }
+
+
+    </script>
+}

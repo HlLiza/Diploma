@@ -50,9 +50,6 @@ D:\University\Diploma\Git\Network\Network.BL\obj\Debug\Network.BL.csprojResolveA
 D:\University\Diploma\Git\Network\Network.BL\obj\Debug\Network.BL.csproj.CoreCompileInputs.cache
 D:\University\Diploma\Git\Network\Network.BL\obj\Debug\Network.BL.dll
 D:\University\Diploma\Git\Network\Network.BL\obj\Debug\Network.BL.pdb
-D:\University\Diploma\bitbucket\Network\Network.BL\bin\Debug\EntityFramework.xml
-D:\University\Diploma\bitbucket\Network\Network.BL\obj\Debug\Network.BL.csprojResolveAssemblyReference.cache
-D:\University\Diploma\bitbucket\Network\Network.BL\obj\Debug\Network.BL.csproj.CoreCompileInputs.cache
 D:\University\Diploma\bitbucket\Network\Network.BL\bin\Debug\Network.BL.dll
 D:\University\Diploma\bitbucket\Network\Network.BL\bin\Debug\Network.BL.pdb
 D:\University\Diploma\bitbucket\Network\Network.BL\bin\Debug\Microsoft.IdentityModel.Logging.dll
@@ -72,6 +69,9 @@ D:\University\Diploma\bitbucket\Network\Network.BL\bin\Debug\Network.DAL.pdb
 D:\University\Diploma\bitbucket\Network\Network.BL\bin\Debug\Network.DAL.dll.config
 D:\University\Diploma\bitbucket\Network\Network.BL\bin\Debug\Newtonsoft.Json.xml
 D:\University\Diploma\bitbucket\Network\Network.BL\bin\Debug\System.IdentityModel.Tokens.Jwt.xml
+D:\University\Diploma\bitbucket\Network\Network.BL\bin\Debug\EntityFramework.xml
 D:\University\Diploma\bitbucket\Network\Network.BL\bin\Debug\ru\EntityFramework.resources.dll
+D:\University\Diploma\bitbucket\Network\Network.BL\obj\Debug\Network.BL.csprojResolveAssemblyReference.cache
+D:\University\Diploma\bitbucket\Network\Network.BL\obj\Debug\Network.BL.csproj.CoreCompileInputs.cache
 D:\University\Diploma\bitbucket\Network\Network.BL\obj\Debug\Network.BL.dll
 D:\University\Diploma\bitbucket\Network\Network.BL\obj\Debug\Network.BL.pdb

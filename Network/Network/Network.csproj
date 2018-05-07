@@ -456,7 +456,6 @@
     <Content Include="Views\Group\_Delete.cshtml" />
     <Content Include="Views\Group\_CreateGroup.cshtml" />
     <Content Include="Views\Conference\_CreateConference.cshtml" />
-    <Content Include="Views\Conference\_JoinConference.cshtml" />
     <Content Include="Views\Conference\Index.cshtml" />
     <Content Include="Views\Conference\_ListMembersOfConference.cshtml" />
     <Content Include="Views\Conference\_GetListOfListener.cshtml" />
@@ -481,6 +480,9 @@
     <Content Include="Views\Account\_OAuth.cshtml" />
     <Content Include="Views\Conference\_GetMembership.cshtml" />
     <Content Include="Views\Conference\OpenArchive.cshtml" />
+    <Content Include="Views\Conference\_FullTextSearch.cshtml" />
+    <Content Include="Views\Conference\Reports.cshtml" />
+    <Content Include="Views\Conference\_GetAllReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

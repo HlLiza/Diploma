@@ -5,8 +5,8 @@
 
 <div style="margin-left:25px; margin-right:20px;">
 
-    <div class="row menu-page">
-            <div class="text-menu-page col-md-4">
+    <div class="row menu-page menu-cont" >
+            <div class="text-menu-page col-md-2" style="padding-top: 10px;">
                 @Html.DisplayFor(model => model.Thema)
             </div>
            
@@ -16,16 +16,15 @@
 
             @if (!User.IsInRole("secretary") && !Model.MemberConferenceStatus)
             {
-                <div id="takeId" class="col-md-2" style="padding-top: 10px;"><span class="hover text-menu-page">РЕГИСТРАЦИЯ</span></div>
+                <div id="takeId" class="col-md-4 item-menu text-menu-page hover"><span class="text-menu-page">РЕГИСТРАЦИЯ</span></div>
             }
-        <div class="col-md-2" style="padding-top: 10px;"><span class="text-menu-page hover">ДОКЛАДЫ</span></div>
-
-
-            <div class="text-menu-page col-md-2" style="padding-top: 10px;">
-                @Html.DisplayFor(model => model.Direction)
+            <div class="col-md-4 item-menu text-menu-page hover" >
+                <a class="text-menu-page" href="@Url.Action("Reports", "Conference", new { confId=Model.Id})">ДОКЛАДЫ</a>
             </div>
     </div>
 </div>
+
+
 
 <div class="container" style="padding-top:20px;">
     <div class="row">
@@ -33,20 +32,13 @@
             <img src="data:image/png;base64, @Convert.ToBase64String(Model.Image)" />
         </div>
         <div class="col-6">
-            <a href="@Url.Action("DownloadReport", "Conference",new {confId=Model.Id})"><span class="linkForDowload">ТРЕБОВАНИЯ</span></a>
-            <div class="form-details">@Model.Details</div>
-        
+            <a href="@Url.Action("DownloadRequirements", "Conference",new {confId=Model.Id})"><span class="linkForDowload">ТРЕБОВАНИЯ</span></a>
+            <div class="form-details">@Model.Details</div>        
         </div>
     </div>
 </div>
 
-
-
-
-
-
-
-<div id="openModalJoinToConf" class="modal fade" data-url='@Url.Action("JoinToConference","Conference",new { confId = Model.Id})'>
+<div id="openModalJoinToConf" class="modal fade" data-url='@Url.Action("JoinToConference","Conference",new { confId = Model.Id},null)'>
     <div id="joinContainer">
     </div>
 </div>

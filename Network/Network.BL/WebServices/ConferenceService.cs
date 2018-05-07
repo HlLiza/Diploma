@@ -3,6 +3,7 @@ using Network.DAL.EFModel;
 using Network.DAL.Interfaces;
 using Network.DAL.Repositories;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
@@ -172,6 +173,11 @@ namespace Network.BL.WebServices
         public ReportConference GetReport(Guid reportId)
         {
             return _reportRepository.Find(reportId);
+        }
+
+        public IQueryable<Guid> GetListReports(Guid confId)
+        {
+            return _reportRepository.GetListReportsId(confId);
         }
 
 
