@@ -80,5 +80,6 @@ namespace Network.Views.ViewModels
         public Guid Id { get; set; }
         public string Title { get; set; }
         public string Author { get; set; }
+        public Guid ConfId { get; set; }
     }
 }

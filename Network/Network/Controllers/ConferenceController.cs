@@ -304,7 +304,6 @@ namespace Network.Controllers
 
         public ActionResult Reports(Guid confId)
         {  
-
             return View();
         }
 
@@ -323,13 +322,13 @@ namespace Network.Controllers
                 {
                     Id = report.Id,
                     Title = report.Title,
-                    Author = report.Author
+                    Author = report.Author,
+                    ConfId= confId
                 };
 
                 model.Add(item);
             }
             return PartialView("_GetAllReport",model);
-
         }
 
         public void Search(string str)

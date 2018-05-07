@@ -1,1 +1,28 @@
-﻿
+﻿@model IEnumerable<Network.Views.ViewModels.ReportsViewModel>
+
+
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+            <div class="row item-user">
+                <div class="col-md-3">
+                    @Html.DisplayFor(modelItem => item.Title)
+                </div>
+                <div class="col-md-4">
+                    @Html.DisplayFor(modelItem => item.Author)
+
+                </div>
+            </div>
+        }
+    }
+        else
+    {
+        <div class="body-background">
+            <div class="secretary">
+                CПИСОК ДОКЛАДОВ ПУСТ!
+            </div>
+        </div>
+    }
+
+
