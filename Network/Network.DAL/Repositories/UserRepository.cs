@@ -37,6 +37,11 @@ namespace Network.DAL.Repositories
             return _context.User;
         }
 
+        public IQueryable<User> GetByDirection(string direction)
+        {
+            return _context.User.Where(s => s.Direction == direction);
+        }
+
 
 
 

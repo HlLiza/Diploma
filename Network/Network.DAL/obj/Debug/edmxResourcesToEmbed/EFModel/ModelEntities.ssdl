@@ -110,6 +110,8 @@
     <Property Name="NameProject" Type="nvarchar(max)" />
     <Property Name="Direction" Type="nvarchar" MaxLength="500" />
     <Property Name="HeadId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="DateStart" Type="datetime" />
+    <Property Name="DateFinish" Type="datetime" />
   </EntityType>
   <EntityType Name="ListenerConfer">
     <Key>

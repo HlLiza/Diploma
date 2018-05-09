@@ -52,18 +52,7 @@ namespace Network.BL.WebServices
             return imageData;
         }
 
-        //public HttpPostedFileBase ConvertInHttpPosted(byte[] file)
-        //{
-        //    HttpPostedFileBase result = null;
-        //    if (file.Count() > 0)
-        //    {
-        //        result = new HttpPostedFileBase(file);
-
-
-        //    }
-
-        //    return result;
-        //}
+    
 
         public void UpdateUser(User user)
         {
@@ -90,7 +79,10 @@ namespace Network.BL.WebServices
             return result;
         }
 
-
+        public IQueryable<User> GetUsersByDirection(string direction)
+        {
+            return _userRepository.GetByDirection(direction);
+        }
 
 
 

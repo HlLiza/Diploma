@@ -40,7 +40,7 @@ namespace Network.DAL.EFModel
         public virtual DbSet<MembersOfConference> MembersOfConference { get; set; }
         public virtual DbSet<ReportConference> ReportConference { get; set; }
         public virtual DbSet<DataGroup> DataGroup { get; set; }
-        public virtual DbSet<Group> Group { get; set; }
         public virtual DbSet<MemberOfGroup> MemberOfGroup { get; set; }
+        public virtual DbSet<Group> Group { get; set; }
     }
 }

@@ -35,6 +35,11 @@
     align-items: stretch;
     text-align:center;
 }
+.btn-marg-log-off {
+    margin-left: 40px;
+    align-items: stretch;
+    text-align: center;
+}
 /**/
 
 
@@ -97,8 +102,13 @@ body {
     font-family: 'Helvetica';
 }
 .item-menu {
-    padding: 15px 5px 5px 5px;   
- }
+    padding: 15px 5px 5px 5px;
+}
+
+.gener-menu {
+    color: #007bff;
+}
+
 .item-icon {
     color:white;
     font-size:16px;
@@ -108,7 +118,12 @@ body {
     height: inherit;
     height: 50px;
     cursor: pointer;
+    color:white;    
 }
+ .hover a {
+    color: white;
+}
+
 .active-item-menu {
     background-color: #808080;
     height: inherit;
@@ -326,7 +341,7 @@ a .linkForDowload {
 
 a:hover {
     text-decoration: none;
-    color: unset;
+    color: white;
 }
 
 .date-show-archive {
@@ -356,3 +371,11 @@ a:hover {
 .btn-search {
     margin:7px;
 }
+
+.item-hover:hover {
+    background-color: #DFDFDF;
+    height: inherit;
+    /*height: 50px;*/
+    cursor: pointer;
+}
+

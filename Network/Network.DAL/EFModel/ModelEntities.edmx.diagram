@@ -33,12 +33,12 @@
         <EntityTypeShape EntityType="NetworkContext.ReportConference" Width="1.5" PointX="6" PointY="13.75" />
         <AssociationConnector Association="NetworkContext.FK_MembersOfConference_ReportConference" />
         <EntityTypeShape EntityType="NetworkContext.DataGroup" Width="1.5" PointX="14.875" PointY="13.375" />
-        <EntityTypeShape EntityType="NetworkContext.Group" Width="1.5" PointX="12.625" PointY="11.375" />
+        <EntityTypeShape EntityType="NetworkContext.MemberOfGroup" Width="1.5" PointX="14.875" PointY="9.75" />
+        <AssociationConnector Association="NetworkContext.FK_MemberOfGroup_User" />
+        <EntityTypeShape EntityType="NetworkContext.Group" Width="1.5" PointX="12.625" PointY="7.125" />
         <AssociationConnector Association="NetworkContext.FK_DataGroup_Group" />
         <AssociationConnector Association="NetworkContext.FK_Group_User" />
-        <EntityTypeShape EntityType="NetworkContext.MemberOfGroup" Width="1.5" PointX="14.875" PointY="9.75" />
         <AssociationConnector Association="NetworkContext.FK_MemberOfGroup_Group" />
-        <AssociationConnector Association="NetworkContext.FK_MemberOfGroup_User" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

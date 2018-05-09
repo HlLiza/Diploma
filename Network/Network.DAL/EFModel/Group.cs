@@ -25,6 +25,8 @@ namespace Network.DAL.EFModel
         public string NameProject { get; set; }
         public string Direction { get; set; }
         public System.Guid HeadId { get; set; }
+        public Nullable<System.DateTime> DateStart { get; set; }
+        public Nullable<System.DateTime> DateFinish { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DataGroup> DataGroup { get; set; }

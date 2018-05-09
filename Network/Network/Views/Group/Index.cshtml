@@ -5,72 +5,60 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-    </div>
-<nav class="navbar navbar-inverse" role="navigation">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li><a href="@Url.Action("Index", "User")"><span style="font-size: 16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-arrow-left"></span></a></li>
-               
+<div class="row menu-page">
+    <div class="align-item-menu">
+        <div class="item-menu text-menu-page" style="padding-right: 30px;">ГРУППЫ</div>
+        <div class="item-menu text-menu-page hover" style="padding-right: 30px;"><a class="menu" href="@Url.Action("OpenArchive","Conference")">АРХИВ</a></div>
                 @if (User.IsInRole("secretary"))
-               {
-                <li id="addGroupModal" onclick="addGrModal(this)" data-url='@Url.Action("CreateGroup", "Group", null)'><a href="#">Добавить группу<span></span></a></li>
-               }
-
-
-                @if (!User.IsInRole("secretary"))
-                {
-                    <li><a href="@Url.Action("GroupsForUser", "Group")"><span style="font-size: 16px;" class="pull-right hidden-xs showopacity">Мои группы</span></a></li>
+            {
+                    <a href="@Url.Action("AddGroup","Group")"><div class="item-menu text-menu-page hover">ДОБАВИТЬ ГРУППУ</div></a>
                 }
-          
-            </ul>
-        </div>
     </div>
-</nav>
-
-<div class="row page" align="center">
-    Группы
-    
 </div>
 
-<div class="jumbotron">
-        <div class="row ">
-        <div class="col-md-2 bold">
-            Номер
-        </div>
-
-        <div class="col-md-4 bold">
-            Специализация
-        </div>
-
-        <div class="col-md-3 bold">
-            Руководитель
-        </div>
-    </div>   
+<div id="openModalAddGr" class="modal fade" data-url='@Url.Action("AddConference","Group",null)'>
+    <div id="addContainer">
+    </div>
 </div>
 
-<div class="jumbotron container-show">
+@section Scripts
+{
+    <script type="text/javascript">
 
+        $('#addGrId').click(function () {
+            var url = $('#openModalAddGr').data('url');
+            $.get(url,
+                function (data) {
+                    $('#addContainer').html(data);
+
+                    $('#openModalAddGr').modal('show');
+                });
+        });
+
+    </script>
+        
+}
+
+
+
+
+@*<div class="row ">
+    <div class="col-md-2 bold">
+        Номер
+    </div>
+
+    <div class="col-md-4 bold">
+        Специализация
+    </div>
+
+    <div class="col-md-3 bold">
+        Руководитель
+    </div>
+</div>*@
+
+<div class="container-show">
     <div class="row">
-        @foreach (var item in Model)
+        @*@foreach (var item in Model)
         {
             @Html.HiddenFor(modelItem => item.Id)
             <div class="row">
@@ -90,10 +78,10 @@
                     <button class="btn dropdown-toggle" data-toggle="dropdown"><span>...</span></button>
                     <ul class="dropdown-menu">
                         <li id="listMem" onclick="openModal(this)" data-url='@Url.Action("ListMembersOfGroup", "Group",new { id=item.Id})'><a href="#">Участники<span style="font-size: 16px;"></span></a></li>
-                        @*@if (User.IsInRole("team_lead"))
-                        {                            
+                        @if (User.IsInRole("team_lead"))
+                        {
                             <li id="joinToGroup" onclick="joinToGroup(this)" data-url='@Url.Action("AddToGroup", "Group",new { id=item.Id})'><a href="#">Присоединиться к группе<span style="font-size: 16px;"></span></a></li>
-                        }*@
+                        }
 
                         @if (User.IsInRole("secretary"))
                         {
@@ -110,10 +98,10 @@
                     </div>
                 </div>
 
-                @*<div id="joinMod" class="modal fade" >
+                <div id="joinMod" class="modal fade" >
                     <div id="joinContainer">
                     </div>
-                </div>*@
+                </div>
 
                 <div id="delGroup" class="modal fade" >
                     <div id="delContainer">
@@ -121,7 +109,7 @@
                 </div>
 
                 <hr />
-        }
+        }*@
     </div>
 </div>
 
@@ -131,30 +119,18 @@
 
 
 
-    <div id="addModal" class="modal fade" data-url='@Url.Action("GetContact", "Group", null)'>
-        <div id="addGroupContainer">
-        </div>
+@*<div id="addModal" class="modal fade" data-url='@Url.Action("GetContact", "Group", null)'>
+    <div id="addGroupContainer">
     </div>
+</div>*@
 
-    @section Scripts{
-        <script type="text/javascript">
-            document.ready=(function () {
+@*@section Scripts{
+    <script type="text/javascript">
+        document.ready=(function () {
 
-                $('#addGroupModal').click(function () {
-                    var url = $('#addModal').data('url');
+            $('#addGroupModal').click(function () {
+                var url = $('#addModal').data('url');
 
-                    $.get(url,
-                        function (data) {
-                            $('#addGroupContainer').html(data);
-
-                            $('#addModal').modal('show');
-                        });
-
-                });          
-            })()
-
-            function addGrModal(element) {
-                var url = $(element).data('url');
                 $.get(url,
                     function (data) {
                         $('#addGroupContainer').html(data);
@@ -162,44 +138,56 @@
                         $('#addModal').modal('show');
                     });
 
-            };
+            });
+        })()
+
+        function addGrModal(element) {
+            var url = $(element).data('url');
+            $.get(url,
+                function (data) {
+                    $('#addGroupContainer').html(data);
+
+                    $('#addModal').modal('show');
+                });
+
+        };
 
 
-            function openModal(element) {
-                var url = $(element).data('url');
-                $.get(url,
-                    function (data) {
-                        $('#listContainer').html(data);
+        function openModal(element) {
+            var url = $(element).data('url');
+            $.get(url,
+                function (data) {
+                    $('#listContainer').html(data);
 
-                        $('#listMemm').modal('show');
-                    });
+                    $('#listMemm').modal('show');
+                });
 
-            };
+        };
 
-            function deletGroup(element) {
-                var url = $(element).data('url');
-                debugger;
-                $.get(url,
-                    function (data) {
-                        $('#delContainer').html(data);
+        function deletGroup(element) {
+            var url = $(element).data('url');
+            debugger;
+            $.get(url,
+                function (data) {
+                    $('#delContainer').html(data);
 
-                        $('#delGroup').modal('show');
-                    });
+                    $('#delGroup').modal('show');
+                });
 
-            };
+        };*@
 
 
-            //function joinToGroup(element) {
-            //    var url = $(element).data('url');
+        //function joinToGroup(element) {
+        //    var url = $(element).data('url');
 
-            //    $.get(url,
-            //        function (data) {
-            //            $('#joinContainer').html(data);
+        //    $.get(url,
+        //        function (data) {
+        //            $('#joinContainer').html(data);
 
-            //            $('#joinMod').modal('show');
-            //        });
+        //            $('#joinMod').modal('show');
+        //        });
 
-            //};
-        </script>
-    }
+        //};
+    @*</script>
+}*@
 

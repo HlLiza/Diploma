@@ -1,0 +1,22 @@
+﻿@model Network.Views.ViewModels.AddGroup
+
+
+    @using (Html.BeginForm("AddGroup", "Group", FormMethod.Post))
+    {
+        <div class="row">
+            <input class="input-search" type="text" name="Direction" placeholder="НАЗВАНИЕ ПРОЕКТА" value="@Model.Direction">
+        </div>
+            <div class="row">
+                <input class="input-search" type="text" name="NameProject" placeholder="НАЗВАНИЕ ПРОЕКТА">
+            </div>
+            <div class="row">
+                <input class="input-search" type="datetime" name="DateStart" placeholder="СТАРТ ПРОЕКТА">
+            </div>
+            <div class="row">
+                <input class="input-search" type="datetime" name="DateFinish" placeholder="ФИНИШ ПРОЕКТА">
+            </div>
+
+            <div class="row">
+                @Html.DropDownListFor(x => x.Head, new SelectList(Model.Head, "Id", "Name"), "РУКОВОДИТЕЛЬ")
+            </div>
+    }

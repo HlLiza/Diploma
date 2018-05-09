@@ -11,6 +11,7 @@ namespace Network.DAL.Interfaces
         User Find(Guid id);
         User GetUserByAspUserId(string id);
         IQueryable<User> GetAll();
+        IQueryable<User> GetByDirection(string direction);
 
 
         string GetRoleId(string userId);

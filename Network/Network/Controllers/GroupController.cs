@@ -1,4 +1,6 @@
 ﻿using Network.BL.WebServices;
+using Network.Views.ViewModels;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace Network.Controllers
@@ -12,6 +14,64 @@ namespace Network.Controllers
             _groupService = groupService;
             _userService = userService;
         }
+
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = "secretary")]
+        public ActionResult AddGroup()
+        {
+            var model = new AddGroup();
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "secretary")]
+        public ActionResult AddGroup(ConferenceAddViewModel model)
+        {
+            //if (model != null)
+            //{
+            //    Conference conf = new Conference
+            //    {
+            //        Thema = model.Thema,
+            //        Date = model.Date,
+            //        Direction = model.Direction,
+            //        Details = model.Details,
+            //        Requirements = null,
+            //        Image = null
+            //    };
+
+            //    if (model.Image != null)
+            //        conf.Image = _userService.СonvertingImg(model.Image);
+            //    if (model.Requirements != null)
+            //        conf.Requirements = _userService.СonvertingImg(model.Requirements);
+
+            //    _conferencService.AddCovference(conf);
+            //}
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult SelectDirection(string direction)
+        {
+            var users = _userService.GetUsersByDirection(direction);
+            AddGroup model = new AddGroup();
+            model.Direction = direction;
+
+            if (users.Count() > 0)
+            {
+                model.Head = users;
+            }
+            else
+            {
+                model.Head = _userService.GetAllUser();
+            }
+
+            return View("_AddModel",model);
+        }
+
+
     }
 }
 

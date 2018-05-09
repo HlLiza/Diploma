@@ -176,9 +176,6 @@ namespace Network.Controllers
         }
 
 
-
-
-
         List<AducationInfo> GetAducInfo(IQueryable<Aducation> data)
         {
             List<AducationInfo> result = new List<AducationInfo>();
@@ -250,7 +247,6 @@ namespace Network.Controllers
         {
             return View();
         }
-
 
         public ActionResult GetAllUsers()
         {
@@ -329,65 +325,10 @@ namespace Network.Controllers
             }
         }
 
-
-
-
-
-
-        //[HttpGet]
-        //public ActionResult EditUser()
-        //{
-        //    var model = GetProfileFromPage();
-        //    return View("EditUser",model);
-        //}
-
-        //[HttpPost]
-        //public ActionResult EditUser(UserIndexViewModel model)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-
-        //        //Aducation aducation = new Aducation()
-        //        //{
-        //        //    Type = model.Type,
-        //        //    Institution = model.Specialization,
-        //        //    StartYear = model.StartYear,
-        //        //    GradYear = model.GradYear,
-        //        //    Specialization = model.Specialization
-        //        //};
-        //        //User_sContact contact = new User_sContact()
-        //        //{
-        //        //    PhoneNumber = model.PhoneNumber,
-        //        //    Skype = model.Skype
-        //        //};
-        //        //User_sPersonalData data = new User_sPersonalData()
-        //        //{
-        //        //    Name = model.Name
-        //        //};
-        //        User user = new User()
-        //        {
-        //            AspUserId = model.AspUserId,
-        //            Id = model.Id
-        //        };
-
-        //      //  _userService.EditProfile(aducation, contact, data, user);
-        //        return RedirectToAction("Index", "User");
-        //    }
-        //    else
-        //    {
-        //       // var model = GetProfileFromPage();
-
-        //        return View("EditUser", model);
-        //    }
-
-           
-            
-
-        //    //return RedirectToAction("Index", "User");
-        //}
-
-
-
+        public ActionResult MyProfile()
+        {
+            return View();
+        }
     }
 }
 

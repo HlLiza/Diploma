@@ -2,16 +2,27 @@
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right"}))
-        //QueryString["ReturnUrl"] }))
     {
-                @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
 
-                <ul class="nav navbar-nav navbar-right btn-marg">
-        <li>
-            @Html.ActionLink("Здравствуйте, " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Выйти</a></li>
-    </ul>
+        <div class="row" style="float:right;padding-top:5px;">
+            <div class="nav navbar-nav navbar-right btn-marg-log-off  item-hover">
+                <a href="@Url.Action("Index","User")">
+                    <span style="color:#007bff;" class="fa fa-home"></span>
+                    @User.Identity.GetUserName()
+                </a>
+            </div>
+
+            
+
+            <div class="nav navbar-nav navbar-right btn-marg-log-off  item-hover">
+                <a href="javascript:document.getElementById('logoutForm').submit()">
+                    <span style="color:#007bff;" class="fa fa-sign-out"></span>
+                    ВЫЙТИ
+                </a>
+            </div>
+        </div>
+       
     }
 }
 else

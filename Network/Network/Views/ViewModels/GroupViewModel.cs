@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Web;
 
 namespace Network.Views.ViewModels
 {
@@ -16,6 +15,28 @@ namespace Network.Views.ViewModels
 
         public string Specialization { get; set; }
     }
+
+
+    public class AddGroup
+    {
+        public Guid Id { get; set; }
+
+        public string NameProject { get; set; }
+
+        public string Direction { get; set; }
+
+        public IQueryable<User> Head { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime DateStart { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime DateFinish { get; set; }
+    }
+
+
+
+
 
     public class SelectLeadViewModel
     {
