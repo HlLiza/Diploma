@@ -1,6 +1,9 @@
 ﻿using Network.BL.Interfaces;
+using Network.DAL.EFModel;
 using Network.DAL.Interfaces;
 using Network.DAL.Repositories;
+using System;
+using System.Linq;
 
 namespace Network.BL.WebServices
 {
@@ -19,6 +22,16 @@ namespace Network.BL.WebServices
             _userRepository = userRepository;
             _memberRepository = memberRepository;
             _dataRepository = dataRepository;
+        }
+
+        public void AddGroup(Group gr)
+        {
+            _groupRepository.Add(gr);
+        }
+
+        public IQueryable<Group> GetAll()
+        {
+            return _groupRepository.GetGroups();
         }
 
 

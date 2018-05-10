@@ -26,6 +26,7 @@ namespace Network.Views.ViewModels
         public string Direction { get; set; }
 
         public IQueryable<User> Head { get; set; }
+        public Guid SelectedHead { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DateStart { get; set; }
@@ -34,45 +35,56 @@ namespace Network.Views.ViewModels
         public DateTime DateFinish { get; set; }
     }
 
-
-
-
-
-    public class SelectLeadViewModel
+    public class IndexGroup
     {
         public Guid Id { get; set; }
 
-        public string Name { get; set; }
+        public string NameProject { get; set; }
+
+        public string Direction { get; set; }
+
+        public User Head { get; set; }
     }
 
-    public class CreateGroup
-    {
-        [Required]
-        public int Number { get; set; }
 
-        [Required]
-        public string Specialization { get; set; }
 
-        [Required]
-        public SelectLeadViewModel Head { get; set; }
 
-        [Required]
-        public List<SelectLeadViewModel> ListLead { get; set; }
-    }
 
-    public class AddtoGroup
-    {
-       // public List<Group> groupList { get; set; }
-        public Guid selectedGroupId { get; set; }
-        public string selectedSpec { get; set; }
-        public Guid userId { get; set; }
-    }
+    //public class SelectLeadViewModel
+    //{
+    //    public Guid Id { get; set; }
 
-   
+    //    public string Name { get; set; }
+    //}
 
-    public class AddToGroupMember
-    {
-        public Guid grId { get; set; }
-        public List<UserListViewModel> ListUser { get; set; }
-    }
+    //public class CreateGroup
+    //{
+    //    [Required]
+    //    public int Number { get; set; }
+
+    //    [Required]
+    //    public string Specialization { get; set; }
+
+    //    [Required]
+    //    public SelectLeadViewModel Head { get; set; }
+
+    //    [Required]
+    //    public List<SelectLeadViewModel> ListLead { get; set; }
+    //}
+
+    //public class AddtoGroup
+    //{
+    //   // public List<Group> groupList { get; set; }
+    //    public Guid selectedGroupId { get; set; }
+    //    public string selectedSpec { get; set; }
+    //    public Guid userId { get; set; }
+    //}
+
+
+
+    //public class AddToGroupMember
+    //{
+    //    public Guid grId { get; set; }
+    //    public List<UserListViewModel> ListUser { get; set; }
+    //}
 }

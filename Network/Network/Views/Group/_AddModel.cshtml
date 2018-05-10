@@ -3,20 +3,24 @@
 
     @using (Html.BeginForm("AddGroup", "Group", FormMethod.Post))
     {
-        <div class="row">
-            <input class="input-search" type="text" name="Direction" placeholder="НАЗВАНИЕ ПРОЕКТА" value="@Model.Direction">
-        </div>
-            <div class="row">
-                <input class="input-search" type="text" name="NameProject" placeholder="НАЗВАНИЕ ПРОЕКТА">
+        @Html.HiddenFor(model=>model.Direction)
+     
+            <div class="row form-group">
+                <input class="input-add-info" required type="text" name="NameProject" placeholder="НАЗВАНИЕ ПРОЕКТА">
             </div>
-            <div class="row">
-                <input class="input-search" type="datetime" name="DateStart" placeholder="СТАРТ ПРОЕКТА">
+            <div class="row form-group">
+                <input class="input-add-info" required type="date" name="DateStart" placeholder="СТАРТ ПРОЕКТА">
             </div>
-            <div class="row">
-                <input class="input-search" type="datetime" name="DateFinish" placeholder="ФИНИШ ПРОЕКТА">
+            <div class="row form-group">
+                <input class="input-add-info" required type="date" name="DateFinish" placeholder="ФИНИШ ПРОЕКТА">
+            </div>
+
+            <div class="row form-group">
+                @Html.DropDownListFor(x => x.SelectedHead, new SelectList(Model.Head, "Id","Name"), "РУКОВОДИТЕЛЬ", new { @class = "input-add-info", required = (string)null })
             </div>
 
             <div class="row">
-                @Html.DropDownListFor(x => x.Head, new SelectList(Model.Head, "Id", "Name"), "РУКОВОДИТЕЛЬ")
+                <input type="submit" class="next button-large btn-default btn" value="ОК" />
             </div>
     }
+   

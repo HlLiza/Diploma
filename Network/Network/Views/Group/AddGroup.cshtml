@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="panel container-show container" style="padding-top: 50px;">
+<div class="panel container-show container search-input">
     <div class="row">
         <div>
             <input id ="selectWord"class="input-search" type="text" name="direction" placeholder="НАПРАВЛЕНИЕ">
@@ -14,13 +14,10 @@
     </div>
 </div>
 
-<div id="searchResults">
+<div id="searchResults" class="form-add-group">
 
 </div>
 
-@*<div class="panel container-show container">
-    @Html.Partial("_AddModel")
-</div>*@
 
 
 
@@ -30,22 +27,23 @@
 
             $("#selectReport").click(function () {
                 var direction = $("#selectWord").val();
-                debugger
                 $.ajax({
                     url: "/Group/SelectDirection?direction" + direction,
-                    method: "post",
+                    method: "GET",
                     async: false,
                     data: { direction },
                     success: function (data) {
-                        debugger;
                         $("#searchResults").html(data);
                     }
                 });
 
             });
         });
+        
+     </script>
+}
 
-            //function setHead(str) {
+ @*//function setHead(str) {
             //    var set_data = '',
             //    var direction = $("#selectWord").val();
             //    debugger
@@ -62,20 +60,17 @@
 
             //}
 
-           
+
         //return set_data;
 
                 //debugger
-                //$("#searchResults").load(url, { direction: keyWord });
+                //$("#searchResults").load(url, { direction: keyWord });*@
 
-            @*var url = '@Url.Action("SelectDirection", "Group")';
+@*var url = '@Url.Action("SelectDirection", "Group")';
 
-            $("#selectReport").click(function () {
-                debugger
+    $("#selectReport").click(function () {
+        debugger
 
-                debugger
-                $("#searchResults").load(url, { direction: keyWord });
-            })*@
-        
-     </script>
-}
+        debugger
+        $("#searchResults").load(url, { direction: keyWord });
+    })*@

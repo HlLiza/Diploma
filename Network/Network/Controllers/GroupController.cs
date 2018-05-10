@@ -1,6 +1,11 @@
-﻿using Network.BL.WebServices;
+﻿using Microsoft.AspNet.Identity;
+using Network.BL.WebServices;
+using Network.DAL.EFModel;
 using Network.Views.ViewModels;
+using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 
 namespace Network.Controllers
@@ -17,8 +22,47 @@ namespace Network.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            var role = _userService.GetRoleNameByAspId(User.Identity.GetUserId());
+            List<IndexGroup> model = new List<IndexGroup>();
+            if (role == "secretary")
+            {
+                model = SecretaryGroup();
+            }
+
+            if (role == "group_member")
+            {
+                model = SecretaryGroup();
+            }
+
+            return View(model);
         }
+
+        [Authorize(Roles = "secretary")]
+        List<IndexGroup> SecretaryGroup()
+        {
+            List<IndexGroup> result = new List<IndexGroup>();
+            var list = _groupService.GetAll();
+            if (list == null)
+            {
+                result=null;
+            }
+            foreach (var item in list)
+            {
+                IndexGroup group = new IndexGroup();
+                group.NameProject = item.NameProject;
+                group.Direction = item.Direction;
+                group.Head = _userService.GetUserById(item.HeadId);
+                result.Add(group);
+            }
+
+            return result;
+        }
+
+
+
+
+
+
 
         [Authorize(Roles = "secretary")]
         public ActionResult AddGroup()
@@ -29,29 +73,27 @@ namespace Network.Controllers
 
         [HttpPost]
         [Authorize(Roles = "secretary")]
-        public ActionResult AddGroup(ConferenceAddViewModel model)
+        public ActionResult AddGroup(AddGroup model)
         {
-            //if (model != null)
-            //{
-            //    Conference conf = new Conference
-            //    {
-            //        Thema = model.Thema,
-            //        Date = model.Date,
-            //        Direction = model.Direction,
-            //        Details = model.Details,
-            //        Requirements = null,
-            //        Image = null
-            //    };
+            if (model == null || model.NameProject == null)
+            {
+                return Json(new { status = "error", message = "Ошибка при создании группы" });
+            }
 
-            //    if (model.Image != null)
-            //        conf.Image = _userService.СonvertingImg(model.Image);
-            //    if (model.Requirements != null)
-            //        conf.Requirements = _userService.СonvertingImg(model.Requirements);
+            Group gr = new Group()
+            {
+                Id = Guid.NewGuid(),
+                NameProject = model.NameProject,
+                Direction = model.Direction,
+                HeadId = model.SelectedHead,
+                DateStart = model.DateStart,
+                DateFinish = model.DateFinish,
+            };
+            _groupService.AddGroup(gr);
 
-            //    _conferencService.AddCovference(conf);
-            //}
             return RedirectToAction("Index");
         }
+
 
         public ActionResult SelectDirection(string direction)
         {
@@ -68,12 +110,12 @@ namespace Network.Controllers
                 model.Head = _userService.GetAllUser();
             }
 
-            return View("_AddModel",model);
+            return PartialView("_AddModel", model);
         }
-
 
     }
 }
+
 
         //public ActionResult Index()
         //{

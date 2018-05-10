@@ -379,3 +379,19 @@ a:hover {
     cursor: pointer;
 }
 
+.search-input {
+    padding-top: 50px;
+    height: 110px;
+    padding-left:300px;
+}
+
+.form-add-group {
+    padding: 0 385px 0 430px;
+}
+
+.item-list-group {
+    text-align: center;
+    color: white;
+    font-weight:bold;
+}
+
