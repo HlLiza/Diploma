@@ -39,21 +39,26 @@
         <hr />
         foreach (var item in Model)
         {
-            <div class="row">
-                <div class="col-md-4 item-list-group">
-                    @Html.DisplayFor(k=>item.Direction)
-                </div>
+                <div class="row" data-toggle="modal" data-target="#exampleModal" onclick="openModal(this)" style="cursor:pointer;" data-url="@Url.Action("ItemInfo","Group",new { groupId=item.Id})">
+
+                        <div class="col-md-4 item-list-group">
+                            @Html.DisplayFor(k => item.Direction)
+                        </div>
 
 
-                <div class="col-md-4 item-list-group">
-                        @Html.DisplayFor(k=>item.NameProject)
+                        <div class="col-md-4 item-list-group">
+                            @Html.DisplayFor(k => item.NameProject)
+                        </div>
+                        <div class="col-md-4 item-list-group">
+                            @Html.DisplayFor(k => item.Head.Name)
+                            @Html.DisplayFor(k => item.Head.Surname)
+                        </div>
                 </div>
-                <div class="col-md-4 item-list-group">
-                        @Html.DisplayFor(k=>item.Head.Name)
-                        @Html.DisplayFor(k => item.Head.Surname)
+
+                <div id="itemContainer">
                 </div>
-            </div>
-         }
+
+        }
     }
 
 </div>
@@ -62,7 +67,7 @@
 
 
 
-    <div id="openModalAddGr" class="modal fade" data-url='@Url.Action("AddConference","Group",null)'>
+    <div id="openModalAddGr" class="modal fade" data-toggle="modal" data-url='@Url.Action("AddConference","Group",null)'>
         <div id="addContainer">
         </div>
     </div>
@@ -76,164 +81,23 @@
                 $.get(url,
                     function (data) {
                         $('#addContainer').html(data);
-
+                 
                         $('#openModalAddGr').modal('show');
                     });
             });
-
-        </script>
-
-    }
-
-
-
-
-    @*<div class="row ">
-            <div class="col-md-2 bold">
-                Номер
-            </div>
-
-            <div class="col-md-4 bold">
-                Специализация
-            </div>
-
-            <div class="col-md-3 bold">
-                Руководитель
-            </div>
-        </div>*@
-
-    <div class="container-show">
-        <div class="row">
-            @*@foreach (var item in Model)
-                {
-                    @Html.HiddenFor(modelItem => item.Id)
-                    <div class="row">
-                        <div class="col-md-2">
-                            @Html.DisplayFor(modelItem => item.Number)
-                        </div>
-
-                        <div class="col-md-4">
-                            @Html.DisplayFor(modelItem => item.Specialization)
-                        </div>
-
-                        <div class="col-md-3">
-                            @Html.DisplayFor(modelItem => item.NameHead)
-                        </div>
-
-                        <div class="col-md-3 btn-group">
-                            <button class="btn dropdown-toggle" data-toggle="dropdown"><span>...</span></button>
-                            <ul class="dropdown-menu">
-                                <li id="listMem" onclick="openModal(this)" data-url='@Url.Action("ListMembersOfGroup", "Group",new { id=item.Id})'><a href="#">Участники<span style="font-size: 16px;"></span></a></li>
-                                @if (User.IsInRole("team_lead"))
-                                {
-                                    <li id="joinToGroup" onclick="joinToGroup(this)" data-url='@Url.Action("AddToGroup", "Group",new { id=item.Id})'><a href="#">Присоединиться к группе<span style="font-size: 16px;"></span></a></li>
-                                }
-
-                                @if (User.IsInRole("secretary"))
-                                {
-                                    <li id="deletGroup" onclick="deletGroup(this)" data-url='@Url.Action("DeleteGroup", "Group",new { id=item.Id})'><a href="#">Удалить<span style="font-size: 16px;"></span></a></li>
-                                }
-                            </ul>
-                        </div>
-
-                    </div>
-
-
-                        <div id="listMemm" class="modal fade" >
-                            <div id="listContainer">
-                            </div>
-                        </div>
-
-                        <div id="joinMod" class="modal fade" >
-                            <div id="joinContainer">
-                            </div>
-                        </div>
-
-                        <div id="delGroup" class="modal fade" >
-                            <div id="delContainer">
-                            </div>
-                        </div>
-
-                        <hr />
-                }*@
-        </div>
-    </div>
-
-
-
-
-
-
-
-    @*<div id="addModal" class="modal fade" data-url='@Url.Action("GetContact", "Group", null)'>
-            <div id="addGroupContainer">
-            </div>
-        </div>*@
-
-    @*@section Scripts{
-        <script type="text/javascript">
-            document.ready=(function () {
-
-                $('#addGroupModal').click(function () {
-                    var url = $('#addModal').data('url');
-
-                    $.get(url,
-                        function (data) {
-                            $('#addGroupContainer').html(data);
-
-                            $('#addModal').modal('show');
-                        });
-
-                });
-            })()
-
-            function addGrModal(element) {
-                var url = $(element).data('url');
-                $.get(url,
-                    function (data) {
-                        $('#addGroupContainer').html(data);
-
-                        $('#addModal').modal('show');
-                    });
-
-            };
-
 
             function openModal(element) {
                 var url = $(element).data('url');
                 $.get(url,
                     function (data) {
-                        $('#listContainer').html(data);
-
-                        $('#listMemm').modal('show');
+                        $('#itemContainer').html(data);
+                        $('#exampleModal').modal('show');
                     });
 
             };
 
-            function deletGroup(element) {
-                var url = $(element).data('url');
-                debugger;
-                $.get(url,
-                    function (data) {
-                        $('#delContainer').html(data);
 
-                        $('#delGroup').modal('show');
-                    });
+        </script>
 
-            };*@
-
-
-    //function joinToGroup(element) {
-    //    var url = $(element).data('url');
-
-    //    $.get(url,
-    //        function (data) {
-    //            $('#joinContainer').html(data);
-
-    //            $('#joinMod').modal('show');
-    //        });
-
-    //};
-    @*</script>
-        }*@
+    }
 

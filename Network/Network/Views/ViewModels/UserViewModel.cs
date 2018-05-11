@@ -1,5 +1,4 @@
-﻿using Network.Enums;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -154,5 +153,12 @@ namespace Network.Views.ViewModels
     
         [DisplayName("Год окончания обучения (или предполагаемый)")]
         public int? GradYear { get; set; }
+    }
+
+    public class SimpleInfo
+    {
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public byte[] Image { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using Network.DAL.EFModel;
 using Network.DAL.Interfaces;
 using Network.DAL.Repositories;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Network.BL.WebServices
@@ -34,9 +35,36 @@ namespace Network.BL.WebServices
             return _groupRepository.GetGroups();
         }
 
+        public Group GetGroup (Guid groupId)
+        {
+            return _groupRepository.Find(groupId);
+        }
 
+        public IQueryable<Guid> MembersId (Guid groupId)
+        {
+            return _memberRepository.FindUsersForGroup(groupId);
 
+        }
 
+        public IQueryable<Guid> GroupId(Guid userId)
+        {
+            return _memberRepository.FindGroupsForUser(userId);
+        }
+
+        public List<Group> GetGroupByListId(IQueryable<Guid> listId)
+        {
+            List<Group> result = new List<Group>();
+
+            if (listId != null)
+            {
+                foreach (var id in listId)
+                {
+                    var group = _groupRepository.Find(id);
+                    result.Add(group);
+                }
+            }
+            return result;
+        }
     }
 }
 

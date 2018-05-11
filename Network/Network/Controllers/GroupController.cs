@@ -30,8 +30,8 @@ namespace Network.Controllers
             }
 
             if (role == "group_member")
-            {
-                model = SecretaryGroup();
+            {   
+                model = MemberGroup();
             }
 
             return View(model);
@@ -44,22 +44,44 @@ namespace Network.Controllers
             var list = _groupService.GetAll();
             if (list == null)
             {
-                result=null;
-            }
-            foreach (var item in list)
-            {
-                IndexGroup group = new IndexGroup();
-                group.NameProject = item.NameProject;
-                group.Direction = item.Direction;
-                group.Head = _userService.GetUserById(item.HeadId);
-                result.Add(group);
-            }
+                foreach (var item in list)
+                {
+                    IndexGroup group = new IndexGroup();
+                    group.Id = item.Id;
+                    group.NameProject = item.NameProject;
+                    group.Direction = item.Direction;
+                    group.Head = _userService.GetUserById(item.HeadId);
+                    result.Add(group);
+                }
+             }
 
             return result;
         }
 
+        [Authorize(Roles = "group_member")]
+        List<IndexGroup> MemberGroup()
+        {
+            List<IndexGroup> result = new List<IndexGroup>();
+            var userId = _userService.GetUserIdByAspId(User.Identity.GetUserId());
 
+            var idGroup = _groupService.GroupId(userId);
+            var groupList = _groupService.GetGroupByListId(idGroup);
 
+            if (groupList.Count() > 0)
+            {
+                foreach (var item in groupList)
+                {
+                    IndexGroup group = new IndexGroup();
+                    group.Id = item.Id;
+                    group.NameProject = item.NameProject;
+                    group.Direction = item.Direction;
+                    group.Head = _userService.GetUserById(item.HeadId);
+                    result.Add(group);
+                }
+            }
+
+            return result;
+        }
 
 
 
@@ -112,6 +134,56 @@ namespace Network.Controllers
 
             return PartialView("_AddModel", model);
         }
+
+        //[HttpGet]
+        public PartialViewResult ItemInfo(Guid groupId)
+        {
+            if (groupId!=null)
+            {
+                var group = _groupService.GetGroup(groupId);
+                var head = _userService.GetUserById(group.HeadId);
+                SimpleInfo headItem = new SimpleInfo
+                {
+                    Name = head.Name,
+                    Surname = head.Surname,
+                    Image = head.Image
+                };
+
+                GroupInfo model = new GroupInfo()
+                {
+                    Direction = group.Direction,
+                    NameProject = group.NameProject,
+                    DateStart = Convert.ToDateTime(group.DateStart),
+                    DateFinish = Convert.ToDateTime(group.DateFinish),
+                    Head = headItem
+                };
+
+
+                var idList = _groupService.MembersId(groupId);
+                var userList = _userService.GetUsersByListId(idList);
+                if (userList.Count() > 0)
+                {
+                    foreach (var item in userList)
+                    {
+                        SimpleInfo member = new SimpleInfo
+                        {
+                            Name = item.Name,
+                            Surname = item.Surname,
+                            Image = item.Image
+                        };
+                        model.Members.Add(member);
+                    }
+                }
+
+
+                return PartialView("_ItemInfo",model);
+            }
+            ViewBag.Property = "Нет соответствующей информации";
+
+            return PartialView("_ItemInfo", ViewBag);
+        }
+
+
 
     }
 }

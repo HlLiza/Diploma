@@ -127,6 +127,7 @@
 
         function openModal(element) {
             var url = $(element).data('url');
+            debugger
             $.get(url,
                 function (data) {
                     $('#listContainer').html(data);

@@ -1,6 +1,7 @@
 ﻿using Network.DAL.EFModel;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
@@ -46,6 +47,31 @@ namespace Network.Views.ViewModels
         public User Head { get; set; }
     }
 
+    public class GroupInfo
+    {
+        [DisplayName("НАПРАВЛЕНИЕ")]
+        public string Direction { get; set; }
+
+        [DisplayName("ПРОЕКТ")]
+        public string NameProject { get; set; }
+
+        [DisplayName("УЧАСТНИКИ")]
+        public List<SimpleInfo> Members { get; set; }
+
+        [DisplayName("РУКОВОЛИТЕЛЬ")]
+        public SimpleInfo Head { get; set; }
+
+
+        [DisplayName("ДАТА СТАРТА")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime DateStart { get; set; }
+
+        [DisplayName("ДАТА ОКОНЧАНИЯ")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime DateFinish { get; set; }
+
+
+    }
 
 
 
