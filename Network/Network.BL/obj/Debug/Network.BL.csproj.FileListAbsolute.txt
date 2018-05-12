@@ -56,7 +56,6 @@ D:\University\Diploma\bitbucket\Network\Network.BL\bin\Debug\Microsoft.IdentityM
 D:\University\Diploma\bitbucket\Network\Network.BL\bin\Debug\Microsoft.IdentityModel.Tokens.dll
 D:\University\Diploma\bitbucket\Network\Network.BL\bin\Debug\Microsoft.Owin.dll
 D:\University\Diploma\bitbucket\Network\Network.BL\bin\Debug\Microsoft.Practices.ServiceLocation.dll
-D:\University\Diploma\bitbucket\Network\Network.BL\bin\Debug\Network.DAL.dll
 D:\University\Diploma\bitbucket\Network\Network.BL\bin\Debug\Newtonsoft.Json.dll
 D:\University\Diploma\bitbucket\Network\Network.BL\bin\Debug\Owin.dll
 D:\University\Diploma\bitbucket\Network\Network.BL\bin\Debug\System.IdentityModel.Tokens.Jwt.dll

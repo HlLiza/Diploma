@@ -30,6 +30,11 @@ namespace Network.BL.WebServices
             _groupRepository.Add(gr);
         }
 
+        public void AddMembership(MemberOfGroup membership)
+        {
+            _memberRepository.Add(membership);
+        }
+
         public IQueryable<Group> GetAll()
         {
             return _groupRepository.GetGroups();
@@ -64,6 +69,14 @@ namespace Network.BL.WebServices
                 }
             }
             return result;
+        }
+
+        public bool UserIsHead(Guid groupId, Guid userId)
+        {
+            var group = _groupRepository.Find(groupId);
+            if (group != null && group.HeadId == userId)
+                return true;
+            else return false;
         }
     }
 }

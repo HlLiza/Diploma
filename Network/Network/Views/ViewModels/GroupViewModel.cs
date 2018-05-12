@@ -45,7 +45,11 @@ namespace Network.Views.ViewModels
         public string Direction { get; set; }
 
         public User Head { get; set; }
+
+        public bool UserIsHead { get; set; }
     }
+
+
 
     public class GroupInfo
     {

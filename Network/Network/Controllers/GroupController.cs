@@ -32,6 +32,7 @@ namespace Network.Controllers
             if (role == "group_member")
             {   
                 model = MemberGroup();
+
             }
 
             return View(model);
@@ -42,7 +43,7 @@ namespace Network.Controllers
         {
             List<IndexGroup> result = new List<IndexGroup>();
             var list = _groupService.GetAll();
-            if (list == null)
+            if (list != null)
             {
                 foreach (var item in list)
                 {
@@ -51,6 +52,8 @@ namespace Network.Controllers
                     group.NameProject = item.NameProject;
                     group.Direction = item.Direction;
                     group.Head = _userService.GetUserById(item.HeadId);
+                    group.UserIsHead =false;
+
                     result.Add(group);
                 }
              }
@@ -76,6 +79,7 @@ namespace Network.Controllers
                     group.NameProject = item.NameProject;
                     group.Direction = item.Direction;
                     group.Head = _userService.GetUserById(item.HeadId);
+                    group.UserIsHead = _groupService.UserIsHead(group.Id, userId);              
                     result.Add(group);
                 }
             }
@@ -96,7 +100,7 @@ namespace Network.Controllers
         [HttpPost]
         [Authorize(Roles = "secretary")]
         public ActionResult AddGroup(AddGroup model)
-        {
+            {
             if (model == null || model.NameProject == null)
             {
                 return Json(new { status = "error", message = "Ошибка при создании группы" });
@@ -111,7 +115,14 @@ namespace Network.Controllers
                 DateStart = model.DateStart,
                 DateFinish = model.DateFinish,
             };
+            MemberOfGroup membership = new MemberOfGroup()
+            {
+                Id=Guid.NewGuid(),
+                GroupId=gr.Id,
+                UserId=gr.HeadId
+            };
             _groupService.AddGroup(gr);
+            _groupService.AddMembership(membership);
 
             return RedirectToAction("Index");
         }
@@ -155,7 +166,8 @@ namespace Network.Controllers
                     NameProject = group.NameProject,
                     DateStart = Convert.ToDateTime(group.DateStart),
                     DateFinish = Convert.ToDateTime(group.DateFinish),
-                    Head = headItem
+                    Head = headItem,
+                    Members=new List<SimpleInfo>()
                 };
 
 
