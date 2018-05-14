@@ -169,25 +169,7 @@ namespace Network.Controllers
                     Head = headItem,
                     Members=new List<SimpleInfo>()
                 };
-
-
-                var idList = _groupService.MembersId(groupId);
-                var userList = _userService.GetUsersByListId(idList);
-                if (userList.Count() > 0)
-                {
-                    foreach (var item in userList)
-                    {
-                        SimpleInfo member = new SimpleInfo
-                        {
-                            Name = item.Name,
-                            Surname = item.Surname,
-                            Image = item.Image
-                        };
-                        model.Members.Add(member);
-                    }
-                }
-
-
+                model.Members = GetMembers(groupId);
                 return PartialView("_ItemInfo",model);
             }
             ViewBag.Property = "Нет соответствующей информации";
@@ -198,30 +180,50 @@ namespace Network.Controllers
 
         public ActionResult OpenGroup(Guid groupId)
         {
-            //var conference = _conferencService.GetConferenceById(confId);
-            //OpenConferenceViewModel model = new OpenConferenceViewModel()
-            //{
-            //    Id = conference.Id,
-            //    Thema = conference.Thema,
-            //    Date = Convert.ToDateTime(conference.Date),
-            //    Details = conference.Details,
-            //    Direction = conference.Direction,
-            //    Image = conference.Image,
-            //    Requirements = conference.Requirements
-            //};
-            //model.MemberConferenceStatus = false;
-            //if (!User.IsInRole("secretary"))
-            //{
-            //    var userId = _userService.GetIdByAspId(User.Identity.GetUserId());
-            //    model.MemberConferenceStatus = _conferencService.UserIsMember(model.Id, userId);
-            //}
+            var group = _groupService.GetGroup(groupId);
+            var head = _userService.GetUserById(group.HeadId);
 
-            return View();
+            OpenGroupViewModel model = new OpenGroupViewModel()
+            {
+                Id = groupId,
+                NameProject = group.NameProject,
+                Direction = group.Direction,
+                Head = head,
+                DateStart = Convert.ToDateTime(group.DateStart),
+                DateFinish = Convert.ToDateTime(group.DateFinish),
+                Members = new List<SimpleInfo>()
+            };
+            model.Members = GetMembers(groupId);       
+
+            return View(model);
+        }
+
+
+        public List<SimpleInfo> GetMembers(Guid groupId)
+        {
+            List<SimpleInfo> model = new List<SimpleInfo>();
+            var idList = _groupService.MembersId(groupId);
+            var userList = _userService.GetUsersByListId(idList);
+            if (userList.Count() > 0)
+            {
+                foreach (var item in userList)
+                {
+                    SimpleInfo member = new SimpleInfo
+                    {
+                        Name = item.Name,
+                        Surname = item.Surname,
+                        Image = item.Image
+                    };
+                    model.Add(member);
+                }
+            }
+            return model;
         }
 
 
     }
 }
+
 
 
         //public ActionResult Index()

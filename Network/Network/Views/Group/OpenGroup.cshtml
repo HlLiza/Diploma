@@ -1,8 +1,63 @@
-﻿
+﻿@model Network.Views.ViewModels.OpenGroupViewModel
+
 @{
     ViewBag.Title = "OpenGroup";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>OpenGroup</h2>
+<div style="margin-left:25px; margin-right:20px;">
+
+    <div class="row menu-page menu-cont">
+
+        <div class="col-md-4 item-menu text-menu-page">
+            <a class="text-menu-page">@Model.NameProject</a>
+        </div>
+        <div class="col-md-4"></div>
+
+        <div class="col-md-4 item-menu text-menu-page">
+            <a class="text-menu-page">@Model.Head.Name @Model.Head.Surname</a>
+        </div>      
+        
+    </div>
+</div>
+<div class="row">
+    <div class="col-6">
+    </div>
+    <div class="col-6">
+        <div class="user-list-container">
+            @if (Model.Members == null)
+            {
+                <p>
+                    СПИСОК УЧАСТНИКОВ ПУСТ
+                    </p>
+            }
+            else
+            {
+                foreach (var member in Model.Members)
+                {
+                    <div class="row container" style="padding:10px;">
+                        @if (member.Image == null)
+                        {
+                            <img class="img-member " src="@Url.Content("~/Content/Pictures/default.jpeg")" alt="">
+                        }
+                        else
+                        {
+                            <img class="img-member" src="data:image/png;base64, @Convert.ToBase64String(member.Image)" />
+                        }
+                        <div style="padding: 25px 10px 10px 10px;">
+                            @member.Name
+                            @member.Surname
+                        </div>
+
+
+                    </div>
+                }
+
+            }
+        </div>
+    </div>
+</div>
+
+
+
 

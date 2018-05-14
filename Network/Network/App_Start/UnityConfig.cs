@@ -6,12 +6,9 @@ using Network.DAL.Repositories;
 using System;
 
 using Unity;
-using Unity.Injection;
-using Network.DAL.EFModel;
 using Network.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using Unity.Lifetime;
 
 namespace Network
 {

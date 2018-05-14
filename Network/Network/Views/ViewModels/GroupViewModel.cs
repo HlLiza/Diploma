@@ -48,9 +48,7 @@ namespace Network.Views.ViewModels
 
         public bool UserIsHead { get; set; }
     }
-
-
-
+    
     public class GroupInfo
     {
         [DisplayName("НАПРАВЛЕНИЕ")]
@@ -77,6 +75,26 @@ namespace Network.Views.ViewModels
 
     }
 
+    public class OpenGroupViewModel
+    {
+        public Guid Id { get; set; }
+        public string NameProject { get; set; }
+        public string Direction { get; set; }
+        public User Head { get; set; }
+
+
+        [DisplayName("ДАТА СТАРТА")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime DateStart { get; set; }
+
+        [DisplayName("ДАТА ОКОНЧАНИЯ")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime DateFinish { get; set; }
+
+        [DisplayName("УЧАСТНИКИ")]
+        public List<SimpleInfo> Members { get; set; }
+
+    }
 
 
 
