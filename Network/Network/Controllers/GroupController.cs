@@ -196,6 +196,29 @@ namespace Network.Controllers
         }
 
 
+        public ActionResult OpenGroup(Guid groupId)
+        {
+            //var conference = _conferencService.GetConferenceById(confId);
+            //OpenConferenceViewModel model = new OpenConferenceViewModel()
+            //{
+            //    Id = conference.Id,
+            //    Thema = conference.Thema,
+            //    Date = Convert.ToDateTime(conference.Date),
+            //    Details = conference.Details,
+            //    Direction = conference.Direction,
+            //    Image = conference.Image,
+            //    Requirements = conference.Requirements
+            //};
+            //model.MemberConferenceStatus = false;
+            //if (!User.IsInRole("secretary"))
+            //{
+            //    var userId = _userService.GetIdByAspId(User.Identity.GetUserId());
+            //    model.MemberConferenceStatus = _conferencService.UserIsMember(model.Id, userId);
+            //}
+
+            return View();
+        }
+
 
     }
 }

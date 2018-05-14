@@ -7,11 +7,10 @@
 <div class="row menu-page">
     <div class="align-item-menu">
         <div class="item-menu text-menu-page" style="padding-right: 30px;">ГРУППЫ</div>
-       @* <div class="item-menu text-menu-page hover" style="padding-right: 30px;"><a class="menu" href="@Url.Action("OpenArchive","Conference")">АРХИВ</a></div>*@
             @if (User.IsInRole("secretary"))
-                {
-                    <a href="@Url.Action("AddGroup","Group")"><div class="item-menu text-menu-page hover">ДОБАВИТЬ ГРУППУ</div></a>
-                 }
+            {
+                <a href="@Url.Action("AddGroup","Group")"><div class="item-menu text-menu-page hover">ДОБАВИТЬ ГРУППУ</div></a>
+            }
     </div>
 </div>
 
@@ -23,46 +22,74 @@
     else
     {
         <div class="row" style="padding-top:20px;">
-                <div class="col-md-4 item-list-group">
-                    НАПРАВЛЕНИЕ
-                </div>
+            
+          
+            <div class="col-md-3 item-list-group">
+                НАПРАВЛЕНИЕ
+            </div>
 
-                <div class="col-md-4 item-list-group">
-                    ПРОЕКТ
-                </div>
+            <div class="col-md-3 item-list-group">
+                ПРОЕКТ
+            </div>
 
-                <div class="col-md-4 item-list-group">
-                    РУКОВОДИТЕЛЬ
-                </div>
+            <div class="col-md-4 item-list-group">
+                РУКОВОДИТЕЛЬ
+            </div>
+            <div class="col-md-1 item-list-group">
+            </div>
         </div>
         <hr />
+
         foreach (var item in Model)
         {
-                <div class="row" data-toggle="modal" data-target="#exampleModal" onclick="openModal(this)" style="cursor:pointer;" data-url="@Url.Action("ItemInfo","Group",new { groupId=item.Id})">
+            <div class="row" style="padding:15px;">
+                
+               
 
-                    @if (item.UserIsHead)
+                <div class="col-md-3 item-list-group">
+                    @Html.DisplayFor(k => item.Direction)
+                </div>
+
+                @if (User.IsInRole("secretary"))
                     {
-                        <div class="col-md-1 item-list-group">
-                            <i class="fa fa-group" aria-hidden="true"></i>
-                        </div>
-                    }
-                    
                         <div class="col-md-3 item-list-group">
-                            @Html.DisplayFor(k => item.Direction)
-                        </div>
-
-
-                        <div class="col-md-4 item-list-group">
                             @Html.DisplayFor(k => item.NameProject)
                         </div>
-                        <div class="col-md-4 item-list-group">
-                            @Html.DisplayFor(k => item.Head.Name)
-                            @Html.DisplayFor(k => item.Head.Surname)
+                    }
+                @if (User.IsInRole("group_member"))
+                    {
+                        <div class="col-md-3 item-list-group">
+                            <a href="@Url.Action("OpenGroup", "Group", new { groupId=item.Id })">@Html.DisplayFor(k => item.NameProject)</a>
                         </div>
+                    }
+                
+                
+
+                <div class="col-md-4 item-list-group">
+                    @Html.DisplayFor(k => item.Head.Name)
+                    @Html.DisplayFor(k => item.Head.Surname)
                 </div>
+
+                @if (User.IsInRole("secretary"))
+                {
+                    <div class="col-md-1 item-list-group" data-toggle="modal" data-target="#exampleModal" onclick="openModal(this)" style="cursor:pointer;" data-url="@Url.Action("ItemInfo","Group",new { groupId=item.Id})">
+                        <i class="fa fa-info-circle" aria-hidden="true"></i>
+                    </div>
+                }
+
+                @if (User.IsInRole("group_member") && item.UserIsHead)
+                {
+                    <div class="col-md-1 item-list-group">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                    </div>
+                }
+
+                
+
 
                 <div id="itemContainer">
                 </div>
+            </div>
 
         }
     }
@@ -99,10 +126,7 @@
                         $('#itemContainer').html(data);
                         $('#exampleModal').modal('show');
                     });
-
             };
-
-
         </script>
 
     }

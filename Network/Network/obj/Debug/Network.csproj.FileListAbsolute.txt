@@ -403,8 +403,6 @@ D:\University\Diploma\bitbucket\Network\Network\bin\Microsoft.Owin.xml
 D:\University\Diploma\bitbucket\Network\Network\bin\Microsoft.Practices.ServiceLocation.pdb
 D:\University\Diploma\bitbucket\Network\Network\bin\Microsoft.Practices.ServiceLocation.xml
 D:\University\Diploma\bitbucket\Network\Network\bin\Network.BL.pdb
-D:\University\Diploma\bitbucket\Network\Network\bin\Network.DAL.pdb
-D:\University\Diploma\bitbucket\Network\Network\bin\Network.DAL.dll.config
 D:\University\Diploma\bitbucket\Network\Network\bin\Newtonsoft.Json.xml
 D:\University\Diploma\bitbucket\Network\Network\bin\System.IdentityModel.Tokens.Jwt.xml
 D:\University\Diploma\bitbucket\Network\Network\bin\System.Net.Http.Formatting.xml
@@ -456,3 +454,5 @@ D:\University\Diploma\bitbucket\Network\Network\bin\ru\Microsoft.Owin.Security.T
 D:\University\Diploma\bitbucket\Network\Network\bin\ru\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
 D:\University\Diploma\bitbucket\Network\Network\obj\Debug\Network.dll
 D:\University\Diploma\bitbucket\Network\Network\obj\Debug\Network.pdb
+D:\University\Diploma\bitbucket\Network\Network\bin\Network.DAL.pdb
+D:\University\Diploma\bitbucket\Network\Network\bin\Network.DAL.dll.config
