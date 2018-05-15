@@ -220,6 +220,21 @@ namespace Network.Controllers
             return model;
         }
 
+        [HttpPost]
+        public ActionResult AddResource(AddResource model,HttpPostedFileBase file)
+        {
+            if (model == null)
+            {
+                 
+            }
+            else {
+                //model.AuthorId = _userService.GetIdByAspId(User.Identity.GetUserId());
+                //model.Date = DateTime.Now;
+            }
+
+            return PartialView("_ListResource");
+
+        }
 
     }
 }

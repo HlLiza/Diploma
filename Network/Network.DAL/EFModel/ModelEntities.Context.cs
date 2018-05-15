@@ -32,15 +32,14 @@ namespace Network.DAL.EFModel
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserRoles> AspNetUserRoles { get; set; }
-        public virtual DbSet<Advertisement> Advertisement { get; set; }
         public virtual DbSet<Aducation> Aducation { get; set; }
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<ListenerConfer> ListenerConfer { get; set; }
         public virtual DbSet<Conference> Conference { get; set; }
         public virtual DbSet<MembersOfConference> MembersOfConference { get; set; }
         public virtual DbSet<ReportConference> ReportConference { get; set; }
-        public virtual DbSet<DataGroup> DataGroup { get; set; }
         public virtual DbSet<MemberOfGroup> MemberOfGroup { get; set; }
         public virtual DbSet<Group> Group { get; set; }
+        public virtual DbSet<ResourceGroup> ResourceGroup { get; set; }
     }
 }

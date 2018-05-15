@@ -1,7 +1,12 @@
-﻿namespace Network.BL.Interfaces
+﻿using System;
+using System.Linq;
+
+namespace Network.BL.Interfaces
 {
     public interface IGroupService
     {
+        IQueryable<Guid> GetAllLeadId();
+        IQueryable<Guid> GetAllMemberListId(IQueryable<Guid> listLead);
         //void AddGroup(Group group);
         //void DeleteGroup(Guid id);
         //void EditGroup(Guid id);

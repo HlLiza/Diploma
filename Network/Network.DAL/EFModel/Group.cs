@@ -17,8 +17,8 @@ namespace Network.DAL.EFModel
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Group()
         {
-            this.DataGroup = new HashSet<DataGroup>();
             this.MemberOfGroup = new HashSet<MemberOfGroup>();
+            this.ResourceGroup = new HashSet<ResourceGroup>();
         }
     
         public System.Guid Id { get; set; }
@@ -28,10 +28,10 @@ namespace Network.DAL.EFModel
         public Nullable<System.DateTime> DateStart { get; set; }
         public Nullable<System.DateTime> DateFinish { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DataGroup> DataGroup { get; set; }
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MemberOfGroup> MemberOfGroup { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ResourceGroup> ResourceGroup { get; set; }
     }
 }

@@ -13,11 +13,14 @@ namespace Network.Controllers
     {
         private readonly IUserService _userService;
         private readonly IAducationService _aducationService;
+        private readonly IGroupService _groupService;
 
-        public UserController(UserService userService, AducationService aducationService) : base()
+        public UserController(UserService userService, AducationService aducationService,
+            GroupService groupService) : base()
         {
             _userService = userService;
             _aducationService = aducationService;
+            _groupService = groupService;
         }
 
         // GET: User
@@ -277,9 +280,10 @@ namespace Network.Controllers
         public ActionResult GetLead()
         {
             List<UserListViewModel> model = new List<UserListViewModel>();
-            var listId = _userService.GetAllLeadListId();
-            var data = _userService.GetUsersByListId(listId);
-            if (listId != null && data != null)
+            var leadList = _groupService.GetAllLeadId();
+            var memberList = _groupService.GetAllMemberListId(leadList);
+            var data = _userService.GetUsersByListId(memberList);
+            if (memberList != null && data != null)
             {
                 foreach (var item in data)
                 {
@@ -303,7 +307,8 @@ namespace Network.Controllers
         public ActionResult GetMemberGroup()
         {
             List<UserListViewModel> model = new List<UserListViewModel>();
-            var listId = _userService.GetAllMemberListId();
+            var listLeadId = _groupService.GetAllLeadId();
+            var listId = _groupService.GetAllMemberListId(listLeadId);
             var data = _userService.GetUsersByListId(listId);
             if (listId != null && data != null)
             {
@@ -319,7 +324,8 @@ namespace Network.Controllers
                 }
                 return PartialView("_GetMemberGroup", model);
             }
-            else {
+            else
+            {
                 ViewBag.Text = "Список участников групп пуст";
                 return PartialView("_GetMemberGroup", ViewBag);
             }

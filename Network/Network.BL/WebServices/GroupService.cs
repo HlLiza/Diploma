@@ -78,6 +78,21 @@ namespace Network.BL.WebServices
                 return true;
             else return false;
         }
+
+        public IQueryable<Guid> GetAllLeadId()
+        {
+            var listId = _groupRepository.AllLeadId();
+            return listId;
+        }
+
+        public IQueryable<Guid> GetAllMemberListId(IQueryable<Guid> listLead)
+        {
+            var memberListId = _memberRepository.GetListMemberId();
+
+            IQueryable<Guid> result = memberListId.Except(listLead);
+            return result;
+        }
+
     }
 }
 

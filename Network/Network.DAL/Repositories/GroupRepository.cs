@@ -44,6 +44,11 @@ namespace Network.DAL.Repositories
             return _context.Group.Where(s => s.HeadId == headId);
         }
 
+        public IQueryable<Guid> AllLeadId()
+        {
+            return _context.Group.Select(x => x.HeadId).Distinct();
+        }
+
        
     }
 }

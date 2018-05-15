@@ -12,6 +12,6 @@ namespace Network.DAL.Interfaces
         void Delete(Group gr);
         IQueryable<Group> GetGroupsByHead(Guid id); 
         IQueryable<Group> GetGroups();
-
+        IQueryable<Guid> AllLeadId();
     }
 }

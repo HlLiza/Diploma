@@ -11,8 +11,8 @@ namespace Network.BL.Interfaces
         void AddUser(User user);
         byte[] СonvertingImg(HttpPostedFileBase img);
         void UpdateUser(User user);
-        IQueryable<string> GetAllLeadListId();
-        IQueryable<string> GetAllMemberListId();
+        //IQueryable<string> GetAllLeadListId();
+        //IQueryable<string> GetAllMemberListId();
         User GetUserById(Guid id);
         User GetUserByAspNetId(string id);
         Guid GetUserIdByAspId(string id);
@@ -22,10 +22,11 @@ namespace Network.BL.Interfaces
         List<Guid> ExcludeListIdInLIs(List<Guid> listIdsUsers, List<Guid> listIdGroupMem);
         List<Guid> GetUserIdForListAspId(IQueryable<string> stringId);
         IQueryable<User> GetAllUser();
-        List<User> GetUsersByListId(IQueryable<string> listId);
+        //List<User> GetUsersByListId(IQueryable<string> listId);
         AspNetUsers GetAspUser(string id);
         Guid GetIdByAspId(string id);
         IQueryable<User> GetUsersByDirection(string direction);
+        List<User> GetUsersByListId(IQueryable<Guid> listId);
 
 
 

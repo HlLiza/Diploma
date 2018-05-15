@@ -401,7 +401,7 @@ a:hover {
 .user-list-container {
     float:right;
     background-color: white;
-    height: 350px;
+    height: 380px;
     width: 260px;
     overflow-y:auto;
     overflow-x:hidden;
@@ -414,3 +414,45 @@ a:hover {
     width: 80px;
     padding:10px;
 }
+
+.resource-group-container {
+    height: 350px;
+    width: 260px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color:black;
+    /*margin: 20px 0 0 200px;*/
+}
+
+.select-resourse {
+    background-color: white;
+    height:340px;
+    width: 300px;
+    margin-top: 20px;
+}
+
+.element-pad {
+    padding:10px;
+}
+
+.add-resource {
+    padding: 20px 20px 20px 40px;
+    margin-bottom: 0;
+    float: initial;
+}
+.comment {
+    font-size: 12px;
+}
+
+.container-resource {
+    width: 480px;
+    height: 380px;
+    background-color: white;
+    margin-top: 20px;
+}
+.list-resource {
+    width:inherit;
+    overflow-y:auto;
+    overflow-x:hidden;
+}
+

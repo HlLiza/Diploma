@@ -45,5 +45,10 @@ namespace Network.DAL.Repositories
                 return true;
             else return false;
         }
+        public IQueryable<Guid> GetListMemberId()
+        {
+            return _context.MemberOfGroup.Select(x=>x.UserId).Distinct();
+        }
+
     }
 }

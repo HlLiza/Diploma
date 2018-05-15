@@ -1,0 +1,19 @@
+﻿    <div class="row">
+            <div class="container select-resourse">
+                <label class="add-resource">ДОБАВЛЕНИЕ РЕСУРСА</label>
+                @using (Html.BeginForm("AddResource", "Group", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @*@Html.HiddenFor(k => Model)*@
+                    <div class="row" style="padding:10px; ">
+                        <input type="file" style="padding:7px;" class="btn-select" name="Resource" id="imageFile" />
+
+                        <label class="element-pad comment" style="margin:25px 0 7px 30px;">ВАШ КОММЕНТАРИЙ</label>
+
+                        <textarea class="form-control element-pad" name="Comments" rows="3"></textarea>
+
+                        <button class="btn button-large element-pad" style="margin:10px 10px 10px 50px;" type="submit">ДОБАВИТЬ</button>
+                    </div>
+
+                }
+            </div>
+</div>

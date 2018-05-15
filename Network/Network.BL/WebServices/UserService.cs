@@ -13,11 +13,13 @@ namespace Network.BL.WebServices
     public class UserService: IUserService
     {
         private readonly IUser _userRepository;
-       
+        private readonly IGroup _groupRepository;
 
-        public UserService(UserRepository userRepository)
+
+        public UserService(UserRepository userRepository, GroupRepository groupRepository)
         {
             _userRepository = userRepository;
+            _groupRepository = groupRepository;
         }
 
         public void AddUser(User user)
@@ -104,23 +106,40 @@ namespace Network.BL.WebServices
 
 
 
-        public IQueryable<string> GetAllLeadListId()
+        public List<string> GetAllLeadListId()
         {
-            var list = _userRepository.GetAllLeadId();
+            List<string> result = new List<string>();
+            var list = _groupRepository.AllLeadId();
             if (list != null)
-                return list;
-            else return null;
+            {
+                foreach (var item in list)
+                {
+                    var user = _userRepository.Find(item);
+                    result.Add(user.AspUserId);
+                }
+                return result;
+            }
+            else return result;
         }
 
 
 
-        public IQueryable<string> GetAllMemberListId()
-        {
-            var list = _userRepository.GetAllMemberId();
-            if (list != null)
-                return list;
-            else return null;
-        }
+        //public List<string> GetAllMemberListId()
+        //{
+        //    List<string> result = new List<string>();
+        //    var list = _userRepository.GetAllMemberId();
+        //    if (list != null)
+        //    {
+        //        foreach (var item in list)
+        //        {
+        //            var user = _userRepository.Find(item);
+
+        //        }
+        //    }
+        //    if (list != null)
+        //        return list;
+        //    else return null;
+        //}
 
         public User GetUserById(Guid id)
         {
@@ -229,6 +248,7 @@ namespace Network.BL.WebServices
             return result;
         }
 
+        
 
         //public User_sPersonalData GetUserPersData(Guid id)
         //{

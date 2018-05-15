@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Web;
 
 namespace Network.Views.ViewModels
 {
@@ -94,6 +95,13 @@ namespace Network.Views.ViewModels
         [DisplayName("УЧАСТНИКИ")]
         public List<SimpleInfo> Members { get; set; }
 
+    }
+
+    public class AddResource
+    {
+        public Guid GroupId { get; set; }
+        public HttpPostedFileBase Resource { get; set; }
+        public string Comments { get; set; }
     }
 
 

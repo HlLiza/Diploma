@@ -9,26 +9,26 @@ namespace Network.DAL.Repositories
     {
         public DataGroupRepository(InstitutNetworkContext context) : base(context) { }
 
-        public void Add(DataGroup data)
+        public void Add(ResourceGroup data)
         {
-            _context.DataGroup.Add(data);
+            _context.ResourceGroup.Add(data);
             Save();
         }
 
-        public IQueryable<DataGroup> DataForGroup(Guid groupId)
+        public IQueryable<ResourceGroup> DataForGroup(Guid groupId)
         {
-            return _context.DataGroup.Where(x => x.GroupId == groupId);
+            return _context.ResourceGroup.Where(x => x.GroupId == groupId);
         }
 
-        public void Delete(DataGroup data)
+        public void Delete(ResourceGroup data)
         {
-            _context.DataGroup.Remove(data);
+            _context.ResourceGroup.Remove(data);
             Save();
         }
 
-        public DataGroup Find(Guid id)
+        public ResourceGroup Find(Guid id)
         {
-            return _context.DataGroup.Find(id);
+            return _context.ResourceGroup.Find(id);
         }
     }
 }

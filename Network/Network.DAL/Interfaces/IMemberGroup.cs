@@ -13,5 +13,6 @@ namespace Network.DAL.Interfaces
         IQueryable<Guid> FindUsersForGroup(Guid groupId);
 
         bool UserIsMember(Guid userId,Guid groupId);
+        IQueryable<Guid> GetListMemberId();
     }
 }

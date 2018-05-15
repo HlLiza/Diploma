@@ -4,6 +4,7 @@
     ViewBag.Title = "OpenGroup";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@Html.HiddenFor(x => Model.Id, new { @id = "groupId" })
 
 <div style="margin-left:25px; margin-right:20px;">
 
@@ -12,7 +13,9 @@
         <div class="col-md-4 item-menu text-menu-page">
             <a class="text-menu-page">@Model.NameProject</a>
         </div>
-        <div class="col-md-4"></div>
+        <div class="col-md-4 item-menu text-menu-page">
+            проект с @Html.DisplayFor(m => m.DateStart, "{0:MM/dd/yy}") по @Html.DisplayFor(m => m.DateFinish, "{0:MM/dd/yy}")
+        </div>
 
         <div class="col-md-4 item-menu text-menu-page">
             <a class="text-menu-page">@Model.Head.Name @Model.Head.Surname</a>
@@ -21,43 +24,105 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-6">
+    <div class="col-4">
+        <div class="row">
+            <div class="container select-resourse">
+                <label class="add-resource">ДОБАВЛЕНИЕ РЕСУРСА</label>
+                    <div class="row" style="padding:10px; ">
+                        <input id="resourcId" type="file" style="padding:7px;" class="btn-select" name="Resource" />
+
+                        <label class="element-pad comment" style="margin:25px 0 7px 30px;">ВАШ КОММЕНТАРИЙ</label>
+
+                        <textarea id="commentsId" class="form-control element-pad" name="Comments" rows="3"></textarea>
+
+                        <button id="selectRes" class="btn button-large element-pad" style="margin:10px 10px 10px 50px;" type="submit">ДОБАВИТЬ</button>
+                    </div>
+            </div>
+        </div>
     </div>
-    <div class="col-6">
-        <div class="user-list-container">
-            @if (Model.Members == null)
+
+<div class="col-4">
+    <div class="row">
+        <div class="container container-resource">
+            <label class="add-resource" style="padding-left: 120px;">ЗАГРУЖЕННЫЕ РЕСУРСЫ</label>
+
+            <div class="list-resource">
+                <div id="resourceItems">
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+            <div class="col-4">
+                <div class="user-list-container">
+                    @if (Model.Members == null)
             {
-                <p>
-                    СПИСОК УЧАСТНИКОВ ПУСТ
-                    </p>
+            <p>
+                СПИСОК УЧАСТНИКОВ ПУСТ
+            </p>
             }
             else
             {
                 foreach (var member in Model.Members)
                 {
-                    <div class="row container" style="padding:10px;">
-                        @if (member.Image == null)
+            <div class="row container" style="padding:10px;">
+                @if (member.Image == null)
                         {
-                            <img class="img-member " src="@Url.Content("~/Content/Pictures/default.jpeg")" alt="">
+                        <img class="img-member " src="@Url.Content("~/Content/Pictures/default.jpeg")" alt="">
                         }
                         else
                         {
-                            <img class="img-member" src="data:image/png;base64, @Convert.ToBase64String(member.Image)" />
+                        <img class="img-member" src="data:image/png;base64, @Convert.ToBase64String(member.Image)" />
                         }
-                        <div style="padding: 25px 10px 10px 10px;">
-                            @member.Name
-                            @member.Surname
-                        </div>
+                <div style="padding: 25px 10px 10px 10px;">
+                    @member.Name
+                    @member.Surname
+                </div>
 
 
-                    </div>
+            </div>
                 }
 
             }
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
 
+        @section Scripts{
+            <script type="text/javascript">
+                $(document).ready(function () {
 
+                    $("#selectRes").click(function () {
+
+                        var model = {
+                            GroupId: $("#groupId").val(), Resource: $("#resourcId")[0].files[0],
+                            Comments: $("#commentsId").val(),
+                        };
+
+                        var data = new FormData($('input[name^="Resource"]'));
+                        jQuery.each($('input[name^="Resource"]')[0].files, function (i, file) {
+                            data.append(i, file);
+                        });
+
+                        debugger
+                        $.ajax({
+                            url: "/Group/AddResource",
+                            method: "POST",
+                            async: false,
+                            contentType: false,
+                            data: JSON.stringify({ model: model, file: data}),
+                            success: function (data) {
+                                $("#searchResults").html(data);
+                            }
+                        });
+
+                    });
+                });
+            </script>
+        }
 

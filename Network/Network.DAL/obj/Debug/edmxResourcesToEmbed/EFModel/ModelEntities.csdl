@@ -34,11 +34,6 @@
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
     </AssociationSet>
-    <EntitySet Name="Advertisement" EntityType="NetworkContext.Advertisement" />
-    <AssociationSet Name="FK_Advertisement_AspNetUsers" Association="NetworkContext.FK_Advertisement_AspNetUsers">
-      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-      <End Role="Advertisement" EntitySet="Advertisement" />
-    </AssociationSet>
     <EntitySet Name="Aducation" EntityType="NetworkContext.Aducation" />
     <EntitySet Name="User" EntityType="NetworkContext.User" />
     <AssociationSet Name="FK_Aducation_User" Association="NetworkContext.FK_Aducation_User">
@@ -73,17 +68,12 @@
       <End Role="ReportConference" EntitySet="ReportConference" />
       <End Role="MembersOfConference" EntitySet="MembersOfConference" />
     </AssociationSet>
-    <EntitySet Name="DataGroup" EntityType="NetworkContext.DataGroup" />
     <EntitySet Name="MemberOfGroup" EntityType="NetworkContext.MemberOfGroup" />
     <AssociationSet Name="FK_MemberOfGroup_User" Association="NetworkContext.FK_MemberOfGroup_User">
       <End Role="User" EntitySet="User" />
       <End Role="MemberOfGroup" EntitySet="MemberOfGroup" />
     </AssociationSet>
     <EntitySet Name="Group" EntityType="NetworkContext.Group" />
-    <AssociationSet Name="FK_DataGroup_Group" Association="NetworkContext.FK_DataGroup_Group">
-      <End Role="Group" EntitySet="Group" />
-      <End Role="DataGroup" EntitySet="DataGroup" />
-    </AssociationSet>
     <AssociationSet Name="FK_Group_User" Association="NetworkContext.FK_Group_User">
       <End Role="User" EntitySet="User" />
       <End Role="Group" EntitySet="Group" />
@@ -91,6 +81,15 @@
     <AssociationSet Name="FK_MemberOfGroup_Group" Association="NetworkContext.FK_MemberOfGroup_Group">
       <End Role="Group" EntitySet="Group" />
       <End Role="MemberOfGroup" EntitySet="MemberOfGroup" />
+    </AssociationSet>
+    <EntitySet Name="ResourceGroup" EntityType="NetworkContext.ResourceGroup" />
+    <AssociationSet Name="FK_ResourceGroup_Group" Association="NetworkContext.FK_ResourceGroup_Group">
+      <End Role="Group" EntitySet="Group" />
+      <End Role="ResourceGroup" EntitySet="ResourceGroup" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ResourceGroup_User" Association="NetworkContext.FK_ResourceGroup_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="ResourceGroup" EntitySet="ResourceGroup" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="C__MigrationHistory">
@@ -143,7 +142,6 @@
     <NavigationProperty Name="AspNetUserClaims" Relationship="NetworkContext.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
     <NavigationProperty Name="AspNetUserLogins" Relationship="NetworkContext.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
     <NavigationProperty Name="AspNetUserRoles" Relationship="NetworkContext.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserRoles" />
-    <NavigationProperty Name="Advertisement" Relationship="NetworkContext.FK_Advertisement_AspNetUsers" FromRole="AspNetUsers" ToRole="Advertisement" />
     <Property Name="IsNewUser" Type="Boolean" />
     <NavigationProperty Name="User" Relationship="NetworkContext.FK_User_AspNetUsers" FromRole="AspNetUsers" ToRole="User" />
   </EntityType>
@@ -221,28 +219,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityType Name="Advertisement">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Guid" Nullable="false" />
-    <Property Name="Information" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="Date" Type="DateTime" Precision="0" />
-    <Property Name="SenderId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="AspNetUsers" Relationship="NetworkContext.FK_Advertisement_AspNetUsers" FromRole="Advertisement" ToRole="AspNetUsers" />
-  </EntityType>
-  <Association Name="FK_Advertisement_AspNetUsers">
-    <End Type="NetworkContext.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
-    <End Type="NetworkContext.Advertisement" Role="Advertisement" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="AspNetUsers">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Advertisement">
-        <PropertyRef Name="SenderId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityType Name="Aducation">
     <Key>
       <PropertyRef Name="Id" />
@@ -272,6 +248,7 @@
     <NavigationProperty Name="MembersOfConference" Relationship="NetworkContext.FK_MembersOfConference_User" FromRole="User" ToRole="MembersOfConference" />
     <NavigationProperty Name="MemberOfGroup" Relationship="NetworkContext.FK_MemberOfGroup_User" FromRole="User" ToRole="MemberOfGroup" />
     <NavigationProperty Name="Group" Relationship="NetworkContext.FK_Group_User" FromRole="User" ToRole="Group" />
+    <NavigationProperty Name="ResourceGroup" Relationship="NetworkContext.FK_ResourceGroup_User" FromRole="User" ToRole="ResourceGroup" />
   </EntityType>
   <Association Name="FK_Aducation_User">
     <End Type="NetworkContext.User" Role="User" Multiplicity="1" />
@@ -405,15 +382,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityType Name="DataGroup">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Guid" Nullable="false" />
-    <Property Name="GroupId" Type="Guid" Nullable="false" />
-    <Property Name="Resource" Type="Binary" MaxLength="Max" FixedLength="false" />
-    <NavigationProperty Name="Group" Relationship="NetworkContext.FK_DataGroup_Group" FromRole="DataGroup" ToRole="Group" />
-  </EntityType>
   <EntityType Name="MemberOfGroup">
     <Key>
       <PropertyRef Name="Id" />
@@ -446,22 +414,10 @@
     <Property Name="HeadId" Type="Guid" Nullable="false" />
     <Property Name="DateStart" Type="DateTime" Precision="3" />
     <Property Name="DateFinish" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="DataGroup" Relationship="NetworkContext.FK_DataGroup_Group" FromRole="Group" ToRole="DataGroup" />
     <NavigationProperty Name="User" Relationship="NetworkContext.FK_Group_User" FromRole="Group" ToRole="User" />
     <NavigationProperty Name="MemberOfGroup" Relationship="NetworkContext.FK_MemberOfGroup_Group" FromRole="Group" ToRole="MemberOfGroup" />
+    <NavigationProperty Name="ResourceGroup" Relationship="NetworkContext.FK_ResourceGroup_Group" FromRole="Group" ToRole="ResourceGroup" />
   </EntityType>
-  <Association Name="FK_DataGroup_Group">
-    <End Type="NetworkContext.Group" Role="Group" Multiplicity="1" />
-    <End Type="NetworkContext.DataGroup" Role="DataGroup" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Group">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="DataGroup">
-        <PropertyRef Name="GroupId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Group_User">
     <End Type="NetworkContext.User" Role="User" Multiplicity="1" />
     <End Type="NetworkContext.Group" Role="Group" Multiplicity="*" />
@@ -483,6 +439,43 @@
       </Principal>
       <Dependent Role="MemberOfGroup">
         <PropertyRef Name="GroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ResourceGroup">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="GroupId" Type="Guid" Nullable="false" />
+    <Property Name="Resource" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="AuthorId" Type="Guid" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Group" Relationship="NetworkContext.FK_ResourceGroup_Group" FromRole="ResourceGroup" ToRole="Group" />
+    <NavigationProperty Name="User" Relationship="NetworkContext.FK_ResourceGroup_User" FromRole="ResourceGroup" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_ResourceGroup_Group">
+    <End Type="NetworkContext.Group" Role="Group" Multiplicity="1" />
+    <End Type="NetworkContext.ResourceGroup" Role="ResourceGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Group">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ResourceGroup">
+        <PropertyRef Name="GroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ResourceGroup_User">
+    <End Type="NetworkContext.User" Role="User" Multiplicity="1" />
+    <End Type="NetworkContext.ResourceGroup" Role="ResourceGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ResourceGroup">
+        <PropertyRef Name="AuthorId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

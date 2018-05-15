@@ -6,10 +6,10 @@ namespace Network.DAL.Interfaces
 {
     public interface IDataGroup
     {
-        void Add(DataGroup data);
-        void Delete(DataGroup data);
-        DataGroup Find(Guid id);
+        void Add(ResourceGroup data);
+        void Delete(ResourceGroup data);
+        ResourceGroup Find(Guid id);
 
-        IQueryable<DataGroup> DataForGroup(Guid groupId);
+        IQueryable<ResourceGroup> DataForGroup(Guid groupId);
     }
 }
