@@ -98,26 +98,28 @@
                 $(document).ready(function () {
 
                     $("#selectRes").click(function () {
+                        
+                        var fileUpload = $("#resourcId").get(0);
+                        var files = fileUpload.files;
+                        var fileData = new FormData();
+                        for (var i = 0; i < files.length; i++) {
+                            fileData.append("Resource", files[i]);
+                        }
+                       
+                        fileData.append("GroupId", $("#groupId").val());
+                        fileData.append("Comments", $("#commentsId").val());
 
-                        var model = {
-                            GroupId: $("#groupId").val(), Resource: $("#resourcId")[0].files[0],
-                            Comments: $("#commentsId").val(),
-                        };
-
-                        var data = new FormData($('input[name^="Resource"]'));
-                        jQuery.each($('input[name^="Resource"]')[0].files, function (i, file) {
-                            data.append(i, file);
-                        });
-
-                        debugger
                         $.ajax({
                             url: "/Group/AddResource",
                             method: "POST",
                             async: false,
+                            processData: false,
                             contentType: false,
-                            data: JSON.stringify({ model: model, file: data}),
+                            data: fileData,
                             success: function (data) {
                                 $("#searchResults").html(data);
+                                $("#commentsId").val('');
+                                $("#resourcId").val('');
                             }
                         });
 

@@ -102,6 +102,8 @@ namespace Network.Views.ViewModels
         public Guid GroupId { get; set; }
         public HttpPostedFileBase Resource { get; set; }
         public string Comments { get; set; }
+        //public Guid AuthorId { get; set; }
+        //public DateTime Date { get; set; }
     }
 
 

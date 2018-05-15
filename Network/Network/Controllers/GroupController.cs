@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using Network.BL.Interfaces;
 using Network.BL.WebServices;
 using Network.DAL.EFModel;
 using Network.Views.ViewModels;
@@ -12,12 +13,14 @@ namespace Network.Controllers
 {
     public class GroupController : Controller
     {
-        private GroupService _groupService;
-        private UserService _userService;
-        public GroupController(GroupService groupService, UserService userService)
+        private IGroupService _groupService;
+        private IUserService _userService;
+        private IConferenceService _conferService;
+        public GroupController(GroupService groupService, UserService userService,ConferenceService conferService)
         {
             _groupService = groupService;
             _userService = userService;
+            _conferService = conferService;
         }
 
         public ActionResult Index()
@@ -221,15 +224,24 @@ namespace Network.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddResource(AddResource model,HttpPostedFileBase file)
+        public ActionResult AddResource(AddResource model)
         {
             if (model == null)
             {
                  
             }
             else {
-                //model.AuthorId = _userService.GetIdByAspId(User.Identity.GetUserId());
-                //model.Date = DateTime.Now;
+                ResourceGroup res = new ResourceGroup
+                {
+                    AuthorId = _userService.GetIdByAspId(User.Identity.GetUserId()),
+                    Date = DateTime.Now,
+                    GroupId=model.GroupId,
+                    Comments=model.Comments
+            };
+                var file = _conferService.ConvertFile(model.Resource);
+                res.Resource = file;
+                res.Id = Guid.NewGuid();
+                _groupService.AddResource(res);
             }
 
             return PartialView("_ListResource");

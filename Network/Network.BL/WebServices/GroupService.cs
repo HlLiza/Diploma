@@ -93,6 +93,10 @@ namespace Network.BL.WebServices
             return result;
         }
 
+        public void AddResource(ResourceGroup res)
+        {
+            _dataRepository.Add(res);
+        }
     }
 }
 

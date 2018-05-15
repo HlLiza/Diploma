@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Network.DAL.EFModel;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Network.BL.Interfaces
@@ -7,20 +9,15 @@ namespace Network.BL.Interfaces
     {
         IQueryable<Guid> GetAllLeadId();
         IQueryable<Guid> GetAllMemberListId(IQueryable<Guid> listLead);
-        //void AddGroup(Group group);
-        //void DeleteGroup(Guid id);
-        //void EditGroup(Guid id);
-        //Group Find(Guid id);
-        //List<Group> GetGroupsForHead(Guid headId);
-        //List<Group> GetGroupsForUser(Guid userId);
-        //IQueryable<Guid> GetListOfId();
-        //List<Group> GetGroupList(IQueryable<Guid> listId);
-        //void AddMembersToGroup(MembersOfGroup member);
-        //void RemoveMembers(MembersOfGroup member);
-        //IQueryable<Guid> GetmembersListByGroupId(Guid id);
-        //bool CheckMemberInGroup(Guid userId, Guid groupId);
-        //List<MembersOfGroup> GetListMembersByListId(IQueryable<Guid> listId);
-        //void DeleteMembersInGroup(Guid groupId);
-        //void DeleteMemberInGroup(Guid groupId, Guid memberId);
+        void AddResource(ResourceGroup res);
+        IQueryable<Group> GetAll();
+        IQueryable<Guid> GroupId(Guid userId);
+        List<Group> GetGroupByListId(IQueryable<Guid> listId);
+        bool UserIsHead(Guid groupId, Guid userId);
+        void AddGroup(Group gr);
+        void AddMembership(MemberOfGroup membership);
+        Group GetGroup(Guid groupId);
+        IQueryable<Guid> MembersId(Guid groupId);
+        
     }
 }
