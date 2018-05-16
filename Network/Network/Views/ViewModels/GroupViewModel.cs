@@ -95,6 +95,8 @@ namespace Network.Views.ViewModels
         [DisplayName("УЧАСТНИКИ")]
         public List<SimpleInfo> Members { get; set; }
 
+        public bool UserIsHead { get; set; }
+
     }
 
     public class AddResource
@@ -102,8 +104,15 @@ namespace Network.Views.ViewModels
         public Guid GroupId { get; set; }
         public HttpPostedFileBase Resource { get; set; }
         public string Comments { get; set; }
-        //public Guid AuthorId { get; set; }
-        //public DateTime Date { get; set; }
+    }
+
+    public class ResourceListViewModel
+    {
+        public Guid ResourceId { get; set; }
+        public string Comments { get; set; }
+        public DateTime Date { get; set; }
+        public string AuthorName { get; set; }
+        public string AuthorSurname { get; set; }
     }
 
 

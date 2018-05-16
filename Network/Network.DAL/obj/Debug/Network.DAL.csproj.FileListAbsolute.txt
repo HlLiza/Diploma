@@ -69,7 +69,7 @@ D:\University\Diploma\bitbucket\Network\Network.DAL\bin\Debug\Newtonsoft.Json.xm
 D:\University\Diploma\bitbucket\Network\Network.DAL\bin\Debug\System.IdentityModel.Tokens.Jwt.xml
 D:\University\Diploma\bitbucket\Network\Network.DAL\bin\Debug\ru\EntityFramework.resources.dll
 D:\University\Diploma\bitbucket\Network\Network.DAL\bin\Debug\ru\EntityFramework.SqlServer.resources.dll
+D:\University\Diploma\bitbucket\Network\Network.DAL\obj\Debug\Network.DAL.csprojResolveAssemblyReference.cache
 D:\University\Diploma\bitbucket\Network\Network.DAL\obj\Debug\Network.DAL.csproj.CoreCompileInputs.cache
 D:\University\Diploma\bitbucket\Network\Network.DAL\obj\Debug\Network.DAL.dll
 D:\University\Diploma\bitbucket\Network\Network.DAL\obj\Debug\Network.DAL.pdb
-D:\University\Diploma\bitbucket\Network\Network.DAL\obj\Debug\Network.DAL.csprojResolveAssemblyReference.cache

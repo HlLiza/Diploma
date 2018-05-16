@@ -196,7 +196,8 @@ namespace Network.Controllers
                 DateFinish = Convert.ToDateTime(group.DateFinish),
                 Members = new List<SimpleInfo>()
             };
-            model.Members = GetMembers(groupId);       
+            model.Members = GetMembers(groupId);
+            model.UserIsHead = _groupService.UserIsHead(User.Identity.GetUserId(),model.Id);
 
             return View(model);
         }
@@ -226,25 +227,32 @@ namespace Network.Controllers
         [HttpPost]
         public ActionResult AddResource(AddResource model)
         {
-            if (model == null)
+            if (model != null)
             {
-                 
-            }
-            else {
                 ResourceGroup res = new ResourceGroup
                 {
                     AuthorId = _userService.GetIdByAspId(User.Identity.GetUserId()),
                     Date = DateTime.Now,
                     GroupId=model.GroupId,
                     Comments=model.Comments
-            };
+                };
                 var file = _conferService.ConvertFile(model.Resource);
                 res.Resource = file;
                 res.Id = Guid.NewGuid();
                 _groupService.AddResource(res);
             }
 
+
+
             return PartialView("_ListResource");
+
+        }
+
+        public List<ResourceListViewModel> GetListResource(Guid groupId)
+        {
+            List<ResourceListViewModel> model = new List<ResourceListViewModel>();
+
+            return model;
 
         }
 

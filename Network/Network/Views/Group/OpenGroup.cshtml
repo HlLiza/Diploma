@@ -24,22 +24,22 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-4">
-        <div class="row">
-            <div class="container select-resourse">
-                <label class="add-resource">ДОБАВЛЕНИЕ РЕСУРСА</label>
-                    <div class="row" style="padding:10px; ">
-                        <input id="resourcId" type="file" style="padding:7px;" class="btn-select" name="Resource" />
+<div class="col-4">
+    <div class="row">
+        <div class="container select-resourse">
+            <label class="add-resource">ДОБАВЛЕНИЕ РЕСУРСА</label>
+                <div class="row" style="padding:10px; ">
+                    <input id="resourcId" type="file" style="padding:7px;" class="btn-select" name="Resource" />
 
-                        <label class="element-pad comment" style="margin:25px 0 7px 30px;">ВАШ КОММЕНТАРИЙ</label>
+                    <label class="element-pad comment" style="margin:25px 0 7px 30px;">ВАШ КОММЕНТАРИЙ</label>
 
-                        <textarea id="commentsId" class="form-control element-pad" name="Comments" rows="3"></textarea>
+                    <textarea id="commentsId" class="form-control element-pad" name="Comments" rows="3"></textarea>
 
-                        <button id="selectRes" class="btn button-large element-pad" style="margin:10px 10px 10px 50px;" type="submit">ДОБАВИТЬ</button>
-                    </div>
-            </div>
+                    <button id="selectRes" class="btn button-large element-pad" style="margin:10px 10px 10px 50px;" type="submit">ДОБАВИТЬ</button>
+                </div>
         </div>
     </div>
+</div>
 
 <div class="col-4">
     <div class="row">
@@ -56,75 +56,92 @@
 
 </div>
 
+<div class="col-4" style="padding-left:70px;">
+    <div class="row">
+        
+            <div class="add-user-container" style="margin-top:20px;">
+                @if (Model.UserIsHead)
+                {
+                    <label style="padding: 10px 10px 10px 60px;">УЧАСТНИКИ ГРУППЫ</label>
+                }
+                else
+                {
 
-            <div class="col-4">
-                <div class="user-list-container">
-                    @if (Model.Members == null)
+                }
+            </div>
+      
+
+    </div>
+    <div class="row">
+        <div class="user-list-container">
+            @if (Model.Members == null)
             {
-            <p>
-                СПИСОК УЧАСТНИКОВ ПУСТ
-            </p>
+                <p>
+                    СПИСОК УЧАСТНИКОВ ПУСТ
+                </p>
             }
             else
             {
                 foreach (var member in Model.Members)
                 {
-            <div class="row container" style="padding:10px;">
-                @if (member.Image == null)
+                    <div class="row container" style="padding:10px;">
+                        @if (member.Image == null)
                         {
-                        <img class="img-member " src="@Url.Content("~/Content/Pictures/default.jpeg")" alt="">
+                            <img class="img-member " src="@Url.Content("~/Content/Pictures/default.jpeg")" alt="">
                         }
                         else
                         {
-                        <img class="img-member" src="data:image/png;base64, @Convert.ToBase64String(member.Image)" />
+                            <img class="img-member" src="data:image/png;base64, @Convert.ToBase64String(member.Image)" />
                         }
-                <div style="padding: 25px 10px 10px 10px;">
-                    @member.Name
-                    @member.Surname
-                </div>
+                        <div style="padding: 25px 10px 10px 10px;">
+                            @member.Name
+                            @member.Surname
+                        </div>
 
-
-            </div>
+                    </div>
                 }
 
             }
-                </div>
-            </div>
         </div>
+    </div>
+</div>
+    
+</div>
 
 
-        @section Scripts{
-            <script type="text/javascript">
-                $(document).ready(function () {
 
-                    $("#selectRes").click(function () {
+
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#selectRes").click(function () {
                         
-                        var fileUpload = $("#resourcId").get(0);
-                        var files = fileUpload.files;
-                        var fileData = new FormData();
-                        for (var i = 0; i < files.length; i++) {
-                            fileData.append("Resource", files[i]);
-                        }
+                var fileUpload = $("#resourcId").get(0);
+                var files = fileUpload.files;
+                var fileData = new FormData();
+                for (var i = 0; i < files.length; i++) {
+                    fileData.append("Resource", files[i]);
+                }
                        
-                        fileData.append("GroupId", $("#groupId").val());
-                        fileData.append("Comments", $("#commentsId").val());
-
-                        $.ajax({
-                            url: "/Group/AddResource",
-                            method: "POST",
-                            async: false,
-                            processData: false,
-                            contentType: false,
-                            data: fileData,
-                            success: function (data) {
-                                $("#searchResults").html(data);
-                                $("#commentsId").val('');
-                                $("#resourcId").val('');
-                            }
-                        });
-
-                    });
+                fileData.append("GroupId", $("#groupId").val());
+                fileData.append("Comments", $("#commentsId").val());
+                $.ajax({
+                    url: "/Group/AddResource",
+                    method: "POST",
+                    async: false,
+                    processData: false,
+                    contentType: false,
+                    data: fileData,
+                    success: function (data) {
+                        $("#searchResults").html(data);
+                        $("#commentsId").val('');
+                        $("#resourcId").val('');
+                    }
                 });
-            </script>
-        }
+
+            });
+        });
+    </script>
+}
 

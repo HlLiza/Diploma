@@ -18,6 +18,6 @@ namespace Network.BL.Interfaces
         void AddMembership(MemberOfGroup membership);
         Group GetGroup(Guid groupId);
         IQueryable<Guid> MembersId(Guid groupId);
-        
+        bool UserIsHead(string userId, Guid groupId);
     }
 }

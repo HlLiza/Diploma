@@ -49,6 +49,8 @@ namespace Network.DAL.Repositories
             return _context.Group.Select(x => x.HeadId).Distinct();
         }
 
+
+
        
     }
 }

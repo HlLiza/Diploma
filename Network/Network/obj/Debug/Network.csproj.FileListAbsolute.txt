@@ -345,13 +345,13 @@ C:\Users\elisa\Desktop\новый\Network\Network\obj\Debug\Network.g.resources
 C:\Users\elisa\Desktop\новый\Network\Network\obj\Debug\Network.csproj.CoreCompileInputs.cache
 C:\Users\elisa\Desktop\новый\Network\Network\obj\Debug\Network.dll
 C:\Users\elisa\Desktop\новый\Network\Network\obj\Debug\Network.pdb
-D:\University\Diploma\bitbucket\Network\Network\bin\EntityFramework.dll
-D:\University\Diploma\bitbucket\Network\Network\bin\EntityFramework.xml
+D:\University\Diploma\bitbucket\Network\Network\obj\Debug\Network.csproj.CoreCompileInputs.cache
 D:\University\Diploma\bitbucket\Network\Network\bin\ApplicationInsights.config
 D:\University\Diploma\bitbucket\Network\Network\bin\Network.dll.config
 D:\University\Diploma\bitbucket\Network\Network\bin\Network.dll
 D:\University\Diploma\bitbucket\Network\Network\bin\Network.pdb
 D:\University\Diploma\bitbucket\Network\Network\bin\Antlr3.Runtime.dll
+D:\University\Diploma\bitbucket\Network\Network\bin\EntityFramework.dll
 D:\University\Diploma\bitbucket\Network\Network\bin\EntityFramework.SqlServer.dll
 D:\University\Diploma\bitbucket\Network\Network\bin\Microsoft.AI.Agent.Intercept.dll
 D:\University\Diploma\bitbucket\Network\Network\bin\Microsoft.AI.DependencyCollector.dll
@@ -417,6 +417,7 @@ D:\University\Diploma\bitbucket\Network\Network\bin\System.Web.WebPages.Deployme
 D:\University\Diploma\bitbucket\Network\Network\bin\System.Web.WebPages.Razor.xml
 D:\University\Diploma\bitbucket\Network\Network\bin\Unity.Mvc.xml
 D:\University\Diploma\bitbucket\Network\Network\bin\Antlr3.Runtime.pdb
+D:\University\Diploma\bitbucket\Network\Network\bin\EntityFramework.xml
 D:\University\Diploma\bitbucket\Network\Network\bin\EntityFramework.SqlServer.xml
 D:\University\Diploma\bitbucket\Network\Network\bin\Microsoft.AspNet.Identity.Core.xml
 D:\University\Diploma\bitbucket\Network\Network\bin\Microsoft.AspNet.Identity.Owin.xml
@@ -453,6 +454,5 @@ D:\University\Diploma\bitbucket\Network\Network\bin\ru\Microsoft.Owin.Security.G
 D:\University\Diploma\bitbucket\Network\Network\bin\ru\Microsoft.Owin.Security.Twitter.resources.dll
 D:\University\Diploma\bitbucket\Network\Network\bin\ru\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
 D:\University\Diploma\bitbucket\Network\Network\obj\Debug\Network.csprojResolveAssemblyReference.cache
-D:\University\Diploma\bitbucket\Network\Network\obj\Debug\Network.csproj.CoreCompileInputs.cache
 D:\University\Diploma\bitbucket\Network\Network\obj\Debug\Network.dll
 D:\University\Diploma\bitbucket\Network\Network\obj\Debug\Network.pdb

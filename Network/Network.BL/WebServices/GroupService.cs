@@ -97,6 +97,15 @@ namespace Network.BL.WebServices
         {
             _dataRepository.Add(res);
         }
+
+        public bool UserIsHead(string userId,Guid groupId)
+        {
+            var head = _userRepository.GetUserByAspUserId(userId);
+            var group = _groupRepository.Find(groupId);
+            if (group.HeadId == head.Id)
+                return true;
+            else return false;
+        }
     }
 }
 

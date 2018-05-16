@@ -399,14 +399,22 @@ a:hover {
 }
 
 .user-list-container {
-    float:right;
+    float: right;
     background-color: white;
-    height: 380px;
-    width: 260px;
-    overflow-y:auto;
-    overflow-x:hidden;
-    margin-top:20px;
-    margin-right:150px;
+    height: 300px;
+    width: 280px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin-top: 30px;
+}
+
+.add-user-container {
+    float: right;
+    background-color: white;
+    height: 50px;
+    width: 280px;
+    overflow-y: hidden;
+    overflow-x: hidden;
 }
 
 .img-member {
