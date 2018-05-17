@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace Network.Controllers
 {
@@ -241,18 +242,31 @@ namespace Network.Controllers
                 res.Id = Guid.NewGuid();
                 _groupService.AddResource(res);
             }
-
-
-
-            return PartialView("_ListResource");
+            var param = model.GroupId.ToString();
+            return RedirectToAction ("GetListResource",new { id= param });
 
         }
-
-        public List<ResourceListViewModel> GetListResource(Guid groupId)
+        [HttpGet]
+        public ActionResult GetListResource(string id)
         {
-            List<ResourceListViewModel> model = new List<ResourceListViewModel>();
-
-            return model;
+            List<ResourceListViewModel> resources = new List<ResourceListViewModel>();
+            Guid groupId = new Guid(id);
+            var listRes = _groupService.GetResourceGroup(groupId);
+            if (listRes != null)
+            {
+                ResourceListViewModel item = new ResourceListViewModel();
+                foreach (var res in listRes)
+                {
+                    item.ResourceId = res.Id;
+                    item.Comments = res.Comments;
+                    var authorRes = _userService.GetUserById(res.AuthorId);
+                    item.AuthorName = authorRes.Name;
+                    item.AuthorSurname = authorRes.Surname;
+                    item.Date = Convert.ToDateTime(res.Date);
+                    resources.Add(item);
+                }
+            }
+            return PartialView("_ListResource", resources);
 
         }
 

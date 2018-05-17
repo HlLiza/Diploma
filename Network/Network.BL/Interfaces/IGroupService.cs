@@ -19,5 +19,6 @@ namespace Network.BL.Interfaces
         Group GetGroup(Guid groupId);
         IQueryable<Guid> MembersId(Guid groupId);
         bool UserIsHead(string userId, Guid groupId);
+        IQueryable<ResourceGroup> GetResourceGroup(Guid groupId);
     }
 }

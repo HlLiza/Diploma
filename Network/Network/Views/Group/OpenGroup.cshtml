@@ -58,14 +58,14 @@
 
 <div class="col-4" style="padding-left:70px;">
     <div class="row">
-        
+            
             <div class="add-user-container" style="margin-top:20px;">
                 @if (Model.UserIsHead)
                 {
-                    <label style="padding: 10px 10px 10px 60px;">УЧАСТНИКИ ГРУППЫ</label>
                 }
                 else
                 {
+                    <label style="padding: 10px 10px 10px 60px;">УЧАСТНИКИ ГРУППЫ</label>
 
                 }
             </div>
@@ -114,9 +114,23 @@
 @section Scripts{
     <script type="text/javascript">
         $(document).ready(function () {
+            var id= $("#groupId").val().toString();
+
+            debugger
+            $.ajax({
+                url: "/Group/GetListResource",
+                data: id,
+                method: "GET",
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    $("#searchResults").html(data);                   
+                }
+            });
+           
+
+
 
             $("#selectRes").click(function () {
-                        
                 var fileUpload = $("#resourcId").get(0);
                 var files = fileUpload.files;
                 var fileData = new FormData();

@@ -1,4 +1,6 @@
-﻿<div class="resource-group-container ">
+﻿@model IEnumerable<Network.Views.ViewModels.ResourceListViewModel>
 
-    !!!!!!!!!!!!!!!
-    </div>
+
+<div class="resource-group-container ">
+    @Html.DisplayFor(k=>Model.First().AuthorName)
+</div>

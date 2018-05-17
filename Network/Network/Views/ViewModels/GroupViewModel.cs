@@ -115,7 +115,10 @@ namespace Network.Views.ViewModels
         public string AuthorSurname { get; set; }
     }
 
-
+    public class GroupIdParam
+    {
+        public Guid GroupId { get; set; }
+    }
 
     //public class SelectLeadViewModel
     //{

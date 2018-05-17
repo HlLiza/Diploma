@@ -98,6 +98,11 @@ namespace Network.BL.WebServices
             _dataRepository.Add(res);
         }
 
+        public IQueryable<ResourceGroup> GetResourceGroup(Guid groupId)
+        {
+            return _dataRepository.DataForGroup(groupId);
+        }
+
         public bool UserIsHead(string userId,Guid groupId)
         {
             var head = _userRepository.GetUserByAspUserId(userId);
