@@ -290,11 +290,11 @@ namespace Network.Controllers
             }
         }
 
-        public ActionResult AddMembers(string userId, string grId)
+        public ActionResult AddMembers(string userId, string groupId)
         {
             try
             {
-                return RedirectToAction("OpenGroup", new { groupId = grId });
+                return RedirectToAction("OpenGroup", new { groupId = groupId });
             }
             catch (Exception e)
             {
@@ -346,6 +346,7 @@ namespace Network.Controllers
 
                 }
                 model.OrderBy(x => x.Surname);
+                ViewBag.GroupId = w.GroupId;
                 return PartialView("_SelectMembers", model);
             }
             catch (Exception e)

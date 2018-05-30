@@ -67,16 +67,40 @@
 
         function addMember(element) {
             debugger
-           
-            var usId = element.attr("id");
-            debugger
-            var url = "Group/AddMembers";
-            var grId = $("#groupId").val().toString();
 
-            $.post(url, { userId: usId, groupId: grId }).done()
-            {
-                $("#userList").remove(usId);
-            };
+           
+            //var d = JSON.stringify(data);
+            //$.post(url, data).done()
+            //{
+            //    $("#userList").remove(usId);
+            //};
+
+
+
+
+            var usId = $(".btnTemp").get(0).id;
+            debugger
+            var grId = $("#groupId").val();
+            //debugger
+            //var data = ;
+
+
+            $.ajax({
+                url: "Group/AddMembers",
+                data: JSON.stringify({ grId: grId, usId: usId }),
+                type: "POST",
+                dataType: 'json',
+                contentType: "application/json; charset=utf-8",
+
+                error: function (xhr, str) {
+                    alert("error");
+                    //$("#userList").remove(element);
+                },
+                success: function (data) {
+                    alert("Success");
+                    //$("#userList").html(element);
+                }
+            });
 
         }
 

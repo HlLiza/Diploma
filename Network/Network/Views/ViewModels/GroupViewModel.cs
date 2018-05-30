@@ -153,4 +153,9 @@ namespace Network.Views.ViewModels
         public string SelectedDirection { get; set; }
     }
 
+    public class AddMem
+    {
+        public Guid userId { get; set; }
+        public Guid groupId { get; set; }
+    }
 }
