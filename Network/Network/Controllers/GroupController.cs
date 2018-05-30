@@ -290,7 +290,7 @@ namespace Network.Controllers
             }
         }
 
-        public ActionResult AddMembers(Guid userId, Guid grId)
+        public ActionResult AddMembers(string userId, string grId)
         {
             try
             {
@@ -345,6 +345,7 @@ namespace Network.Controllers
                     }                
 
                 }
+                model.OrderBy(x => x.Surname);
                 return PartialView("_SelectMembers", model);
             }
             catch (Exception e)

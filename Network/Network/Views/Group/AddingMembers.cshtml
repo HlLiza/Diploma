@@ -51,7 +51,7 @@
                 $.ajax({
                     url: "/Group/GetDirections",
                     data: JSON.stringify(item),
-                    type:"POST",
+                    type: "POST",
                     contentType: "application/json; charset=utf-8",
 
                     error: function (xhr, str) {
@@ -62,8 +62,23 @@
                     }
                 });
 
-            });
+            });            
         });
+
+        function addMember(element) {
+            debugger
+           
+            var usId = element.attr("id");
+            debugger
+            var url = "Group/AddMembers";
+            var grId = $("#groupId").val().toString();
+
+            $.post(url, { userId: usId, groupId: grId }).done()
+            {
+                $("#userList").remove(usId);
+            };
+
+        }
 
     </script>
 }
