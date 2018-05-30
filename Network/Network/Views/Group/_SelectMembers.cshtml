@@ -2,7 +2,7 @@
 @model IEnumerable<Network.Views.ViewModels.UserListViewModel>
 
 
-@if (Model != null)
+@if (Model.Count()>0)
 {
     foreach (var item in Model)
     {
@@ -21,11 +21,11 @@
                     </div>
                 }
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4" style="padding-top: 72px;">
                 @Html.DisplayFor(modelItem => item.Name)
                 @Html.DisplayFor(modelItem => item.Surname)
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4" style="padding-top: 72px;">
                 @Html.DisplayFor(modelItem => item.Direction)
             </div>
         </div>
@@ -34,10 +34,11 @@
 }
 else
 {
-    <div class="body-background">
-        <div class="secretary">
-            CПИСОК ПОЛЬЗОВАТЕЛЕЙ ПУСТ!
-        </div>
-    </div>
+    @*<div class="body-background">
+        <div class="secretary">*@
+            <div class="row item-user">
+                НЕТ ПОЛЬЗОВАТЕЛЕЙ ПО ЗАДАННОМУ НАПРАВЛЕНИЮ!
+            </div>
+    @*</div>*@
 }
 

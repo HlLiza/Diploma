@@ -490,7 +490,6 @@
     <Content Include="Views\Group\_AddResource.cshtml" />
     <Content Include="Views\Group\_SelectMembers.cshtml" />
     <Content Include="Views\Group\AddingMembers.cshtml" />
-    <Content Include="Views\Group\_SelectDirectionAddM.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

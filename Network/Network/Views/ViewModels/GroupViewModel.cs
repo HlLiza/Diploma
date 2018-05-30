@@ -132,24 +132,25 @@ namespace Network.Views.ViewModels
         public string Name { get; set; }
 
         public string Surname { get; set; }
-
     }
 
     public class AddMemberViewModel
     {
-        public Guid Id { get; set; }
+        public Guid GroupId { get; set; }
 
-        //public List<SelectMemberViewModel> Users { get; set; }
+        public string SelectedDirection { get; set; }
 
-        public SelectDirection ListDirections { get; set; }
+        public List<string> Directions { get; set; }
+
+        public List<SelectMemberViewModel> SelectMember { get; set; }
 
     }
+
     public class SelectDirection
     {
         public Guid GroupId { get; set; }
-        public List<string> Directions { get; set; }
 
         public string SelectedDirection { get; set; }
     }
-    
+
 }

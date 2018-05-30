@@ -3,7 +3,6 @@
                 <label class="add-resource">ДОБАВЛЕНИЕ РЕСУРСА</label>
                 @using (Html.BeginForm("AddResource", "Group", FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
-                    @*@Html.HiddenFor(k => Model)*@
                     <div class="row" style="padding:10px; ">
                         <input type="file" style="padding:7px;" class="btn-select" name="Resource" id="imageFile" />
 
