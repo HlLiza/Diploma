@@ -9,8 +9,11 @@
 <div style="margin-left:25px; margin-right:20px;">
 
     <div class="row menu-page menu-cont">
+        <div class="col-md-1 ">
+            <a href=@Url.Action("Index","Group")><i style="padding: 15px 0 0 70px; color:white;" class="fa fa-arrow-circle-left"></i></a>
+        </div>
 
-        <div class="col-md-4 item-menu text-menu-page">
+        <div class="col-md-3 item-menu text-menu-page">
             <a class="text-menu-page">@Model.NameProject</a>
         </div>
         <div class="col-md-4 item-menu text-menu-page">
@@ -46,7 +49,7 @@
         <div class="container container-resource">
             <label class="add-resource" style="padding-left: 120px;">ЗАГРУЖЕННЫЕ РЕСУРСЫ</label>
 
-            <div class="list-resource">
+            <div class="list-resource container">
                 <div id="resourceItems">
                 </div>
             </div>
@@ -56,12 +59,14 @@
 
 </div>
 
-<div class="col-4" style="padding-left:70px;">
+<div class="col-4" style="padding-left:5%;">
     <div class="row">
             
-            <div class="add-user-container" style="margin-top:20px;">
+            <div class="add-user-container" style="margin-top:4.5%;">
                 @if (Model.UserIsHead)
                 {
+                    <input type="button" id="add-member" tabindex="4" onclick="location.href='@Url.Action("AddingMembers", "Group", new { direction =Model.Direction, groupId=Model.Id })'" class="btn but-add-member" value="ДОБАВИТЬ">
+                
                 }
                 else
                 {
@@ -114,17 +119,19 @@
 @section Scripts{
     <script type="text/javascript">
         $(document).ready(function () {
-            var id= $("#groupId").val().toString();
-
-            debugger
+            var postData = { "GroupId": $("#groupId").val() };
             $.ajax({
                 url: "/Group/GetListResource",
-                data: id,
-                method: "GET",
-                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify(postData),
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
                 success: function (data) {
-                    $("#searchResults").html(data);                   
+                    $("#resourceItems").html(data);  
+                },
+                error: function (xhr, str) {
+                    $('#resourceItems').html('Что-то пошло не так =('+str);
                 }
+             
             });
            
 
@@ -155,6 +162,13 @@
                 });
 
             });
+
+            $("#add-member").click(function () {
+
+            });
+
+
+
         });
     </script>
 }

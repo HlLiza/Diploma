@@ -109,7 +109,10 @@ namespace Network.Views.ViewModels
     public class ResourceListViewModel
     {
         public Guid ResourceId { get; set; }
+        public string ResourceName { get; set; }
         public string Comments { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
         public string AuthorName { get; set; }
         public string AuthorSurname { get; set; }
@@ -120,41 +123,33 @@ namespace Network.Views.ViewModels
         public Guid GroupId { get; set; }
     }
 
-    //public class SelectLeadViewModel
-    //{
-    //    public Guid Id { get; set; }
+    public class SelectMemberViewModel
+    {
+        public Guid Id { get; set; }
 
-    //    public string Name { get; set; }
-    //}
+        public byte[] ImageUser { get; set; }
 
-    //public class CreateGroup
-    //{
-    //    [Required]
-    //    public int Number { get; set; }
+        public string Name { get; set; }
 
-    //    [Required]
-    //    public string Specialization { get; set; }
+        public string Surname { get; set; }
 
-    //    [Required]
-    //    public SelectLeadViewModel Head { get; set; }
+    }
 
-    //    [Required]
-    //    public List<SelectLeadViewModel> ListLead { get; set; }
-    //}
+    public class AddMemberViewModel
+    {
+        public Guid Id { get; set; }
 
-    //public class AddtoGroup
-    //{
-    //   // public List<Group> groupList { get; set; }
-    //    public Guid selectedGroupId { get; set; }
-    //    public string selectedSpec { get; set; }
-    //    public Guid userId { get; set; }
-    //}
+        //public List<SelectMemberViewModel> Users { get; set; }
 
+        public SelectDirection ListDirections { get; set; }
 
+    }
+    public class SelectDirection
+    {
+        public Guid GroupId { get; set; }
+        public List<string> Directions { get; set; }
 
-    //public class AddToGroupMember
-    //{
-    //    public Guid grId { get; set; }
-    //    public List<UserListViewModel> ListUser { get; set; }
-    //}
+        public string SelectedDirection { get; set; }
+    }
+    
 }

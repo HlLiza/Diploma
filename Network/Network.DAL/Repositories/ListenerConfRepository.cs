@@ -9,7 +9,7 @@ namespace Network.DAL.Repositories
 {
     public class ListenerConfRepository : RepositoryBase, IListenerConference
     {
-        public ListenerConfRepository(InstitutNetworkContext context) : base(context) { }
+        public ListenerConfRepository(NetworkContext context) : base(context) { }
 
         public void Add(ListenerConfer listener)
         {

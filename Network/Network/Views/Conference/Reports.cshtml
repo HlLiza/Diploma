@@ -1,15 +1,15 @@
 ﻿@model IEnumerable<Network.Views.ViewModels.ReportsViewModel>
 
-@*@{
-    ViewBag.Title = "Reports";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}*@
-<div class="row menu-page">
-    <div class="align-item-menu">
+<div class="row menu-page menu-cont">
+
+    <div class="col-1">
+        <a href=@Url.Action("Index","Conference")><i style="padding: 15px 0 0 70px; color:white;" class="fa fa-arrow-circle-left"></i></a>
+    </div>
+    <div class="col-2">
         <div id="allReports" onclick="brows('@Url.Action("GetAllReport", "Conference", new { confId=Model.First().ConfId})')" class="item-menu text-menu-page hover" style="padding-right: 30px;">ВСЕ ДОКЛАДЫ</div>
     </div>
 
-    <div class="align-item-menu">
+    <div class="col-9 align-item-menu">
         <div class="menu-cont">
             @Html.Partial("_FullTextSearch")
         </div>

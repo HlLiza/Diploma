@@ -1,5 +1,6 @@
 ﻿using Network.DAL.EFModel;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Network.DAL.Interfaces
@@ -10,6 +11,6 @@ namespace Network.DAL.Interfaces
         void Delete(ResourceGroup data);
         ResourceGroup Find(Guid id);
 
-        IQueryable<ResourceGroup> DataForGroup(Guid groupId);
+        List<ResourceGroup> DataForGroup(Guid groupId);
     }
 }

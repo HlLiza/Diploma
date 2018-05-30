@@ -6,6 +6,9 @@
 <div style="margin-left:25px; margin-right:20px;">
 
     <div class="row menu-page menu-cont" >
+            <div class="col-md-2 ">
+                <a href=@Url.Action("Index","Conference")><i style="padding: 15px 0 0 70px; color:white;" class="fa fa-arrow-circle-left"></i></a>
+            </div>
             <div class="text-menu-page col-md-2" style="padding-top: 10px;">
                 @Html.DisplayFor(model => model.Thema)
             </div>
@@ -18,7 +21,7 @@
             {
                 <div id="takeId" class="col-md-4 item-menu text-menu-page hover"><span class="text-menu-page">РЕГИСТРАЦИЯ</span></div>
             }
-            <div class="col-md-4 item-menu text-menu-page hover" >
+            <div class="col-md-3 item-menu text-menu-page hover" >
                 <a class="text-menu-page" href="@Url.Action("Reports", "Conference", new { confId=Model.Id})">ДОКЛАДЫ</a>
             </div>
     </div>
@@ -32,7 +35,7 @@
             <img src="data:image/png;base64, @Convert.ToBase64String(Model.Image)" />
         </div>
         <div class="col-6">
-            <a href="@Url.Action("DownloadRequirements", "Conference",new {confId=Model.Id})"><span class="linkForDowload">ТРЕБОВАНИЯ</span></a>
+            <a href="@Url.Action("DownloadRequirements", "Conference",new {confId=Model.Id})"><i class="fa fa-arrow-alt-circle-down"></i></a><span class="linkForDowload">ТРЕБОВАНИЯ(скачать)</span>
             <div class="form-details">@Model.Details</div>        
         </div>
     </div>

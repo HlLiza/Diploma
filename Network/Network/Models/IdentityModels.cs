@@ -23,8 +23,9 @@ namespace Network.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("IdentityConnection", throwIfV1Schema: false)
+            : base("AspLoginEntities", throwIfV1Schema: false)
         {
+
         }
 
         public static ApplicationDbContext Create()

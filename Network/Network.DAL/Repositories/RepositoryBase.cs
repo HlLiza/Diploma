@@ -5,13 +5,13 @@ namespace Network.DAL.Repositories
 {
     public class RepositoryBase : IDisposable
     {
-        protected InstitutNetworkContext _context;
+        protected NetworkContext _context;
 
         private bool disposed = false;
 
         public RepositoryBase() { }
 
-        public RepositoryBase(InstitutNetworkContext context)
+        public RepositoryBase(NetworkContext context)
         {
             _context = context;
         }

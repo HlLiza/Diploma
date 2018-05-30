@@ -91,8 +91,8 @@ namespace Network.Models
 
         [Required]
         [Display(Name = "номер телефона")]
-        [DataType(DataType.PhoneNumber)]
-        //[RegularExpression("^(?!0+$)(\\+\\d{1,3}[- ]?)?(?!0+$)\\d{10,15}$", ErrorMessage = "Введите корректный номер телефона")]
+        //[DataType(DataType.PhoneNumber)]
+        [DataType(DataType.PhoneNumber, ErrorMessage = "Некорректный номер телефона")]
         public string PhoneNumber { get; set; }
     }
 

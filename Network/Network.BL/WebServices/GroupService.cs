@@ -51,6 +51,26 @@ namespace Network.BL.WebServices
 
         }
 
+        public List<Guid> ExcludeMembers(List<Guid> fullList, List<Guid> excludeList)
+        {
+            try
+            {
+                if (fullList.Count() > 0 && excludeList.Count() > 0)
+                {
+                    var diff = fullList.Where(x => !excludeList.Contains(x));
+                    var result = fullList.Where(x => diff.Contains(x)).ToList();
+                    return result;
+                    
+                }
+                else return null;
+
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
         public IQueryable<Guid> GroupId(Guid userId)
         {
             return _memberRepository.FindGroupsForUser(userId);
@@ -97,8 +117,15 @@ namespace Network.BL.WebServices
         {
             _dataRepository.Add(res);
         }
+        public ResourceGroup FindRes(Guid resId)
+        {
+            var item = _dataRepository.Find(resId);
+            if (item == null)
+                return null;
+            return item;
+        }
 
-        public IQueryable<ResourceGroup> GetResourceGroup(Guid groupId)
+        public List<ResourceGroup> GetResourceGroup(Guid groupId)
         {
             return _dataRepository.DataForGroup(groupId);
         }
@@ -111,6 +138,27 @@ namespace Network.BL.WebServices
                 return true;
             else return false;
         }
+
+        public IQueryable<User> GetMembers(string direction, string aspId)
+        {
+            var userList = _groupRepository.GetMembersId(direction);
+            var result = userList.Where(x => x.AspUserId!=aspId);
+            if (result.Count() > 0)
+            {
+                return userList;
+            }
+            else return null;
+        }
+
+        public List<string> GetAllDirections()
+        {
+            var allItems = _userRepository.GetDirections();
+            if (allItems.Count() > 0)
+                return allItems.ToList();
+            return null;
+        }
+
+        
     }
 }
 

@@ -1,0 +1,20 @@
+﻿@model Network.Views.ViewModels.SelectDirection
+
+@using (Html.BeginForm("GetDirections", "Group"))
+{
+    @Html.HiddenFor(x => Model.GroupId, new { @id = "groupId" })
+    <div class="row" style="margin: -15px 0 0 135px;">
+        <div>
+            @Html.DropDownListFor(model => model.SelectedDirection, new SelectList(Model.Directions), Model.SelectedDirection.ToString(), new
+       {
+           @class = "drop-down-direct",
+           @id = "selectD"
+       })
+
+          
+        </div>
+        <button id="selectReport" class="btn btn-search">НАЙТИ</button>
+    </div>
+}
+
+

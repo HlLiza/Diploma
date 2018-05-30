@@ -11,17 +11,19 @@ namespace Network.DAL.EFModel
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class User
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
             this.Aducation = new HashSet<Aducation>();
-            this.ListenerConfer = new HashSet<ListenerConfer>();
-            this.MembersOfConference = new HashSet<MembersOfConference>();
-            this.MemberOfGroup = new HashSet<MemberOfGroup>();
             this.Group = new HashSet<Group>();
+            this.ListenerConfer = new HashSet<ListenerConfer>();
+            this.MemberOfGroup = new HashSet<MemberOfGroup>();
+            this.MembersOfConference = new HashSet<MembersOfConference>();
             this.ResourceGroup = new HashSet<ResourceGroup>();
         }
     
@@ -29,6 +31,7 @@ namespace Network.DAL.EFModel
         public Nullable<bool> Visibility { get; set; }
         public string AspUserId { get; set; }
         public string Name { get; set; }
+        
         public string Surname { get; set; }
         public string Skype { get; set; }
         public string Direction { get; set; }
@@ -38,13 +41,13 @@ namespace Network.DAL.EFModel
         public virtual ICollection<Aducation> Aducation { get; set; }
         public virtual AspNetUsers AspNetUsers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ListenerConfer> ListenerConfer { get; set; }
+        public virtual ICollection<Group> Group { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MembersOfConference> MembersOfConference { get; set; }
+        public virtual ICollection<ListenerConfer> ListenerConfer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MemberOfGroup> MemberOfGroup { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Group> Group { get; set; }
+        public virtual ICollection<MembersOfConference> MembersOfConference { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ResourceGroup> ResourceGroup { get; set; }
     }

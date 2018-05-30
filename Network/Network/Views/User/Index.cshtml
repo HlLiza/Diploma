@@ -1,5 +1,4 @@
 ﻿@model Network.Views.ViewModels.UserIndexViewModel
-
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -9,7 +8,7 @@
 {
     if (!User.IsInRole("secretary"))
     {
-        <div class="row">
+        <div class="row" style="MARGIN-TOP: -24PX;">
 
             <div class="col-md-5">
                 @if (Model.Image != null)
@@ -41,11 +40,17 @@
                 <div class="body-background">
 
                     <div class="row menu-page">
-                       
+
                         <div id="persInfo" class="item-menu text-menu-page hover">МОЙ ПРОФИЛЬ</div>
                         <div id="editPer" class="item-menu item-icon fa fa-cog hover"></div>
                         <div id="aducId" class="item-menu text-menu-page hover">ОБРАЗОВАНИЕ</div>
-                        <div id="addAduc" class="item-menu item-icon fas fa-plus" hover"></div>
+                        <div id="addAduc" class="item-menu item-icon fa fa-plus" hover"></div>
+
+                       
+                        @*<div id="persInfo" class="item-menu text-menu-page hover">МОИ ДАННЫЕ</div>
+                        <a class="item-menu item-icon fa fa-cog hover" id="editPer" href="@Url.Action("EditPersInfo","User")"></a>
+                        <a class="item-menu item-icon fa fa-plus hover" id="addAduc" href="@Url.Action("AddAducation","User")"></a>
+                        <div id="aducId" class="item-menu text-menu-page hover">ОБРАЗОВАНИЕ</div>*@
 
                     </div>
                 </div>
@@ -77,6 +82,14 @@
                                 @Html.DisplayFor(model => model.Email)
                             </div>
                         </div>
+                        @*<div class="row">
+                            <div class="col-4 null-left-pad text-style-info">
+                               @Html.DisplayNameFor(model=>model.PhoneNumber)
+                            </div>
+                            <div class="col-8 null-left-pad text-style-info">
+                                @Html.DisplayForPhone(Model.PhoneNumber)
+                            </div>
+                        </div>*@
 
                         <div class="row">
                             <div class="col-4 null-left-pad text-style-info">
@@ -115,20 +128,24 @@
     </div>
 </div>
 
-<div id="openModalEditPersInfo" class="modal fade" data-url='@Url.Action("EditPersInfo","User",null)'>
+@*<div id="openModalEditPersInfo" class="modal fade" data-url='@Url.Action("EditPersInfo","User",null)'>
     <div id="editPersContainer">
     </div>
-</div>
+</div>*@
 
-<div id="openModalAddAducation" class="modal fade" data-url='@Url.Action("AddAducation","User",null)'>
+@*<div id="openModalAddAducation" class="modal fade" data-url='@Url.Action("AddAducation","User",null)'>
     <div id="addAducContainer">
     </div>
-</div>
+</div>*@
 
 
 
 @section Scripts{
     <script type="text/javascript">
+       
+
+
+
         $(document).ready(function () {
 
             $("#aducId").click(function () {
@@ -162,15 +179,64 @@
             });
 
 
-            $('#editAd').click(function () {
-                var url = $('#openModalEditAducation').data('url');
-                $.get(url,
-                    function (data) {
-                        $('#editAducContainer').html(data);
+            //$(function () {
+            //    $.ajaxSetup({ cache: false });
+            //    $("#editPer").on("click", function (e) {
+            //        $(e.target).closest('.btn-group').children('.dropdown-toggle').dropdown('toggle');
+            //        $('#dialogContent').load(this.href, function () {
+            //            $('#modDialog').modal({
+            //                keyboard: true
+            //            }, 'show');
+            //            bindFormEditPerson(this);
+            //        });
+            //        return false;
+            //    });
+            //});
 
-                        $('#openModalEditAducation').modal('show');
-                    });
-            });
+            //function bindFormEditPerson(dialog) {
+            //    $('form', dialog).submit(function () {
+            //        $.ajax({
+            //            url: this.action,
+            //            type: this.method,
+            //            data: $(this).serialize(),
+            //            success: function (result) {
+            //                if (result.success) {
+            //                    $('#modDialog').modal('hide');
+            //                    location.reload();
+            //                } else {
+            //                    $('#dialogContent').html(result);
+            //                    bindForm();
+            //                }
+            //            }
+            //        });
+            //        return false;
+            //    });
+            //}
+            //$(function () {
+            //    $.ajaxSetup({ cache: false });
+            //    $("#addAduc").on("click", function (e) {
+            //        $(e.target).closest('.btn-group').children('.dropdown-toggle').dropdown('toggle');
+            //        $('#dialogContent').load(this.href, function () {
+            //            $('#modDialog').modal({
+            //                keyboard: true
+            //            }, 'show');
+            //            bindFormEditPerson(this);
+            //        });
+            //        return false;
+            //    });
+            //});
+
+
+
+            //$('#editAd').click(function () {
+            //    var url = $('#openModalEditAducation').data('url');
+            //    $.get(url,
+            //        function (data) {
+            //            $('#editAducContainer').html(data);
+
+            //            $('#openModalEditAducation').modal('show');
+            //        });
+            //});
 
             $('#addAduc').click(function () {
                 var url = $('#openModalAddAducation').data('url');

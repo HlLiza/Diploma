@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -7,9 +6,9 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Network.Models;
-using Microsoft.Owin.Security.DataProtection;
 using Network.Views.ViewModels;
 using System.Collections.Generic;
+using System;
 
 namespace Network.Controllers
 {
@@ -53,63 +52,73 @@ namespace Network.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                var user = await UserManager.FindAsync(model.LoginEmail, model.LoginPassword);
-                if (user != null)
+                if (!ModelState.IsValid)
                 {
-                    if (user.EmailConfirmed == true)
+                    var user = await UserManager.FindAsync(model.LoginEmail, model.LoginPassword);
+                    if (user != null)
                     {
-                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                        return RedirectToLocal(returnUrl);
-                    }
-                    else
-                    {
-                        ModelState.AddModelError("", "Не подтвержден email.");
-                    }
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Неверный логин или пароль");
-                }
-
-            }
-
-
-            // Сбои при входе не приводят к блокированию учетной записи
-            // Чтобы ошибки при вводе пароля инициировали блокирование учетной записи, замените на shouldLockout: true
-            ApplicationUser signedUser = UserManager.FindByEmail(model.LoginEmail);
-            var roles = UserManager.GetRoles(signedUser.Id);
-            var result = await SignInManager.PasswordSignInAsync(signedUser.Email, model.LoginPassword, model.RememberMe, shouldLockout: false);
-            switch (result)
-            {
-                case SignInStatus.Success:
-                    {
-                        if (roles.First() == "secretary")
+                        if (user.EmailConfirmed == true)
                         {
-                            return RedirectToAction("Index","User");
-                        }
-                        if (signedUser.IsNewUser && roles.First()!="secretary")
-                        {
-                            signedUser.IsNewUser = false;
-                            UserManager.Update(signedUser);
-                            return RedirectToAction("AddUser", "User", new { id = signedUser.Id });
+                            await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                            return RedirectToLocal(returnUrl);
                         }
                         else
                         {
-                            return RedirectToAction("Index", "User");
+                            ModelState.AddModelError("", "Не подтвержден email.");
                         }
                     }
+                    else
+                    {
+                        ModelState.AddModelError("", "Неверный логин или пароль");
+                    }
 
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                case SignInStatus.Failure:
-                default:
-                    ModelState.AddModelError("", "Неудачная попытка входа.");
-                    return RedirectToAction("Login", "Account",model);
+                }
+
+
+                // Сбои при входе не приводят к блокированию учетной записи
+                // Чтобы ошибки при вводе пароля инициировали блокирование учетной записи, замените на shouldLockout: true
+                ApplicationUser signedUser = UserManager.FindByEmail(model.LoginEmail);
+                var roles = UserManager.GetRoles(signedUser.Id);
+                var result = await SignInManager.PasswordSignInAsync(signedUser.Email, model.LoginPassword, model.RememberMe, shouldLockout: false);
+                switch (result)
+                {
+                    case SignInStatus.Success:
+                        {
+                            if (roles.First() == "secretary")
+                            {
+                                return RedirectToAction("Index", "User");
+                            }
+                            if (signedUser.IsNewUser && roles.First() != "secretary")
+                            {
+                                signedUser.IsNewUser = false;
+                                UserManager.Update(signedUser);
+                                return RedirectToAction("AddUser", "User", new { id = signedUser.Id });
+                            }
+                            else
+                            {
+                                return RedirectToAction("Index", "User");
+                            }
+                        }
+
+                    case SignInStatus.LockedOut:
+                        return View("Lockout");
+                    case SignInStatus.RequiresVerification:
+                        return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                    case SignInStatus.Failure:
+                    default:
+                        ModelState.AddModelError("", "Неудачная попытка входа.");
+                        return View(model); 
+                }
+
             }
+            catch (Exception e)
+            {
+                ModelState.AddModelError("", "Неудачная попытка входа.");
+                return View(model);
+            }
+            
         }
 
         // GET: /Account/VerifyCode
@@ -169,31 +178,39 @@ namespace Network.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            if (ModelState.IsValid)
+            try
             {
-                //var provider = new DpapiDataProtectionProvider("Sample");
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, PhoneNumber=model.PhoneNumber, IsNewUser=true};
-                var result = await UserManager.CreateAsync(user, model.Password);
-                //UserManager.UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser>(provider.Create("EmailConfirmation"));
-                await UserManager.AddToRoleAsync(user.Id, model.Role);
-
-                if (result.Succeeded)
+                if (ModelState.IsValid)
                 {
-                    // генерируем токен для подтверждения регистрации
-                    var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // создаем ссылку для подтверждения
-                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code },
-                               protocol: Request.Url.Scheme);
-                    // отправка письма
-                    //await UserManager.AddToRoleAsync(user.Id, "user");
-                    await UserManager.SendEmailAsync(user.Id, "Подтверждение электронной почты",
-                               "Для завершения регистрации перейдите по ссылке:: <a href=\""
-                                                               + callbackUrl + "\">завершить регистрацию</a>");
-                    return RedirectToAction("Confirm", "Account", new { Email = user.Email });
+                    //var provider = new DpapiDataProtectionProvider("Sample");
+                    var user = new ApplicationUser { UserName = model.Email, Email = model.Email, PhoneNumber = model.PhoneNumber, IsNewUser = true };
+                    var result = await UserManager.CreateAsync(user, model.Password);
+                    //UserManager.UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser>(provider.Create("EmailConfirmation"));
+                    await UserManager.AddToRoleAsync(user.Id, model.Role);
+
+                    if (result.Succeeded)
+                    {
+                        // генерируем токен для подтверждения регистрации
+                        var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                        // создаем ссылку для подтверждения
+                        var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code },
+                                   protocol: Request.Url.Scheme);
+                        // отправка письма
+                        //await UserManager.AddToRoleAsync(user.Id, "user");
+                        await UserManager.SendEmailAsync(user.Id, "Подтверждение электронной почты",
+                                   "Для завершения регистрации перейдите по ссылке:: <a href=\""
+                                                                   + callbackUrl + "\">завершить регистрацию</a>");
+                        return RedirectToAction("Confirm", "Account", new { Email = user.Email });
+                    }
+                    AddErrors(result);
                 }
-                AddErrors(result);
+                return View(model);
             }
-            return View(model);
+            catch (Exception e)
+            {
+                return View(model);
+            }
+            
         }
 
         [AllowAnonymous]
@@ -355,30 +372,39 @@ namespace Network.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
         {
-            var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
-            if (loginInfo == null)
+            try
             {
-                return RedirectToAction("Login");
-            }
+                var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
+                if (loginInfo == null)
+                {
+                    return RedirectToAction("Login");
+                }
 
-            // Выполнение входа пользователя посредством данного внешнего поставщика входа, если у пользователя уже есть имя входа
-            //ApplicationUser signedUser = UserManager.FindByEmail(loginInfo.Email);
-            var result = await SignInManager.ExternalSignInAsync(loginInfo, isPersistent: false);
-            switch (result)
-            {
-                case SignInStatus.Success:
-                    return RedirectToAction("Index", "User");
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new {ReturnUrl = returnUrl, RememberMe = false });
-                case SignInStatus.Failure:
-                default:
-                    // Если у пользователя нет учетной записи, то ему предлагается создать ее
-                    ViewBag.ReturnUrl = returnUrl;
-                    ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
-                    return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
+                // Выполнение входа пользователя посредством данного внешнего поставщика входа, если у пользователя уже есть имя входа
+                //ApplicationUser signedUser = UserManager.FindByEmail(loginInfo.Email);
+                var result = await SignInManager.ExternalSignInAsync(loginInfo, isPersistent: false);
+                switch (result)
+                {
+                    case SignInStatus.Success:
+                        return RedirectToAction("Index", "User");
+                    case SignInStatus.LockedOut:
+                        return View("Lockout");
+                    case SignInStatus.RequiresVerification:
+                        return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = false });
+                    case SignInStatus.Failure:
+                    default:
+                        // Если у пользователя нет учетной записи, то ему предлагается создать ее
+                        ViewBag.ReturnUrl = returnUrl;
+                        ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
+                        return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
+                }
             }
+            catch (Exception e)
+            {
+                ModelState.AddModelError("", "Неудачная попытка входа.");
+                return View(ModelState);
+            }
+            
         }
 
         //

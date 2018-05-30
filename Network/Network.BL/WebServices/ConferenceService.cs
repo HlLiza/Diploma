@@ -29,7 +29,7 @@ namespace Network.BL.WebServices
         
         //conference
        
-        public IQueryable<Conference> GetConfIndex()
+        public List<Conference> GetConfIndex()
         {
             var list = _conferRepository.GetAll();
             var result = CheckVisibleConf(list);
@@ -38,9 +38,9 @@ namespace Network.BL.WebServices
             return null;
         }
 
-        public IQueryable<Conference> CheckVisibleConf(IQueryable<Conference> list)
+        public List<Conference> CheckVisibleConf(List<Conference> list)
         {
-            if (list != null)
+            if (list.Count()>0)
             {
                 foreach (var item in list)
                     if (item.Date < DateTime.Now && item.Visibility==true)
@@ -180,20 +180,24 @@ namespace Network.BL.WebServices
             return _reportRepository.GetListReportsId(confId);
         }
 
-
-
-
-
-
-
-
-
-
-
-
-       
-      
-
+        //public List<ReportConference> GetListFts(string keyWord)
+        //{
+        //    return _reportRepository.GetReportsFTS(keyWord);
+        //}
         
+
+
+
+        IQueryable<Conference> IConferenceService.GetConfIndex()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IQueryable<Conference> CheckVisibleConf(IOrderedQueryable<Conference> list)
+        {
+            throw new NotImplementedException();
+        }
+
+     
     }
 }

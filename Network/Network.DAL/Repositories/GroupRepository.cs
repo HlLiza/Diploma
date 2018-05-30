@@ -7,7 +7,7 @@ namespace Network.DAL.Repositories
 {
     public class GroupRepository : RepositoryBase, IGroup
     {
-        public GroupRepository(InstitutNetworkContext context) : base(context) { }   
+        public GroupRepository(NetworkContext context) : base(context) { }   
 
 
         public void Add(Group group)
@@ -47,6 +47,18 @@ namespace Network.DAL.Repositories
         public IQueryable<Guid> AllLeadId()
         {
             return _context.Group.Select(x => x.HeadId).Distinct();
+        }
+
+        public IQueryable<User> GetMembersId(string direction)
+        {
+            try
+            {
+                return _context.User.Where(x => x.Direction == direction);
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
         }
 
 

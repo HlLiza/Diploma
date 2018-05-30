@@ -14,12 +14,12 @@ namespace Network.Controllers
         private ConferenceService _conferencService;
         private UserService _userService; 
 
-        public ConferenceController(ConferenceService conferencService, UserService userService)
+        public ConferenceController(ConferenceService conferencService,
+            UserService userService)
         {
             _conferencService = conferencService;
             _userService = userService;
         }
-
 
         // GET: Conference
         public ActionResult Index()
@@ -67,7 +67,6 @@ namespace Network.Controllers
 
             return View(model);
         }
-        
 
         [Authorize(Roles = "group_member")]
         public bool IsMemberConference(Guid confId)
@@ -133,7 +132,7 @@ namespace Network.Controllers
         {
             var report = _conferencService.GetReport(reportId);
             byte[] data = report.Content;
-            string fileName = report.Title + ".pdf";
+            string fileName = report.Title + ".doc";
             return File(data, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
         }
 
@@ -166,7 +165,7 @@ namespace Network.Controllers
                 ReportConference report = new ReportConference
                 {
                     Title=model.Topic,
-                    Extension= ".pdf",
+                    Extension= ".doc",
                     Content =_conferencService.ConvertFile(model.ReportText),
                    Author=model.Author
                 };
@@ -259,7 +258,7 @@ namespace Network.Controllers
 
                 _conferencService.AddCovference(conf);
             }
-            return RedirectToAction("Index");
+            return View("Index");
         }
 
 
@@ -303,8 +302,34 @@ namespace Network.Controllers
         }
 
         public ActionResult Reports(Guid confId)
-        {  
-            return View();
+        {
+            List<ReportsViewModel> model = new List<ReportsViewModel>();
+            ReportsViewModel item = new ReportsViewModel()
+            {
+                ConfId= confId
+            };
+                model.Add(item);
+
+            return View(model);
+
+
+            //var listId = _conferencService.GetListReports(confId);
+            //if (listId.Count() > 0)
+            //{
+            //    foreach (var id in listId)
+            //    {
+            //        var report = _conferencService.GetReport(id);
+            //        ReportsViewModel item = new ReportsViewModel();
+            //        item.Id = report.Id;
+            //        item.Title = report.Title;
+            //        item.Author = report.Author;
+            //        item.ConfId = confId;
+            //        model.Add(item);
+            //    }
+            //}
+
+
+
         }
 
         public ActionResult GetAllReport(Guid confId)
@@ -331,9 +356,30 @@ namespace Network.Controllers
             return PartialView("_GetAllReport",model);
         }
 
-        public void Search(string str)
-        {
+        //public List<ReportsViewModel> Search(string str)
+        //{
+        //    List<ReportsViewModel> model = new List<ReportsViewModel>();
+        //    if (str.Length > 0)
+        //    {
+        //        var data = _conferencService.GetListFts(str);
+        //        if (data.Count > 0)
+        //        {
+        //            foreach (var item in data)
+        //            {
+        //                ReportsViewModel rp = new ReportsViewModel
+        //                {
+        //                    Id = item.Id,
+        //                    Title = item.Title,
+        //                    Author = item.Author
+        //                };
+        //                model.Add(rp);
+        //            }
+                   
+        //        }
 
-        }
+        //    }
+
+        //    return (model);
+        //}
     }
 }

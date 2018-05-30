@@ -1,5 +1,6 @@
 ﻿using Network.DAL.EFModel;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Network.DAL.Interfaces
@@ -10,7 +11,7 @@ namespace Network.DAL.Interfaces
         void Update(Conference item);
         Conference Find(Guid id);
         void Delete(Conference gr);
-        IQueryable<Conference> GetAll();
+        List<Conference> GetAll();
 
 
         void JoinToConference(MembersOfConference member);

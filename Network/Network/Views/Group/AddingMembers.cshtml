@@ -1,0 +1,55 @@
+﻿@model Network.Views.ViewModels.AddMemberViewModel
+
+@{
+    ViewBag.Title = "Добавление пользователей в группу";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.HiddenFor(x => Model.Id, new { @id = "groupId" })
+
+<div style="margin-left:25px; margin-right:20px;">
+
+    <div class="row menu-page menu-cont">
+        <div class="col-md-1 ">
+            <a href=@Url.Action("OpenGroup","Group",new{ groupId=Model.Id})><i style="padding: 15px 0 0 15px; color:white;" class="fa fa-arrow-circle-left"></i></a>
+        </div>
+
+        <div class="col-md-3 item-menu text-menu-page">
+            <a class="text-menu-page">ДОБАВЛЕНИЕ ПОЛЬЗОВАТЕЛЕЙ</a>
+        </div>
+        <div class="col-md-8 item-menu text-menu-page">
+            @Html.Partial("_SelectDirectionAddM",Model.ListDirections)
+        </div>
+
+        
+
+    </div>
+</div>
+
+<div class="container text-style-info">
+    <div id="result">
+    </div>
+</div>
+
+
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#selectReport").click(function () {
+                var item = { GroupId: $("groupId").val(), SelectedDirection: $("selectD").val() };
+               
+                $.ajax({
+                    url: "/Group/GetDirections?direction" ,
+                    method: "GET",
+                    async: false,
+                   
+                    success: function (data) {
+                        $("#result").html(data);
+                    }
+                });
+
+            });
+        });
+
+    </script>
+}

@@ -3,6 +3,7 @@ using Network.BL.Interfaces;
 using Network.BL.WebServices;
 using Network.DAL.EFModel;
 using Network.Views.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -53,32 +54,41 @@ namespace Network.Controllers
             var aspId = User.Identity.GetUserId();
             var aspUser = _userService.GetAspUser(aspId);
             UserIndexViewModel model = new UserIndexViewModel();
-            model.AspUserId = aspId;
-            model.Role = _userService.GetRoleNameByAspId(aspId);
-            model.Id = _userService.GetIdByAspId(aspId);
-
-            if (!User.IsInRole("secretary"))
+            try
             {
-                if (model.Id != null)
+                model.AspUserId = aspId;
+                model.Role = _userService.GetRoleNameByAspId(aspId);
+                model.Id = _userService.GetIdByAspId(aspId);
+
+                if (!User.IsInRole("secretary"))
                 {
-                    var data = _userService.GetUserById(model.Id);
-                    model.Id = data.Id;
-                    model.Name = data.Name;
-                    model.Surname = data.Surname;
-                    model.Direction = data.Direction;
-                    model.Skype = data.Skype;
-                    model.Image = data.Image;
+                    if (model.Id != null)
+                    {
+                        var data = _userService.GetUserById(model.Id);
+                        model.Id = data.Id;
+                        model.Name = data.Name;
+                        model.Surname = data.Surname;
+                        model.Direction = data.Direction;
+                        model.Skype = data.Skype;
+                        model.Image = data.Image;
+                    }
+
+                    model.PhoneNumber = aspUser.PhoneNumber;
+                    model.Email = aspUser.Email;
+
+                    var aducation = _aducationService.GetAducation(model.Id);
+                    model.Aducation = GetAducInfo(aducation);
+
+                    return model;
                 }
-
-                model.PhoneNumber = aspUser.PhoneNumber;
-                model.Email = aspUser.Email;
-
-                var aducation = _aducationService.GetAducation(model.Id);
-                model.Aducation = GetAducInfo(aducation);
-
-                return model;
+                return null;
             }
-            return null;
+            catch (Exception e)
+            {
+                return null;
+            }
+          
+           
         }
 
 
@@ -123,7 +133,7 @@ namespace Network.Controllers
         [HttpPost]
         public ActionResult EditPersInfo(EditPersInfViewModel model)
         {
-            if (model != null)
+            if (ModelState.IsValid)
             {
                 var user = _userService.GetUserByAspNetId(User.Identity.GetUserId());
                 user.Name = model.Name;
@@ -131,8 +141,10 @@ namespace Network.Controllers
                 user.Skype = model.Skype;
                 user.Direction = model.Direction;
                 _userService.UpdateUser(user);
+                ViewBag.Message = "Успех";
+                return PartialView("_EditPersInfo", model);
             }
-            return RedirectToAction("Index");
+            return PartialView("_EditPersInfo", model);
         }
 
 
@@ -171,11 +183,22 @@ namespace Network.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddAducation(Aducation model)
+        public ActionResult AddAducation(AducationInfo model)
         {
-            model.UserId = _userService.GetIdByAspId(User.Identity.GetUserId());
-            _aducationService.AddAducation(model);
-            return RedirectToAction("Index","User");
+            if (ModelState.IsValid)
+            {
+                var Aducation = new Aducation
+                {
+                    UserId = _userService.GetIdByAspId(User.Identity.GetUserId()),
+                    University = model.University,
+                    StartYear = model.StartYear,
+                    GradYear = model.GradYear,
+                };
+                _aducationService.AddAducation(Aducation);
+                ViewBag.Message = "Успех";
+                return PartialView("_AddAducation", model);
+            }
+            return PartialView("_AddAducation", model);
         }
 
 
@@ -211,8 +234,6 @@ namespace Network.Controllers
             return View("AddUser", model);
         }
 
-    
-
         public ActionResult AddUser(AddUserViewModel model)
         {
             if (model != null)
@@ -244,6 +265,7 @@ namespace Network.Controllers
             }
             return RedirectToAction("Index","User");
         }
+
 
 
         public ActionResult BrowseUser()
@@ -331,10 +353,7 @@ namespace Network.Controllers
             }
         }
 
-        public ActionResult MyProfile()
-        {
-            return View();
-        }
+       
     }
 }
 

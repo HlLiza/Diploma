@@ -58,8 +58,8 @@
                     }
                 @if (User.IsInRole("group_member"))
                     {
-                        <div class="col-md-3 item-list-group">
-                            <a href="@Url.Action("OpenGroup", "Group", new { groupId=item.Id })">@Html.DisplayFor(k => item.NameProject)</a>
+                        <div class="col-md-3 item-list-group nname">
+                            <a href="@Url.Action("OpenGroup", "Group", new { groupId=item.Id })"><div class="nname">@Html.DisplayFor(k => item.NameProject)</div></a>
                         </div>
                     }
                 

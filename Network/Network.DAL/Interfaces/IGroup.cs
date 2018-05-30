@@ -13,5 +13,6 @@ namespace Network.DAL.Interfaces
         IQueryable<Group> GetGroupsByHead(Guid id); 
         IQueryable<Group> GetGroups();
         IQueryable<Guid> AllLeadId();
+        IQueryable<User> GetMembersId(string direction);
     }
 }

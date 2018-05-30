@@ -1,0 +1,294 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище InstitutNetworkModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Aducation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="University" Type="nvarchar" MaxLength="500" />
+    <Property Name="StartYear" Type="int" />
+    <Property Name="GradYear" Type="int" />
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Conference">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Thema" Type="nvarchar" MaxLength="500" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="Direction" Type="nvarchar" MaxLength="500" />
+    <Property Name="Details" Type="nvarchar(max)" />
+    <Property Name="Visibility" Type="bit" />
+    <Property Name="Requirements" Type="varbinary(max)" />
+    <Property Name="Image" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Group">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="NameProject" Type="nvarchar(max)" />
+    <Property Name="Direction" Type="nvarchar" MaxLength="500" />
+    <Property Name="HeadId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="DateStart" Type="datetime" />
+    <Property Name="DateFinish" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ListenerConfer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ConferenceId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MemberOfGroup">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="GroupId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MembersOfConference">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ConferenceId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ReportId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ReportConference">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Content" Type="varbinary(max)" />
+    <Property Name="Title" Type="nvarchar" MaxLength="255" />
+    <Property Name="Extension" Type="varchar" MaxLength="5" />
+    <Property Name="Author" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="ResourceGroup">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="GroupId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Resource" Type="varbinary(max)" />
+    <Property Name="Comments" Type="nvarchar(max)" />
+    <Property Name="AuthorId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Date" Type="date" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Visibility" Type="bit" />
+    <Property Name="AspUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="150" />
+    <Property Name="Surname" Type="nvarchar" MaxLength="150" />
+    <Property Name="Skype" Type="nvarchar" MaxLength="150" />
+    <Property Name="Direction" Type="nvarchar" MaxLength="500" />
+    <Property Name="Image" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_Aducation_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Aducation" Type="Self.Aducation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Aducation">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Group_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Group" Type="Self.Group" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Group">
+        <PropertyRef Name="HeadId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ListenerConfer_Conference">
+    <End Role="Conference" Type="Self.Conference" Multiplicity="1" />
+    <End Role="ListenerConfer" Type="Self.ListenerConfer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Conference">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ListenerConfer">
+        <PropertyRef Name="ConferenceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ListenerConfer_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="ListenerConfer" Type="Self.ListenerConfer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ListenerConfer">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MemberOfGroup_Group">
+    <End Role="Group" Type="Self.Group" Multiplicity="1" />
+    <End Role="MemberOfGroup" Type="Self.MemberOfGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Group">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MemberOfGroup">
+        <PropertyRef Name="GroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MemberOfGroup_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="MemberOfGroup" Type="Self.MemberOfGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MemberOfGroup">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MembersOfConference_Conference">
+    <End Role="Conference" Type="Self.Conference" Multiplicity="1" />
+    <End Role="MembersOfConference" Type="Self.MembersOfConference" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Conference">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MembersOfConference">
+        <PropertyRef Name="ConferenceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MembersOfConference_ReportConference">
+    <End Role="ReportConference" Type="Self.ReportConference" Multiplicity="1" />
+    <End Role="MembersOfConference" Type="Self.MembersOfConference" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ReportConference">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MembersOfConference">
+        <PropertyRef Name="ReportId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MembersOfConference_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="MembersOfConference" Type="Self.MembersOfConference" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MembersOfConference">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ResourceGroup_Group">
+    <End Role="Group" Type="Self.Group" Multiplicity="1" />
+    <End Role="ResourceGroup" Type="Self.ResourceGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Group">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ResourceGroup">
+        <PropertyRef Name="GroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ResourceGroup_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="ResourceGroup" Type="Self.ResourceGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ResourceGroup">
+        <PropertyRef Name="AuthorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище InstitutNetworkModelContainer">
+    <EntitySet Name="Aducation" EntityType="Self.Aducation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Conference" EntityType="Self.Conference" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ListenerConfer" EntityType="Self.ListenerConfer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MemberOfGroup" EntityType="Self.MemberOfGroup" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MembersOfConference" EntityType="Self.MembersOfConference" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ReportConference" EntityType="Self.ReportConference" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ResourceGroup" EntityType="Self.ResourceGroup" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Aducation_User" Association="Self.FK_Aducation_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Aducation" EntitySet="Aducation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Group_User" Association="Self.FK_Group_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Group" EntitySet="Group" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ListenerConfer_Conference" Association="Self.FK_ListenerConfer_Conference">
+      <End Role="Conference" EntitySet="Conference" />
+      <End Role="ListenerConfer" EntitySet="ListenerConfer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ListenerConfer_User" Association="Self.FK_ListenerConfer_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="ListenerConfer" EntitySet="ListenerConfer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MemberOfGroup_Group" Association="Self.FK_MemberOfGroup_Group">
+      <End Role="Group" EntitySet="Group" />
+      <End Role="MemberOfGroup" EntitySet="MemberOfGroup" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MemberOfGroup_User" Association="Self.FK_MemberOfGroup_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="MemberOfGroup" EntitySet="MemberOfGroup" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MembersOfConference_Conference" Association="Self.FK_MembersOfConference_Conference">
+      <End Role="Conference" EntitySet="Conference" />
+      <End Role="MembersOfConference" EntitySet="MembersOfConference" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MembersOfConference_ReportConference" Association="Self.FK_MembersOfConference_ReportConference">
+      <End Role="ReportConference" EntitySet="ReportConference" />
+      <End Role="MembersOfConference" EntitySet="MembersOfConference" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MembersOfConference_User" Association="Self.FK_MembersOfConference_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="MembersOfConference" EntitySet="MembersOfConference" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ResourceGroup_Group" Association="Self.FK_ResourceGroup_Group">
+      <End Role="Group" EntitySet="Group" />
+      <End Role="ResourceGroup" EntitySet="ResourceGroup" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ResourceGroup_User" Association="Self.FK_ResourceGroup_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="ResourceGroup" EntitySet="ResourceGroup" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

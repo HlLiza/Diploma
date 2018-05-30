@@ -1,6 +1,33 @@
-﻿@model IEnumerable<Network.Views.ViewModels.ResourceListViewModel>
+﻿@model List<Network.Views.ViewModels.ResourceListViewModel>
 
+@if (Model.Count() > 0)
+{
+    foreach (var item in Model)
+    {
+        <div class="container">
+            <div class="row">
+                <div class="col-1">
+                    <a href="@Url.Action("DownloadResource", "Group",new {resId=item.ResourceId})">
+                        <i class="fa fa-file"></i>
+                        </a>
+                    </div>
+                <div class="col-7 container-comments"> 
+                    <div class="">
+                         @Html.DisplayFor(x =>item.Comments)
+                     </div>
+                </div>
+                <div class="col-4">
+                    @Html.DisplayFor(x => item.AuthorName)
+                    @Html.DisplayFor(x => item.AuthorSurname)
 
-<div class="resource-group-container ">
-    @Html.DisplayFor(k=>Model.First().AuthorName)
-</div>
+                    @Html.DisplayFor(m => item.Date, "{0:MM/dd/yy}")
+
+                </div>
+            </div>
+
+        </div>
+        <hr/>
+
+    }
+
+}

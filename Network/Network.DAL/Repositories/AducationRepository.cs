@@ -7,7 +7,7 @@ namespace Network.DAL.Repositories
 {
     public class AducationRepository : RepositoryBase, IAducation
     {
-        public AducationRepository(InstitutNetworkContext context) : base(context) { }
+        public AducationRepository(NetworkContext context) : base(context) { }
 
         public void Add(Aducation aducation)
         {
@@ -32,13 +32,13 @@ namespace Network.DAL.Repositories
             Save();
         }
 
-        
 
-        //public IQueryable<Guid> GetListOfId(Guid userId)
-        //{
-        //    return _context.Aducation.Where(s => s.UserId == userId).Select(x => x.Id);
-        //}
-   
+
+        public IQueryable<Guid> GetListOfId(Guid userId)
+        {
+            return _context.Aducation.Where(s => s.UserId == userId).Select(x => x.Id);
+        }
+
     }
 }
 

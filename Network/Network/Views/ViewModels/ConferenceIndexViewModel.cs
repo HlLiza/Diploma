@@ -16,10 +16,13 @@ namespace Network.Views.ViewModels
     public class ConferenceArchiveViewModel
     {
         public Guid Id { get; set; }
+        [RegularExpression("^[а-яА-Я]+$", ErrorMessage = "Некорректные данные")]
         public string Thema { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
+
+        [RegularExpression("^[а-яА-Я]+$", ErrorMessage = "Некорректные данные")]
         public string Direction { get; set; }
         public byte[] Image { get; set; }
     }

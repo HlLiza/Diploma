@@ -323,8 +323,10 @@ img {
 }
 
 .buttonLoginExternl {
-    margin-left: 130px;
-    margin-top: 20px;
+    margin-top: 2%;
+    margin-left: 30%;
+    width: 40%;
+    background-color: white;
 }
 
 .linkForDowload {
@@ -436,7 +438,7 @@ a:hover {
     background-color: white;
     height:340px;
     width: 300px;
-    margin-top: 20px;
+    margin-top: 4%;
 }
 
 .element-pad {
@@ -456,11 +458,45 @@ a:hover {
     width: 480px;
     height: 380px;
     background-color: white;
-    margin-top: 20px;
+    margin-top: 4%;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 .list-resource {
-    width:inherit;
     overflow-y:auto;
     overflow-x:hidden;
 }
 
+.but-add-member {
+    background-color: #A3CCEA;
+    width: 35%;
+    height: 60%;
+    color: white;
+    text-align: center;
+    margin: 4% 0 0 32%;
+    font-size:14px;
+}
+
+    .but-add-member:hover {
+        content: attr(data-title);
+    }
+
+.drop-down-direct {
+    margin-top: 15px;
+}
+
+a .nname{
+    color: white;
+}
+.fa-file:hover {
+    color: black;
+    height: inherit;
+    cursor: pointer;
+    background-color:white;
+}
+
+.container-comments {
+    height: 100%;
+    width: 100%;
+    
+}

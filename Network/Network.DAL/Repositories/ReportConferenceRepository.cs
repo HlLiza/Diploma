@@ -2,12 +2,13 @@
 using System;
 using Network.DAL.EFModel;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace Network.DAL.Repositories
 {
     public class ReportConferenceRepository : RepositoryBase, IReportConference
     {
-        public ReportConferenceRepository(InstitutNetworkContext context) : base(context) { }
+        public ReportConferenceRepository(NetworkContext context) : base(context) { }
 
         public void Add(ReportConference report)
         {
@@ -25,5 +26,9 @@ namespace Network.DAL.Repositories
             return _context.MembersOfConference.Where(x => x.ConferenceId == confId).Select(f => f.ReportId);
         }
 
+        //public  List<ReportConference> GetReportsFTS(string keyWord)
+        //{
+        //    return _context.SearchFTS(keyWord).ToList();
+        //}
     }
 }

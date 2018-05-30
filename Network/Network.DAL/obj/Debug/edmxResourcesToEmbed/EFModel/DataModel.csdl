@@ -1,0 +1,316 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="InstitutNetworkModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Aducation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="University" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="StartYear" Type="Int32" />
+    <Property Name="GradYear" Type="Int32" />
+    <Property Name="UserId" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Aducation_User" FromRole="Aducation" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Conference">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Thema" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <Property Name="Direction" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Visibility" Type="Boolean" />
+    <Property Name="Requirements" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="ListenerConfer" Relationship="Self.FK_ListenerConfer_Conference" FromRole="Conference" ToRole="ListenerConfer" />
+    <NavigationProperty Name="MembersOfConference" Relationship="Self.FK_MembersOfConference_Conference" FromRole="Conference" ToRole="MembersOfConference" />
+  </EntityType>
+  <EntityType Name="Group">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="NameProject" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Direction" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="HeadId" Type="Guid" Nullable="false" />
+    <Property Name="DateStart" Type="DateTime" Precision="3" />
+    <Property Name="DateFinish" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Group_User" FromRole="Group" ToRole="User" />
+    <NavigationProperty Name="MemberOfGroup" Relationship="Self.FK_MemberOfGroup_Group" FromRole="Group" ToRole="MemberOfGroup" />
+    <NavigationProperty Name="ResourceGroup" Relationship="Self.FK_ResourceGroup_Group" FromRole="Group" ToRole="ResourceGroup" />
+  </EntityType>
+  <EntityType Name="ListenerConfer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="ConferenceId" Type="Guid" Nullable="false" />
+    <Property Name="UserId" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="Conference" Relationship="Self.FK_ListenerConfer_Conference" FromRole="ListenerConfer" ToRole="Conference" />
+    <NavigationProperty Name="User" Relationship="Self.FK_ListenerConfer_User" FromRole="ListenerConfer" ToRole="User" />
+  </EntityType>
+  <EntityType Name="MemberOfGroup">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="GroupId" Type="Guid" Nullable="false" />
+    <Property Name="UserId" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="Group" Relationship="Self.FK_MemberOfGroup_Group" FromRole="MemberOfGroup" ToRole="Group" />
+    <NavigationProperty Name="User" Relationship="Self.FK_MemberOfGroup_User" FromRole="MemberOfGroup" ToRole="User" />
+  </EntityType>
+  <EntityType Name="MembersOfConference">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="ConferenceId" Type="Guid" Nullable="false" />
+    <Property Name="UserId" Type="Guid" Nullable="false" />
+    <Property Name="ReportId" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="Conference" Relationship="Self.FK_MembersOfConference_Conference" FromRole="MembersOfConference" ToRole="Conference" />
+    <NavigationProperty Name="ReportConference" Relationship="Self.FK_MembersOfConference_ReportConference" FromRole="MembersOfConference" ToRole="ReportConference" />
+    <NavigationProperty Name="User" Relationship="Self.FK_MembersOfConference_User" FromRole="MembersOfConference" ToRole="User" />
+  </EntityType>
+  <EntityType Name="ReportConference">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Content" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Extension" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="Author" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="MembersOfConference" Relationship="Self.FK_MembersOfConference_ReportConference" FromRole="ReportConference" ToRole="MembersOfConference" />
+  </EntityType>
+  <EntityType Name="ResourceGroup">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="GroupId" Type="Guid" Nullable="false" />
+    <Property Name="Resource" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="AuthorId" Type="Guid" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Group" Relationship="Self.FK_ResourceGroup_Group" FromRole="ResourceGroup" ToRole="Group" />
+    <NavigationProperty Name="User" Relationship="Self.FK_ResourceGroup_User" FromRole="ResourceGroup" ToRole="User" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Visibility" Type="Boolean" />
+    <Property Name="AspUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Surname" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Skype" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Direction" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="Aducation" Relationship="Self.FK_Aducation_User" FromRole="User" ToRole="Aducation" />
+    <NavigationProperty Name="Group" Relationship="Self.FK_Group_User" FromRole="User" ToRole="Group" />
+    <NavigationProperty Name="ListenerConfer" Relationship="Self.FK_ListenerConfer_User" FromRole="User" ToRole="ListenerConfer" />
+    <NavigationProperty Name="MemberOfGroup" Relationship="Self.FK_MemberOfGroup_User" FromRole="User" ToRole="MemberOfGroup" />
+    <NavigationProperty Name="MembersOfConference" Relationship="Self.FK_MembersOfConference_User" FromRole="User" ToRole="MembersOfConference" />
+    <NavigationProperty Name="ResourceGroup" Relationship="Self.FK_ResourceGroup_User" FromRole="User" ToRole="ResourceGroup" />
+  </EntityType>
+  <Association Name="FK_Aducation_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Aducation" Type="Self.Aducation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Aducation">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ListenerConfer_Conference">
+    <End Role="Conference" Type="Self.Conference" Multiplicity="1" />
+    <End Role="ListenerConfer" Type="Self.ListenerConfer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Conference">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ListenerConfer">
+        <PropertyRef Name="ConferenceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MembersOfConference_Conference">
+    <End Role="Conference" Type="Self.Conference" Multiplicity="1" />
+    <End Role="MembersOfConference" Type="Self.MembersOfConference" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Conference">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MembersOfConference">
+        <PropertyRef Name="ConferenceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Group_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Group" Type="Self.Group" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Group">
+        <PropertyRef Name="HeadId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MemberOfGroup_Group">
+    <End Role="Group" Type="Self.Group" Multiplicity="1" />
+    <End Role="MemberOfGroup" Type="Self.MemberOfGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Group">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MemberOfGroup">
+        <PropertyRef Name="GroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ResourceGroup_Group">
+    <End Role="Group" Type="Self.Group" Multiplicity="1" />
+    <End Role="ResourceGroup" Type="Self.ResourceGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Group">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ResourceGroup">
+        <PropertyRef Name="GroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ListenerConfer_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="ListenerConfer" Type="Self.ListenerConfer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ListenerConfer">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MemberOfGroup_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="MemberOfGroup" Type="Self.MemberOfGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MemberOfGroup">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MembersOfConference_ReportConference">
+    <End Role="ReportConference" Type="Self.ReportConference" Multiplicity="1" />
+    <End Role="MembersOfConference" Type="Self.MembersOfConference" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ReportConference">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MembersOfConference">
+        <PropertyRef Name="ReportId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MembersOfConference_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="MembersOfConference" Type="Self.MembersOfConference" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MembersOfConference">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ResourceGroup_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="ResourceGroup" Type="Self.ResourceGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ResourceGroup">
+        <PropertyRef Name="AuthorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="InstitutNetworkContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Aducation" EntityType="Self.Aducation" />
+    <EntitySet Name="Conference" EntityType="Self.Conference" />
+    <EntitySet Name="Group" EntityType="Self.Group" />
+    <EntitySet Name="ListenerConfer" EntityType="Self.ListenerConfer" />
+    <EntitySet Name="MemberOfGroup" EntityType="Self.MemberOfGroup" />
+    <EntitySet Name="MembersOfConference" EntityType="Self.MembersOfConference" />
+    <EntitySet Name="ReportConference" EntityType="Self.ReportConference" />
+    <EntitySet Name="ResourceGroup" EntityType="Self.ResourceGroup" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="User" EntityType="Self.User" />
+    <AssociationSet Name="FK_Aducation_User" Association="Self.FK_Aducation_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Aducation" EntitySet="Aducation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ListenerConfer_Conference" Association="Self.FK_ListenerConfer_Conference">
+      <End Role="Conference" EntitySet="Conference" />
+      <End Role="ListenerConfer" EntitySet="ListenerConfer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MembersOfConference_Conference" Association="Self.FK_MembersOfConference_Conference">
+      <End Role="Conference" EntitySet="Conference" />
+      <End Role="MembersOfConference" EntitySet="MembersOfConference" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Group_User" Association="Self.FK_Group_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Group" EntitySet="Group" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MemberOfGroup_Group" Association="Self.FK_MemberOfGroup_Group">
+      <End Role="Group" EntitySet="Group" />
+      <End Role="MemberOfGroup" EntitySet="MemberOfGroup" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ResourceGroup_Group" Association="Self.FK_ResourceGroup_Group">
+      <End Role="Group" EntitySet="Group" />
+      <End Role="ResourceGroup" EntitySet="ResourceGroup" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ListenerConfer_User" Association="Self.FK_ListenerConfer_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="ListenerConfer" EntitySet="ListenerConfer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MemberOfGroup_User" Association="Self.FK_MemberOfGroup_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="MemberOfGroup" EntitySet="MemberOfGroup" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MembersOfConference_ReportConference" Association="Self.FK_MembersOfConference_ReportConference">
+      <End Role="ReportConference" EntitySet="ReportConference" />
+      <End Role="MembersOfConference" EntitySet="MembersOfConference" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MembersOfConference_User" Association="Self.FK_MembersOfConference_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="MembersOfConference" EntitySet="MembersOfConference" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ResourceGroup_User" Association="Self.FK_ResourceGroup_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="ResourceGroup" EntitySet="ResourceGroup" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

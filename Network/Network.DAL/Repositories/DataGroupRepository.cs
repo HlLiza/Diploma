@@ -2,12 +2,13 @@
 using System.Linq;
 using Network.DAL.EFModel;
 using Network.DAL.Interfaces;
+using System.Collections.Generic;
 
 namespace Network.DAL.Repositories
 {
     public class DataGroupRepository:RepositoryBase,IDataGroup
     {
-        public DataGroupRepository(InstitutNetworkContext context) : base(context) { }
+        public DataGroupRepository(NetworkContext context) : base(context) { }
 
         public void Add(ResourceGroup data)
         {
@@ -15,9 +16,10 @@ namespace Network.DAL.Repositories
             Save();
         }
 
-        public IQueryable<ResourceGroup> DataForGroup(Guid groupId)
+        public List<ResourceGroup> DataForGroup(Guid groupId)
         {
-            return _context.ResourceGroup.Where(x => x.GroupId == groupId);
+            var res=_context.ResourceGroup.Where(x => x.GroupId == groupId).OrderByDescending(x=>x.Date);
+            return res.ToList();
         }
 
         public void Delete(ResourceGroup data)

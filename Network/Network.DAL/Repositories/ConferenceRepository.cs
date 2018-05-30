@@ -1,13 +1,14 @@
 ﻿using Network.DAL.EFModel;
 using Network.DAL.Interfaces;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Network.DAL.Repositories
 {
     public class ConferenceRepository:RepositoryBase, IConference
     {
-        public ConferenceRepository(InstitutNetworkContext context) : base(context) { }
+        public ConferenceRepository(NetworkContext context) : base(context) { }
 
         public void Add(Conference item)
         {
@@ -15,9 +16,12 @@ namespace Network.DAL.Repositories
             Save();
         }
 
-        public IQueryable<Conference> GetAll()
+        public List<Conference> GetAll()
         {
-            return _context.Conference.Where(x=>x.Visibility==true).OrderBy(x=>x.Date);
+
+            var data = _context.Conference;
+
+             return data.ToList();
         }
 
         public void Update(Conference item)

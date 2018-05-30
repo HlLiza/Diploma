@@ -18,7 +18,7 @@ namespace Network.DAL.EFModel
         public System.Guid GroupId { get; set; }
         public System.Guid UserId { get; set; }
     
-        public virtual User User { get; set; }
         public virtual Group Group { get; set; }
+        public virtual User User { get; set; }
     }
 }

@@ -10,7 +10,7 @@ using Network.BL.Interfaces;
 
 namespace Network.BL.WebServices
 {
-    public class UserService: IUserService
+    public class UserService : IUserService
     {
         private readonly IUser _userRepository;
         private readonly IGroup _groupRepository;
@@ -36,7 +36,7 @@ namespace Network.BL.WebServices
         {
             var user = _userRepository.GetUserByAspUserId(id);
             return user.Id;
-                        
+
         }
 
 
@@ -54,7 +54,7 @@ namespace Network.BL.WebServices
             return imageData;
         }
 
-    
+
 
         public void UpdateUser(User user)
         {
@@ -81,11 +81,36 @@ namespace Network.BL.WebServices
             return result;
         }
 
+        public List<User> GetUsersByListId(List<Guid> listId)
+        {
+            List<User> result = new List<User>();
+
+            if (listId != null)
+            {
+                foreach (var id in listId)
+                {
+                    var user = _userRepository.Find(id);
+                    result.Add(user);
+                }
+            }
+            return result;
+        }
+
+
         public IQueryable<User> GetUsersByDirection(string direction)
         {
             return _userRepository.GetByDirection(direction);
         }
 
+        public AspNetUsers GetAspUser(string id)
+        {
+            return _userRepository.GetAspUser(id);
+        }
+
+        public IQueryable<Guid> AllUsersId()
+        {
+            return _userRepository.AllUsersId();
+        }
 
 
 
@@ -150,10 +175,7 @@ namespace Network.BL.WebServices
             else return null;
         }
 
-        public AspNetUsers GetAspUser(string id)
-        {
-            return _userRepository.GetAspUser(id);
-        }
+
 
         public User GetUserByAspNetId(string id)
         {
@@ -228,7 +250,7 @@ namespace Network.BL.WebServices
 
         public IQueryable<User> GetAllUser()
         {
-            return _userRepository.GetAll();           
+            return _userRepository.GetAll();
         }
 
         public List<User> GetUsersByListId(IQueryable<string> listId)
@@ -247,190 +269,47 @@ namespace Network.BL.WebServices
             }
             return result;
         }
-
-        
-
-        //public User_sPersonalData GetUserPersData(Guid id)
-        //{
-        //    if (id != null)
-        //    {
-        //        var user = _userRepository.FindData(id);
-        //        return user;
-        //    }
-        //    else return null;
-        //}
-
-        //public List<User_sPersonalData> GetLeadAll()
-        //{
-        //    var listId=_userRepository.GetAllLeadId();
-        //    if (listId != null)
-        //    {
-        //        var listUser = GetDataForListOfUserByAspId(listId);
-        //        return listUser;
-        //    }
-        //    else return null;        
-        //}
-
-        //public List<User_sPersonalData> GetGroupMemberAll()
-        //{
-        //    var listId = _userRepository.GetAllMemberId();
-        //    if (listId != null)
-        //    {
-        //        var listUser = GetDataForListOfUserByAspId(listId);
-        //        return listUser;
-        //    }
-        //    else return null;
-
-        //}
-
-
-
-        //public Aducation GetAducationInf(Guid id)
-        //{
-        //    var user = GetUserById(id);
-        //    if (user != null)
-        //    {
-        //        var persData = _persDataRepository.Find(user.PersonalDataId);
-        //        if (persData.AducationId != null)
-        //        {
-        //            var aducation = _aducationRepository.Find(persData.AducationId);
-        //            return aducation;
-        //        }               
-
-        //    }
-        //    return null;
-        //}
-
-        //public void EditProfile(Aducation aducation, User_sContact contact, User_sPersonalData data, User user)
-        //{
-        //    if (user != null)
-        //    {
-        //        var us = GetUserById(user.Id);
-        //        var persData = GetUserPersData(us.PersonalDataId);
-        //        var cont = GetContactById(us.ContactId);
-
-        //        if (cont.Id != null)
-        //        {
-        //            contact.Id = cont.Id;
-        //            _contactRepository.Update(contact);
-        //        }
-        //        else {
-        //            contact.Id = Guid.NewGuid();
-        //            _contactRepository.AddContact(contact);
-        //            us.ContactId = contact.Id;
-        //        }
-
-
-
-        //        if (persData.AducationId != null)
-        //        {
-        //            aducation.Id = (Guid)persData.AducationId;
-        //            _aducationRepository.UpdateAducation(aducation);
-        //        }
-        //        else {
-        //            aducation.Id = Guid.NewGuid();
-        //            _aducationRepository.AddAducation(aducation);
-        //            persData.AducationId = aducation.Id;
-        //        }
-
-        //        data.Id = persData.Id;
-        //        data.ImageId = persData.ImageId;
-        //        data.AducationId = aducation.Id;
-        //        _persDataRepository.Update(data);
-
-        //        user.Id = us.Id;
-        //        user.PersonalDataId = data.Id;
-        //        user.ContactId = contact.Id;
-        //        _userRepository.Update(user);           
-        //    }
-
-
-        //}
-
-
-
-
-
-
-
-        //public User_sPersonalData GetDataByAspUserId(string id)
-        //{
-        //    if (id != null)
-        //    {
-        //        var user = _userRepository.GetUserByAspUserId(id);
-        //        if (user != null)
-        //        {
-        //            var data = _persDataRepository.Find(user.PersonalDataId);
-        //            return data;
-        //        }
-        //    }
-        //    return null;
-        //}
-
-        //public List<User_sPersonalData> GetDataForListOfUser(IQueryable<Guid> list)
-        //{
-        //    List<User_sPersonalData> result = new List<User_sPersonalData>();
-
-        //    if (list != null)
-        //    {
-        //        foreach (var id in list)
-        //        {
-        //            var itemUser = _userRepository.Find(id);
-        //            var itemPersonalData = _persDataRepository.Find(itemUser.PersonalDataId);
-        //            result.Add(itemPersonalData);
-        //        }
-        //    }
-        //    return result;
-        //}
-
-        //public List<User_sPersonalData> GetDataForListOfUser(List<Guid> list)
-        //{
-        //    List<User_sPersonalData> result = new List<User_sPersonalData>();
-
-        //    if (list != null)
-        //    {
-        //        foreach (var id in list)
-        //        {
-        //            var itemUser = _userRepository.Find(id);
-        //            var itemPersonalData = _persDataRepository.Find(itemUser.PersonalDataId);
-        //            result.Add(itemPersonalData);
-        //        }
-        //    }
-        //    return result;
-        //}
-
-
-
-
-
-        //public byte[] GetImageByDataId(Guid id)
-        //{
-        //    if (id != null)
-        //    {
-        //        var data = _persDataRepository.Find(id);
-        //        if (data != null)
-        //        {
-        //            var img=_imgRepository.FindImg(data.ImageId);
-        //            return img.Image1;
-        //        }
-        //    }
-        //    return null;
-        //}
-
-        //public void AddAducation(Aducation aducation)
-        //{
-        //    if (aducation != null)
-        //    {
-        //        aducation.Id = Guid.NewGuid();
-        //        _aducationRepository.AddAducation(aducation);
-        //    }
-        //}
-
-        //public IQueryable<string> GetAllId()
-        //{
-        //    return _userRepository.GetListOfIds();
-        //}
-
-
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+//public byte[] GetImageByDataId(Guid id)
+//{
+//    if (id != null)
+//    {
+//        var data = _persDataRepository.Find(id);
+//        if (data != null)
+//        {
+//            var img=_imgRepository.FindImg(data.ImageId);
+//            return img.Image1;
+//        }
+//    }
+//    return null;
+//}
+
+//public void AddAducation(Aducation aducation)
+//{
+//    if (aducation != null)
+//    {
+//        aducation.Id = Guid.NewGuid();
+//        _aducationRepository.AddAducation(aducation);
+//    }
+//}
+
+//public IQueryable<string> GetAllId()
+//{
+//    return _userRepository.GetListOfIds();
+//}
+
+
+

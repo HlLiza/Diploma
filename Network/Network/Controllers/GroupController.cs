@@ -6,9 +6,7 @@ using Network.Views.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Routing;
 
 namespace Network.Controllers
 {
@@ -91,9 +89,6 @@ namespace Network.Controllers
             return result;
         }
 
-
-
-
         [Authorize(Roles = "secretary")]
         public ActionResult AddGroup()
         {
@@ -130,8 +125,6 @@ namespace Network.Controllers
 
             return RedirectToAction("Index");
         }
-
-
         public ActionResult SelectDirection(string direction)
         {
             var users = _userService.GetUsersByDirection(direction);
@@ -150,7 +143,6 @@ namespace Network.Controllers
             return PartialView("_AddModel", model);
         }
 
-        //[HttpGet]
         public PartialViewResult ItemInfo(Guid groupId)
         {
             if (groupId!=null)
@@ -181,7 +173,6 @@ namespace Network.Controllers
             return PartialView("_ItemInfo", ViewBag);
         }
 
-
         public ActionResult OpenGroup(Guid groupId)
         {
             var group = _groupService.GetGroup(groupId);
@@ -202,7 +193,6 @@ namespace Network.Controllers
 
             return View(model);
         }
-
 
         public List<SimpleInfo> GetMembers(Guid groupId)
         {
@@ -242,21 +232,28 @@ namespace Network.Controllers
                 res.Id = Guid.NewGuid();
                 _groupService.AddResource(res);
             }
+            GroupIdParam id = new GroupIdParam
+            {
+                GroupId = model.GroupId
+            };
+
             var param = model.GroupId.ToString();
-            return RedirectToAction ("GetListResource",new { id= param });
+            return RedirectToAction ("GetListResource",new {param=id });
 
         }
-        [HttpGet]
-        public ActionResult GetListResource(string id)
+
+
+        [HttpPost]
+        public ActionResult GetListResource(GroupIdParam param)
         {
             List<ResourceListViewModel> resources = new List<ResourceListViewModel>();
-            Guid groupId = new Guid(id);
-            var listRes = _groupService.GetResourceGroup(groupId);
+            var listRes = _groupService.GetResourceGroup(param.GroupId);
             if (listRes != null)
             {
-                ResourceListViewModel item = new ResourceListViewModel();
+                
                 foreach (var res in listRes)
                 {
+                    ResourceListViewModel item = new ResourceListViewModel();
                     item.ResourceId = res.Id;
                     item.Comments = res.Comments;
                     var authorRes = _userService.GetUserById(res.AuthorId);
@@ -265,13 +262,133 @@ namespace Network.Controllers
                     item.Date = Convert.ToDateTime(res.Date);
                     resources.Add(item);
                 }
+                return PartialView("_ListResource", resources);
             }
             return PartialView("_ListResource", resources);
 
         }
 
+        public ActionResult AddingMembers(string direction, Guid groupId)
+        {
+            try {
+
+                    AddMemberViewModel model = new AddMemberViewModel()
+                    {
+                        Id = groupId,
+                        //Users =null
+                    };
+                    SelectDirection directions = new SelectDirection();
+                     var list= _groupService.GetAllDirections();
+                    list.Add("Все направления");
+                    directions.GroupId = groupId;
+                    directions.Directions = list;
+                    directions.SelectedDirection = direction;                
+                    model.ListDirections = directions;
+
+                //List<SelectMemberViewModel> listUser = new List<SelectMemberViewModel>();
+
+
+                //if (direction.Length > 0)
+                //{
+                //    var members = _groupService.GetMembers(direction, User.Identity.GetUserId());
+                //    if (members == null)
+                //        listUser = null;
+                //    else
+                //    {
+                //        foreach (var item in members)
+                //        {
+                //            SelectMemberViewModel user = new SelectMemberViewModel()
+                //            {
+                //                Id = item.Id,
+                //                Name = item.Name,
+                //                Surname = item.Surname,
+                //                ImageUser = item.Image
+                //            };
+                //            listUser.Add(user);
+                //        }
+                //    }
+                //    model.Users = listUser;
+                //    return View(model);
+                //}
+                return View(model);
+            }
+            catch (Exception e)
+            {
+                return View();
+            }
+        }
+
+      
+
+        public ActionResult GetDirections(SelectDirection w)
+        {
+            try {
+                List<Guid> result = new List<Guid>(); ;
+                var allUser = _userService.AllUsersId().ToList();
+                var currentMembers = _groupService.MembersId(w.GroupId).ToList();
+
+                if (w.SelectedDirection=="Все направления")
+                {                
+                    if (currentMembers.Count() > 0)
+                    {
+                        result = _groupService.ExcludeMembers(allUser, currentMembers);
+                    }
+                }
+
+                else {
+                    var users = _userService.GetUsersByDirection(w.SelectedDirection).Select(x=>x.Id).ToList();
+                    if (users.Count() > 0)
+                    {
+                        result = _groupService.ExcludeMembers(users, currentMembers);
+                    }
+                }
+
+                if (result.Count()> 0)
+                {
+                    List<UserListViewModel> model = new List<UserListViewModel>();
+                    var data = _userService.GetUsersByListId(result);
+                    foreach (var item in data)
+                    {
+                        UserListViewModel user = new UserListViewModel();
+                        user.Id = item.Id;
+                        user.Name = item.Name;
+                        user.Surname = item.Surname;
+                        user.Direction = item.Direction;
+                        user.Image = item.Image;
+                        model.Add(user);
+                    }
+
+                  
+
+                    return View("_SelectMembers", model);
+                }
+                return null;
+                                 
+
+
+
+               }
+            catch (Exception e)
+
+            {
+                return RedirectToAction("AddMembers");
+            }
+
+        }
+
+
+
+        public FileResult DownloadResource(Guid resId)
+        {
+            var res = _groupService.FindRes(resId);
+            byte[] requirements = res.Resource;
+            string fileName = "Файл.pdf";
+            return File(requirements, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
+        }
+
     }
 }
+//}
 
 
 

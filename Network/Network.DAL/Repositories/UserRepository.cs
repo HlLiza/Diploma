@@ -7,7 +7,7 @@ namespace Network.DAL.Repositories
 {
     public class UserRepository :RepositoryBase, IUser
     {
-        public UserRepository(InstitutNetworkContext  context) : base(context) { }
+        public UserRepository(NetworkContext context) : base(context) { }
 
         public void AddUser(User item)
         {
@@ -42,6 +42,19 @@ namespace Network.DAL.Repositories
             return _context.User.Where(s => s.Direction == direction);
         }
 
+        public IQueryable<string> GetDirections()
+        {
+            var list = _context.User.Select(x => x.Direction).Distinct();
+            return list;
+        }
+        public IQueryable<Guid> AllUsersId()
+        {
+            var list = _context.User.Select(x => x.Id);
+            return list;
+        }
+
+
+
 
 
 
@@ -55,16 +68,16 @@ namespace Network.DAL.Repositories
             return _context.AspNetUserRoles.Where(x => x.RoleId == "2").Select(x => x.UserId);
         }
 
-        //public IQueryable<Guid> GetListOfIds()
-        //{
-        //    return _context.User.Where(w => w.Visibility == true).Select(x => x.Id);
-        //}
+        public IQueryable<Guid> GetListOfIds()
+        {
+            return _context.User.Where(w => w.Visibility == true).Select(x => x.Id);
+        }
 
 
 
         public string GetRole(string id)
         {
-            var item = _context.AspNetUserRoles.First(x=>x.UserId == id);
+            var item = _context.AspNetUserRoles.First(x => x.UserId == id);
             var role = _context.AspNetRoles.FirstOrDefault(x => x.Id == item.RoleId);
             return role.Name;
         }

@@ -7,7 +7,7 @@ namespace Network.DAL.Repositories
 {
     public class MemberGroupRepository: RepositoryBase,IMemberGroup
     {
-        public MemberGroupRepository(InstitutNetworkContext context) : base(context) { }
+        public MemberGroupRepository(NetworkContext context) : base(context) { }
 
         public void Add(MemberOfGroup member)
         {

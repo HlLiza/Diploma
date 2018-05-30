@@ -10,17 +10,23 @@
             </div>
 
             <div class="modal-body" style="margin:15px 10px 10px 10px;">
-                @using (Html.BeginForm("EditPersInfo", "User", FormMethod.Post))
+                @using (Ajax.BeginForm("EditPersInfo", null, new AjaxOptions
                 {
-                    @*@Html.HiddenFor(m => m.Image)*@
-
+                    HttpMethod = "POST",
+                    UpdateTargetId = "dialogContent"
+                }, new { @class = "form" }))
+                {
+                    <h3>@ViewBag.Message</h3>
+                    @Html.ValidationSummary(true, "", new { @style = "color:red;" })
 
                         <div class="form-group ">
                             <input type="text" typeof="text" class="input-add-info" required value=@Model.Name name="Name" placeholder="Имя" />
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @style = "color:red;" })
                         </div>
 
                         <div class="form-group">
                             <input type="text" typeof="text" class="input-add-info" required value=@Model.Surname name="Surname" placeholder="Фамилия" />
+                            @Html.ValidationMessageFor(model => model.Surname, "", new { @style = "color:red;" })
                         </div>
 
                         <div class="form-group">

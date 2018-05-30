@@ -104,7 +104,7 @@ namespace Network.Views.ViewModels
     public class AducationInfo
     {
         [DisplayName("Образование")]
-        [RegularExpression(@"[a-zA-Zа-яёА-ЯЁ\s\-]+$", ErrorMessage = "Некорректные данные")]
+        [RegularExpression("^[а-яА-Я]+$", ErrorMessage = "Некорректные данные")]
         public string University { get; set; }
 
         [DisplayName("Дата начала обучения")]
@@ -126,11 +126,16 @@ namespace Network.Views.ViewModels
     public class EditPersInfViewModel
     {
         [DisplayName("Имя")]
+        [DataType(DataType.Text)]
         [Required(ErrorMessage = "Введите свое имя")]
+        //[StringLength(8, ErrorMessage = "Значение {0} должно содержать не менее {2} символов и не более {1}.", MinimumLength = 1)]
+        [RegularExpression("^[а-яА-Я]+$", ErrorMessage = "Используются только буквы")]
         public string Name { get; set; }
 
         [DisplayName("Фамилия")]
+        [DataType(DataType.Text)]
         [Required(ErrorMessage = "Введите свою фамилию")]
+        //[RegularExpression("[/^[a-zA-Zа-яА-Я]+$/]", ErrorMessage = "Используются только буквы")]
         public string Surname { get; set; }
 
         [DisplayName("Skype")]

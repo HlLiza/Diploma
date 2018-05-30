@@ -1,120 +1,47 @@
 ﻿@model Network.Views.ViewModels.RegistrToConfer
 
 @*<div id="changePhotoDialog">*@
-    <div class="modal-dialog ">
-        <div class="modal-content">
-            <div class="modal-header header-modal-st">
-                <h4 class="modal-title">РЕГИСТРАЦИЯ</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
+<div class="modal-dialog ">
+    <div class="modal-content">
+        <div class="modal-header header-modal-st">
+            <h4 class="modal-title">РЕГИСТРАЦИЯ</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
 
-            <div class="modal-body">
-                @using (Html.BeginForm("JoinToConference", "Conference", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        <div class="modal-body">
+            @using (Html.BeginForm("JoinToConference", "Conference", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
-                    @Html.HiddenFor(model => model.ConfId)
-                    @Html.HiddenFor(model => model.UserId)
+                @Html.HiddenFor(model => model.ConfId)
+                @Html.HiddenFor(model => model.UserId)
 
 
-                    <div class="form-horizontal">
-                        <div class="container">
-                            <div class="form-group">
-                                <input name="Topic" type="text" required="required" min="1" max="150" class="input-add-info" placeholder="Тема доклада" />
-                            </div>
-
-                            <div class="form-group">
-                                <input name="Author" type="text" required="required" min="1" max="150" class="input-add-info" placeholder="Авторы" />
-                            </div>
-
-                            <div class="form-group">
-                                <input type="file" name="ReportText" id="inputGroupFile02">
-                            </div>
-
+                <div class="form-horizontal">
+                    <div class="container">
+                        <div class="form-group">
+                            <input name="Topic" type="text" required="required" min="1" max="150" class="input-add-info" placeholder="Тема доклада" />
                         </div>
-                        <div class="row butt-modal">
-                            <button type="button" class="btn button-large" onclick="location.href='@Url.Action("OpenConference", "Conference",new { confId =Model.ConfId})'">Отмена</button>
-                            <button type="submit" class="btn button-large">ОК</button>
+
+                        <div class="form-group">
+                            <input name="Author" type="text" required="required" min="1" max="150" class="input-add-info" placeholder="Авторы" />
                         </div>
+
+                        <div class="form-group">
+                            <span>(используйте расширение .doc)</span>
+                            <input type="file" name="ReportText" id="inputGroupFile02">
+                        </div>
+
                     </div>
-                }
-            </div>
+                    <div class="row butt-modal">
+                        <button type="button" class="btn button-large" onclick="location.href='@Url.Action("OpenConference", "Conference",new { confId =Model.ConfId})'">Отмена</button>
+                        <button type="submit" class="btn button-large">ОК</button>
+                    </div>
+                </div>
+            }
         </div>
     </div>
+</div>
 @*</div>*@
 
-
-
-
-
-
-
-
-
-
-    @*<div id="createGroupDialog">
-            <div class="modal-dialog" style="margin-top:-7%;">
-                <div class="modal-content">
-
-                    <div class="modal-header  header-modal-st">
-                        <h4 class="modal-title">Регистрация</h4>
-
-                    </div>
-
-                    <div class="modal-body" style="margin:15px 0 10px 20px;">
-                        @using (Html.BeginForm("JoinToConference", "Conference", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                        {
-                            @Html.HiddenFor(model => model.ConfId)
-                            @Html.HiddenFor(model => model.UserId)
-
-
-                            <div class="form-horizontal">
-                                <div class="container">
-                                    <div class="form-group">
-                                        <input name="Topic" type="text" required="required" min="1" max="150" class="input-add-info" placeholder="Тема доклада" />
-                                    </div>
-
-                                    <div class="form-group">
-                                        <input name="Author" type="text" required="required" min="1" max="150" class="input-add-info" placeholder="Авторы" />
-                                    </div>
-
-                                    <div class="form-group">
-                                         <input type="file" name="ReportText" id="inputGroupFile02">
-                                    </div>
-
-                                </div>
-                                    <div class="row butt-modal">
-                                       <button type="button" class="button-large btn-finish" onclick="location.href='@Url.Action("OpenConference", "Conference",new { confId =Model.ConfId})'">Отмена</button>
-                                        <button type="submit" class="button-large btn-finish">ОК</button>
-                                    </div>
-                            </div>
-                        }
-                    </div>
-                </div>
-            </div>
-        </div>*@
-
-
-
-
-    <!-- Modal -->
-    @*<div id="openModalAddConf" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" #openModalAddConf>
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        ...
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
-                </div>
-            </div>
-        </div>*@
 
 
 
