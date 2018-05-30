@@ -290,6 +290,18 @@ namespace Network.Controllers
             }
         }
 
+        public ActionResult AddMembers(Guid userId, Guid grId)
+        {
+            try
+            {
+                return RedirectToAction("OpenGroup", new { groupId = grId });
+            }
+            catch (Exception e)
+            {
+                ViewBag.Text = "Попробуйте еще раз";
+                return View();
+            }
+        }
       
 
         public ActionResult GetDirections(SelectDirection w)

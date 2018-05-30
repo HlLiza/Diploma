@@ -500,3 +500,19 @@ a .nname{
     width: 100%;
     
 }
+
+input .size-checkbox {
+    height: 30px;
+    width: 25px;
+}
+.medium {
+    width: 4em;
+    height: 4em;
+}
+
+input[type="radio"], input[type="checkbox"] {
+    box-sizing: border-box;
+    padding: 0;
+    height: 25px;
+    width: 25px;
+}

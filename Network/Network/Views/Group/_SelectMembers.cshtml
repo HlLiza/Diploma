@@ -7,6 +7,13 @@
     foreach (var item in Model)
     {
         <div class="row item-user">
+            <div class="col-md-1 form-check medium" style="padding: 70px 30px 30px 60px;">
+                <input class="form-check-input " type="checkbox">
+                    @*<label class="form-check-label">
+                        <input type="checkbox" class="form-check-input">
+                        Check me out
+                    </label>*@
+                </div>
             <div class="col-md-3">
                 @if (item.Image != null)
                 {
@@ -25,7 +32,7 @@
                 @Html.DisplayFor(modelItem => item.Name)
                 @Html.DisplayFor(modelItem => item.Surname)
             </div>
-            <div class="col-md-4" style="padding-top: 72px;">
+            <div class="col-md-3" style="padding-top: 72px;">
                 @Html.DisplayFor(modelItem => item.Direction)
             </div>
         </div>
@@ -34,11 +41,9 @@
 }
 else
 {
-    @*<div class="body-background">
-        <div class="secretary">*@
-            <div class="row item-user">
-                НЕТ ПОЛЬЗОВАТЕЛЕЙ ПО ЗАДАННОМУ НАПРАВЛЕНИЮ!
-            </div>
-    @*</div>*@
+    <div class="row item-user" style="padding-left: 35px;">
+        НЕТ ПОЛЬЗОВАТЕЛЕЙ ПО ЗАДАННОМУ НАПРАВЛЕНИЮ!
+    </div>
 }
+
 
