@@ -9,6 +9,7 @@ namespace Network.BL.Interfaces
     {
         IQueryable<Guid> GetAllLeadId();
         IQueryable<Guid> GetAllMemberListId(IQueryable<Guid> listLead);
+        List<Guid> GetAllMemberListId(List<Guid> listLead);
         void AddResource(ResourceGroup res);
         IQueryable<Group> GetAll();
         IQueryable<Guid> GroupId(Guid userId);

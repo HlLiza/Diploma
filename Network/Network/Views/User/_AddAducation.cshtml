@@ -18,10 +18,7 @@
                     <h3>@ViewBag.Message</h3>
                     @Html.ValidationSummary(true, "", new { @style = "color:red;" })
                     
-                    
-                    @*<div class="form-group ">
-                        <input type="text" style="width:100%;" typeof="text" class="input-add-info" required name="University" placeholder="УЧРЕЖДЕНИЕ" />
-                    </div>*@
+                   
                     <div class="form-group ">
                         <input type="text" typeof="text" class="input-add-info" required  name="University" placeholder="УЧРЕЖДЕНИЕ" />
                         @Html.ValidationMessageFor(model => model.University, "", new { @style = "color:red;" })
@@ -38,9 +35,7 @@
                     </div>
 
 
-
-
-                    <input style="margin-left:160px;" type="submit" name="save" class="next button-large btn-finish" value="СОХРАНИТЬ" />
+                    <input style="margin-left:160px;" type="submit" name="save" class="btn button-large element-pad" value="СОХРАНИТЬ" />
                 }
             </div>
 

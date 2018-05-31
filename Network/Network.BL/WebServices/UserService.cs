@@ -66,21 +66,6 @@ namespace Network.BL.WebServices
 
 
 
-        public List<User> GetUsersByListId(IQueryable<Guid> listId)
-        {
-            List<User> result = new List<User>();
-
-            if (listId != null)
-            {
-                foreach (var id in listId)
-                {
-                    var user = _userRepository.Find(id);
-                    result.Add(user);
-                }
-            }
-            return result;
-        }
-
         public List<User> GetUsersByListId(List<Guid> listId)
         {
             List<User> result = new List<User>();
@@ -95,6 +80,21 @@ namespace Network.BL.WebServices
             }
             return result;
         }
+
+        //public List<User> GetUsersByListId(List<Guid> listId)
+        //{
+        //    List<User> result = new List<User>();
+
+        //    if (listId.Count()>)
+        //    {
+        //        foreach (var id in listId)
+        //        {
+        //            var user = _userRepository.Find(id);
+        //            result.Add(user);
+        //        }
+        //    }
+        //    return result;
+        //}
 
 
         public IQueryable<User> GetUsersByDirection(string direction)

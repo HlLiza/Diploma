@@ -158,7 +158,18 @@ namespace Network.BL.WebServices
             return null;
         }
 
-        
+        public IQueryable<Guid> GetAllMemberListId(List<Guid> listLead)
+        {
+            var memberListId = _memberRepository.GetListMemberId();
+
+            IQueryable<Guid> result = memberListId.Except(listLead);
+            return result;
+        }
+
+        List<Guid> IGroupService.GetAllMemberListId(List<Guid> listLead)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

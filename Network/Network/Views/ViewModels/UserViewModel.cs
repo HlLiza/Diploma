@@ -16,10 +16,14 @@ namespace Network.Views.ViewModels
 
         [DisplayName("Имя")]
         [Required(ErrorMessage = "Введите свое имя")]
+        [DataType(DataType.Text)]
+        [RegularExpression("^[а-яА-Я]+$", ErrorMessage = "Используются только буквы")]
         public string Name { get; set; }
 
         [DisplayName("Фамилия")]
         [Required(ErrorMessage = "Введите свою фамилию")]
+        [DataType(DataType.Text)]
+        [RegularExpression("^[а-яА-Я]+$", ErrorMessage = "Используются только буквы")]
         public string Surname { get; set; }
 
         [DisplayName("Skype")]
@@ -27,6 +31,8 @@ namespace Network.Views.ViewModels
 
         [DisplayName("Направление")]
         [Required(ErrorMessage = "Введите свое направление")]
+        [DataType(DataType.Text)]
+        [RegularExpression("^[а-яА-Я]+$", ErrorMessage = "Используются только буквы")]
         public string Direction { get; set; }
 
         [DisplayName("Университет")]
@@ -128,14 +134,13 @@ namespace Network.Views.ViewModels
         [DisplayName("Имя")]
         [DataType(DataType.Text)]
         [Required(ErrorMessage = "Введите свое имя")]
-        //[StringLength(8, ErrorMessage = "Значение {0} должно содержать не менее {2} символов и не более {1}.", MinimumLength = 1)]
         [RegularExpression("^[а-яА-Я]+$", ErrorMessage = "Используются только буквы")]
         public string Name { get; set; }
 
         [DisplayName("Фамилия")]
         [DataType(DataType.Text)]
         [Required(ErrorMessage = "Введите свою фамилию")]
-        //[RegularExpression("[/^[a-zA-Zа-яА-Я]+$/]", ErrorMessage = "Используются только буквы")]
+        [RegularExpression("^[а-яА-Я]+$", ErrorMessage = "Используются только буквы")]
         public string Surname { get; set; }
 
         [DisplayName("Skype")]
@@ -143,6 +148,7 @@ namespace Network.Views.ViewModels
 
         [DisplayName("Направление")]
         [Required(ErrorMessage = "Введите свое направление")]
+        [RegularExpression("^[а-яА-ЯёЁa-zA-Z]+$", ErrorMessage = "Используются только буквы")]
         public string Direction { get; set; }
     }
 

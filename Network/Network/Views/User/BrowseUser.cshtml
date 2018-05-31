@@ -9,7 +9,6 @@
     <div class="align-item-menu">
         <div id="allId" onclick="brows('@Url.Action("GetAllUsers", "User")')" class="item-menu text-menu-page hover active-item-menu" style="padding-right: 30px;">ВСЕ ПОЛЬЗОВАТЕЛИ</div>
         <div id="leadId" onclick="brows('@Url.Action("GetLead", "User")')" class="item-menu text-menu-page hover active-item-menu" style="padding-right: 30px;">РУКОВОДИТЕЛИ ГРУПП</div>
-       @* <div id="memberId" onclick="brows('@Url.Action("GetMemberGroup", "User")')" class="item-menu text-menu-page hover active-item-menu" style="padding-right: 30px;">УЧАСТНИКИ ГРУПП</div>*@
     </div>
 </div>
 
@@ -61,21 +60,13 @@
         $("#leadId").click(function () {
             $("#leadId").addClass("active-item-menu");
              $("#allId").removeClass("active-item-menu");
-             //$("#memberId").removeClass("active-item-menu");
 
             });
 
-         //$("#memberId").click(function () {
-         //       $("#memberId").addClass("active-item-menu");
-         //       $("#allId").removeClass("active-item-menu");
-         //       $("#leadId").removeClass("active-item-menu");
-
-         //   });
 
             $("#allId").click(function () {
                 $("#allId").addClass("active-item-menu");
                 $("#leadId").removeClass("active-item-menu");
-                //$("#memberId").removeClass("active-item-menu");
             });
 
 

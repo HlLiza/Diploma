@@ -26,20 +26,24 @@
 
                             <div class="form-group ">
                                 <input type="text" class="input-add-info" name="Name" value="@Model.Name"  placeholder="Имя" />
+                                @Html.ValidationSummary(true, "", new { @style = "color:red;" })
                             </div>
 
                             <div class="form-group">
                                 <input type="text" class="input-add-info" name="Surname" value=@Model.Surname  placeholder="Фамилия" />
+                                @Html.ValidationSummary(true, "", new { @style = "color:red;" })
                             </div>
 
                             <div class="form-group">
                                 <input type="text" class="input-add-info" name="Skype" placeholder="Skype" />
+                                @Html.ValidationSummary(true, "", new { @style = "color:red;" })
                             </div>
 
                             <div class="form-group">
                                 <input type="text" class="input-add-info" name="Direction" placeholder="Направление" />
+                                @Html.ValidationSummary(true, "", new { @style = "color:red;" })
                             </div>
-
+                           
                             <input type="button" name="next" id="nextBtn" class="next btn button-large btn-default" style="margin-bottom:5px;" value="Далее" onclick="nextPrev(1)" />
                         </div>
                     </div>

@@ -35,9 +35,10 @@
 
                         <div class="form-group">
                             <input type="text" typeof="text" class="input-add-info" value=@Model.Direction name="Direction" placeholder="Направление" />
+                            @Html.ValidationMessageFor(model => model.Surname, "", new { @style = "color:red;" })
                         </div>
 
-                        <input style="margin-left:160px;" type="submit" name="save" class="next button-large btn-finish" value="СОХРАНИТЬ"/>
+                        <input style="margin-left:160px;" type="submit" name="save" class="btn button-large element-pad" value="СОХРАНИТЬ"/>
                     }
             </div>
         </div>

@@ -183,7 +183,7 @@ namespace Network.Controllers
         {
             List<UserAtConference> result = new List<UserAtConference>();
 
-            var listenerIds = _conferencService.GetListIdListeners(confId);
+            var listenerIds = _conferencService.GetListIdListeners(confId).ToList();
             var lesteners = _userService.GetUsersByListId(listenerIds);
             if (lesteners.Count != 0)
             {
@@ -209,8 +209,8 @@ namespace Network.Controllers
         public ActionResult GetListOfMembers(Guid confId)
         {
             List<UserAtConference> result = new List<UserAtConference>();
-            var membersId = _conferencService.GetMembersList(confId);
-            var data = _userService.GetUsersByListId(membersId);
+            var membersId = _conferencService.GetMembersList(confId).ToList();
+            var data = _userService.GetUsersByListId(membersId).ToList();
             foreach (var item in data)
             {
                 UserAtConference user = new UserAtConference

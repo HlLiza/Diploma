@@ -141,8 +141,7 @@ namespace Network.Controllers
                 user.Skype = model.Skype;
                 user.Direction = model.Direction;
                 _userService.UpdateUser(user);
-                ViewBag.Message = "Успех";
-                return PartialView("_EditPersInfo", model);
+                return Json(new { success = true });
             }
             return PartialView("_EditPersInfo", model);
         }
@@ -195,8 +194,7 @@ namespace Network.Controllers
                     GradYear = model.GradYear,
                 };
                 _aducationService.AddAducation(Aducation);
-                ViewBag.Message = "Успех";
-                return PartialView("_AddAducation", model);
+                return Json(new { success = true });
             }
             return PartialView("_AddAducation", model);
         }
@@ -302,10 +300,10 @@ namespace Network.Controllers
         public ActionResult GetLead()
         {
             List<UserListViewModel> model = new List<UserListViewModel>();
-            var leadList = _groupService.GetAllLeadId();
-            var memberList = _groupService.GetAllMemberListId(leadList);
-            var data = _userService.GetUsersByListId(memberList);
-            if (memberList != null && data != null)
+            var leadList = _groupService.GetAllLeadId().ToList();
+           // var memberList = _groupService.GetAllMemberListId(leadList).ToList();
+            var data = _userService.GetUsersByListId(leadList);
+            if ( data.Count()>0)
             {
                 foreach (var item in data)
                 {
@@ -320,8 +318,8 @@ namespace Network.Controllers
                 return PartialView("_GetLead", model);
             }
             else {
-                ViewBag.Text = "Список руководителей групп пуст";
-                return PartialView("_GetLead",ViewBag);
+               
+                return PartialView("_GetLead",model);
             }
            
         }
@@ -330,7 +328,7 @@ namespace Network.Controllers
         {
             List<UserListViewModel> model = new List<UserListViewModel>();
             var listLeadId = _groupService.GetAllLeadId();
-            var listId = _groupService.GetAllMemberListId(listLeadId);
+            var listId = _groupService.GetAllMemberListId(listLeadId).ToList();
             var data = _userService.GetUsersByListId(listId);
             if (listId != null && data != null)
             {

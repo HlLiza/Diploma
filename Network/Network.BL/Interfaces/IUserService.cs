@@ -27,8 +27,8 @@ namespace Network.BL.Interfaces
         AspNetUsers GetAspUser(string id);
         Guid GetIdByAspId(string id);
         IQueryable<User> GetUsersByDirection(string direction);
-        List<User> GetUsersByListId(IQueryable<Guid> listId);
         List<User> GetUsersByListId(List<Guid> listId);
+        //List<User> GetUsersByListId(List<Guid> listId);
 
 
 

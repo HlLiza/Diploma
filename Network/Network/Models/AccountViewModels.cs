@@ -89,9 +89,9 @@ namespace Network.Models
         public string Role { get; set; }
 
 
-        [Required]
+        
         [Display(Name = "номер телефона")]
-        //[DataType(DataType.PhoneNumber)]
+        //[RegularExpression("^([+]?[0 - 9/s -/(/)]{3,25})*$", ErrorMessage = "Некорректный номер телефона")]
         [DataType(DataType.PhoneNumber, ErrorMessage = "Некорректный номер телефона")]
         public string PhoneNumber { get; set; }
     }

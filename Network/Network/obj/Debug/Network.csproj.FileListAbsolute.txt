@@ -456,7 +456,6 @@ D:\University\Diploma\bitbucket\Network\Network\bin\ru\Microsoft.Owin.Security.M
 D:\University\Diploma\bitbucket\Network\Network\obj\Debug\Network.csprojResolveAssemblyReference.cache
 D:\University\Diploma\bitbucket\Network\Network\obj\Debug\Network.dll
 D:\University\Diploma\bitbucket\Network\Network\obj\Debug\Network.pdb
-D:\Network\bitbucket\Network\Network\obj\Debug\Network.csproj.CoreCompileInputs.cache
 D:\Network\bitbucket\Network\Network\bin\ApplicationInsights.config
 D:\Network\bitbucket\Network\Network\bin\Network.dll.config
 D:\Network\bitbucket\Network\Network\bin\Network.dll
@@ -565,5 +564,6 @@ D:\Network\bitbucket\Network\Network\bin\ru\Microsoft.Owin.Security.Google.resou
 D:\Network\bitbucket\Network\Network\bin\ru\Microsoft.Owin.Security.Twitter.resources.dll
 D:\Network\bitbucket\Network\Network\bin\ru\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
 D:\Network\bitbucket\Network\Network\obj\Debug\Network.csprojResolveAssemblyReference.cache
+D:\Network\bitbucket\Network\Network\obj\Debug\Network.csproj.CoreCompileInputs.cache
 D:\Network\bitbucket\Network\Network\obj\Debug\Network.dll
 D:\Network\bitbucket\Network\Network\obj\Debug\Network.pdb
